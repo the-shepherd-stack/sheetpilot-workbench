@@ -45,6 +45,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Scan common lookup, logic, text, date, and summary formulas with examples/);
   assert.match(page, /\/excel-formula-not-showing-result\//);
   assert.match(page, /Diagnose formulas that show text, stay stale, return errors, or calculate the wrong value/);
+  assert.match(page, /\/excel-formulas-not-working\//);
+  assert.match(page, /Fix formulas that stop calculating after imports, copied ranges, locale settings, or text-number mismatches/);
   assert.match(page, /\/vlookup-na-error\//);
   assert.match(page, /Fix lookup formulas that return #N\/A because of exact-match settings/);
   assert.match(page, /\/excel-if-formula-multiple-conditions\//);
@@ -198,6 +200,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-formula-explainer',
     'excel-formula-fixer',
     'excel-formula-not-showing-result',
+    'excel-formulas-not-working',
     'vlookup-na-error',
     'excel-if-formula-multiple-conditions',
     'vlookup-formula-generator',
@@ -262,6 +265,23 @@ test('excel formula help page targets broad help intent without overclaiming', (
   assert.match(page, /Upgrade \$9/);
   assert.doesNotMatch(page, /guarantee|guaranteed|always accurate|perfect formula|official Microsoft|official Google|affiliated|file upload|dashboard builder/i);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-formula-help\//);
+});
+
+test('excel formulas not working page targets repair intent without overclaiming', () => {
+  const page = read('excel-formulas-not-working/index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel Formulas Not Working/);
+  assert.match(page, /Fix Excel formulas that are not working/);
+  assert.match(page, /calculation mode, text cells, separators, data types, and formula errors/);
+  assert.match(page, /Show Formulas mode, manual calculation, text-formatted cells, separators, data types, and error values/);
+  assert.match(page, /=SUMIFS\(C2:C500,B2:B500,&quot;Paid&quot;,A2:A500,&quot;&gt;=&quot;&amp;DATE\(2026,5,1\),A2:A500,&quot;&lt;&quot;&amp;DATE\(2026,6,1\)\)/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-formulas-not-working\//);
+  assert.doesNotMatch(page, /upload/i);
+  assert.doesNotMatch(page, /guarantee/i);
+  assert.doesNotMatch(page, /Microsoft partner/i);
 });
 
 test('AI Excel formula generator page targets plain-English AI formula intent without overclaiming', () => {

@@ -382,6 +382,36 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-formulas-not-working',
+    title: 'Excel Formulas Not Working | Write My Formula',
+    description: 'Fix Excel formulas that are not calculating, showing formula text, returning errors, or breaking after imports and copied ranges.',
+    eyebrow: 'Excel formulas not working',
+    h1: 'Fix Excel formulas that are not working.',
+    lede: 'Paste the formula that is failing, describe what Excel is showing, and get a safer formula plus checks for calculation mode, text cells, separators, data types, and formula errors.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=SUMIFS(C2:C500,A2:A500,">=5/1/2026",B2:B500,"Paid")'
+    },
+    intent: 'Help Excel users diagnose formulas that fail after imports, copied ranges, regional settings, workbook calculation changes, or text-number mismatches.',
+    bestFor: [
+      'Formulas that do not calculate after a paste, import, or workbook setting change.',
+      'Cells that show the formula text, stale values, or a pound-sign error instead of the expected result.',
+      'SUMIFS, IF, lookup, date, text, and conditional formulas that need a smaller test case before filling down.'
+    ],
+    steps: [
+      'Paste the formula exactly as Excel shows it.',
+      'Describe the visible symptom: text formula, old value, error value, blank, or wrong result.',
+      'Add the source headers or one sample row when the formula depends on dates, numbers, text, or lookup values.'
+    ],
+    copyChecks: [
+      'Check Show Formulas and workbook calculation mode before rewriting a working formula.',
+      'Confirm input cells are stored as the type the formula expects: number, date, or text.',
+      'Use the correct list separator for your Excel locale before changing function logic.',
+      'Test the fixed formula on one known row before replacing a whole report column.'
+    ]
+  },
+  {
     slug: 'vlookup-na-error',
     title: 'VLOOKUP #N/A Error Fixer | Write My Formula',
     description: 'Fix VLOOKUP #N/A errors caused by exact-match settings, text-number mismatches, lookup ranges, and missing fallbacks.',
@@ -1063,6 +1093,20 @@ const pageEnhancements = {
       setup: 'A status formula may look right but fail when the revenue values are imported as text or when the workbook is set to manual calculation.',
       formula: '=IF(VALUE(B2)>1000,"Review","OK")',
       read: 'The formula converts B2 to a number before testing the threshold. Use it only after checking that B2 should always contain a numeric value.'
+    }
+  },
+  'excel-formulas-not-working': {
+    gives: [
+      'A focused repair flow for formulas that are not calculating, not updating, or not parsing.',
+      'Checks for Show Formulas mode, manual calculation, text-formatted cells, separators, data types, and error values.',
+      'A revised formula path you can test on one known row before changing the rest of the workbook.'
+    ],
+    useWhen: 'Use this page when Excel formulas stop working after an import, copy, regional setting change, calculation setting change, or formula edit. It is strongest when you can paste the exact formula and say whether Excel is showing text, a stale value, an error, or a wrong answer.',
+    notWhen: 'Do not use it as a full workbook audit or proof that every formula in a file is safe. Start with one failing formula, check the visible symptom, and test the suggested fix on a known row before replacing a report column.',
+    example: {
+      setup: 'A SUMIFS formula can look correct but fail when dates are imported as text or when the workbook uses a different list separator.',
+      formula: '=SUMIFS(C2:C500,B2:B500,"Paid",A2:A500,">="&DATE(2026,5,1),A2:A500,"<"&DATE(2026,6,1))',
+      read: 'The formula totals paid rows in May 2026 using date boundaries built with DATE. The checks tell you to confirm real date values, matching range sizes, and the separator your Excel locale expects.'
     }
   },
   'vlookup-na-error': {

@@ -30,4 +30,5 @@ IndexNow key file: `8e6a0b9c4d2f41a7b5c3e8d9f0a1b2c6.txt`.
 - `https://writemyformula.com/ai-excel-formula-generator/`
 - `https://writemyformula.com/ai-google-sheets-formula-generator/`
 - `https://writemyformula.com/excel-if-formula-multiple-conditions/`
+- `https://writemyformula.com/excel-formulas-not-working/`
 - `https://writemyformula.com/vlookup-na-error/`
