@@ -442,6 +442,39 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-data-validation-formula',
+    title: 'Excel Data Validation Formula Helper | Write My Formula',
+    description: 'Write Excel data validation custom formulas for IDs, duplicates, required fields, dates, and allowed-entry rules.',
+    eyebrow: 'Excel data validation formula helper',
+    h1: 'Write the Excel data validation formula for your rule.',
+    lede: 'Describe what Excel should allow in the cell, include the first cell in the validation range, and get a custom TRUE/FALSE formula with copy checks before you apply it.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Create an Excel data validation custom formula that allows each customer ID only once and requires the ID- prefix.',
+      table: 'Customer ID,Customer\nID-0001234,Acme\nID-0001234,Northwind\n1234,Contoso',
+      range: 'Apply data validation to A2:A500; first entry cell is A2',
+      hint: 'Data Validation Custom'
+    },
+    intent: 'Help Excel users turn entry rules into custom data-validation formulas that return TRUE for allowed values and FALSE for values Excel should reject.',
+    bestFor: [
+      'Blocking duplicate IDs, missing required fields, malformed emails, invalid dates, or wrong prefixes at the point of entry.',
+      'Writing the formula for Data > Data Validation > Allow: Custom when the normal Whole number, Date, Text Length, or List options are not enough.',
+      'Fixing locked and relative references before applying a validation rule to a full input range.'
+    ],
+    steps: [
+      'Describe the allowed entry in plain language.',
+      'Include the first cell in the applied validation range because Excel evaluates the custom formula from that cell.',
+      'Paste a few valid and invalid sample values so the formula can be tested before the rule is copied down.'
+    ],
+    copyChecks: [
+      'Custom data-validation formulas should return TRUE for allowed entries and FALSE for entries Excel should reject.',
+      'Use dollar signs only where the reference must stay fixed as the validation rule is applied down the range.',
+      'Decide whether blanks should be accepted before adding ISBLANK or LEN checks.',
+      'Test one valid value and one invalid value in Excel after applying the rule.'
+    ]
+  },
+  {
     slug: 'google-sheets-formula-parse-error',
     title: 'Google Sheets Formula Parse Error Fixer | Write My Formula',
     description: 'Fix Google Sheets formula parse errors caused by missing quotes, mismatched parentheses, wrong separators, malformed QUERY strings, and range issues.',
@@ -1181,6 +1214,20 @@ const pageEnhancements = {
       setup: 'A total formula in D10 can become circular if it sums D2:D10, because the formula cell is inside the range it is totaling.',
       formula: '=SUM(D2:D9)',
       read: 'The revised formula totals the rows above D10 without including the result cell itself. If the range should grow, use a table total row or a range that stops before the formula cell.'
+    }
+  },
+  'excel-data-validation-formula': {
+    gives: [
+      'A custom validation formula for the entry rule you describe.',
+      'A plain-English read of why the formula returns TRUE for accepted entries.',
+      'Checks for first-cell references, fixed ranges, blanks, duplicate handling, and valid/invalid test entries.'
+    ],
+    useWhen: 'Use this page when Excel Data Validation is set to Allow: Custom and you need a formula for allowed entries, such as a required ID prefix, unique values, valid email-style text, a date window, or a required field. It is strongest when you know the first cell in the range where the rule will be applied.',
+    notWhen: 'Do not use a validation formula as a whole-workbook audit. Data validation helps block future entries; it does not prove every existing row is clean, and users can still paste or import data in ways that need a separate review.',
+    example: {
+      setup: 'For customer IDs in A2:A500, a validation rule can require the ID- prefix and reject duplicates in the applied range.',
+      formula: '=AND(LEFT(A2,3)="ID-",COUNTIF($A$2:$A$500,A2)=1)',
+      read: 'The formula returns TRUE only when A2 starts with ID- and the same value appears once in the validation range. A2 stays relative so Excel can evaluate each row, while the COUNTIF range stays fixed.'
     }
   },
   'google-sheets-formula-parse-error': {

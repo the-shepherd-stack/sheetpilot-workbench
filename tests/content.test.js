@@ -63,6 +63,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Split, extract, join, trim, clean, and replace text from messy imported cells/);
   assert.match(page, /\/data-validation-formula-generator\//);
   assert.match(page, /Block bad IDs, duplicate values, missing fields, and invalid entries/);
+  assert.match(page, /\/excel-data-validation-formula\//);
+  assert.match(page, /Write custom validation rules for IDs, duplicates, required fields, dates, and allowed entries/);
   assert.match(page, /\/google-sheets-query-formula-generator\//);
   assert.match(page, /Build QUERY formulas for filtering, selecting, sorting, grouping, and labeling Sheets data/);
   assert.match(page, /\/pivot-table-calculated-field-formula-generator\//);
@@ -220,6 +222,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'filter-formula-generator',
     'text-formula-generator',
     'data-validation-formula-generator',
+    'excel-data-validation-formula',
     'google-sheets-query-formula-generator',
     'pivot-table-calculated-field-formula-generator',
     'conditional-formatting-formula-generator',
@@ -532,6 +535,24 @@ test('data validation formula page targets custom entry rules', () => {
   assert.match(page, /=AND\(LEFT\(C2,3\)=&quot;ID-&quot;,LEN\(C2\)&gt;9\)/);
   assert.match(page, /data validation/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/data-validation-formula-generator\//);
+});
+
+test('excel data validation formula page targets custom validation intent without overclaiming', () => {
+  const page = read('excel-data-validation-formula/index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel Data Validation Formula Helper/);
+  assert.match(page, /Write the Excel data validation formula for your rule/);
+  assert.match(page, /Allow: Custom/);
+  assert.match(page, /TRUE for allowed values and FALSE/);
+  assert.match(page, /first cell in the range where the rule will be applied/);
+  assert.match(page, /=AND\(LEFT\(A2,3\)=&quot;ID-&quot;,COUNTIF\(\$A\$2:\$A\$500,A2\)=1\)/);
+  assert.match(page, /Use dollar signs only where the reference must stay fixed/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-data-validation-formula\//);
+  assert.doesNotMatch(page, /upload|guarantee|guaranteed|always fixes|official Microsoft|Microsoft-certified|affiliated/i);
 });
 
 test('google sheets query formula page targets report query intent', () => {
