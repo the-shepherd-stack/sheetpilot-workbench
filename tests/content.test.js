@@ -293,6 +293,24 @@ test('excel formulas not working page targets repair intent without overclaiming
   assert.doesNotMatch(page, /Microsoft partner/i);
 });
 
+test('excel formula fixer page targets fix-my-formula intent without overclaiming', () => {
+  const page = read('excel-formula-fixer/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Fix My Excel Formula/);
+  assert.match(page, /Paste your broken Excel formula\. Get it working/);
+  assert.match(page, /fix my Excel formula/);
+  assert.match(page, /#N\/A, #VALUE!, #REF!, #NAME\?, #DIV\/0!, #NUM!, blank, stale, or a wrong result/);
+  assert.match(page, /Show Formulas mode and workbook calculation mode/);
+  assert.match(page, /=IFERROR\(VLOOKUP\(TRIM\(A2\),Customers!\$A:\$C,3,FALSE\),&quot;Not found&quot;\)/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-formula-fixer\/">Fix my Excel formula/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-formula-fixer\//);
+  assert.doesNotMatch(page, /upload|workbook audit|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day/i);
+});
+
 test('google sheets formula parse error page targets Sheets repair intent without overclaiming', () => {
   const page = read('google-sheets-formula-parse-error/index.html');
   const sitemap = read('sitemap.xml');

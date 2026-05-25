@@ -325,31 +325,34 @@ const pages = [
   },
   {
     slug: 'excel-formula-fixer',
-    title: 'Excel Formula Fixer | Write My Formula',
-    description: 'Fix broken Excel formulas and get safer alternatives for lookup errors, missing fallbacks, and syntax problems.',
-    eyebrow: 'Excel formula fixer',
-    h1: 'Fix a broken Excel formula without guessing at syntax.',
-    lede: 'Paste the formula that is failing and get a corrected version with notes about common errors and safer fallbacks.',
+    title: 'Fix My Excel Formula | Write My Formula',
+    description: 'Paste a broken Excel formula and get a corrected version with checks for errors, text cells, manual calculation, ranges, and fallbacks.',
+    eyebrow: 'Fix my Excel formula',
+    h1: 'Paste your broken Excel formula. Get it working.',
+    lede: 'Paste the formula that is failing, add one line about what it should return, and get a corrected version with a short explanation and checks before you copy it back.',
     preset: {
       mode: 'fix',
       platform: 'excel',
-      formula: '=XLOOKUP(A2,Customers!A:A,Customers!C:C)'
+      formula: '=VLOOKUP(A2,Customers!A:C,3,FALSE)'
     },
-    intent: 'Turn a formula that errors or behaves strangely into a safer Excel formula.',
+    intent: 'Help Excel users repair one formula that returns an error, displays as text, stops calculating, matches the wrong row, or behaves differently after a copy or import.',
     bestFor: [
-      'Lookup formulas that return #N/A, wrong rows, or blank results.',
-      'Syntax issues from missing quotes, mismatched parentheses, or wrong separators.',
-      'Adding fallback text so formula errors do not leak into reports.'
+      'VLOOKUP, XLOOKUP, INDEX MATCH, IF, SUMIFS, date, and text formulas that return the wrong value.',
+      '#N/A, #VALUE!, #REF!, #NAME?, #DIV/0!, and #NUM! errors you need to narrow down.',
+      'Formulas that show as plain text, stay stale, break after fill-down, or need a safer missing-match fallback.'
     ],
     steps: [
-      'Paste the broken formula exactly as it appears in Excel.',
-      'Add a short note about the error or result you are seeing.',
-      'Compare the corrected formula with the explanation and checks.'
+      'Paste the broken formula exactly as Excel shows it.',
+      'Add one sentence about the result you expected and the result you got.',
+      'Include a header row or one sample row if the formula references lookup, date, text, or criteria cells.'
     ],
     copyChecks: [
-      'Make sure the corrected range sizes line up.',
-      'Keep backup copies of formulas before replacing a working report.',
-      'Test the fixed formula on both a matching row and a missing-match row.'
+      'Identify whether the visible error is #N/A, #VALUE!, #REF!, #NAME?, #DIV/0!, #NUM!, blank, stale, or a wrong result.',
+      'Check misplaced parentheses, quotes, commas, semicolons, and missing equal signs.',
+      'Confirm the source cells are not stored as text when the formula expects numbers or dates.',
+      'Check Show Formulas mode and workbook calculation mode before rewriting a working formula.',
+      'Confirm relative and absolute references before filling the fixed formula down.',
+      'Test the fixed formula on one matching row and one missing-match row before replacing a report column.'
     ]
   },
   {
@@ -1162,16 +1165,16 @@ const pageEnhancements = {
   },
   'excel-formula-fixer': {
     gives: [
-      'A safer draft version of the formula that is failing.',
-      'A short explanation of likely syntax, range, or fallback problems.',
-      'Checks that help you test the fixed formula against known rows.'
+      'A corrected formula draft for the one formula that is failing.',
+      'A short explanation of likely syntax, range, data-type, calculation, or fallback problems.',
+      'Checks that help you test the fix against known rows before replacing a report formula.'
     ],
-    useWhen: 'Use this page when a formula returns an error, breaks after being filled down, or needs a clearer fallback for missing matches.',
-    notWhen: 'Do not replace a working report formula across a whole workbook before testing. Fix one row first, then compare the result against the original data.',
+    useWhen: 'Use this page when you would search for fix my Excel formula: a formula returns an error, displays as text, stops recalculating, breaks after being filled down, or needs a clearer fallback for missing matches. It is strongest when you can paste the exact formula and one expected result.',
+    notWhen: 'Do not use it as a full-file review or proof every formula in a workbook is safe. Fix one formula first, test one known row, then compare the result against the original data before filling it through a report.',
     example: {
-      setup: 'A lookup formula can be made safer by adding a not-found fallback.',
-      formula: '=XLOOKUP(A2,Customers!A:A,Customers!C:C,"Not found")',
-      read: 'The formula searches customer IDs in column A of the Customers sheet and returns column C, with a readable fallback when no match exists.'
+      setup: 'A VLOOKUP can return #N/A even when the value appears to exist if the lookup cell contains hidden spaces from an import.',
+      formula: '=IFERROR(VLOOKUP(TRIM(A2),Customers!$A:$C,3,FALSE),"Not found")',
+      read: 'The formula trims the lookup value before searching the customer table, uses exact match, returns column 3, and shows Not found only after the lookup has been checked.'
     }
   },
   'excel-formula-not-showing-result': {
