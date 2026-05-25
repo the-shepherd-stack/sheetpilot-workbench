@@ -49,6 +49,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix formulas that stop calculating after imports, copied ranges, locale settings, or text-number mismatches/);
   assert.match(page, /\/excel-value-error\//);
   assert.match(page, /Repair formulas blocked by text values, hidden spaces, wrong argument types, dates, or subtraction syntax/);
+  assert.match(page, /\/excel-name-error\//);
+  assert.match(page, /Fix formulas with misspelled functions, undefined names, missing quotes, or unsupported functions/);
   assert.match(page, /\/excel-circular-reference\//);
   assert.match(page, /Fix formulas that point back at their own result cell or need deliberate iterative-calculation checks/);
   assert.match(page, /\/google-sheets-formula-parse-error\//);
@@ -210,6 +212,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-formula-not-showing-result',
     'excel-formulas-not-working',
     'excel-value-error',
+    'excel-name-error',
     'excel-circular-reference',
     'google-sheets-formula-parse-error',
     'vlookup-na-error',
@@ -311,6 +314,25 @@ test('excel value error page targets VALUE repair intent without overclaiming', 
   assert.match(homepage, /href="\/excel-value-error\/">Excel #VALUE! error/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-value-error\//);
   assert.doesNotMatch(page, /upload|workbook audit|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer/i);
+});
+
+test('excel name error page targets NAME repair intent without overclaiming', () => {
+  const page = read('excel-name-error/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel #NAME\? Error Fixer/);
+  assert.match(page, /Fix an Excel #NAME\? error at the formula syntax/);
+  assert.match(page, /function names, named ranges, quoted text, range syntax, add-ins, and Excel version support/);
+  assert.match(page, /Do not hide #NAME\? with IFERROR before fixing the syntax/);
+  assert.match(page, /=SUMIF\(Status,&quot;Open&quot;,Amount\)/);
+  assert.match(page, /Wrap text criteria in double quotes/);
+  assert.match(page, /Confirm range references include the needed colon/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-name-error\/">Excel #NAME\? error/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-name-error\//);
+  assert.doesNotMatch(page, /upload|workbook audit|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|pay before answer/i);
 });
 
 test('excel formula fixer page targets fix-my-formula intent without overclaiming', () => {

@@ -445,6 +445,37 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-name-error',
+    title: 'Excel #NAME? Error Fixer | Write My Formula',
+    description: 'Fix Excel #NAME? errors caused by misspelled function names, undefined named ranges, missing quotes, missing range colons, add-ins, and unsupported functions.',
+    eyebrow: 'Excel #NAME? error fixer',
+    h1: 'Fix an Excel #NAME? error at the formula syntax.',
+    lede: 'Paste the formula that returns #NAME?, describe what the cell should calculate, and get a cleaner formula plus checks for function names, named ranges, quoted text, range syntax, add-ins, and Excel version support.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=SUMIF(Status,Open,Amount)'
+    },
+    intent: 'Help Excel users fix one formula returning #NAME? by finding the unrecognized function, defined name, text value, range reference, add-in function, or version-specific function that Excel cannot interpret.',
+    bestFor: [
+      'Formulas with misspelled functions, pasted function names, or newer functions not available in the current Excel version.',
+      'Named ranges, structured references, and workbook names that were changed, deleted, or typed differently.',
+      'Criteria formulas where text values are missing double quotes or a range reference is missing a colon.'
+    ],
+    steps: [
+      'Paste the exact formula that returns #NAME?.',
+      'Add one sentence about what the formula should return and which workbook names or ranges it depends on.',
+      'Mention your Excel version when the formula uses newer functions, add-ins, macros, or custom functions.'
+    ],
+    copyChecks: [
+      'Check every function name, defined name, table name, and named range for spelling differences.',
+      'Wrap text criteria in double quotes so Excel does not read the text as an undefined name.',
+      'Confirm range references include the needed colon, such as A2:A500 instead of A2A500.',
+      'Verify required add-ins, macros, custom functions, or newer Excel functions are available before replacing the formula.',
+      'Fix the syntax issue directly before deciding whether an IFERROR fallback is appropriate.'
+    ]
+  },
+  {
     slug: 'excel-circular-reference',
     title: 'Excel Circular Reference Fixer | Write My Formula',
     description: 'Fix Excel circular reference warnings by rewriting the formula logic or checking whether iterative calculation is intentional.',
@@ -1247,6 +1278,20 @@ const pageEnhancements = {
       setup: 'A subtraction formula can return #VALUE! when imported cells contain numbers stored as text or hidden spaces.',
       formula: '=VALUE(TRIM(A2))-VALUE(TRIM(B2))',
       read: 'The formula trims each referenced cell, converts the cleaned text to numbers, then subtracts them. Use it only after confirming those cells should contain numeric values.'
+    }
+  },
+  'excel-name-error': {
+    gives: [
+      'A focused fix pass for one formula returning #NAME?.',
+      'Checks for misspelled functions, undefined names, unquoted text, malformed ranges, add-ins, and Excel version support.',
+      'A revised formula path you can test before masking the syntax problem with an error fallback.'
+    ],
+    useWhen: 'Use this page when Excel returns #NAME? because it cannot recognize a function name, workbook name, named range, text value, range reference, add-in function, macro, or newer Excel function. It is strongest when you can paste the exact formula and name the expected result.',
+    notWhen: 'Do not hide #NAME? with IFERROR before fixing the syntax. Excel is telling you it cannot understand part of the formula, and a fallback can conceal a misspelled function, missing range colon, undefined name, or unsupported function.',
+    example: {
+      setup: 'A SUMIF formula can return #NAME? when the text criterion is not wrapped in quotes, because Excel reads Open as a workbook name instead of text.',
+      formula: '=SUMIF(Status,"Open",Amount)',
+      read: 'The formula treats Open as text criteria, then totals the Amount range for rows where Status equals Open. The checks tell you to confirm Status and Amount are defined names or replace them with real cell ranges.'
     }
   },
   'excel-circular-reference': {
