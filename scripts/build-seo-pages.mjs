@@ -1,0 +1,1457 @@
+import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const template = readFileSync(resolve(root, 'index.html'), 'utf8');
+
+const pages = [
+  {
+    slug: 'excel-formula-generator',
+    title: 'Excel Formula Generator | Write My Formula',
+    description: 'Generate Excel formulas from plain English with table context, range hints, explanations, and copy-ready output.',
+    eyebrow: 'Excel formula generator',
+    h1: 'Generate an Excel formula from a plain-English task.',
+    lede: 'Tell the workbench what the sheet should do, paste headers or sample rows, and get a formula with the checks you need before copying it into Excel.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Create an Excel formula that returns the matching plan price for each customer.',
+      table: 'Customer,Plan,Price\nAcme,Pro,29\nNorthwind,Team,79',
+      range: 'A2:C100; result in D2',
+      hint: 'XLOOKUP'
+    },
+    intent: 'Build a formula for a clear Excel task when the sheet layout is already known.',
+    bestFor: [
+      'Lookup formulas that need the correct lookup and return ranges.',
+      'Revenue, status, date, or category logic that is hard to write from memory.',
+      'Turning pasted headers and sample rows into a formula that matches the workbook.'
+    ],
+    steps: [
+      'Describe the outcome in normal language.',
+      'Paste the headers or a few representative rows.',
+      'Add the target cell or range so the formula uses the right references.'
+    ],
+    copyChecks: [
+      'Confirm the lookup column and return column match your workbook.',
+      'Use absolute ranges when the formula will be filled down.',
+      'Check whether your Excel version supports the suggested function.'
+    ]
+  },
+  {
+    slug: 'google-sheets-formula-generator',
+    title: 'Google Sheets Formula Generator | Write My Formula',
+    description: 'Generate Google Sheets formulas from plain English and pasted sheet context, with Sheets-specific compatibility notes.',
+    eyebrow: 'Google Sheets formula generator',
+    h1: 'Turn a Google Sheets task into a formula you can paste.',
+    lede: 'Describe the result you want, include the headers or sample rows, and get a Sheets formula with assumptions, checks, and a copy button.',
+    preset: {
+      mode: 'write',
+      platform: 'sheets',
+      task: 'Extract the domain from each customer email address.',
+      table: 'Email,Customer\nalex@northwind.com,Northwind\nsam@acme.co,Acme',
+      range: 'A2:A500; result in C2',
+      hint: 'REGEXEXTRACT'
+    },
+    intent: 'Create a Google Sheets formula that fits Sheets functions, ranges, and text handling.',
+    bestFor: [
+      'Text cleanup, email parsing, and lightweight data preparation in Sheets.',
+      'Array-friendly formulas where Google Sheets behavior differs from desktop Excel.',
+      'Quick formulas for shared sheets where the assumptions need to be readable.'
+    ],
+    steps: [
+      'Set the spreadsheet toggle to Google Sheets.',
+      'Include sample values when the formula needs to parse text or dates.',
+      'Use the function hint when you already know the Sheets function you want.'
+    ],
+    copyChecks: [
+      'Check comma and locale separators before pasting.',
+      'Confirm whether the output should fill one row or spill across multiple rows.',
+      'Review compatibility notes before sharing the sheet with Excel users.'
+    ]
+  },
+  {
+    slug: 'excel-formula-help',
+    title: 'Excel Formula Help | Write My Formula',
+    description: 'Get help writing, explaining, or fixing one Excel formula with plain-English context, range notes, and checks before you paste.',
+    eyebrow: 'Excel formula help',
+    h1: "Write the Excel formula you're stuck on.",
+    lede: 'Describe what the formula should do, paste the one that is broken, or add the headers involved, and get one formula-sized answer with the checks visible before you use it.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Help me write an Excel formula that flags rows where the due date is past and the status is not Done.',
+      table: 'Task,Due Date,Status\nRenew contract,2026-05-18,Open\nSend invoice,2026-05-29,Done',
+      range: 'Due dates in B2:B500; status in C2:C500; result in D2',
+      hint: 'IF'
+    },
+    intent: 'Help spreadsheet users who search broadly for Excel formula help move from a vague problem to a specific formula draft, explanation, or repair they can test on one known row.',
+    bestFor: [
+      'Choosing the right Excel function when you know the spreadsheet result but not the syntax.',
+      'Fixing a formula that returns an error, stale value, blank, or wrong result.',
+      'Explaining a coworker-written formula before editing a live workbook.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix based on the help you need.',
+      'Paste headers, sample rows, or the formula itself so the answer can use real references.',
+      'Add the expected result for one row when you already know what the formula should return.'
+    ],
+    copyChecks: [
+      'Confirm every range matches your workbook before filling down.',
+      'Test the output on one row where you already know the answer.',
+      'Check whether your Excel version supports newer functions such as XLOOKUP, FILTER, TEXTSPLIT, or TEXTAFTER.'
+    ]
+  },
+  {
+    slug: 'ai-excel-formula-generator',
+    title: 'AI Excel Formula Generator | Write My Formula',
+    description: 'Use AI to generate Excel formulas from plain English, then review the explanation, range notes, and paste checks before using them.',
+    eyebrow: 'AI Excel formula generator',
+    h1: 'Use AI to write the Excel formula you mean.',
+    lede: 'Describe the spreadsheet job in plain English, add the cells or headers involved, and get an Excel formula with an explanation and checks before you paste it.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Create an Excel formula that totals paid invoices from May 2026 and ignores open invoices.',
+      table: 'Invoice Date,Status,Amount\n2026-05-04,Paid,1200\n2026-05-12,Open,850\n2026-05-18,Paid,640',
+      range: 'Dates in A2:A500; status in B2:B500; amount in C2:C500; result in F2',
+      hint: 'SUMIFS'
+    },
+    intent: 'Generate an Excel formula from a plain-English request when the job is formula-shaped: lookup, summary, date, text, IF logic, conditional formatting, or fixing a formula that already exists.',
+    bestFor: [
+      'Turning a normal-language Excel task into a copy-ready formula draft.',
+      'Getting the function choice, ranges, and criteria written out together.',
+      'Checking an AI-generated formula against known rows before filling it through a workbook.'
+    ],
+    steps: [
+      'Describe the result you want, not just the function name.',
+      'Paste headers, sample rows, or the target cell so the formula can use the right references.',
+      'Read the explanation and checks before copying the result into Excel.'
+    ],
+    copyChecks: [
+      'Confirm the ranges match your workbook before filling down.',
+      'Test the formula on a row where you already know the expected answer.',
+      'Use a broader spreadsheet AI if you need file upload, data chat, charts, dashboards, or workbook-wide analysis.'
+    ]
+  },
+  {
+    slug: 'ai-google-sheets-formula-generator',
+    title: 'AI Google Sheets Formula Generator | Write My Formula',
+    description: 'Use AI to generate Google Sheets formulas from plain English, then review the formula, range notes, and paste checks before using it.',
+    eyebrow: 'AI Google Sheets formula generator',
+    h1: 'Use AI to write the Google Sheets formula you need.',
+    lede: 'Describe what the cell should do, add headers or sample rows, and get a Google Sheets formula with the assumptions and checks visible before you paste it.',
+    preset: {
+      mode: 'write',
+      platform: 'sheets',
+      task: 'Create a Google Sheets formula that summarizes April 2026 revenue by region.',
+      table: 'Date,Region,Customer,Amount\n2026-04-03,West,Acme,1200\n2026-04-18,East,Northwind,850\n2026-05-02,West,Acme,640',
+      range: 'A1:D500; output starts in F1; headers in row 1',
+      hint: 'QUERY'
+    },
+    intent: 'Generate a Google Sheets formula from a plain-English request when the job is one formula, one rule, or one repair rather than a full spreadsheet automation workflow.',
+    bestFor: [
+      'QUERY, FILTER, ARRAYFORMULA, REGEXEXTRACT, IMPORTRANGE, lookup, and summary formulas in shared Google Sheets.',
+      'Turning a request such as unique customers by region or monthly totals into a formula with readable assumptions.',
+      'Explaining or fixing a coworker-written Sheets formula before changing a live sheet.'
+    ],
+    steps: [
+      'Describe the exact result the formula should return.',
+      'Paste headers, sample rows, or the target range so the formula can use the right columns.',
+      'Review the explanation and compatibility notes before copying into Google Sheets.'
+    ],
+    copyChecks: [
+      'Check whether the formula uses comma or semicolon separators for your locale.',
+      'Confirm the output can spill into empty cells before using QUERY, FILTER, or ARRAYFORMULA.',
+      'Use a broader spreadsheet AI if you need file upload, data chat, charts, dashboards, or workbook-wide analysis.'
+    ]
+  },
+  {
+    slug: 'google-sheets-query-formula-generator',
+    title: 'Google Sheets QUERY Formula Generator | Write My Formula',
+    description: 'Generate Google Sheets QUERY formulas from plain-English filter, select, sort, group, and label requests.',
+    eyebrow: 'Google Sheets QUERY formula generator',
+    h1: 'Write a Google Sheets QUERY formula without memorizing SQL syntax.',
+    lede: 'Describe the rows and columns you want, paste sample headers, and get a QUERY formula with notes for select clauses, where filters, sorting, grouping, and labels.',
+    preset: {
+      mode: 'write',
+      platform: 'sheets',
+      task: 'Use QUERY to show open West region deals above 5000, sorted by value descending.',
+      table: 'Deal,Region,Status,Value\nRenewal,West,Open,7200\nExpansion,East,Open,4100\nSupport,West,Closed,1800',
+      range: 'A1:D500; output starts in F1; headers in row 1',
+      hint: 'QUERY'
+    },
+    intent: 'Build Google Sheets QUERY formulas for report-style views that select, filter, sort, group, or relabel columns from a source table.',
+    bestFor: [
+      'Turning a raw Google Sheets table into a filtered report view.',
+      'Combining select, where, order by, group by, and label clauses in one formula.',
+      'Replacing repeated filter menu work with a reusable formula output.'
+    ],
+    steps: [
+      'Paste the source headers and a few rows so the column letters are clear.',
+      'Describe which columns should appear in the result and which rows should qualify.',
+      'Mention sorting, grouping, totals, or custom column labels if the output is a report.'
+    ],
+    copyChecks: [
+      'QUERY uses Col1-style references when the source range is an array expression.',
+      'Text criteria need single quotes inside the query string.',
+      'Set the header-row argument correctly so Sheets does not treat a data row as headers.'
+    ]
+  },
+  {
+    slug: 'formula-bot-alternative',
+    title: 'Formula Bot Alternative for Excel Formulas | Write My Formula',
+    description: 'A focused Formula Bot alternative for writing, explaining, and fixing Excel and Google Sheets formulas from plain English.',
+    eyebrow: 'Formula Bot alternative',
+    h1: 'A focused Formula Bot alternative for formula work.',
+    lede: 'Use Write My Formula when you need a quick Excel or Google Sheets formula, explanation, or fix without opening a broader spreadsheet-analysis suite.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Write a formula that sums paid invoices from the current month and ignores open invoices.',
+      table: 'Invoice Date,Status,Amount\n2026-05-04,Paid,1200\n2026-05-12,Open,850\n2026-05-18,Paid,640',
+      range: 'Dates in A2:A500; status in B2:B500; amount in C2:C500; result in F2',
+      hint: 'SUMIFS'
+    },
+    intent: 'Help spreadsheet users who are comparing AI Excel formula tools choose a narrow formula workbench for writing, explaining, and fixing formulas.',
+    bestFor: [
+      'Getting one copy-ready formula with the range, criteria, and fallback spelled out.',
+      'Explaining inherited formulas before editing a live workbook.',
+      'Fixing syntax, lookup, conditional-formatting, text, date, and summary formulas without uploading a spreadsheet file.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula job in front of you.',
+      'Paste the headers, sample rows, or broken formula so the output can use your actual context.',
+      'Copy the formula only after checking the range notes and compatibility warning.'
+    ],
+    copyChecks: [
+      'Use a broader spreadsheet AI if you need file upload, charts, dashboards, or whole-table analysis.',
+      'Use Write My Formula when the job is a formula you can describe, test, and paste.',
+      'Test the output on one known row before filling it through an important workbook.'
+    ]
+  },
+  {
+    slug: 'sheetsolver-ai-alternative',
+    title: 'SheetSolver AI Alternative for Spreadsheet Formulas | Write My Formula',
+    description: 'A focused SheetSolver AI alternative for writing, explaining, and fixing Excel and Google Sheets formulas without a broader spreadsheet automation workspace.',
+    eyebrow: 'SheetSolver AI alternative',
+    h1: 'A SheetSolver AI alternative built for one job: the formula.',
+    lede: 'Use Write My Formula when you want a copy-ready Excel or Google Sheets formula, a readable explanation, or a fix for a broken formula without turning the job into a full spreadsheet automation workflow.',
+    preset: {
+      mode: 'write',
+      platform: 'sheets',
+      task: 'Write a formula that extracts the domain from each customer email address and leaves blanks empty.',
+      table: 'Email,Customer\nalex@northwind.com,Northwind\nsam@acme.co,Acme\n,Missing',
+      range: 'Emails in A2:A500; result in C2',
+      hint: 'REGEXEXTRACT'
+    },
+    intent: 'Help spreadsheet users comparing AI formula tools choose a narrow formula helper when the job is to write, understand, or repair one formula rather than analyze an uploaded workbook.',
+    bestFor: [
+      'Turning a plain-English formula request into a copy-ready Excel or Google Sheets formula.',
+      'Explaining inherited formulas before editing shared workbook logic.',
+      'Fixing lookup, text, date, summary, conditional-formatting, and data-validation formulas with the relevant ranges visible.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix based on the formula task.',
+      'Paste headers, sample rows, the formula, or the rule dialog context.',
+      'Review the explanation and copy checks before filling the formula through a report.'
+    ],
+    copyChecks: [
+      'Use a broader spreadsheet AI if you need file upload, data chat, dashboards, charts, or workbook-wide analysis.',
+      'Use Write My Formula when the problem can be described as one formula, one rule, or one repair.',
+      'Test the formula on a known row before replacing formulas across an important sheet.'
+    ]
+  },
+  {
+    slug: 'excel-formula-cheat-sheet',
+    title: 'Excel Formula Cheat Sheet | Write My Formula',
+    description: 'A practical Excel formula cheat sheet with common lookup, logic, text, date, percentage, and summary formulas plus examples.',
+    eyebrow: 'Excel formula cheat sheet',
+    h1: 'Excel formula cheat sheet for the formulas people actually use.',
+    lede: 'Use this reference to pick the right formula pattern, then describe your exact sheet and let the workbench turn it into a copy-ready formula.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Choose the right formula for a lookup, summary, text cleanup, date deadline, or percentage calculation and adapt it to my sheet.',
+      table: 'Use case,Formula pattern\nLookup customer plan,XLOOKUP or INDEX MATCH\nSum paid invoices,SUMIFS\nExtract email domain,TEXTAFTER or REGEXEXTRACT',
+      range: 'Paste your own headers and target cell before generating',
+      hint: 'formula cheat sheet'
+    },
+    intent: 'Help spreadsheet users choose between common Excel formula patterns before generating the exact formula for their workbook.',
+    bestFor: [
+      'Quickly comparing lookup, logic, text, date, and summary formulas.',
+      'Finding the right starting point when you know the spreadsheet job but not the function name.',
+      'Moving from a generic example to a formula adapted to real ranges and headers.'
+    ],
+    steps: [
+      'Find the closest formula pattern in the cheat sheet.',
+      'Paste your real headers, sample rows, and target cell into the workbench.',
+      'Generate the adapted formula and check the notes before filling it down.'
+    ],
+    copyChecks: [
+      'Cheat-sheet examples use generic ranges, so adapt them before pasting into a live workbook.',
+      'Lock ranges with dollar signs when a formula will be copied down a column.',
+      'Test one known row before replacing formulas across a report.'
+    ]
+  },
+  {
+    slug: 'excel-formula-explainer',
+    title: 'Excel Formula Explainer | Write My Formula',
+    description: 'Paste an Excel formula and get a plain-English explanation of what it does, step by step.',
+    eyebrow: 'Excel formula explainer',
+    h1: 'Explain an Excel formula before you trust it.',
+    lede: 'Paste a formula and get a readable breakdown of the functions, logic, assumptions, and compatibility checks.',
+    preset: {
+      mode: 'explain',
+      platform: 'excel',
+      formula: '=IF(A2="","Missing",IF(B2>1000,"Review","OK"))'
+    },
+    intent: 'Understand an Excel formula before editing, copying, or relying on it.',
+    bestFor: [
+      'Inherited spreadsheets where the original formula author is unavailable.',
+      'Nested IF, lookup, text, and date formulas that are hard to scan quickly.',
+      'Checking whether a formula handles blanks, missing matches, or thresholds.'
+    ],
+    steps: [
+      'Paste the exact formula from the workbook.',
+      'Switch to Explain mode so the output focuses on logic rather than rewriting.',
+      'Read the checks before changing references or filling the formula down.'
+    ],
+    copyChecks: [
+      'Look for assumptions about blank cells and error handling.',
+      'Check whether the formula uses relative references that shift when copied.',
+      'Confirm the explanation against a few known rows in the sheet.'
+    ]
+  },
+  {
+    slug: 'excel-formula-fixer',
+    title: 'Excel Formula Fixer | Write My Formula',
+    description: 'Fix broken Excel formulas and get safer alternatives for lookup errors, missing fallbacks, and syntax problems.',
+    eyebrow: 'Excel formula fixer',
+    h1: 'Fix a broken Excel formula without guessing at syntax.',
+    lede: 'Paste the formula that is failing and get a corrected version with notes about common errors and safer fallbacks.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=XLOOKUP(A2,Customers!A:A,Customers!C:C)'
+    },
+    intent: 'Turn a formula that errors or behaves strangely into a safer Excel formula.',
+    bestFor: [
+      'Lookup formulas that return #N/A, wrong rows, or blank results.',
+      'Syntax issues from missing quotes, mismatched parentheses, or wrong separators.',
+      'Adding fallback text so formula errors do not leak into reports.'
+    ],
+    steps: [
+      'Paste the broken formula exactly as it appears in Excel.',
+      'Add a short note about the error or result you are seeing.',
+      'Compare the corrected formula with the explanation and checks.'
+    ],
+    copyChecks: [
+      'Make sure the corrected range sizes line up.',
+      'Keep backup copies of formulas before replacing a working report.',
+      'Test the fixed formula on both a matching row and a missing-match row.'
+    ]
+  },
+  {
+    slug: 'excel-formula-not-showing-result',
+    title: 'Excel Formula Not Showing Result | Write My Formula',
+    description: 'Diagnose why an Excel formula is showing text, not updating, or returning the wrong result, then rewrite the formula with safer checks.',
+    eyebrow: 'Excel formula not showing result',
+    h1: 'Fix an Excel formula that is not showing the result.',
+    lede: 'Paste the formula, describe what Excel is showing, and get a clearer version with checks for calculation mode, text-formatted cells, references, and common formula errors.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=IF(B2>1000,"Review","OK")'
+    },
+    intent: 'Help Excel users move from a formula that displays as text, refuses to recalculate, or returns an unexpected value into a formula and checklist they can test on one row before filling down.',
+    bestFor: [
+      'Formulas that show the formula text in the cell instead of the calculated result.',
+      'Workbooks where formulas appear stuck until you force a recalculation.',
+      'Formula errors caused by text-formatted numbers, wrong argument types, inconsistent references, or missing fallbacks.'
+    ],
+    steps: [
+      'Paste the exact formula that is not showing the expected result.',
+      'Say whether Excel is showing formula text, an error value, an old value, or the wrong answer.',
+      'Add the relevant headers or sample row if the formula depends on lookup, date, or conditional logic.'
+    ],
+    copyChecks: [
+      'Confirm calculation options are set the way you expect before replacing formulas across a workbook.',
+      'Check whether the source cells are stored as text when the formula expects numbers or dates.',
+      'Test the fixed formula on one known row before filling it down.'
+    ]
+  },
+  {
+    slug: 'vlookup-na-error',
+    title: 'VLOOKUP #N/A Error Fixer | Write My Formula',
+    description: 'Fix VLOOKUP #N/A errors caused by exact-match settings, text-number mismatches, lookup ranges, and missing fallbacks.',
+    eyebrow: 'VLOOKUP #N/A error fixer',
+    h1: 'Fix a VLOOKUP #N/A error without guessing.',
+    lede: 'Paste the VLOOKUP that is returning #N/A and get a corrected version with checks for exact match, text-number mismatches, lookup ranges, and safer fallbacks.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=VLOOKUP(E2,$A$2:$C$500,2,TRUE)'
+    },
+    intent: 'Help Excel users fix a VLOOKUP that returns #N/A or the wrong result even when the lookup value appears to exist in the table.',
+    bestFor: [
+      'VLOOKUP formulas where the value looks present but Excel still returns #N/A.',
+      'Lookup tables with numbers stored as text, trailing spaces, or imported values that do not match cleanly.',
+      'Older workbooks where VLOOKUP is still required but the formula needs exact-match and fallback checks.'
+    ],
+    steps: [
+      'Paste the VLOOKUP formula that is returning #N/A.',
+      'Add a short note about whether the match exists, looks duplicated, or comes from imported data.',
+      'Include the lookup column, return column, and whether the workbook can use XLOOKUP instead.'
+    ],
+    copyChecks: [
+      'Use FALSE or 0 for exact match unless approximate matching is intentional.',
+      'Confirm the lookup value and first lookup column use the same stored type.',
+      'Check that the table range starts with the column being searched.',
+      'Use a readable fallback only after confirming whether a missing match is acceptable.'
+    ]
+  },
+  {
+    slug: 'vlookup-formula-generator',
+    title: 'VLOOKUP Formula Generator | Write My Formula',
+    description: 'Build VLOOKUP formulas from a plain-English lookup task and pasted table context.',
+    eyebrow: 'VLOOKUP formula generator',
+    h1: 'Build a VLOOKUP formula from the lookup you need.',
+    lede: 'Use this when you need a legacy Excel-compatible lookup formula and want the range, return column, and fallback spelled out.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Use VLOOKUP to find each SKU and return the product category.',
+      table: 'SKU,Category,Price\nA-100,Hardware,14.99\nB-240,Office,8.50',
+      range: 'A2:C500; lookup value in E2',
+      hint: 'VLOOKUP'
+    },
+    intent: 'Generate a legacy-compatible lookup formula when VLOOKUP is the required function.',
+    bestFor: [
+      'Workbooks that must stay compatible with older Excel versions.',
+      'Simple left-to-right table lookups with a known return column.',
+      'Teams that already standardize on VLOOKUP in shared files.'
+    ],
+    steps: [
+      'Put the lookup value and table range in the request.',
+      'Paste the first row of the lookup table so the return column is clear.',
+      'Ask for exact match unless you intentionally need approximate matching.'
+    ],
+    copyChecks: [
+      'VLOOKUP searches the first column of the selected table range.',
+      'The return column number changes if columns are inserted or removed.',
+      'Use absolute references before filling the formula down.'
+    ]
+  },
+  {
+    slug: 'xlookup-formula-generator',
+    title: 'XLOOKUP Formula Generator | Write My Formula',
+    description: 'Generate XLOOKUP formulas with exact-match lookup logic, readable fallbacks, and copy-ready output.',
+    eyebrow: 'XLOOKUP formula generator',
+    h1: 'Write an XLOOKUP formula with the right lookup and return ranges.',
+    lede: 'Describe the lookup, paste your table headers, and get a modern Excel or Google Sheets formula with a readable fallback.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Find the customer email from the customer ID.',
+      table: 'Customer ID,Customer,Email\nC001,Acme,ops@acme.co\nC002,Northwind,team@northwind.com',
+      range: 'A2:C500; lookup ID in E2',
+      hint: 'XLOOKUP'
+    },
+    intent: 'Create a modern exact-match lookup with separate lookup and return ranges.',
+    bestFor: [
+      'Replacing brittle VLOOKUP formulas in modern Excel or Google Sheets.',
+      'Returning values from columns to the left or right of the lookup key.',
+      'Adding clear not-found messages instead of raw lookup errors.'
+    ],
+    steps: [
+      'Describe the lookup key and the value that should come back.',
+      'Paste the columns involved, even if they are not next to each other.',
+      'Include the cell that contains the lookup value.'
+    ],
+    copyChecks: [
+      'Confirm the lookup range and return range have the same height.',
+      'Keep the not-found fallback meaningful for downstream reports.',
+      'Use modern Excel or Google Sheets before choosing XLOOKUP.'
+    ]
+  },
+  {
+    slug: 'index-match-formula-generator',
+    title: 'INDEX MATCH Formula Generator | Write My Formula',
+    description: 'Generate INDEX MATCH formulas for Excel and Google Sheets, including left lookups, two-way lookups, and older workbook compatibility.',
+    eyebrow: 'INDEX MATCH formula generator',
+    h1: 'Build an INDEX MATCH formula for the lookup you need.',
+    lede: 'Describe the lookup, paste the involved columns or headers, and get an INDEX MATCH formula with notes for exact matches, left lookups, two-way lookups, and fill-down references.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Use INDEX MATCH to find the product category from the SKU, even if the category column is to the left of the SKU column.',
+      table: 'Category,Product,SKU,Price\nHardware,Keyboard,KB-100,49\nOffice,Notebook,NB-240,8',
+      range: 'Categories in A2:A500; SKUs in C2:C500; lookup SKU in F2',
+      hint: 'INDEX MATCH'
+    },
+    intent: 'Create flexible lookup formulas with INDEX and MATCH when VLOOKUP is too brittle or XLOOKUP is not available.',
+    bestFor: [
+      'Left lookups where the return column sits before the lookup column.',
+      'Older Excel workbooks where XLOOKUP is not available.',
+      'Two-way lookups that match both a row label and a column header.'
+    ],
+    steps: [
+      'Describe the lookup value and the result that should come back.',
+      'Paste the lookup range and return range, even when they are not adjacent.',
+      'Mention whether the lookup is one-way, two-way, exact match, or approximate match.'
+    ],
+    copyChecks: [
+      'The MATCH lookup range should line up with the INDEX return range.',
+      'Use `0` in MATCH for exact matches unless approximate matching is intentional.',
+      'Lock lookup and return ranges before filling the formula down.'
+    ]
+  },
+  {
+    slug: 'if-formula-generator',
+    title: 'IF Formula Generator for Excel and Sheets | Write My Formula',
+    description: 'Generate IF formulas for Excel or Google Sheets from plain-English rules and sample data.',
+    eyebrow: 'IF formula generator',
+    h1: 'Turn a plain-English rule into an IF formula.',
+    lede: 'Write the rule in normal language, include the columns involved, and get a formula with notes for blanks, thresholds, and nested logic.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'If the revenue is above 1000 mark Review, otherwise mark OK. If the customer name is blank, return Missing.',
+      table: 'Customer,Revenue\nAcme,1200\nNorthwind,800',
+      range: 'A2:B500; result in C2',
+      hint: 'IF'
+    },
+    intent: 'Translate a business rule into IF logic that can be pasted into Excel or Sheets.',
+    bestFor: [
+      'Status labels, thresholds, pass/fail checks, and simple routing logic.',
+      'Rules that need a blank-cell branch before the main condition.',
+      'Nested IF formulas where each outcome needs to stay readable.'
+    ],
+    steps: [
+      'Write the rule with the exact output labels you want.',
+      'Mention what should happen when the input cell is blank.',
+      'Paste sample rows that cover both true and false outcomes.'
+    ],
+    copyChecks: [
+      'Check text labels for exact spelling and capitalization.',
+      'Test boundary values such as exactly 1000 when using greater-than logic.',
+      'Consider IFS or SWITCH when the rule has many branches.'
+    ]
+  },
+  {
+    slug: 'excel-if-formula-multiple-conditions',
+    title: 'Excel IF Formula with Multiple Conditions | Write My Formula',
+    description: 'Write, explain, or fix Excel IF formulas with multiple conditions, including nested IF, AND, OR, IFS, blank checks, and edge-row tests.',
+    eyebrow: 'Excel IF formula with multiple conditions',
+    h1: 'Write an Excel IF formula with multiple conditions.',
+    lede: 'Describe the rule, paste the columns involved, and get an IF formula with the branch order, AND/OR logic, and edge-row checks visible before you fill it down.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Flag an invoice as Review if it is over 5000 and either past due or from a new customer. Otherwise mark it OK.',
+      table: 'Invoice,Amount,Status,Customer Type\nINV-1001,6400,Past Due,Existing\nINV-1002,3200,Open,New\nINV-1003,7800,Open,New',
+      range: 'Amount in B2:B500; status in C2:C500; customer type in D2:D500; result in E2',
+      hint: 'IF AND OR'
+    },
+    intent: 'Build Excel IF logic when one output depends on several conditions, branch order matters, and the formula needs to stay readable enough to test before filling down.',
+    bestFor: [
+      'Nested IF, IFS, IF with AND, and IF with OR formulas that are hard to assemble by hand.',
+      'Status, approval, risk, invoice, commission, and routing rules with several possible outcomes.',
+      'Fixing conditional logic that works for one row but fails on blanks, thresholds, or edge cases.'
+    ],
+    steps: [
+      'Write the business rule in the order Excel should evaluate it.',
+      'Paste headers and sample rows that include true, false, blank, and edge cases.',
+      'Say whether every condition must be true or whether any one condition should be enough.'
+    ],
+    copyChecks: [
+      'Read the branch order back before filling the formula down.',
+      'Test one row that should return the positive result and one row that should not.',
+      'Use IFS or SWITCH when the formula has many ordered outcomes instead of one true/false branch.'
+    ]
+  },
+  {
+    slug: 'countifs-formula-generator',
+    title: 'COUNTIFS Formula Generator | Write My Formula',
+    description: 'Generate COUNTIFS formulas for Excel and Google Sheets from multiple criteria written in plain English.',
+    eyebrow: 'COUNTIFS formula generator',
+    h1: 'Count rows that match multiple criteria.',
+    lede: 'Describe the conditions, paste your headers, and get a COUNTIFS formula with clear criteria ranges and checks.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Count how many customers are Active and have revenue above 1000.',
+      table: 'Customer,Status,Revenue\nAcme,Active,1200\nNorthwind,Paused,800',
+      range: 'A2:C500; result in F2',
+      hint: 'COUNTIFS'
+    },
+    intent: 'Count rows that match two or more conditions without assembling criteria pairs by hand.',
+    bestFor: [
+      'Counting active customers, paid invoices, late tasks, or rows above a threshold.',
+      'Combining text, date, and number criteria in one count.',
+      'Replacing manual filters with a repeatable count formula.'
+    ],
+    steps: [
+      'Name each condition in plain English.',
+      'Paste the columns that contain the criteria values.',
+      'Mention whether date windows should be fixed or relative to today.'
+    ],
+    copyChecks: [
+      'Every COUNTIFS criteria range must be the same size.',
+      'Text criteria need quotes in the final formula.',
+      'Number and date comparisons usually need operators such as greater than or less than.'
+    ]
+  },
+  {
+    slug: 'sumifs-formula-generator',
+    title: 'SUMIFS Formula Generator | Write My Formula',
+    description: 'Generate SUMIFS formulas for Excel and Google Sheets from plain-English criteria and pasted table context.',
+    eyebrow: 'SUMIFS formula generator',
+    h1: 'Sum matching rows without building SUMIFS by hand.',
+    lede: 'Tell the workbench what to total and which rows should count, then copy a SUMIFS formula with the criteria spelled out.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Sum paid invoice amounts where the invoice date is in the current month.',
+      table: 'Invoice Date,Status,Amount\n2026-05-04,Paid,1200\n2026-05-12,Open,850',
+      range: 'A2:C500; result in F2',
+      hint: 'SUMIFS'
+    },
+    intent: 'Total the values from rows that match your status, date, or category rules.',
+    bestFor: [
+      'Invoice totals, revenue rollups, expense summaries, and monthly reporting.',
+      'Summing one numeric column while filtering by several other columns.',
+      'Turning a repeated filter-and-total workflow into a single formula.'
+    ],
+    steps: [
+      'Describe what should be summed and which rows should count.',
+      'Paste the sum column plus every criteria column.',
+      'Include whether the date range is this month, a fixed month, or a custom window.'
+    ],
+    copyChecks: [
+      'The SUMIFS sum range and criteria ranges must be the same size.',
+      'Date criteria should be tested with known rows from the period.',
+      'Confirm amounts are stored as numbers, not text.'
+    ]
+  },
+  {
+    slug: 'percentage-formula-generator',
+    title: 'Percentage Formula Generator for Excel and Sheets | Write My Formula',
+    description: 'Generate percentage formulas for Excel and Google Sheets, including percent of total, percent change, discounts, markup, and completion rates.',
+    eyebrow: 'Percentage formula generator',
+    h1: 'Create percentage formulas without mixing up the math.',
+    lede: 'Describe the percentage calculation, paste the cells involved, and get a formula with notes for percent formatting, absolute references, and edge cases.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Calculate each product category as a percentage of total revenue.',
+      table: 'Category,Revenue\nHardware,12500\nSoftware,34200\nServices,18900',
+      range: 'B2:B4; total in B5; result in C2',
+      hint: 'percentage of total'
+    },
+    intent: 'Build percentage formulas for totals, changes, discounts, markup, tax, tips, or completion rates without having to remember whether the formula should divide, subtract, or multiply.',
+    bestFor: [
+      'Percent of total, percent change, and completion-rate formulas.',
+      'Discount, markup, tax, tip, and commission calculations.',
+      'Reports where formulas need stable total references before filling down.'
+    ],
+    steps: [
+      'Describe the percentage you need in plain English.',
+      'Paste the part, total, old value, new value, or rate cells involved.',
+      'Mention whether the result should be a decimal or formatted as a percentage.'
+    ],
+    copyChecks: [
+      'Format decimal results as percentages instead of multiplying twice.',
+      'Lock total cells with dollar signs before filling formulas down.',
+      'Test blank totals and zero totals before using the formula in a report.'
+    ]
+  },
+  {
+    slug: 'date-formula-generator',
+    title: 'Date Formula Generator for Excel and Sheets | Write My Formula',
+    description: 'Generate date formulas for Excel and Google Sheets, including due dates, month-end dates, workdays, date differences, and overdue checks.',
+    eyebrow: 'Date formula generator',
+    h1: 'Date formulas that do not return 45678.',
+    lede: 'Type what you are trying to figure out, such as business days between two dates or rows more than 30 days overdue. Get a formula plus a short note on the input format it expects.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Calculate the due date 10 business days after each start date, excluding the company holidays listed in column F.',
+      table: 'Task,Start Date\nOnboarding,2026-05-04\nRenewal,2026-05-12\n\nHoliday\n2026-05-25',
+      range: 'Start dates in B2:B100; holidays in F2:F20; result in C2',
+      hint: 'WORKDAY'
+    },
+    intent: 'Build date formulas for deadlines, workday counts, month-end reporting, renewal dates, age calculations, and overdue status checks.',
+    bestFor: [
+      'Due dates, renewal dates, and follow-up dates based on a start date.',
+      'Business-day calculations that need weekends or holidays excluded.',
+      'Reports that compare dates to today, month end, or a fixed cutoff.'
+    ],
+    steps: [
+      'Describe the date result you need in plain English.',
+      'Paste the start date, end date, holiday, or cutoff columns involved.',
+      'Mention whether weekends, holidays, or month-end behavior should change the answer.'
+    ],
+    copyChecks: [
+      'Confirm that source cells are stored as dates, not text.',
+      'Format serial-number results as dates before sharing the sheet.',
+      'Test the formula around weekends, holidays, and month boundaries.'
+    ]
+  },
+  {
+    slug: 'filter-formula-generator',
+    title: 'FILTER Formula Generator for Excel and Sheets | Write My Formula',
+    description: 'Generate FILTER formulas for Excel and Google Sheets, including multi-condition row filters, status lists, and no-match fallbacks.',
+    eyebrow: 'FILTER formula generator',
+    h1: 'Return the rows that match your conditions.',
+    lede: 'Describe the rows you want to pull out of a table, include the columns involved, and get a FILTER formula with notes on spill ranges and empty-result handling.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Return all open deals from the West region with value above 5000, and show No matching rows if nothing qualifies.',
+      table: 'Deal,Region,Status,Value\nRenewal,West,Open,7200\nExpansion,East,Open,4100\nSupport,West,Closed,1800',
+      range: 'A2:D500; output starts in F2',
+      hint: 'FILTER'
+    },
+    intent: 'Build dynamic array filters that return matching rows from a table instead of only counting or summing them.',
+    bestFor: [
+      'Pulling open deals, overdue tasks, customer lists, or rows for one region into a live view.',
+      'Combining several status, date, text, or number conditions in one spilled result.',
+      'Adding an empty-result fallback so reports do not show raw #CALC or #N/A errors.'
+    ],
+    steps: [
+      'Describe which rows should be returned and which columns hold the conditions.',
+      'Paste the source table headers and sample rows.',
+      'Mention where the spilled output should start and what to show when no rows match.'
+    ],
+    copyChecks: [
+      'Confirm the output area has room for the spilled rows and columns.',
+      'Make each include condition the same height as the filtered table.',
+      'Use a no-match fallback before putting the formula into a shared report.'
+    ]
+  },
+  {
+    slug: 'text-formula-generator',
+    title: 'Text Formula Generator for Excel and Sheets | Write My Formula',
+    description: 'Generate text formulas for Excel and Google Sheets, including split, extract, join, trim, clean, and text replacement formulas.',
+    eyebrow: 'Text formula generator',
+    h1: 'Clean and extract text without hand-building string formulas.',
+    lede: 'Describe the text cleanup job, paste sample values, and get a formula for splitting names, extracting domains, joining fields, removing extra spaces, or replacing text.',
+    preset: {
+      mode: 'write',
+      platform: 'sheets',
+      task: 'Extract the domain from each customer email address and return it in a new column.',
+      table: 'Email,Customer\nalex@northwind.com,Northwind\nsam@acme.co,Acme\nlee@example.org,Example',
+      range: 'Emails in A2:A500; result in C2',
+      hint: 'REGEXEXTRACT'
+    },
+    intent: 'Build formulas that transform messy imported text into useful fields without manual copy, split, or find-and-replace work.',
+    bestFor: [
+      'Extracting domains, codes, IDs, names, or text before and after delimiters.',
+      'Joining first name, last name, address, or label fields with separators.',
+      'Cleaning imported text with extra spaces, inconsistent case, or replaceable fragments.'
+    ],
+    steps: [
+      'Paste a few real sample values so the delimiter or pattern is visible.',
+      'Describe whether you need text before, after, between, or joined from other cells.',
+      'Mention whether the formula must work in Excel, Google Sheets, or both.'
+    ],
+    copyChecks: [
+      'Test samples with missing delimiters, extra spaces, and blank cells.',
+      'Check whether the formula spills into neighboring cells before filling down.',
+      'Confirm modern Excel text functions such as TEXTSPLIT or TEXTAFTER are available in your version.'
+    ]
+  },
+  {
+    slug: 'data-validation-formula-generator',
+    title: 'Data Validation Formula Generator for Excel and Sheets | Write My Formula',
+    description: 'Generate custom data validation formulas for Excel and Google Sheets, including email checks, unique values, required fields, and allowed entry rules.',
+    eyebrow: 'Data validation formula generator',
+    h1: 'Write the custom formula for a data validation rule.',
+    lede: 'Describe the entries that should be allowed, paste the columns involved, and get a TRUE/FALSE formula for Excel or Google Sheets data validation.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Only allow customer IDs that start with ID- and are at least 10 characters long.',
+      table: 'Customer ID,Customer\nID-0001234,Acme\n1234,Northwind',
+      range: 'Apply data validation to C2:C500; first entry cell is C2',
+      hint: 'data validation custom formula'
+    },
+    intent: 'Build custom data validation formulas that return TRUE for entries users are allowed to type and FALSE for entries that should be rejected.',
+    bestFor: [
+      'Restricting IDs, emails, dates, required fields, and duplicate entries at the point of entry.',
+      'Turning spreadsheet rules into validation formulas instead of after-the-fact cleanup.',
+      'Fixing absolute and relative references before applying a rule to a whole input range.'
+    ],
+    steps: [
+      'Describe what makes an entry valid or invalid.',
+      'Paste the input column and any helper columns the rule depends on.',
+      'Include the first cell in the applied validation range so relative references start correctly.'
+    ],
+    copyChecks: [
+      'Data validation custom formulas should return TRUE for allowed entries.',
+      'Write the formula as if it is evaluated from the first cell in the applied range.',
+      'Check whether your rule should reject blanks or let users leave the cell empty.'
+    ]
+  },
+  {
+    slug: 'pivot-table-calculated-field-formula-generator',
+    title: 'Pivot Table Calculated Field Formula Generator | Write My Formula',
+    description: 'Generate PivotTable calculated field formulas for Excel and Google Sheets, including margin, average price, variance, and ratio formulas.',
+    eyebrow: 'Pivot table calculated field formula generator',
+    h1: 'Write a calculated field formula for a pivot table.',
+    lede: 'Describe the pivot-table metric you need, paste the source field names, and get a formula that uses field names instead of normal cell references.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Create a pivot table calculated field for gross margin from revenue and cost.',
+      table: 'Region,Product,Revenue,Cost\nWest,Hardware,12000,7800\nEast,Software,18000,6300',
+      range: 'Pivot source fields: Revenue and Cost; calculated field name: Gross Margin',
+      hint: 'pivot table calculated field'
+    },
+    intent: 'Build formulas for PivotTable calculated fields where the formula should reference source field names such as Revenue, Cost, Quantity, or Units rather than worksheet cells.',
+    bestFor: [
+      'Profit, margin, average price, variance, and ratio metrics inside a pivot table.',
+      'Excel or Google Sheets pivot tables where the calculated value belongs in the Values area.',
+      'Avoiding invalid cell references when the pivot table layout changes.'
+    ],
+    steps: [
+      'List the exact source field names from the pivot table.',
+      'Describe the calculated metric and the name you want for the new field.',
+      'Mention whether the result is a currency, percentage, count, or ratio.'
+    ],
+    copyChecks: [
+      'Use pivot field names, not A1-style cell references.',
+      'Confirm the referenced fields are available in the pivot source data.',
+      'Use a helper column in the source table when the calculation needs row-level logic before aggregation.'
+    ]
+  },
+  {
+    slug: 'conditional-formatting-formula-generator',
+    title: 'Conditional Formatting Formula Generator for Excel and Sheets | Write My Formula',
+    description: 'Write conditional formatting formulas for Excel and Google Sheets that return TRUE for the right rows: overdue dates, duplicates, status checks, and whole-row highlights.',
+    eyebrow: 'Conditional formatting formula generator',
+    h1: 'Write the formula the conditional formatting rule dialog is asking for.',
+    lede: 'Tell the workbench which cells should light up, paste a couple of sample rows, and get a TRUE/FALSE formula with the anchors set for your applied range.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Highlight the entire row when the task is overdue and the status is not Done.',
+      table: 'Task,Due Date,Status\nRenew contract,2026-05-10,Open\nSend invoice,2026-05-25,Done',
+      range: 'Apply to A2:C100; due dates in B; status in C',
+      hint: 'conditional formatting'
+    },
+    intent: 'Write a custom conditional formatting formula that returns TRUE for the cells or rows that should be highlighted, with the right anchors for your applied range.',
+    bestFor: [
+      'Highlighting overdue tasks, missing values, duplicates, or whole rows by status.',
+      'Rules that depend on another cell in the same row.',
+      'Getting the dollar signs right before applying a rule across a range.'
+    ],
+    steps: [
+      'Describe the cells or rows that should be formatted.',
+      'Paste the headers and one or two sample rows.',
+      'Include the exact applied range, like A2:C100.'
+    ],
+    copyChecks: [
+      'The formula should return TRUE or FALSE so the formatting rule knows when to fire.',
+      'Lock columns with dollar signs when the rule should follow row by row, such as $B2.',
+      'For Google Sheets, use same-sheet references directly and INDIRECT when the rule must reference another sheet.',
+      'Open the rule on the first cell of your applied range and confirm the highlight lands where you expect before extending it.'
+    ]
+  },
+  {
+    slug: 'google-sheets-conditional-format-custom-formula',
+    title: 'Google Sheets Conditional Format Custom Formula Generator | Write My Formula',
+    description: 'Write Google Sheets conditional formatting custom formulas for whole-row highlights, duplicate checks, status rules, overdue dates, and cross-sheet references.',
+    eyebrow: 'Google Sheets conditional format custom formula',
+    h1: 'Stop guessing at the Google Sheets custom formula.',
+    lede: 'Describe what should light up, add the apply-to range, and get the exact TRUE/FALSE expression to paste into Custom formula is, with the dollar signs set for how Sheets walks the range.',
+    preset: {
+      mode: 'write',
+      platform: 'sheets',
+      task: 'Highlight the entire row when column C says Yes.',
+      table: 'Task,Owner,Ready\nRenew contract,Alex,Yes\nSend invoice,Sam,No',
+      range: 'Apply to A1:Z1000; status is in C; first row is 1',
+      hint: 'Google Sheets custom formula is conditional formatting'
+    },
+    intent: 'Create a Google Sheets custom formula rule that returns TRUE for the cells or rows that should receive formatting, with relative and absolute references written for the selected range.',
+    bestFor: [
+      'Whole-row highlights based on a status, date, checkbox, or owner column.',
+      'Duplicate, overdue, missing-field, and threshold rules that built-in presets cannot express.',
+      'Comparing a cell to a value on another sheet where direct references do not work.',
+      'Fixing dollar signs before applying one rule across many rows or columns.'
+    ],
+    steps: [
+      'Describe the highlight condition in normal language.',
+      'Paste the headers and a couple of rows so the rule can use the right columns.',
+      'Include the exact apply-to range and the first row in that range.'
+    ],
+    copyChecks: [
+      'Use Custom formula is in the Google Sheets conditional formatting sidebar.',
+      'Write the formula for the first cell or row in the apply-to range.',
+      'Use dollar signs to lock the columns or rows that should not shift.',
+      'Use INDIRECT when a Google Sheets conditional-format rule must reference another sheet.'
+    ]
+  }
+];
+
+const pageEnhancements = {
+  'excel-formula-generator': {
+    gives: [
+      'A draft Excel formula built from your task, table context, and target cell.',
+      'A plain-English read of what the formula is trying to do.',
+      'Checks for range references, modern-function support, and fill-down behavior.'
+    ],
+    useWhen: 'Use this page when you know the spreadsheet result you want, but not the exact Excel syntax. It works best when you can provide column names, sample rows, and the cell where the formula should start.',
+    notWhen: 'Do not treat the output as final until you test it against a few known rows in your workbook. If the workbook uses unusual merged cells, hidden helper columns, or regional separators, check those details before pasting broadly.',
+    example: {
+      setup: 'For a customer table with Plan in column B and Price in column C, a lookup formula can return the matching monthly price for the plan in B2.',
+      formula: '=XLOOKUP(B2,$B$2:$B$100,$C$2:$C$100,"Not found")',
+      read: 'The formula searches the plan column for the value in B2, returns the matching price, and shows Not found when there is no match.'
+    }
+  },
+  'google-sheets-formula-generator': {
+    gives: [
+      'A draft Google Sheets formula using Sheets-friendly functions where they fit.',
+      'A visible explanation of ranges, text parsing, or spill behavior.',
+      'Compatibility notes for formulas that may behave differently in Excel.'
+    ],
+    useWhen: 'Use this page for shared Google Sheets where text parsing, filters, and lightweight cleanup formulas need to be understandable by the rest of the team.',
+    notWhen: 'Do not assume the same formula will paste into every locale or into desktop Excel without edits. Separators, array behavior, and newer functions can differ by account and app.',
+    example: {
+      setup: 'For email addresses in column A, a Sheets formula can extract the domain after the @ symbol.',
+      formula: '=REGEXEXTRACT(A2,"@(.+)$")',
+      read: 'The formula reads A2, finds the text after @, and returns the domain portion for review before filling down.'
+    }
+  },
+  'excel-formula-help': {
+    gives: [
+      'A formula draft, explanation, or fix matched to the Excel problem you describe.',
+      'A plain-English read of the function choice, references, assumptions, and fallback behavior.',
+      'Checks for version support, range alignment, fill-down behavior, and known-row testing.'
+    ],
+    useWhen: 'Use this page when the problem is still broad: you need help with an Excel formula, but you may not know whether the answer is IF, SUMIFS, XLOOKUP, FILTER, text cleanup, dates, conditional formatting, or a repair to a formula you already have.',
+    notWhen: 'Do not use it as a workbook audit, dashboard workflow, file-upload analyzer, or substitute for testing. Write My Formula stays focused on one formula, one rule, or one repair that you can inspect before using.',
+    example: {
+      setup: 'For tasks with due dates in B and status in C, an Excel helper formula can flag open overdue rows while leaving completed rows alone.',
+      formula: '=IF(AND(B2<TODAY(),C2<>"Done"),"Overdue","OK")',
+      read: 'The formula checks whether the due date is before today and the status is not Done. Both conditions must be true before the row is marked Overdue.'
+    }
+  },
+  'ai-excel-formula-generator': {
+    gives: [
+      'An Excel formula draft generated from a plain-English request and the context you provide.',
+      'A readable explanation of the function choice, ranges, criteria, and fallback behavior.',
+      'Paste checks for references, fill-down behavior, date handling, and modern Excel compatibility.'
+    ],
+    useWhen: 'Use this page when you want AI help writing an Excel formula but still need the formula, assumptions, and paste checks visible. It is strongest for formula-sized jobs like SUMIFS, XLOOKUP, IF, FILTER, text cleanup, dates, and conditional-formatting rules.',
+    notWhen: 'Do not use Write My Formula as a replacement for tools that upload whole workbooks, chat with data files, build dashboards, generate charts, or automate a full spreadsheet workflow. It is intentionally narrower so you can inspect one formula before using it.',
+    example: {
+      setup: 'For invoices with dates in A, status in B, and amounts in C, an AI-generated formula can total paid invoices from May 2026 while ignoring open invoices.',
+      formula: '=SUMIFS(C2:C500,B2:B500,"Paid",A2:A500,">="&DATE(2026,5,1),A2:A500,"<"&DATE(2026,6,1))',
+      read: 'The formula totals only rows marked Paid where the invoice date is on or after May 1, 2026 and before June 1, 2026. The checks tell you to confirm real date values and equal-height SUMIFS ranges.'
+    }
+  },
+  'ai-google-sheets-formula-generator': {
+    gives: [
+      'A Google Sheets formula draft generated from your plain-English request and pasted context.',
+      'A plain-English read of the function choice, columns, criteria, and expected spill behavior.',
+      'Paste checks for separators, header rows, output ranges, and Sheets-specific functions.'
+    ],
+    useWhen: 'Use this page when you want AI help writing a Google Sheets formula and still need to see the formula, assumptions, and paste checks before using it. It is strongest for formula-sized jobs like QUERY, FILTER, ARRAYFORMULA, REGEXEXTRACT, IMPORTRANGE, lookups, summaries, and custom rules.',
+    notWhen: 'Do not use Write My Formula as a replacement for tools that upload whole workbooks, chat with data files, build dashboards, generate charts, or automate a full spreadsheet workflow. It is intentionally narrower so you can inspect one formula before using it.',
+    example: {
+      setup: 'For a table with Date in A, Region in B, Customer in C, and Amount in D, a Google Sheets QUERY formula can summarize April 2026 revenue by region.',
+      formula: '=QUERY(A1:D500,"select B, sum(D) where A >= date \'2026-04-01\' and A < date \'2026-05-01\' group by B label sum(D) \'April revenue\'",1)',
+      read: 'The formula reads the source table, keeps April 2026 rows, groups them by region, and sums Amount. The checks tell you to confirm the Date column contains real dates and that the output area is empty before the formula spills.'
+    }
+  },
+  'google-sheets-query-formula-generator': {
+    gives: [
+      'A draft QUERY formula matched to the columns, filters, sort order, and labels you describe.',
+      'A plain-English read of the select, where, order by, group by, or label clauses.',
+      'Checks for header rows, quoted text criteria, and whether column letters or Col1-style references fit the source range.'
+    ],
+    useWhen: 'Use this page when Google Sheets needs a report-like output from a source table, such as open deals by region, late tasks by owner, grouped totals by month, or selected columns sorted by a metric.',
+    notWhen: 'Do not use QUERY just to return a few matching rows when FILTER is simpler and easier for the team to edit. QUERY is strongest when the output needs SQL-like select, where, order by, group by, or label clauses.',
+    example: {
+      setup: 'For deals in A1:D500 with headers in row 1, a QUERY formula can show only open West-region deals above 5000 and sort the highest value first.',
+      formula: '=QUERY(A1:D500,"select A, B, C, D where B = \'West\' and C = \'Open\' and D > 5000 order by D desc",1)',
+      read: 'The formula reads the source table, keeps the requested columns, filters to West open deals over 5000, sorts by value descending, and treats the first row as headers.'
+    }
+  },
+  'formula-bot-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets rather than a full spreadsheet-analysis workspace.',
+      'Write, Explain, and Fix modes with table context, range hints, formula notes, and a copy button.',
+      'A clear upgrade path: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing AI Excel formula tools and the immediate job is still formula-shaped: write a SUMIFS, fix a lookup, explain nested IF logic, build a conditional-formatting rule, or adapt a formula to the ranges in your sheet.',
+    notWhen: 'Do not use Write My Formula as a replacement for tools that upload whole workbooks, analyze data files, generate dashboards, or build charts. It is intentionally narrower: describe the formula job, paste the relevant context, and test the output before filling it down.',
+    example: {
+      setup: 'For invoices with dates in A, status in B, and amounts in C, you can ask for a formula that totals paid invoices from the current month and ignores open rows.',
+      formula: '=SUMIFS(C2:C500,B2:B500,"Paid",A2:A500,">="&DATE(2026,5,1),A2:A500,"<"&DATE(2026,6,1))',
+      read: 'The formula totals only rows marked Paid where the invoice date falls inside May 2026. The checks tell you to confirm date cells are real dates and that each SUMIFS range has the same height.'
+    }
+  },
+  'sheetsolver-ai-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a broad spreadsheet automation suite.',
+      'Write, Explain, and Fix modes with optional table context, range hints, formula notes, and copy checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing AI spreadsheet formula generators and the job in front of you is still formula-shaped: write one formula, explain one inherited formula, fix one broken formula, or create a custom rule for conditional formatting or data validation.',
+    notWhen: 'Do not use Write My Formula as a replacement for tools that upload whole workbooks, chat with data files, build dashboards, generate charts, or automate full spreadsheet workflows. It is intentionally narrower so the formula, explanation, and paste checks stay visible.',
+    example: {
+      setup: 'For email addresses in column A, a Google Sheets formula can extract the domain while leaving blank rows empty.',
+      formula: '=IF(A2="","",REGEXEXTRACT(A2,"@(.+)$"))',
+      read: 'The formula checks for a blank first, then extracts the text after @ from nonblank email addresses. The checks tell you to test missing @ symbols and blank rows before filling down.'
+    }
+  },
+  'excel-formula-cheat-sheet': {
+    gives: [
+      'A compact reference for common Excel formula jobs and the function patterns that fit them.',
+      'Worked examples for lookup, summary, text cleanup, date, percentage, and validation formulas.',
+      'A path from generic cheat-sheet syntax into a formula generated for your exact columns.'
+    ],
+    useWhen: 'Use this page when you are not sure whether the job needs XLOOKUP, INDEX MATCH, SUMIFS, COUNTIFS, IF, FILTER, TEXTAFTER, WORKDAY, or another common formula. Start with the pattern, then generate the version that fits your actual sheet.',
+    notWhen: 'Do not paste a cheat-sheet formula blindly into an important workbook. Generic examples rarely match your exact ranges, locked references, locale separators, or blank-cell behavior.',
+    example: {
+      setup: 'For invoice dates in A, status in B, and amounts in C, a common cheat-sheet pattern is SUMIFS for paid invoices in a date window.',
+      formula: '=SUMIFS(C2:C500,B2:B500,"Paid",A2:A500,">="&DATE(2026,5,1),A2:A500,"<"&DATE(2026,6,1))',
+      read: 'The formula totals amounts only when the row is marked Paid and the invoice date falls inside May 2026.'
+    }
+  },
+  'excel-formula-explainer': {
+    gives: [
+      'A plain-English breakdown of the pasted formula.',
+      'A step-by-step read of the branching logic or function chain.',
+      'Notes about assumptions, blanks, and compatibility before you edit it.'
+    ],
+    useWhen: 'Use this page when a workbook already contains a formula and you need to understand it before changing references, copying it to another sheet, or explaining it to someone else.',
+    notWhen: 'Do not rely on an explanation alone for financial or operational decisions. Pair it with a few rows where you already know the expected answer.',
+    example: {
+      setup: 'A nested IF can label blank customer rows separately from rows that need review.',
+      formula: '=IF(A2="","Missing",IF(B2>1000,"Review","OK"))',
+      read: 'The formula first checks whether A2 is blank, then checks whether revenue in B2 is above 1000, and returns one of three text labels.'
+    }
+  },
+  'excel-formula-fixer': {
+    gives: [
+      'A safer draft version of the formula that is failing.',
+      'A short explanation of likely syntax, range, or fallback problems.',
+      'Checks that help you test the fixed formula against known rows.'
+    ],
+    useWhen: 'Use this page when a formula returns an error, breaks after being filled down, or needs a clearer fallback for missing matches.',
+    notWhen: 'Do not replace a working report formula across a whole workbook before testing. Fix one row first, then compare the result against the original data.',
+    example: {
+      setup: 'A lookup formula can be made safer by adding a not-found fallback.',
+      formula: '=XLOOKUP(A2,Customers!A:A,Customers!C:C,"Not found")',
+      read: 'The formula searches customer IDs in column A of the Customers sheet and returns column C, with a readable fallback when no match exists.'
+    }
+  },
+  'excel-formula-not-showing-result': {
+    gives: [
+      'A focused fix pass for formulas that display as text, return stale values, or produce unexpected results.',
+      'A checklist for calculation settings, text-formatted inputs, argument types, and inconsistent references.',
+      'A revised formula path you can test on one known row before replacing a report column.'
+    ],
+    useWhen: 'Use this page when Excel is not showing the result you expected: the cell shows the formula itself, the value does not update, or the result looks wrong after a copy, import, or workbook setting change. Paste the formula and describe the visible symptom.',
+    notWhen: 'Do not overwrite a whole workbook just because one suggested fix looks plausible. Excel calculation settings can affect open workbooks, and imported text values can make a correct-looking formula behave incorrectly.',
+    example: {
+      setup: 'A status formula may look right but fail when the revenue values are imported as text or when the workbook is set to manual calculation.',
+      formula: '=IF(VALUE(B2)>1000,"Review","OK")',
+      read: 'The formula converts B2 to a number before testing the threshold. Use it only after checking that B2 should always contain a numeric value.'
+    }
+  },
+  'vlookup-na-error': {
+    gives: [
+      'A focused fix pass for VLOOKUP formulas returning #N/A or incorrect matches.',
+      'Checks for exact-match mode, text-number mismatches, lookup column position, and range shape.',
+      'A safer formula path you can test on one known matching row and one missing-match row.'
+    ],
+    useWhen: 'Use this page when VLOOKUP returns #N/A even though the value appears to exist, or when a lookup works on some rows but fails after an import, copy, or range change. Paste the formula and describe what should match.',
+    notWhen: 'Do not hide every #N/A with IFERROR before checking the source data. A missing match may be real, and VLOOKUP can also fail when the lookup column is not the first column in the selected table range.',
+    example: {
+      setup: 'For a SKU in E2 and a product table in A2:C500, a VLOOKUP should usually use exact match and a clear not-found fallback.',
+      formula: '=IFERROR(VLOOKUP(E2,$A$2:$C$500,2,FALSE),"Not found")',
+      read: 'The formula searches for E2 in the first column of the table range, returns the second column, and uses exact match. The fallback hides the raw #N/A only after the range and source values have been checked.'
+    }
+  },
+  'vlookup-formula-generator': {
+    gives: [
+      'A draft VLOOKUP with lookup value, table array, return column, and exact match filled in.',
+      'A note on why the lookup column must be first in the selected table.',
+      'A quick read on when XLOOKUP may be the better choice.'
+    ],
+    useWhen: 'Use this page when you need a legacy-compatible lookup and the value you are searching for is in the first column of the table range.',
+    notWhen: 'Do not use VLOOKUP when the return column may move often or the lookup column is not first. In those cases, XLOOKUP is usually easier to maintain.',
+    example: {
+      setup: 'For a SKU in E2 and a table from A2:C500, VLOOKUP can return the category from the second column.',
+      formula: '=VLOOKUP(E2,$A$2:$C$500,2,FALSE)',
+      read: 'The formula searches for E2 in the first column of the table range and returns the value from the second column using exact match.'
+    }
+  },
+  'xlookup-formula-generator': {
+    gives: [
+      'A draft XLOOKUP with separate lookup and return ranges.',
+      'A readable fallback for missing matches.',
+      'Checks that the lookup range and return range line up.'
+    ],
+    useWhen: 'Use this page when the workbook supports XLOOKUP and you want a lookup that is easier to read than VLOOKUP, especially when returning values from either side of the key.',
+    notWhen: 'Do not choose XLOOKUP for workbooks that must open cleanly in older Excel versions. Use VLOOKUP or INDEX/MATCH when compatibility is the main constraint.',
+    example: {
+      setup: 'For a customer ID in E2, XLOOKUP can search IDs in column A and return emails from column C.',
+      formula: '=XLOOKUP(E2,$A$2:$A$500,$C$2:$C$500,"Not found")',
+      read: 'The formula searches the ID list, returns the matching email, and uses Not found instead of a raw lookup error.'
+    }
+  },
+  'index-match-formula-generator': {
+    gives: [
+      'A draft INDEX MATCH formula using the lookup and return ranges you provide.',
+      'A plain-English read of how MATCH finds the row or column and INDEX returns the value.',
+      'Checks for exact-match mode, left-lookup structure, two-way lookup structure, and locked references.'
+    ],
+    useWhen: 'Use this page when a workbook needs a lookup that is more flexible than VLOOKUP, especially left lookups, two-way lookups, or files that need to stay compatible with Excel versions that do not support XLOOKUP.',
+    notWhen: 'Do not use INDEX MATCH only because it sounds advanced. If the team already has modern Excel and a simple one-way lookup, XLOOKUP may be easier for others to read and maintain.',
+    example: {
+      setup: 'For SKUs in C2:C500 and categories in A2:A500, INDEX MATCH can return a category even though the return column is to the left of the lookup column.',
+      formula: '=INDEX($A$2:$A$500,MATCH(F2,$C$2:$C$500,0))',
+      read: 'MATCH finds the row position of the SKU in F2 inside the SKU range, and INDEX returns the value from the category range at that same position.'
+    }
+  },
+  'if-formula-generator': {
+    gives: [
+      'A draft IF formula for the rule and output labels you provide.',
+      'A breakdown of true, false, and blank-cell branches.',
+      'Checks for boundary values and nested-logic readability.'
+    ],
+    useWhen: 'Use this page for status labels, thresholds, and simple branching rules where the formula should return one text value or another.',
+    notWhen: 'Do not force a long decision tree into deeply nested IF statements if the rule has many branches. IFS, SWITCH, or a lookup table may be easier to audit.',
+    example: {
+      setup: 'For customer names in A and revenue in B, an IF formula can flag high-revenue rows while handling blanks.',
+      formula: '=IF(A2="","Missing",IF(B2>1000,"Review","OK"))',
+      read: 'The formula returns Missing for blank customer names, Review for revenue above 1000, and OK for the remaining rows.'
+    }
+  },
+  'excel-if-formula-multiple-conditions': {
+    gives: [
+      'A draft Excel IF formula using nested IF, IFS, AND, OR, or NOT when those functions fit the rule.',
+      'A plain-English read of which condition is tested first and what each branch returns.',
+      'Checks for blanks, thresholds, mixed AND/OR logic, and rows where more than one condition could be true.'
+    ],
+    useWhen: 'Use this page when a spreadsheet rule has more than one condition, such as reviewing high-value invoices that are late or from new customers, or approving only rows that meet every required field. It works best when you can provide the relevant columns and at least one row for each expected result.',
+    notWhen: 'Do not keep adding nested IF branches if the rule is really a lookup table, scoring table, or long ordered list. In those cases, IFS, SWITCH, XLOOKUP, or a helper table can be easier to maintain.',
+    example: {
+      setup: 'For invoice rows with amount in B, payment status in C, and customer type in D, flag a row as Review when the amount is over 5000 and either the invoice is past due or the customer is new.',
+      formula: '=IF(AND(B2>5000,OR(C2="Past Due",D2="New")),"Review","OK")',
+      read: 'The formula first checks whether the amount is above 5000, then requires either Past Due status or New customer type. Only rows that pass both parts return Review.'
+    }
+  },
+  'countifs-formula-generator': {
+    gives: [
+      'A draft COUNTIFS formula with one criteria range per condition.',
+      'A visible read of how text, number, and date criteria are paired.',
+      'Checks that all criteria ranges use matching row spans.'
+    ],
+    useWhen: 'Use this page when you need to count rows matching several conditions, such as status plus revenue threshold or date window plus owner.',
+    notWhen: 'Do not use COUNTIFS when you need to return the matching rows themselves. Use FILTER or a pivot table when the row details matter more than the count.',
+    example: {
+      setup: 'For Status in column B and Revenue in column C, COUNTIFS can count active customers above a threshold.',
+      formula: '=COUNTIFS(B2:B500,"Active",C2:C500,">1000")',
+      read: 'The formula counts rows where status is Active and revenue is greater than 1000, with each condition tied to its own range.'
+    }
+  },
+  'sumifs-formula-generator': {
+    gives: [
+      'A draft SUMIFS formula with the sum range and criteria ranges in the right order.',
+      'A plain-English read of which rows are included in the total.',
+      'Checks for date criteria, amount formatting, and equal-size ranges.'
+    ],
+    useWhen: 'Use this page when you need a repeatable total for rows that match status, date, category, customer, or region criteria.',
+    notWhen: 'Do not use SUMIFS when the amount column contains text-formatted numbers or mixed currencies without cleanup. Fix the source data first, then total it.',
+    example: {
+      setup: 'For invoice dates in A, status in B, and amounts in C, SUMIFS can total paid invoices in May 2026.',
+      formula: '=SUMIFS(C2:C500,B2:B500,"Paid",A2:A500,">=2026-05-01",A2:A500,"<2026-06-01")',
+      read: 'The formula sums amounts only when the row is marked Paid and the invoice date falls inside the May date window.'
+    }
+  },
+  'percentage-formula-generator': {
+    gives: [
+      'A draft percentage formula for the exact calculation you describe.',
+      'A plain-English read of the numerator, denominator, rate, or comparison values.',
+      'Checks for percent formatting, locked references, blanks, and divide-by-zero cases.'
+    ],
+    useWhen: 'Use this page when a spreadsheet needs percent of total, percent change, discount, markup, tax, tip, or completion-rate math and you want the references spelled out before filling formulas down.',
+    notWhen: 'Do not paste a percentage formula across a live report until you confirm the cell format. Excel and Google Sheets store percentages as decimals, so multiplying by 100 and applying percent format can double-count the conversion.',
+    example: {
+      setup: 'For revenue in B2 and the total revenue in B5, a percentage-of-total formula can show each category share.',
+      formula: '=IFERROR(B2/$B$5,0)',
+      read: 'The formula divides the category revenue by the locked total cell and returns 0 instead of an error if the total is blank or zero.'
+    }
+  },
+  'date-formula-generator': {
+    gives: [
+      'A draft date formula matched to the deadline or date comparison you describe.',
+      'A plain-English read of which cells are dates, offsets, holidays, or cutoff values.',
+      'Checks for date formatting, text dates, weekends, holidays, and month boundaries.'
+    ],
+    useWhen: 'Use this page when spreadsheet work depends on dates that should update automatically, such as due dates, billing cycles, workday counts, aging reports, or overdue flags. Tell the tool whether you are in Excel or Google Sheets because date parsing and some function behavior can differ.',
+    notWhen: 'Do not paste date formulas broadly until you confirm the source cells are real date values. Excel and Google Sheets can display dates while still storing imported values as text, which changes formula behavior.',
+    example: {
+      setup: 'For a start date in A2 and a company holiday list in F2:F20, a workday formula can calculate a due date 10 business days later.',
+      formula: '=WORKDAY(A2,10,$F$2:$F$20)',
+      read: 'The formula starts from A2, moves forward 10 workdays, skips normal weekends, and also skips any holiday dates in the locked holiday range.'
+    }
+  },
+  'filter-formula-generator': {
+    gives: [
+      'A draft FILTER formula using the source range and condition columns you provide.',
+      'A plain-English read of the include logic for one or more criteria.',
+      'Checks for spill space, equal-height ranges, and empty-result fallbacks.'
+    ],
+    useWhen: 'Use this page when you need a live subset of rows from a larger table, such as open deals by region, late tasks by owner, or orders above a threshold. FILTER is a better fit than COUNTIFS or SUMIFS when the matching row details should remain visible.',
+    notWhen: 'Do not use FILTER as a drop-in replacement for the spreadsheet filter menu if the result should not spill into nearby cells. The formula returns an array, so blocked output cells can stop it from displaying correctly.',
+    example: {
+      setup: 'For deals in A2:D500, a FILTER formula can return only West-region deals that are still open and above 5000.',
+      formula: '=FILTER(A2:D500,(B2:B500="West")*(C2:C500="Open")*(D2:D500>5000),"No matching rows")',
+      read: 'The formula returns matching rows from A through D, keeps only rows where the region, status, and value tests are all true, and shows a fallback when no rows match.'
+    }
+  },
+  'text-formula-generator': {
+    gives: [
+      'A draft text formula matched to the sample values you paste.',
+      'A plain-English read of which delimiter, pattern, or cells the formula uses.',
+      'Checks for blanks, missing delimiters, spill behavior, and Excel versus Sheets function support.'
+    ],
+    useWhen: 'Use this page when imported spreadsheet text needs to be split, cleaned, joined, extracted, or normalized. It is especially useful for email domains, product codes, first and last names, address fragments, labels, and copied CRM exports.',
+    notWhen: 'Do not rely on one perfect-looking sample. Text formulas can break when later rows contain missing delimiters, double spaces, punctuation differences, or values that look like numbers but are stored as text.',
+    example: {
+      setup: 'For email addresses in A2:A500, a Google Sheets formula can extract the domain after the @ symbol.',
+      formula: '=REGEXEXTRACT(A2,"@(.+)$")',
+      read: 'The formula reads the email address in A2, captures the text after @, and returns the domain so the formula can be filled down.'
+    }
+  },
+  'data-validation-formula-generator': {
+    gives: [
+      'A draft custom validation formula matched to the entry rule you describe.',
+      'A plain-English read of why the rule returns TRUE for accepted values.',
+      'Checks for blanks, duplicate handling, pattern tests, and first-cell references.'
+    ],
+    useWhen: 'Use this page when spreadsheet users should be stopped from entering invalid values, such as duplicate IDs, malformed emails, dates outside a window, or required fields left blank. Include the first cell of the validation range because custom formulas are evaluated relative to that starting cell.',
+    notWhen: 'Do not use a validation formula when you only need to highlight existing bad data. Conditional formatting is better for visual review, while data validation is better for blocking future entries.',
+    example: {
+      setup: 'For customer IDs entered in C2:C500, a data validation rule can require the ID- prefix and a minimum length.',
+      formula: '=AND(LEFT(C2,3)="ID-",LEN(C2)>9)',
+      read: 'The formula returns TRUE only when the entry in C2 starts with ID- and has more than 9 characters, so the same relative rule can be applied down the validation range.'
+    }
+  },
+  'pivot-table-calculated-field-formula-generator': {
+    gives: [
+      'A draft calculated-field formula using the field names you provide.',
+      'A plain-English read of whether the metric is a difference, ratio, margin, or average.',
+      'Checks for field-name references, aggregation limits, and helper-column cases.'
+    ],
+    useWhen: 'Use this page when the metric should live inside a PivotTable or Google Sheets pivot table as a calculated field, such as profit, gross margin, average order value, or cost variance. Pivot formulas are different from normal worksheet formulas because they usually reference source field names rather than individual cells.',
+    notWhen: 'Do not force every row-level rule into a pivot calculated field. If the calculation must happen before the pivot aggregates the data, add a helper column to the source table first and then summarize that field in the pivot.',
+    example: {
+      setup: 'For a pivot source with Revenue and Cost fields, a calculated field can show gross margin as a percentage.',
+      formula: "=('Revenue'-'Cost')/'Revenue'",
+      read: 'The formula subtracts Cost from Revenue, divides by Revenue, and can be formatted as a percentage in the pivot table values area.'
+    }
+  },
+  'conditional-formatting-formula-generator': {
+    gives: [
+      'A custom formula for the conditional formatting rule you described.',
+      'A plain-English read of which references stay locked and which move row by row.',
+      'Notes on the applied range, TRUE/FALSE output, and how the rule behaves across Excel and Google Sheets.'
+    ],
+    useWhen: 'Use this when a color scale or built-in preset will not do the job because the highlight depends on another column, a date comparison, or business logic. Include the applied range because conditional formatting evaluates the formula from the first cell of that range and shifts references from there.',
+    notWhen: 'Do not paste the result into a worksheet cell as a normal formula. A conditional formatting formula lives inside the rule dialog, and the anchors are written for the first cell of the applied range.',
+    example: {
+      setup: 'Tasks are in A2:C100, due dates are in column B, and status is in column C. Highlight the whole row when the due date is before today and the status is not Done.',
+      formula: '=AND($B2<TODAY(),$C2<>"Done")',
+      read: 'The dollar signs lock columns B and C so every row checks its own due date and status. The row number stays relative, so the rule moves from row 2 to row 3, row 4, and beyond.'
+    }
+  },
+  'google-sheets-conditional-format-custom-formula': {
+    gives: [
+      'A Google Sheets custom formula for the conditional-formatting sidebar.',
+      'A plain-English read of which columns stay locked and which row references move.',
+      'Checks for apply-to range, TRUE/FALSE output, dollar signs, and cross-sheet INDIRECT cases.'
+    ],
+    useWhen: 'Use this page when Google Sheets built-in conditional-formatting presets are not specific enough, such as highlighting a whole row from one status column, flagging overdue tasks, spotting duplicates, or checking a value against another sheet.',
+    notWhen: 'Do not paste the custom formula into a normal worksheet cell and expect formatting to happen. The formula belongs in Format cells if, Custom formula is, and it should be written from the first row or cell in the apply-to range.',
+    example: {
+      setup: 'The apply-to range is A1:Z1000, and column C contains Yes or No. Highlight the entire row when column C says Yes.',
+      formula: '=$C1="Yes"',
+      read: 'The dollar sign locks column C while the row number changes as Sheets evaluates each row in the apply-to range. The formula returns TRUE only for rows that should be highlighted.'
+    }
+  }
+};
+
+for (const page of pages) {
+  Object.assign(page, pageEnhancements[page.slug]);
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;');
+}
+
+function replaceOnce(source, from, to) {
+  if (!source.includes(from)) {
+    throw new Error(`Template marker not found: ${from}`);
+  }
+  return source.replace(from, () => to);
+}
+
+function renderList(items) {
+  return items.map((item) => `<li>${escapeHtml(item)}</li>`).join('\n              ');
+}
+
+function detailSection(page) {
+  return `<section class="section seo-detail" aria-labelledby="${page.slug}-detail-title">
+          <div class="section-copy">
+            <p class="eyebrow">Use case</p>
+            <h2 id="${page.slug}-detail-title">${escapeHtml(page.eyebrow)} for spreadsheet work.</h2>
+            <p>${escapeHtml(page.intent)}</p>
+          </div>
+          <div class="detail-grid">
+            <article class="detail-card">
+              <h3>What this page gives you</h3>
+              <ul>
+                ${renderList(page.gives)}
+              </ul>
+            </article>
+            <article class="detail-card">
+              <h3>When to use it</h3>
+              <p>${escapeHtml(page.useWhen)}</p>
+              <p>${escapeHtml(page.notWhen)}</p>
+            </article>
+            <article class="detail-card">
+              <h3>Worked example</h3>
+              <p>${escapeHtml(page.example.setup)}</p>
+              <pre><code>${escapeHtml(page.example.formula)}</code></pre>
+              <p>${escapeHtml(page.example.read)}</p>
+            </article>
+          </div>
+          <div class="paste-check">
+            <h3>Check before you paste</h3>
+            <ul>
+              ${renderList(page.copyChecks)}
+            </ul>
+          </div>
+        </section>`;
+}
+
+function schemaScript(page, canonical) {
+  const graph = [
+    {
+      '@type': 'WebPage',
+      '@id': `${canonical}#webpage`,
+      url: canonical,
+      name: page.title.replace(' | Write My Formula', ''),
+      description: page.description,
+      isPartOf: {
+        '@type': 'WebSite',
+        '@id': 'https://writemyformula.com/#website',
+        name: 'Write My Formula',
+        url: 'https://writemyformula.com/'
+      },
+      primaryImageOfPage: 'https://writemyformula.com/favicon.svg',
+      mainEntity: {
+        '@id': `${canonical}#app`
+      }
+    },
+    {
+      '@type': 'SoftwareApplication',
+      '@id': `${canonical}#app`,
+      name: 'Write My Formula',
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Web',
+      url: canonical,
+      description: page.description,
+      featureList: [
+        page.eyebrow,
+        'Plain-English spreadsheet formula requests',
+        'Formula explanation and copy checks',
+        ...page.gives
+      ],
+      offers: {
+        '@type': 'Offer',
+        price: '9.00',
+        priceCurrency: 'USD',
+        availability: 'https://schema.org/InStock',
+        url: canonical
+      }
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${canonical}#breadcrumb`,
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Write My Formula',
+          item: 'https://writemyformula.com/'
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: page.eyebrow,
+          item: canonical
+        }
+      ]
+    }
+  ];
+
+  return `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replaceAll('<', '\\u003c')}</script>`;
+}
+
+function pageHtml(page) {
+  const canonical = `https://writemyformula.com/${page.slug}/`;
+  let html = template;
+
+  html = replaceOnce(html, '<title>Write My Formula | Excel and Google Sheets Formula Helper</title>', `<title>${escapeHtml(page.title)}</title>`);
+  html = replaceOnce(html, '<meta name="description" content="Write Excel and Google Sheets formulas from plain English, explain pasted formulas, and fix common spreadsheet syntax problems.">', `<meta name="description" content="${escapeHtml(page.description)}">`);
+  html = replaceOnce(html, '<link rel="canonical" href="https://writemyformula.com/">', `<link rel="canonical" href="${canonical}">`);
+  html = replaceOnce(html, '<meta property="og:title" content="Write My Formula">', `<meta property="og:title" content="${escapeHtml(page.title.replace(' | Write My Formula', ''))}">`);
+  html = replaceOnce(html, '<meta property="og:description" content="A focused spreadsheet workbench for formula generation, explanation, and fixing.">', `<meta property="og:description" content="${escapeHtml(page.description)}">`);
+  html = replaceOnce(html, '<meta property="og:url" content="https://writemyformula.com/">', `<meta property="og:url" content="${canonical}">`);
+  html = replaceOnce(html, '<p class="eyebrow">Excel and Google Sheets formula helper</p>', `<p class="eyebrow">${escapeHtml(page.eyebrow)}</p>`);
+  html = replaceOnce(html, '<h1 id="hero-title">Write formulas without wrestling with syntax.</h1>', `<h1 id="hero-title">${escapeHtml(page.h1)}</h1>`);
+  html = replaceOnce(html, '<p class="lede">Describe the spreadsheet job, add the cells you are working with, and get a clean formula with notes you can actually use.</p>', `<p class="lede">${escapeHtml(page.lede)}</p>`);
+  html = replaceOnce(html, '<section class="section pricing" id="pricing" aria-labelledby="pricing-title">', `${detailSection(page)}\n\n        <section class="section pricing" id="pricing" aria-labelledby="pricing-title">`);
+  html = replaceOnce(html, '<link rel="stylesheet" href="/styles.css">', `<link rel="stylesheet" href="/styles.css">\n    ${schemaScript(page, canonical)}`);
+  html = replaceOnce(html, '<script type="module" src="/app/app.js"></script>', `<script>window.WMF_PAGE_PRESET = ${JSON.stringify(page.preset)};</script>\n    <script type="module" src="/app/app.js"></script>`);
+
+  return html;
+}
+
+for (const page of pages) {
+  const dir = resolve(root, page.slug);
+  rmSync(dir, { recursive: true, force: true });
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(resolve(dir, 'index.html'), pageHtml(page));
+}
+
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://writemyformula.com/</loc>
+  </url>
+${pages.map((page) => `  <url>
+    <loc>https://writemyformula.com/${page.slug}/</loc>
+  </url>`).join('\n')}
+  <url>
+    <loc>https://writemyformula.com/privacy</loc>
+  </url>
+</urlset>
+`;
+
+writeFileSync(resolve(root, 'sitemap.xml'), sitemap);

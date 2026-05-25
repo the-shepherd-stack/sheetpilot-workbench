@@ -1,0 +1,11 @@
+.git/
+.github/
+.vercel/
+.playwright-cli/
+output/
+outreach/
+luke-*.md
+.env
+.env.*
+node_modules/
+npm-debug.log*

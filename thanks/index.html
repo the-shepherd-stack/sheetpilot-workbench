@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Founding Access | Write My Formula</title>
+    <meta name="description" content="Founding access confirmation for Write My Formula.">
+    <link rel="canonical" href="https://writemyformula.com/thanks">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="/"><span class="brand-mark">=</span><span>Write My Formula</span></a>
+        <nav class="nav" aria-label="Primary"><a href="/">Workbench</a></nav>
+      </div>
+    </header>
+    <main class="plain section">
+      <p class="eyebrow">Founding access</p>
+      <h1>Upgrade received.</h1>
+      <p>This browser has been switched to founding access for 500 formula runs per month. Return to the workbench to keep using the tool while account access ships.</p>
+      <p><a class="button primary" id="continue-workbench" href="/?paid=1">Open workbench</a></p>
+    </main>
+    <script>
+      localStorage.setItem('write-my-formula-pro', '1');
+
+      const sessionKey = 'write-my-formula-session-id';
+
+      function getSessionId() {
+        let sessionId = sessionStorage.getItem(sessionKey);
+        if (!sessionId) {
+          sessionId = crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+          sessionStorage.setItem(sessionKey, sessionId);
+        }
+        return sessionId;
+      }
+
+      function trackPaidEvent(event, properties = {}) {
+        if (navigator.doNotTrack === '1') return;
+
+        const body = JSON.stringify({
+          event,
+          path: location.pathname,
+          page: 'thanks',
+          sessionId: getSessionId(),
+          referrerHost: document.referrer ? new URL(document.referrer).hostname : '',
+          properties
+        });
+
+        if (navigator.sendBeacon) {
+          navigator.sendBeacon('/api/track', new Blob([body], { type: 'application/json' }));
+          return;
+        }
+
+        fetch('/api/track', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body,
+          keepalive: true
+        }).catch(() => {});
+      }
+
+      trackPaidEvent('paid_success_page_view', { source: 'stripe_redirect' });
+      document.querySelector('#continue-workbench').addEventListener('click', () => {
+        trackPaidEvent('paid_continue_click', { destination: '/?paid=1' });
+      });
+    </script>
+  </body>
+</html>

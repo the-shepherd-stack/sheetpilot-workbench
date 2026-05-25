@@ -1,0 +1,11 @@
+{
+  "name": "write-my-formula",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:seo": "node scripts/build-seo-pages.mjs",
+    "analytics:summary": "node scripts/funnel-summary.mjs",
+    "test": "node --test tests/*.test.js"
+  }
+}

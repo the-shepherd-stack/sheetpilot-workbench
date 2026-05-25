@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>COUNTIFS Formula Generator | Write My Formula</title>
+    <meta name="description" content="Generate COUNTIFS formulas for Excel and Google Sheets from multiple criteria written in plain English.">
+    <link rel="canonical" href="https://writemyformula.com/countifs-formula-generator/">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <meta property="og:title" content="COUNTIFS Formula Generator">
+    <meta property="og:description" content="Generate COUNTIFS formulas for Excel and Google Sheets from multiple criteria written in plain English.">
+    <meta property="og:url" content="https://writemyformula.com/countifs-formula-generator/">
+    <meta property="og:site_name" content="Write My Formula">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="/styles.css">
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://writemyformula.com/countifs-formula-generator/#webpage","url":"https://writemyformula.com/countifs-formula-generator/","name":"COUNTIFS Formula Generator","description":"Generate COUNTIFS formulas for Excel and Google Sheets from multiple criteria written in plain English.","isPartOf":{"@type":"WebSite","@id":"https://writemyformula.com/#website","name":"Write My Formula","url":"https://writemyformula.com/"},"primaryImageOfPage":"https://writemyformula.com/favicon.svg","mainEntity":{"@id":"https://writemyformula.com/countifs-formula-generator/#app"}},{"@type":"SoftwareApplication","@id":"https://writemyformula.com/countifs-formula-generator/#app","name":"Write My Formula","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://writemyformula.com/countifs-formula-generator/","description":"Generate COUNTIFS formulas for Excel and Google Sheets from multiple criteria written in plain English.","featureList":["COUNTIFS formula generator","Plain-English spreadsheet formula requests","Formula explanation and copy checks","A draft COUNTIFS formula with one criteria range per condition.","A visible read of how text, number, and date criteria are paired.","Checks that all criteria ranges use matching row spans."],"offers":{"@type":"Offer","price":"9.00","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://writemyformula.com/countifs-formula-generator/"}},{"@type":"BreadcrumbList","@id":"https://writemyformula.com/countifs-formula-generator/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Write My Formula","item":"https://writemyformula.com/"},{"@type":"ListItem","position":2,"name":"COUNTIFS formula generator","item":"https://writemyformula.com/countifs-formula-generator/"}]}]}</script>
+  </head>
+  <body data-mode="write">
+    <div class="page">
+      <header class="topbar">
+        <div class="topbar-inner">
+          <a class="brand" href="/" aria-label="Write My Formula home">
+            <span class="brand-mark">=</span>
+            <span>Write My Formula</span>
+          </a>
+          <nav class="nav" aria-label="Primary">
+            <a href="#examples">Examples</a>
+            <a href="#pricing">Pricing</a>
+            <a class="button ghost" data-checkout href="https://buy.stripe.com/5kQ5kw94pfXy3ziajM4F208">Upgrade $9</a>
+          </nav>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <div>
+              <p class="eyebrow">COUNTIFS formula generator</p>
+              <h1 id="hero-title">Count rows that match multiple criteria.</h1>
+            </div>
+            <p class="lede">Describe the conditions, paste your headers, and get a COUNTIFS formula with clear criteria ranges and checks.</p>
+          </div>
+
+          <section class="workbench" aria-label="Spreadsheet formula workbench">
+            <div class="panel input-panel">
+              <div class="panel-head">
+                <div>
+                  <p class="kicker">Request</p>
+                  <h2>Formula request</h2>
+                </div>
+                <span class="usage" id="usage">2 guest tries left</span>
+              </div>
+
+              <form class="tool-form" id="tool-form">
+                <fieldset class="control-group">
+                  <legend>Mode</legend>
+                  <div class="segmented" aria-label="Tool mode">
+                    <button type="button" data-mode="write">Write</button>
+                    <button type="button" data-mode="explain">Explain</button>
+                    <button type="button" data-mode="fix">Fix</button>
+                  </div>
+                </fieldset>
+
+                <fieldset class="control-group">
+                  <legend>Spreadsheet</legend>
+                  <div class="segmented compact" aria-label="Spreadsheet platform">
+                    <button type="button" data-platform="excel">Excel</button>
+                    <button type="button" data-platform="sheets">Google Sheets</button>
+                  </div>
+                </fieldset>
+
+                <div class="write-input">
+                  <label for="task">Job to do</label>
+                  <textarea id="task" rows="4">Look up each customer's plan and return the matching monthly price.</textarea>
+
+                  <label for="table">Pasted headers or sample rows</label>
+                  <textarea id="table" rows="4">Customer,Plan,Price
+Acme,Pro,29
+Northwind,Team,79</textarea>
+
+                  <div class="field-grid">
+                    <div>
+                      <label for="range">Range or target cell <span>optional</span></label>
+                      <input id="range" type="text" value="A2:C100; result in D2" placeholder="A2:C100; result in D2">
+                    </div>
+                    <div>
+                      <label for="hint">Function hint <span>optional</span></label>
+                      <input id="hint" type="text" value="XLOOKUP" placeholder="XLOOKUP, SUMIFS, FILTER">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="formula-input">
+                  <label for="formula">Formula to explain or fix</label>
+                  <textarea id="formula" rows="5" placeholder='=IFERROR(XLOOKUP(A2,Customers!A:A,Customers!C:C),"Not found")'></textarea>
+                </div>
+
+                <div class="examples" id="examples" aria-label="Example prompts">
+                  <button type="button" data-example="lookup">Look up price by customer</button>
+                  <button type="button" data-example="sumifs">Sum paid invoices this month</button>
+                  <button type="button" data-example="domain">Extract domain from email</button>
+                  <button type="button" data-example="explain-if">Explain nested IF</button>
+                  <button type="button" data-example="fix-na">Fix #N/A lookup</button>
+                </div>
+
+                <div class="run-row">
+                  <button class="button primary" id="run" type="submit">Write my formula</button>
+                  <a class="button ghost run-upgrade" data-checkout href="https://buy.stripe.com/5kQ5kw94pfXy3ziajM4F208">Upgrade $9</a>
+                </div>
+              </form>
+
+              <div class="paywall" id="paywall" hidden>
+                <h3 id="paywall-title">Keep writing formulas today</h3>
+                <p id="paywall-body">Guest mode includes 2 tries. Founding access is $9 for 500 runs per month in this browser.</p>
+                <div class="paywall-offer">
+                  <div>
+                    <strong>Founding access</strong>
+                    <span>Stripe redirects you back and unlocks this browser immediately.</span>
+                  </div>
+                  <a class="button primary" data-checkout href="https://buy.stripe.com/5kQ5kw94pfXy3ziajM4F208">Upgrade with Stripe</a>
+                </div>
+                <form class="signup-form" id="signup-form">
+                  <label for="signup-email">Email for free account access</label>
+                  <div class="signup-row">
+                    <input id="signup-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+                    <button class="button" type="submit">Join list</button>
+                  </div>
+                  <p class="form-note" id="signup-note">We will send a monthly product email with new capabilities, usage reminders, and upgrade options.</p>
+                </form>
+              </div>
+            </div>
+
+            <aside class="panel output-panel" aria-label="Formula output">
+              <div class="panel-head">
+                <div>
+                  <p class="kicker">Result</p>
+                  <h2>Formula preview</h2>
+                </div>
+                <span class="compatibility" id="compatibility-note">Works in modern Excel and Google Sheets.</span>
+              </div>
+
+              <div class="sheet-ruler" aria-hidden="true">
+                <span>A</span>
+                <span>B</span>
+                <span>C</span>
+                <span>D</span>
+                <span>E</span>
+              </div>
+
+              <div class="formula-shell" aria-live="polite">
+                <div class="formula-label">
+                  <span>fx</span>
+                  <strong>Formula bar</strong>
+                </div>
+                <div class="formula-bar">
+                  <code id="output-formula">=XLOOKUP(B2,$B$2:$B$100,$C$2:$C$100,"Not found")</code>
+                  <button class="result-copy" id="copy" type="button">Copy</button>
+                </div>
+                <div class="copy-upgrade" id="copy-upgrade" hidden>
+                  <div>
+                    <strong>Copied. Need more formulas this month?</strong>
+                    <span>500 runs per month in this browser for $9.</span>
+                  </div>
+                  <a class="button ghost" data-checkout href="https://buy.stripe.com/5kQ5kw94pfXy3ziajM4F208">Upgrade $9</a>
+                </div>
+              </div>
+
+              <div class="sheet-preview" aria-hidden="true">
+                <div>Customer</div>
+                <div>Plan</div>
+                <div>Price</div>
+                <div class="active-cell">Formula</div>
+                <div>Acme</div>
+                <div>Pro</div>
+                <div>29</div>
+                <div>=XLOOKUP(...)</div>
+              </div>
+
+              <div class="result-grid">
+                <section class="result-card">
+                  <h3>Explanation</h3>
+                  <ol id="output-steps">
+                    <li>Reads the plan in B2.</li>
+                    <li>Searches the plan column in the pasted table.</li>
+                    <li>Returns the matching monthly price, or "Not found".</li>
+                  </ol>
+                </section>
+
+                <section class="result-card">
+                  <h3>Checks</h3>
+                  <ul class="checks" id="output-checks">
+                    <li data-status="ok"><strong>Syntax</strong><span>No basic syntax issues found.</span></li>
+                    <li data-status="note"><strong>Compatibility</strong><span>XLOOKUP requires modern Excel or Google Sheets.</span></li>
+                    <li data-status="note"><strong>Before copy</strong><span>Confirm your lookup and return columns match your sheet.</span></li>
+                  </ul>
+                </section>
+              </div>
+
+              <div class="result-upgrade" aria-label="Founding access upgrade">
+                <div>
+                  <p class="kicker">Founding access</p>
+                  <h3>Use it past the guest limit.</h3>
+                  <p>500 formula runs per month in this browser for $9. Stripe redirects you back and unlocks access immediately.</p>
+                </div>
+                <a class="button primary" data-checkout href="https://buy.stripe.com/5kQ5kw94pfXy3ziajM4F208">Upgrade $9</a>
+              </div>
+            </aside>
+          </section>
+        </section>
+
+        <section class="section utility-section" aria-labelledby="tools-title">
+          <div class="section-copy">
+            <p class="eyebrow">Purpose-built inputs</p>
+            <h2 id="tools-title">A focused workflow for everyday spreadsheet work.</h2>
+          </div>
+          <div class="tool-grid">
+            <article class="mini">
+              <h3>Structured formula builder</h3>
+              <p>Task, table context, target range, and function hint keep the request specific.</p>
+            </article>
+            <article class="mini">
+              <h3>Write / Explain / Fix modes</h3>
+              <p>Generate a new formula, translate a pasted one, or diagnose common syntax issues.</p>
+            </article>
+            <article class="mini">
+              <h3>Excel and Sheets toggle</h3>
+              <p>Compatibility notes call out modern functions and platform-specific behavior.</p>
+            </article>
+            <article class="mini">
+              <h3>Formula-bar output</h3>
+              <p>The result is formatted for scanning and placed next to a copy button.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section utility-section" aria-labelledby="formula-pages-title">
+          <div class="section-copy">
+            <p class="eyebrow">Common formulas</p>
+            <h2 id="formula-pages-title">Pick the formula you came for.</h2>
+          </div>
+          <div class="tool-grid">
+            <article class="mini">
+              <h3><a href="/excel-formula-help/">Excel formula help</a></h3>
+              <p>Get help writing, explaining, or fixing one Excel formula with range notes and checks before you paste.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/ai-excel-formula-generator/">AI Excel formula generator</a></h3>
+              <p>Generate an Excel formula from plain English with range notes, an explanation, and checks before you paste.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/ai-google-sheets-formula-generator/">AI Google Sheets formula generator</a></h3>
+              <p>Turn a plain-English Sheets task into a formula with assumptions, range notes, and paste checks.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/formula-bot-alternative/">Formula Bot alternative</a></h3>
+              <p>Use a focused formula workbench when you need a formula, explanation, or fix instead of a full spreadsheet-analysis suite.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/sheetsolver-ai-alternative/">SheetSolver AI alternative</a></h3>
+              <p>Compare a narrow formula helper for writing, explaining, and fixing formulas against broader spreadsheet AI suites.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/percentage-formula-generator/">Percentage formulas</a></h3>
+              <p>Build percent of total, percent change, discount, markup, tax, tip, and completion-rate formulas.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-formula-cheat-sheet/">Excel formula cheat sheet</a></h3>
+              <p>Scan common lookup, logic, text, date, and summary formulas with examples.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-formula-not-showing-result/">Formula not showing result</a></h3>
+              <p>Diagnose formulas that show text, stay stale, return errors, or calculate the wrong value.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/vlookup-na-error/">VLOOKUP #N/A error</a></h3>
+              <p>Fix lookup formulas that return #N/A because of exact-match settings, text-number mismatches, or range setup.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-if-formula-multiple-conditions/">IF formulas with multiple conditions</a></h3>
+              <p>Write nested IF, AND, OR, and IFS logic with branch-order and edge-row checks before filling down.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/date-formula-generator/">Date formulas</a></h3>
+              <p>Create due dates, workday counts, month-end dates, date differences, and overdue checks.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/filter-formula-generator/">FILTER formulas</a></h3>
+              <p>Return matching rows for status, region, date, text, and threshold conditions.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/text-formula-generator/">Text formulas</a></h3>
+              <p>Split, extract, join, trim, clean, and replace text from messy imported cells.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/data-validation-formula-generator/">Data validation formulas</a></h3>
+              <p>Block bad IDs, duplicate values, missing fields, and invalid entries with custom TRUE/FALSE rules.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/google-sheets-query-formula-generator/">Google Sheets QUERY formulas</a></h3>
+              <p>Build QUERY formulas for filtering, selecting, sorting, grouping, and labeling Sheets data.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/pivot-table-calculated-field-formula-generator/">Pivot calculated field formulas</a></h3>
+              <p>Create margin, average price, variance, and ratio formulas that use pivot source field names.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/conditional-formatting-formula-generator/">Conditional formatting formulas</a></h3>
+              <p>Write Excel and Google Sheets custom formulas for row highlights, duplicates, overdue dates, and status rules.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/google-sheets-conditional-format-custom-formula/">Sheets conditional formatting custom formulas</a></h3>
+              <p>Set up Google Sheets custom formula rules with the right apply-to range, dollar signs, and TRUE/FALSE logic.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/xlookup-formula-generator/">XLOOKUP formulas</a></h3>
+              <p>Return matching values with separate lookup and return ranges.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/index-match-formula-generator/">INDEX MATCH formulas</a></h3>
+              <p>Build flexible lookup formulas for left lookups, two-way lookups, and older Excel files.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/sumifs-formula-generator/">SUMIFS formulas</a></h3>
+              <p>Total rows that match status, date, category, customer, or region rules.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/countifs-formula-generator/">COUNTIFS formulas</a></h3>
+              <p>Count rows across multiple text, number, and date conditions.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section seo-detail" aria-labelledby="countifs-formula-generator-detail-title">
+          <div class="section-copy">
+            <p class="eyebrow">Use case</p>
+            <h2 id="countifs-formula-generator-detail-title">COUNTIFS formula generator for spreadsheet work.</h2>
+            <p>Count rows that match two or more conditions without assembling criteria pairs by hand.</p>
+          </div>
+          <div class="detail-grid">
+            <article class="detail-card">
+              <h3>What this page gives you</h3>
+              <ul>
+                <li>A draft COUNTIFS formula with one criteria range per condition.</li>
+              <li>A visible read of how text, number, and date criteria are paired.</li>
+              <li>Checks that all criteria ranges use matching row spans.</li>
+              </ul>
+            </article>
+            <article class="detail-card">
+              <h3>When to use it</h3>
+              <p>Use this page when you need to count rows matching several conditions, such as status plus revenue threshold or date window plus owner.</p>
+              <p>Do not use COUNTIFS when you need to return the matching rows themselves. Use FILTER or a pivot table when the row details matter more than the count.</p>
+            </article>
+            <article class="detail-card">
+              <h3>Worked example</h3>
+              <p>For Status in column B and Revenue in column C, COUNTIFS can count active customers above a threshold.</p>
+              <pre><code>=COUNTIFS(B2:B500,&quot;Active&quot;,C2:C500,&quot;&gt;1000&quot;)</code></pre>
+              <p>The formula counts rows where status is Active and revenue is greater than 1000, with each condition tied to its own range.</p>
+            </article>
+          </div>
+          <div class="paste-check">
+            <h3>Check before you paste</h3>
+            <ul>
+              <li>Every COUNTIFS criteria range must be the same size.</li>
+              <li>Text criteria need quotes in the final formula.</li>
+              <li>Number and date comparisons usually need operators such as greater than or less than.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section pricing" id="pricing" aria-labelledby="pricing-title">
+          <div class="pricing-copy">
+            <p class="eyebrow">Upgrade when the work piles up</p>
+            <h2 id="pricing-title">Keep going when the sheet gets complicated.</h2>
+            <p>Try twice as a guest. Free accounts get 3 runs per week plus a monthly product email. Upgrade when formula work becomes a recurring part of the week.</p>
+          </div>
+          <div class="price-box">
+            <h3>Founding access</h3>
+            <div class="price">$9</div>
+            <p>500 formula runs per month in this browser, early access pricing, and account access as it ships. Stripe redirects you back after payment.</p>
+            <a class="button primary" data-checkout href="https://buy.stripe.com/5kQ5kw94pfXy3ziajM4F208">Upgrade with Stripe</a>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <span>Write My Formula</span>
+        <span><a href="/privacy">Privacy</a></span>
+      </footer>
+    </div>
+
+    <script>window.WMF_PAGE_PRESET = {"mode":"write","platform":"excel","task":"Count how many customers are Active and have revenue above 1000.","table":"Customer,Status,Revenue\nAcme,Active,1200\nNorthwind,Paused,800","range":"A2:C500; result in F2","hint":"COUNTIFS"};</script>
+    <script type="module" src="/app/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Write My Formula">
+  <rect width="64" height="64" rx="12" fill="#12312f"/>
+  <path d="M16 17h32v30H16z" fill="#f7f1e4"/>
+  <path d="M16 25h32M16 33h32M16 41h32M24 17v30M34 17v30" stroke="#12312f" stroke-width="2"/>
+  <path d="M38 25l5 5-9 9-5-5z" fill="#d46a3a"/>
+</svg>
