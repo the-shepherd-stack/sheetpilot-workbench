@@ -539,6 +539,36 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-ref-error',
+    title: 'Excel #REF! Error Fixer | Write My Formula',
+    description: 'Fix Excel #REF! errors caused by deleted rows, removed columns, moved cells, invalid references, and broken lookup ranges.',
+    eyebrow: 'Excel #REF! error fixer',
+    h1: 'Fix #REF! in your Excel formula, one formula at a time.',
+    lede: 'Paste the formula that now shows #REF!, describe what changed in the sheet, and get a repaired formula path for one broken reference with checks for deleted rows, moved cells, copied formulas, lookup ranges, and external references.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=SUM(B2,#REF!,D2)'
+    },
+    intent: 'Help Excel users repair formulas that point to a cell, row, column, range, lookup argument, or external reference Excel can no longer resolve.',
+    bestFor: [
+      'Formulas that broke after deleting a referenced row, column, sheet, or source range.',
+      'Copied or filled formulas where relative references shifted into an invalid location.',
+      'Lookup, INDEX, OFFSET, INDIRECT, or cross-workbook formulas that need their references rebuilt.'
+    ],
+    steps: [
+      'Paste the exact formula that contains #REF!.',
+      'Add what changed before the error appeared, such as a deleted column, moved sheet, pasted data, or copied formula.',
+      'Include the intended source cells or headers so the missing reference can be replaced with the current range.'
+    ],
+    copyChecks: [
+      'Replace #REF! with the intended current cell or range instead of hiding it first.',
+      'Lock ranges with dollar signs when the repaired formula will be filled down or across.',
+      'Check lookup table ranges and column numbers after deleted or inserted columns.',
+      'Confirm any external workbook or sheet reference still exists before trusting the repaired formula.'
+    ]
+  },
+  {
     slug: 'google-sheets-formula-parse-error',
     title: 'Google Sheets Formula Parse Error Fixer | Write My Formula',
     description: 'Fix Google Sheets formula parse errors caused by missing quotes, mismatched parentheses, wrong separators, malformed QUERY strings, and range issues.',
@@ -1306,6 +1336,20 @@ const pageEnhancements = {
       setup: 'A total formula in D10 can become circular if it sums D2:D10, because the formula cell is inside the range it is totaling.',
       formula: '=SUM(D2:D9)',
       read: 'The revised formula totals the rows above D10 without including the result cell itself. If the range should grow, use a table total row or a range that stops before the formula cell.'
+    }
+  },
+  'excel-ref-error': {
+    gives: [
+      'A focused fix pass for one formula returning #REF!.',
+      'Checks for deleted rows or columns, moved cells, shifted copy/fill references, lookup ranges, and external workbook references.',
+      'A rebuilt reference path you can test before filling the repaired formula through a report.'
+    ],
+    useWhen: 'Use this page when Excel returns #REF! because a formula points to a cell, row, column, sheet, lookup argument, or workbook link that is no longer valid. It is strongest when you can paste the broken formula and describe the edit that happened before the error appeared.',
+    notWhen: 'Do not hide #REF! with IFERROR before replacing the missing reference. The error usually means Excel has lost part of the formula path, so the first job is to identify the intended current cell or range.',
+    example: {
+      setup: 'A total formula can return #REF! after a referenced column is deleted and Excel replaces that missing cell reference with the error token.',
+      formula: '=SUM(B2:D2)',
+      read: 'The repaired formula should point at the current cells that belong in the total. After replacing the missing reference, lock or check the range if the formula will be copied across other rows.'
     }
   },
   'excel-data-validation-formula': {

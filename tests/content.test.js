@@ -53,6 +53,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix formulas with misspelled functions, undefined names, missing quotes, or unsupported functions/);
   assert.match(page, /\/excel-circular-reference\//);
   assert.match(page, /Fix formulas that point back at their own result cell or need deliberate iterative-calculation checks/);
+  assert.match(page, /\/excel-ref-error\//);
+  assert.match(page, /Repair formulas broken by deleted rows, moved cells, invalid references, or shifted lookup ranges/);
   assert.match(page, /\/google-sheets-formula-parse-error\//);
   assert.match(page, /Repair Sheets formulas with missing quotes, mismatched parentheses, wrong separators, or malformed QUERY syntax/);
   assert.match(page, /\/vlookup-na-error\//);
@@ -214,6 +216,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-value-error',
     'excel-name-error',
     'excel-circular-reference',
+    'excel-ref-error',
     'google-sheets-formula-parse-error',
     'vlookup-na-error',
     'excel-if-formula-multiple-conditions',
@@ -387,6 +390,25 @@ test('excel circular reference page targets circular-reference repair intent wit
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-circular-reference\//);
   assert.doesNotMatch(page, /upload|workbook audit|trace the reference chain|guarantee|guaranteed|always fixes|official Microsoft|Microsoft-certified|affiliated/i);
+});
+
+test('excel REF error page targets broken-reference repair intent without overclaiming', () => {
+  const page = read('excel-ref-error/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel #REF! Error Fixer/);
+  assert.match(page, /Fix #REF! in your Excel formula, one formula at a time/);
+  assert.match(page, /deleted rows, moved cells, copied formulas, lookup ranges, and external references/);
+  assert.match(page, /Excel can no longer resolve/);
+  assert.match(page, /=SUM\(B2:D2\)/);
+  assert.match(page, /Replace #REF! with the intended current cell or range/);
+  assert.match(page, /Check lookup table ranges and column numbers/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-ref-error\/">Excel #REF! error/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-ref-error\//);
+  assert.doesNotMatch(page, /upload|workbook audit|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|pay before answer/i);
 });
 
 test('AI Excel formula generator page targets plain-English AI formula intent without overclaiming', () => {
