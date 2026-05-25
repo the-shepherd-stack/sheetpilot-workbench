@@ -415,6 +415,36 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-value-error',
+    title: 'Excel #VALUE! Error Fixer | Write My Formula',
+    description: 'Fix Excel #VALUE! errors caused by text in number cells, hidden spaces, wrong argument types, subtraction syntax, and date or text function issues.',
+    eyebrow: 'Excel #VALUE! error fixer',
+    h1: 'Fix an Excel #VALUE! error without hiding it.',
+    lede: 'Paste the formula that returns #VALUE!, describe what the cell should return, and get a cleaner formula plus checks for text values, hidden spaces, wrong argument types, dates, and function syntax.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=A2-B2'
+    },
+    intent: 'Help Excel users fix one formula returning #VALUE! by finding whether the formula is receiving text, spaces, dates, ranges, or arguments that the function cannot calculate.',
+    bestFor: [
+      'Subtraction, date math, text functions, IF logic, and lookup formulas that return #VALUE! instead of a result.',
+      'Imported sheets where numbers or dates look right but are stored as text.',
+      'Formulas where IFERROR would hide the symptom before the underlying formula or source-cell issue is understood.'
+    ],
+    steps: [
+      'Paste the exact formula that returns #VALUE!.',
+      'Add one sentence about what the formula should return and which cells feed it.',
+      'Include a sample row when the issue may involve imported numbers, hidden spaces, dates, or text cleanup.'
+    ],
+    copyChecks: [
+      'Check whether referenced cells contain text, hidden spaces, or dates stored in a format Excel cannot use.',
+      'Confirm each function argument is the type the function expects before wrapping the result in IFERROR.',
+      'Use subtraction operators and date functions carefully when cells may contain blanks or text.',
+      'Test the repaired formula on one row that currently shows #VALUE! before filling it down.'
+    ]
+  },
+  {
     slug: 'excel-circular-reference',
     title: 'Excel Circular Reference Fixer | Write My Formula',
     description: 'Fix Excel circular reference warnings by rewriting the formula logic or checking whether iterative calculation is intentional.',
@@ -1203,6 +1233,20 @@ const pageEnhancements = {
       setup: 'A SUMIFS formula can look correct but fail when dates are imported as text or when the workbook uses a different list separator.',
       formula: '=SUMIFS(C2:C500,B2:B500,"Paid",A2:A500,">="&DATE(2026,5,1),A2:A500,"<"&DATE(2026,6,1))',
       read: 'The formula totals paid rows in May 2026 using date boundaries built with DATE. The checks tell you to confirm real date values, matching range sizes, and the separator your Excel locale expects.'
+    }
+  },
+  'excel-value-error': {
+    gives: [
+      'A focused fix pass for one formula returning #VALUE!.',
+      'Checks for text stored in number/date cells, hidden spaces, wrong argument types, subtraction syntax, and function-specific inputs.',
+      'A revised formula path you can test before using IFERROR or filling the formula through a report.'
+    ],
+    useWhen: 'Use this page when Excel returns #VALUE! and the formula looks structurally close but one referenced cell, argument, date, text value, or operator is stopping the calculation. It is strongest when you can paste the formula and one row of source values.',
+    notWhen: 'Do not use IFERROR as the first fix if the underlying value problem matters. Hiding #VALUE! can make a report look clean while the formula is still reading the wrong type of input.',
+    example: {
+      setup: 'A subtraction formula can return #VALUE! when imported cells contain numbers stored as text or hidden spaces.',
+      formula: '=VALUE(TRIM(A2))-VALUE(TRIM(B2))',
+      read: 'The formula trims each referenced cell, converts the cleaned text to numbers, then subtracts them. Use it only after confirming those cells should contain numeric values.'
     }
   },
   'excel-circular-reference': {

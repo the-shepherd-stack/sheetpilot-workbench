@@ -47,6 +47,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Diagnose formulas that show text, stay stale, return errors, or calculate the wrong value/);
   assert.match(page, /\/excel-formulas-not-working\//);
   assert.match(page, /Fix formulas that stop calculating after imports, copied ranges, locale settings, or text-number mismatches/);
+  assert.match(page, /\/excel-value-error\//);
+  assert.match(page, /Repair formulas blocked by text values, hidden spaces, wrong argument types, dates, or subtraction syntax/);
   assert.match(page, /\/excel-circular-reference\//);
   assert.match(page, /Fix formulas that point back at their own result cell or need deliberate iterative-calculation checks/);
   assert.match(page, /\/google-sheets-formula-parse-error\//);
@@ -207,6 +209,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-formula-fixer',
     'excel-formula-not-showing-result',
     'excel-formulas-not-working',
+    'excel-value-error',
     'excel-circular-reference',
     'google-sheets-formula-parse-error',
     'vlookup-na-error',
@@ -291,6 +294,23 @@ test('excel formulas not working page targets repair intent without overclaiming
   assert.doesNotMatch(page, /upload/i);
   assert.doesNotMatch(page, /guarantee/i);
   assert.doesNotMatch(page, /Microsoft partner/i);
+});
+
+test('excel value error page targets VALUE repair intent without overclaiming', () => {
+  const page = read('excel-value-error/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel #VALUE! Error Fixer/);
+  assert.match(page, /Fix an Excel #VALUE! error without hiding it/);
+  assert.match(page, /text values, hidden spaces, wrong argument types, dates, and function syntax/);
+  assert.match(page, /Hiding #VALUE! can make a report look clean while the formula is still reading the wrong type of input/);
+  assert.match(page, /=VALUE\(TRIM\(A2\)\)-VALUE\(TRIM\(B2\)\)/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-value-error\/">Excel #VALUE! error/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-value-error\//);
+  assert.doesNotMatch(page, /upload|workbook audit|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer/i);
 });
 
 test('excel formula fixer page targets fix-my-formula intent without overclaiming', () => {
