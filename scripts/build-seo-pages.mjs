@@ -412,6 +412,36 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-formula-parse-error',
+    title: 'Google Sheets Formula Parse Error Fixer | Write My Formula',
+    description: 'Fix Google Sheets formula parse errors caused by missing quotes, mismatched parentheses, wrong separators, malformed QUERY strings, and range issues.',
+    eyebrow: 'Google Sheets formula parse error fixer',
+    h1: 'Fix a Google Sheets formula parse error.',
+    lede: 'Paste the formula Sheets cannot parse, describe the message you see, and get a cleaner formula with checks for quotes, parentheses, separators, ranges, and QUERY syntax.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=QUERY(A1:D500,"select A, B where C = Open",1)'
+    },
+    intent: 'Help Google Sheets users repair formulas that fail before they can calculate because Sheets cannot understand the syntax, separators, quotes, ranges, or query string.',
+    bestFor: [
+      'Formula parse errors from missing quotes, extra commas, unmatched parentheses, or wrong locale separators.',
+      'QUERY, FILTER, ARRAYFORMULA, REGEXEXTRACT, IF, and lookup formulas that worked in one example but break when adapted.',
+      'Sheets formulas copied from Excel, forums, or an AI tool that need syntax cleanup before testing.'
+    ],
+    steps: [
+      'Paste the exact formula that shows the parse error.',
+      'Add the visible error text or the part of the formula you recently changed.',
+      'Include the relevant headers or sample row when the formula uses QUERY, FILTER, lookup, or text parsing.'
+    ],
+    copyChecks: [
+      'Check whether your Sheets locale expects commas or semicolons between arguments.',
+      'Confirm every opening parenthesis, quote, and array brace has a matching close.',
+      'For QUERY formulas, put text criteria in single quotes inside the query string.',
+      'Test the repaired formula on a copy or one known row before filling it through a shared sheet.'
+    ]
+  },
+  {
     slug: 'vlookup-na-error',
     title: 'VLOOKUP #N/A Error Fixer | Write My Formula',
     description: 'Fix VLOOKUP #N/A errors caused by exact-match settings, text-number mismatches, lookup ranges, and missing fallbacks.',
@@ -1107,6 +1137,20 @@ const pageEnhancements = {
       setup: 'A SUMIFS formula can look correct but fail when dates are imported as text or when the workbook uses a different list separator.',
       formula: '=SUMIFS(C2:C500,B2:B500,"Paid",A2:A500,">="&DATE(2026,5,1),A2:A500,"<"&DATE(2026,6,1))',
       read: 'The formula totals paid rows in May 2026 using date boundaries built with DATE. The checks tell you to confirm real date values, matching range sizes, and the separator your Excel locale expects.'
+    }
+  },
+  'google-sheets-formula-parse-error': {
+    gives: [
+      'A focused fix pass for Google Sheets formulas that fail at the parsing stage.',
+      'Checks for missing quotes, mismatched parentheses, wrong separators, malformed QUERY text, and range shape problems.',
+      'A revised formula path you can test on one row or copied sheet before changing a shared report.'
+    ],
+    useWhen: 'Use this page when Google Sheets shows a formula parse error, #ERROR!, or a syntax-style failure before the formula can return a real result. It is strongest when you can paste the exact formula and name whether the issue appeared after copying from Excel, changing locale separators, editing a QUERY string, or adding nested functions.',
+    notWhen: 'Do not treat a parse-error fix as proof that the formula returns the right business result. A syntactically valid formula can still point at the wrong range, filter the wrong column, or hide a real missing match.',
+    example: {
+      setup: 'A QUERY formula can parse incorrectly when text criteria inside the query string are not quoted.',
+      formula: '=QUERY(A1:D500,"select A, B where C = \'Open\'",1)',
+      read: 'The formula keeps the query text inside double quotes, then wraps the Open criterion in single quotes so Google Sheets can parse the condition as text.'
     }
   },
   'vlookup-na-error': {

@@ -47,6 +47,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Diagnose formulas that show text, stay stale, return errors, or calculate the wrong value/);
   assert.match(page, /\/excel-formulas-not-working\//);
   assert.match(page, /Fix formulas that stop calculating after imports, copied ranges, locale settings, or text-number mismatches/);
+  assert.match(page, /\/google-sheets-formula-parse-error\//);
+  assert.match(page, /Repair Sheets formulas with missing quotes, mismatched parentheses, wrong separators, or malformed QUERY syntax/);
   assert.match(page, /\/vlookup-na-error\//);
   assert.match(page, /Fix lookup formulas that return #N\/A because of exact-match settings/);
   assert.match(page, /\/excel-if-formula-multiple-conditions\//);
@@ -201,6 +203,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-formula-fixer',
     'excel-formula-not-showing-result',
     'excel-formulas-not-working',
+    'google-sheets-formula-parse-error',
     'vlookup-na-error',
     'excel-if-formula-multiple-conditions',
     'vlookup-formula-generator',
@@ -282,6 +285,24 @@ test('excel formulas not working page targets repair intent without overclaiming
   assert.doesNotMatch(page, /upload/i);
   assert.doesNotMatch(page, /guarantee/i);
   assert.doesNotMatch(page, /Microsoft partner/i);
+});
+
+test('google sheets formula parse error page targets Sheets repair intent without overclaiming', () => {
+  const page = read('google-sheets-formula-parse-error/index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Google Sheets Formula Parse Error Fixer/);
+  assert.match(page, /Fix a Google Sheets formula parse error/);
+  assert.match(page, /missing quotes, mismatched parentheses, wrong separators, malformed QUERY strings, and range issues/);
+  assert.match(page, /Google Sheets shows a formula parse error, #ERROR!, or a syntax-style failure/);
+  assert.match(page, /=QUERY\(A1:D500,&quot;select A, B where C = 'Open'&quot;,1\)/);
+  assert.match(page, /commas or semicolons/);
+  assert.match(page, /text criteria in single quotes/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-formula-parse-error\//);
+  assert.doesNotMatch(page, /upload|workbook audit|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated/i);
 });
 
 test('AI Excel formula generator page targets plain-English AI formula intent without overclaiming', () => {
