@@ -412,6 +412,36 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-circular-reference',
+    title: 'Excel Circular Reference Fixer | Write My Formula',
+    description: 'Fix Excel circular reference warnings by rewriting the formula logic or checking whether iterative calculation is intentional.',
+    eyebrow: 'Excel circular reference fixer',
+    h1: 'Fix an Excel circular reference warning.',
+    lede: 'Paste the formula that points back at itself, describe what the cell should calculate, and get a safer formula path with checks for self-references, helper cells, and intentional iteration.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=SUM(D2:D10)'
+    },
+    intent: 'Help Excel users repair formulas that refer to their own result directly or through another cell, without hiding a real circular-reference problem behind workbook-wide iteration settings.',
+    bestFor: [
+      'Cells that trigger Excel circular reference warnings after a formula edit, copy, or row insertion.',
+      'Totals, running balances, commission formulas, and model inputs where the formula accidentally includes its own result cell.',
+      'Cases where you need to decide whether to rewrite the formula, move it to a helper cell, or deliberately use iterative calculation.'
+    ],
+    steps: [
+      'Paste the exact formula and say which cell contains it.',
+      'Describe the intended result without using the circular output cell as an input.',
+      'Mention whether the circular reference is accidental or part of a deliberate iterative model.'
+    ],
+    copyChecks: [
+      'Check whether the formula range includes the same cell that contains the formula.',
+      'Use Formula Error Checking and trace arrows to confirm which cells depend on each other before changing workbook settings.',
+      'Turn on iterative calculation only when the circular calculation is intentional and you understand the recalculation limits.',
+      'Test the revised formula in one row before copying it across a model.'
+    ]
+  },
+  {
     slug: 'google-sheets-formula-parse-error',
     title: 'Google Sheets Formula Parse Error Fixer | Write My Formula',
     description: 'Fix Google Sheets formula parse errors caused by missing quotes, mismatched parentheses, wrong separators, malformed QUERY strings, and range issues.',
@@ -1137,6 +1167,20 @@ const pageEnhancements = {
       setup: 'A SUMIFS formula can look correct but fail when dates are imported as text or when the workbook uses a different list separator.',
       formula: '=SUMIFS(C2:C500,B2:B500,"Paid",A2:A500,">="&DATE(2026,5,1),A2:A500,"<"&DATE(2026,6,1))',
       read: 'The formula totals paid rows in May 2026 using date boundaries built with DATE. The checks tell you to confirm real date values, matching range sizes, and the separator your Excel locale expects.'
+    }
+  },
+  'excel-circular-reference': {
+    gives: [
+      'A focused repair path for formulas that trigger Excel circular-reference warnings.',
+      'Checks for self-including ranges, indirect dependency loops, helper-cell options, and intentional iteration.',
+      'A revised formula direction you can test before changing workbook calculation settings.'
+    ],
+    useWhen: 'Use this page when Excel says a formula refers to its own cell directly or indirectly, or when a copied formula starts warning about circular references. It is strongest when you can paste the formula, name the cell it lives in, and describe the result you intended.',
+    notWhen: 'Do not turn on iterative calculation just to silence a warning. Iteration can be valid for deliberate circular models, but an accidental circular reference should usually be rewritten, moved, or split into helper cells first.',
+    example: {
+      setup: 'A total formula in D10 can become circular if it sums D2:D10, because the formula cell is inside the range it is totaling.',
+      formula: '=SUM(D2:D9)',
+      read: 'The revised formula totals the rows above D10 without including the result cell itself. If the range should grow, use a table total row or a range that stops before the formula cell.'
     }
   },
   'google-sheets-formula-parse-error': {

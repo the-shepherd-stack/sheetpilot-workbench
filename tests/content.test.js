@@ -47,6 +47,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Diagnose formulas that show text, stay stale, return errors, or calculate the wrong value/);
   assert.match(page, /\/excel-formulas-not-working\//);
   assert.match(page, /Fix formulas that stop calculating after imports, copied ranges, locale settings, or text-number mismatches/);
+  assert.match(page, /\/excel-circular-reference\//);
+  assert.match(page, /Fix formulas that point back at their own result cell or need deliberate iterative-calculation checks/);
   assert.match(page, /\/google-sheets-formula-parse-error\//);
   assert.match(page, /Repair Sheets formulas with missing quotes, mismatched parentheses, wrong separators, or malformed QUERY syntax/);
   assert.match(page, /\/vlookup-na-error\//);
@@ -203,6 +205,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-formula-fixer',
     'excel-formula-not-showing-result',
     'excel-formulas-not-working',
+    'excel-circular-reference',
     'google-sheets-formula-parse-error',
     'vlookup-na-error',
     'excel-if-formula-multiple-conditions',
@@ -303,6 +306,24 @@ test('google sheets formula parse error page targets Sheets repair intent withou
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-formula-parse-error\//);
   assert.doesNotMatch(page, /upload|workbook audit|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated/i);
+});
+
+test('excel circular reference page targets circular-reference repair intent without overclaiming', () => {
+  const page = read('excel-circular-reference/index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel Circular Reference Fixer/);
+  assert.match(page, /Fix an Excel circular reference warning/);
+  assert.match(page, /formula that points back at itself/);
+  assert.match(page, /self-references, helper cells, and intentional iteration/);
+  assert.match(page, /Excel says a formula refers to its own cell directly or indirectly/);
+  assert.match(page, /=SUM\(D2:D9\)/);
+  assert.match(page, /Turn on iterative calculation only when the circular calculation is intentional/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-circular-reference\//);
+  assert.doesNotMatch(page, /upload|workbook audit|trace the reference chain|guarantee|guaranteed|always fixes|official Microsoft|Microsoft-certified|affiliated/i);
 });
 
 test('AI Excel formula generator page targets plain-English AI formula intent without overclaiming', () => {
