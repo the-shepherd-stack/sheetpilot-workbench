@@ -7,6 +7,10 @@ Static app for spreadsheet formula generation, explanation, and fixing.
 - `npm test`: run static content and formula helper tests.
 - `python3 -m http.server 4173`: serve locally for browser checks.
 
+## Deployment
+
+Production deploys are connected through Vercel from `the-shepherd-stack/sheetpilot-workbench` on the `main` branch.
+
 ## Upgrade Path
 
 The upgrade link is configured through `app/config.js`.
