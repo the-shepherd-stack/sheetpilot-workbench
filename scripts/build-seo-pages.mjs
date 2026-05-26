@@ -476,6 +476,36 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-div0-error',
+    title: 'Excel #DIV/0! Error Fixer | Write My Formula',
+    description: 'Fix Excel #DIV/0! errors caused by zero denominators, blank cells, ratio formulas, averages, and IFERROR fallbacks that hide other issues.',
+    eyebrow: 'Excel #DIV/0! error fixer',
+    h1: 'Fix the #DIV/0! error in your Excel formula.',
+    lede: 'Paste the formula that divides by zero or a blank cell, describe what the result should mean, and get a safer formula path with checks for denominators, blanks, ratios, averages, and IFERROR tradeoffs.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=B2/C2'
+    },
+    intent: 'Help Excel users fix one formula returning #DIV/0! by checking whether the denominator is zero, blank, derived from another formula, or being hidden by a broad error handler.',
+    bestFor: [
+      'Margin, conversion-rate, average, quota, and ratio formulas that return #DIV/0! when the divisor is blank or zero.',
+      'Reports where blank input rows should stay blank instead of showing a red error.',
+      'Formulas where IFERROR may be acceptable, but only after the denominator and source cells are understood.'
+    ],
+    steps: [
+      'Paste the exact formula that returns #DIV/0!.',
+      'Describe what should happen when the denominator is zero, blank, or waiting for input.',
+      'Include one sample row when the denominator comes from another formula, lookup, count, or imported value.'
+    ],
+    copyChecks: [
+      'Check whether the divisor cell is zero, blank, text, or a formula returning an empty-looking value.',
+      'Decide whether a zero denominator should return blank, zero, #N/A, or a message such as Input needed.',
+      'Use IF to test the denominator directly when you only want to handle division-by-zero cases.',
+      'Use IFERROR carefully because it can also hide #VALUE!, #REF!, #NAME?, or other formula problems.'
+    ]
+  },
+  {
     slug: 'excel-circular-reference',
     title: 'Excel Circular Reference Fixer | Write My Formula',
     description: 'Fix Excel circular reference warnings by rewriting the formula logic or checking whether iterative calculation is intentional.',
@@ -1322,6 +1352,20 @@ const pageEnhancements = {
       setup: 'A SUMIF formula can return #NAME? when the text criterion is not wrapped in quotes, because Excel reads Open as a workbook name instead of text.',
       formula: '=SUMIF(Status,"Open",Amount)',
       read: 'The formula treats Open as text criteria, then totals the Amount range for rows where Status equals Open. The checks tell you to confirm Status and Amount are defined names or replace them with real cell ranges.'
+    }
+  },
+  'excel-div0-error': {
+    gives: [
+      'A focused fix pass for one formula returning #DIV/0!.',
+      'Checks for zero or blank denominators, hidden text values, derived divisor cells, and ratio formulas waiting for input.',
+      'A safer formula path that explains whether IF, IFERROR, blank output, zero output, or #N/A is the right fallback.'
+    ],
+    useWhen: 'Use this page when Excel returns #DIV/0! because a formula divides by zero, a blank cell, or a denominator that is produced by another formula. It is strongest when you can paste the formula and say what should appear when the divisor is not available yet.',
+    notWhen: 'Do not wrap the formula in IFERROR as the first move if other errors would matter. IFERROR can clean up a report, but it also hides non-division problems that may need a different fix.',
+    example: {
+      setup: 'A margin formula can return #DIV/0! when revenue is blank or zero while a row is still being filled in.',
+      formula: '=IF(C2=0,"",(B2-C2)/C2)',
+      read: 'The formula checks the denominator before dividing. If C2 is zero, it returns blank; otherwise it calculates the margin. Choose blank, 0, #N/A, or a message based on how the report should treat missing input.'
     }
   },
   'excel-circular-reference': {

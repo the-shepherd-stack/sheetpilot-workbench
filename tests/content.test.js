@@ -51,6 +51,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Repair formulas blocked by text values, hidden spaces, wrong argument types, dates, or subtraction syntax/);
   assert.match(page, /\/excel-name-error\//);
   assert.match(page, /Fix formulas with misspelled functions, undefined names, missing quotes, or unsupported functions/);
+  assert.match(page, /\/excel-div0-error\//);
+  assert.match(page, /Fix formulas blocked by zero or blank denominators, ratio logic, averages, and IFERROR tradeoffs/);
   assert.match(page, /\/excel-circular-reference\//);
   assert.match(page, /Fix formulas that point back at their own result cell or need deliberate iterative-calculation checks/);
   assert.match(page, /\/excel-ref-error\//);
@@ -215,6 +217,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-formulas-not-working',
     'excel-value-error',
     'excel-name-error',
+    'excel-div0-error',
     'excel-circular-reference',
     'excel-ref-error',
     'google-sheets-formula-parse-error',
@@ -354,6 +357,24 @@ test('excel formula fixer page targets fix-my-formula intent without overclaimin
   assert.match(homepage, /href="\/excel-formula-fixer\/">Fix my Excel formula/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-formula-fixer\//);
   assert.doesNotMatch(page, /upload|workbook audit|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day/i);
+});
+
+test('excel DIV0 error page targets division-by-zero repair intent without overclaiming', () => {
+  const page = read('excel-div0-error/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel #DIV\/0! Error Fixer/);
+  assert.match(page, /Fix the #DIV\/0! error in your Excel formula/);
+  assert.match(page, /zero denominators, blank cells, ratio formulas, averages, and IFERROR fallbacks/);
+  assert.match(page, /Use IF to test the denominator directly/);
+  assert.match(page, /IFERROR carefully because it can also hide #VALUE!, #REF!, #NAME\?/);
+  assert.match(page, /=IF\(C2=0,&quot;&quot;,\(B2-C2\)\/C2\)/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-div0-error\/">Excel #DIV\/0! error/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-div0-error\//);
+  assert.doesNotMatch(page, /upload|workbook audit|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves/i);
 });
 
 test('google sheets formula parse error page targets Sheets repair intent without overclaiming', () => {
