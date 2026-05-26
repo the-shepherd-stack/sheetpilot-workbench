@@ -537,6 +537,36 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-num-error',
+    title: 'Excel #NUM! Error Fixer | Write My Formula',
+    description: 'Fix Excel #NUM! errors caused by invalid numeric values, formatted constants, non-converging IRR or RATE functions, and numbers outside Excel limits.',
+    eyebrow: 'Excel #NUM! error fixer',
+    h1: 'Fix an Excel #NUM! error by checking the number Excel cannot use.',
+    lede: '#NUM! means the formula handed Excel a numeric value it could not calculate with. Paste the formula, describe what the result should be, and get a repair path for formatted constants, iterative functions, invalid math inputs, and numbers outside Excel limits.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=IRR(B2:B12)'
+    },
+    intent: 'Help Excel users fix one formula returning #NUM! by identifying whether the failure comes from invalid numeric arguments, formatted constants, iterative functions that cannot find a result, invalid math domains, or results too large or small for Excel.',
+    bestFor: [
+      'IRR, RATE, NPER, and other formulas that iterate and return #NUM! when Excel cannot find a result.',
+      'Formulas with constants typed as formatted numbers, such as dollar signs or comma separators inside the formula.',
+      'Math formulas where a negative, zero, or extreme value makes the numeric result invalid for the function.'
+    ],
+    steps: [
+      'Paste the exact formula that returns #NUM!.',
+      'Describe the result you expected and whether the formula uses IRR, RATE, SQRT, LOG, POWER, or a very large calculation.',
+      'Include one sample input row or cash-flow range when the issue depends on signs, guesses, formatted numbers, or result size.'
+    ],
+    copyChecks: [
+      'Remove currency symbols and thousands separators from constants typed directly inside formulas.',
+      'Check whether iterative functions such as IRR or RATE have inputs that can actually converge to a result.',
+      'Confirm the formula is not asking for invalid math, such as a square root of a negative number or a log of zero.',
+      'Restructure calculations that produce numbers outside Excel limits instead of only wrapping them in IFERROR.'
+    ]
+  },
+  {
     slug: 'excel-circular-reference',
     title: 'Excel Circular Reference Fixer | Write My Formula',
     description: 'Fix Excel circular reference warnings by rewriting the formula logic or checking whether iterative calculation is intentional.',
@@ -1411,6 +1441,20 @@ const pageEnhancements = {
       setup: 'A FILTER formula can return #SPILL! when it should return open rows, but another value is already sitting where the filtered results need to appear.',
       formula: '=FILTER(A2:C500,B2:B500="Open","No open rows")',
       read: 'The formula filters rows where Status equals Open and includes a no-match fallback. Before replacing the formula, clear the intended spill range and confirm the result starts outside an Excel table.'
+    }
+  },
+  'excel-num-error': {
+    gives: [
+      'A focused fix pass for one formula returning #NUM!.',
+      'Checks for formatted constants, invalid numeric arguments, iterative-function convergence, impossible math inputs, and results outside Excel limits.',
+      'A revised formula direction you can test before hiding the numeric problem with a broad error fallback.'
+    ],
+    useWhen: 'Use this page when Excel returns #NUM! because the formula contains a number Excel cannot use, an iterative function such as IRR or RATE cannot find a result, or the calculation produces a value outside Excel limits. It is strongest when you can paste the formula and include the input values that drive the numeric result.',
+    notWhen: 'Do not use IFERROR as the first fix if the numeric problem affects the meaning of the result. A clean-looking fallback can hide a failed financial calculation, invalid input, or result-size problem that should be checked directly.',
+    example: {
+      setup: 'An IRR formula can return #NUM! when the cash-flow pattern does not let Excel settle on a result within its iteration settings.',
+      formula: '=IRR(B2:B12,0.1)',
+      read: 'The formula supplies a starting guess for IRR, but the checks still tell you to confirm the cash flows contain the sign pattern needed for a meaningful rate before using the result.'
     }
   },
   'excel-circular-reference': {

@@ -55,6 +55,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix formulas blocked by zero or blank denominators, ratio logic, averages, and IFERROR tradeoffs/);
   assert.match(page, /\/excel-spill-error\//);
   assert.match(page, /Fix dynamic array formulas blocked by spill ranges, tables, merged cells, whole-column references, or changing array sizes/);
+  assert.match(page, /\/excel-num-error\//);
+  assert.match(page, /Fix formulas blocked by invalid numeric values, formatted constants, non-converging IRR or RATE inputs, or numbers outside Excel limits/);
   assert.match(page, /\/excel-circular-reference\//);
   assert.match(page, /Fix formulas that point back at their own result cell or need deliberate iterative-calculation checks/);
   assert.match(page, /\/excel-ref-error\//);
@@ -221,6 +223,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-name-error',
     'excel-div0-error',
     'excel-spill-error',
+    'excel-num-error',
     'excel-circular-reference',
     'excel-ref-error',
     'google-sheets-formula-parse-error',
@@ -398,6 +401,25 @@ test('excel SPILL error page targets dynamic-array repair intent without overcla
   assert.match(homepage, /href="\/excel-spill-error\/">Excel #SPILL! error/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-spill-error\//);
   assert.doesNotMatch(page, /upload|workbook audit|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|working one/i);
+});
+
+test('excel NUM error page targets invalid-number repair intent without overclaiming', () => {
+  const page = read('excel-num-error/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel #NUM! Error Fixer/);
+  assert.match(page, /Fix an Excel #NUM! error by checking the number Excel cannot use/);
+  assert.match(page, /formatted constants, non-converging IRR or RATE functions, and numbers outside Excel limits/);
+  assert.match(page, /iterative functions such as IRR or RATE/);
+  assert.match(page, /Remove currency symbols and thousands separators/);
+  assert.match(page, /square root of a negative number or a log of zero/);
+  assert.match(page, /=IRR\(B2:B12,0\.1\)/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-num-error\/">Excel #NUM! error/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-num-error\//);
+  assert.doesNotMatch(page, /upload|workbook audit|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|pay before answer/i);
 });
 
 test('google sheets formula parse error page targets Sheets repair intent without overclaiming', () => {
