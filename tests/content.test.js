@@ -53,6 +53,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix formulas with misspelled functions, undefined names, missing quotes, or unsupported functions/);
   assert.match(page, /\/excel-div0-error\//);
   assert.match(page, /Fix formulas blocked by zero or blank denominators, ratio logic, averages, and IFERROR tradeoffs/);
+  assert.match(page, /\/excel-spill-error\//);
+  assert.match(page, /Fix dynamic array formulas blocked by spill ranges, tables, merged cells, whole-column references, or changing array sizes/);
   assert.match(page, /\/excel-circular-reference\//);
   assert.match(page, /Fix formulas that point back at their own result cell or need deliberate iterative-calculation checks/);
   assert.match(page, /\/excel-ref-error\//);
@@ -218,6 +220,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-value-error',
     'excel-name-error',
     'excel-div0-error',
+    'excel-spill-error',
     'excel-circular-reference',
     'excel-ref-error',
     'google-sheets-formula-parse-error',
@@ -375,6 +378,26 @@ test('excel DIV0 error page targets division-by-zero repair intent without overc
   assert.match(homepage, /href="\/excel-div0-error\/">Excel #DIV\/0! error/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-div0-error\//);
   assert.doesNotMatch(page, /upload|workbook audit|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves/i);
+});
+
+test('excel SPILL error page targets dynamic-array repair intent without overclaiming', () => {
+  const page = read('excel-spill-error/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel #SPILL! Error Fixer/);
+  assert.match(page, /Fix an Excel #SPILL! error without reading a forum thread/);
+  assert.match(page, /formula tried to return more than one cell of results/);
+  assert.match(page, /blocked by occupied cells, merged cells, table behavior, worksheet edges, volatile array size, or an oversized reference/);
+  assert.match(page, /blocked spill ranges, merged cells, Excel tables, oversized references/);
+  assert.match(page, /FILTER formula can return #SPILL!/);
+  assert.match(page, /Move spilled array formulas outside Excel tables/);
+  assert.match(page, /=FILTER\(A2:C500,B2:B500=&quot;Open&quot;,&quot;No open rows&quot;\)/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-spill-error\/">Excel #SPILL! error/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-spill-error\//);
+  assert.doesNotMatch(page, /upload|workbook audit|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|working one/i);
 });
 
 test('google sheets formula parse error page targets Sheets repair intent without overclaiming', () => {

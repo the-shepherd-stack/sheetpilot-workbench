@@ -506,6 +506,37 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-spill-error',
+    title: 'Excel #SPILL! Error Fixer | Write My Formula',
+    description: 'Fix Excel #SPILL! formula errors caused by blocked spill ranges, dynamic arrays, Excel tables, merged cells, worksheet edges, and volatile array sizes.',
+    eyebrow: 'Excel #SPILL! error fixer',
+    h1: 'Fix an Excel #SPILL! error without reading a forum thread.',
+    lede: '#SPILL! means your formula tried to return more than one cell of results and Excel could not place those results in the grid. Paste the formula, describe the spill range, and get a revised formula path with the checks to make before you use it.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=FILTER(A2:C500,B2:B500="Open")'
+    },
+    intent: 'Help Excel users repair one formula that wants to spill multiple results but is blocked by occupied cells, merged cells, table behavior, worksheet edges, volatile array size, or an oversized reference.',
+    bestFor: [
+      'FILTER, SORT, UNIQUE, SEQUENCE, or XLOOKUP formulas that return #SPILL! instead of an array result.',
+      'Dynamic array formulas blocked by values already sitting in the intended spill range.',
+      'Formulas entered inside Excel tables where spilled array formulas are not supported.',
+      'Whole-column references or volatile array formulas that try to return more cells than Excel can place.'
+    ],
+    steps: [
+      'Paste the exact formula that returns #SPILL!, or describe what it was supposed to return.',
+      'Mention the cell where the formula lives and what cells the result should fill.',
+      'Add anything visible in the spill range, including merged cells, table columns, existing values, or whole-column references.'
+    ],
+    copyChecks: [
+      'Clear or move values from the intended spill range before changing the formula.',
+      'Move spilled array formulas outside Excel tables when the result needs to fill multiple cells.',
+      'Use bounded ranges instead of entire-column references when the formula should return a smaller result set.',
+      'Check volatile functions such as RANDARRAY, RANDBETWEEN, or SEQUENCE inputs when the spill size keeps changing.'
+    ]
+  },
+  {
     slug: 'excel-circular-reference',
     title: 'Excel Circular Reference Fixer | Write My Formula',
     description: 'Fix Excel circular reference warnings by rewriting the formula logic or checking whether iterative calculation is intentional.',
@@ -1366,6 +1397,20 @@ const pageEnhancements = {
       setup: 'A margin formula can return #DIV/0! when revenue is blank or zero while a row is still being filled in.',
       formula: '=IF(C2=0,"",(B2-C2)/C2)',
       read: 'The formula checks the denominator before dividing. If C2 is zero, it returns blank; otherwise it calculates the margin. Choose blank, 0, #N/A, or a message based on how the report should treat missing input.'
+    }
+  },
+  'excel-spill-error': {
+    gives: [
+      'A focused fix pass for one formula returning #SPILL!.',
+      'Checks for blocked spill ranges, merged cells, Excel tables, oversized references, worksheet-edge problems, and volatile array sizes.',
+      'A revised formula direction you can test after clearing the cells or layout issue that blocked the spill.'
+    ],
+    useWhen: 'Use this page when Excel returns #SPILL! because a dynamic array formula wants to return multiple cells but cannot place them in the grid. It is strongest when you can paste the formula, name the formula cell, and describe the intended spill range.',
+    notWhen: 'Do not treat #SPILL! as only a syntax error. The formula may be valid, but the surrounding cells, table layout, merged cells, or reference size may prevent Excel from placing the result.',
+    example: {
+      setup: 'A FILTER formula can return #SPILL! when it should return open rows, but another value is already sitting where the filtered results need to appear.',
+      formula: '=FILTER(A2:C500,B2:B500="Open","No open rows")',
+      read: 'The formula filters rows where Status equals Open and includes a no-match fallback. Before replacing the formula, clear the intended spill range and confirm the result starts outside an Excel table.'
     }
   },
   'excel-circular-reference': {
