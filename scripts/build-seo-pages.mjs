@@ -724,6 +724,38 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-filter-function-not-working',
+    title: 'Excel FILTER Function Not Working | Write My Formula',
+    description: 'Fix Excel FILTER formulas that return #CALC!, #SPILL!, #REF!, blank results, wrong rows, or unsupported-function errors.',
+    eyebrow: 'Excel FILTER function repair',
+    h1: 'Fix an Excel FILTER formula that is not returning the rows you expected.',
+    lede: 'Paste the FILTER formula that is failing, describe the rows it should return, and get a focused repair path for empty results, include-array logic, spill behavior, workbook links, and Excel version support.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=FILTER(A2:D500,(B2:B500="West")*(C2:C500="Open"))'
+    },
+    intent: 'Help Excel users repair one FILTER formula where the visible problem is usually a missing if_empty fallback, an include argument that returns all FALSE, mismatched array sizes, blocked spill output, unsupported Excel version behavior, or a linked workbook that is not available.',
+    bestFor: [
+      'FILTER formulas that return #CALC! because no rows match and the formula has no if_empty result.',
+      'FILTER formulas that return every row, no rows, or the wrong rows because the include test is shaped or combined incorrectly.',
+      'FILTER results blocked by #SPILL!, merged cells, occupied spill ranges, or formulas entered inside an Excel table.',
+      'FILTER formulas that show #NAME?, _xlfn, or #REF! after opening the workbook in a different Excel version or with the source workbook closed.'
+    ],
+    steps: [
+      'Paste the exact FILTER formula that is not working.',
+      'Say what should happen when no rows match: blank, a message, #N/A, or another fallback.',
+      'Include the source headers and one row that should match so the include logic can be checked.'
+    ],
+    copyChecks: [
+      'Add the optional if_empty argument when no matching rows is a normal case.',
+      'Confirm the include range has the same height or width as the array being filtered.',
+      'Use multiplication for AND logic and addition for OR logic only when each condition returns the intended TRUE/FALSE array.',
+      'Clear the spill range or move the formula outside an Excel table before changing valid FILTER logic.',
+      'Check Excel version support and keep linked source workbooks open when the FILTER formula depends on another file.'
+    ]
+  },
+  {
     slug: 'excel-num-error',
     title: 'Excel #NUM! Error Fixer | Write My Formula',
     description: 'Fix Excel #NUM! errors caused by invalid numeric values, formatted constants, non-converging IRR or RATE functions, and numbers outside Excel limits.',
@@ -1742,6 +1774,20 @@ const pageEnhancements = {
       setup: 'A FILTER formula can return #CALC! when no rows match the criteria and the formula does not say what to return for an empty result.',
       formula: '=FILTER(A2:C500,B2:B500="West","No matching rows")',
       read: 'The formula filters rows where column B equals West and returns a readable fallback when no rows match. Test both a matching case and a no-match case before using it in a report.'
+    }
+  },
+  'excel-filter-function-not-working': {
+    gives: [
+      'A focused repair pass for one FILTER formula that returns an error, blank output, all rows, no rows, or the wrong rows.',
+      'Checks for if_empty fallback behavior, include-array dimensions, AND/OR criteria logic, spill blockers, version support, and external workbook references.',
+      'A revised FILTER direction you can test on one matching row and one no-match case before using it in a report.'
+    ],
+    useWhen: 'Use this page when an Excel FILTER formula does not return the expected rows, returns #CALC!, #SPILL!, #REF!, #NAME?, or shows _xlfn after the file is opened somewhere else. It is strongest when you can paste the exact formula and one row that should match.',
+    notWhen: 'Do not treat every FILTER problem as a syntax problem. The formula may be valid while the output range is blocked, the no-match case is undefined, the include array is the wrong shape, or the Excel version cannot run dynamic array functions.',
+    example: {
+      setup: 'A FILTER formula can return #CALC! when no rows match unless the optional fallback tells Excel what to return.',
+      formula: '=FILTER(A2:D500,(B2:B500="West")*(C2:C500="Open"),"No matching rows")',
+      read: 'The formula filters rows where Region is West and Status is Open, using multiplication for AND logic. The final argument returns a message when no rows match instead of leaving Excel with an empty array.'
     }
   },
   'excel-num-error': {

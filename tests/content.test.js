@@ -538,6 +538,26 @@ test('excel CALC error page targets array-calculation repair intent without over
   assert.doesNotMatch(page, /upload|workbook audit|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
 });
 
+test('excel FILTER function not working page targets FILTER repair intent without overclaiming', () => {
+  const page = read('excel-filter-function-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel FILTER Function Not Working/);
+  assert.match(page, /Fix an Excel FILTER formula that is not returning the rows you expected/);
+  assert.match(page, /empty results, include-array logic, spill behavior, workbook links, and Excel version support/);
+  assert.match(page, /missing if_empty fallback/);
+  assert.match(page, /Confirm the include range has the same height or width as the array being filtered/);
+  assert.match(page, /multiplication for AND logic and addition for OR logic/);
+  assert.match(page, /Check Excel version support and keep linked source workbooks open/);
+  assert.match(page, /=FILTER\(A2:D500,\(B2:B500=&quot;West&quot;\)\*\(C2:C500=&quot;Open&quot;\),&quot;No matching rows&quot;\)/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-filter-function-not-working\/">Excel FILTER function not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-filter-function-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
+});
+
 test('excel NUM error page targets invalid-number repair intent without overclaiming', () => {
   const page = read('excel-num-error/index.html');
   const homepage = read('index.html');
