@@ -55,6 +55,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix formulas that return 0, blank, or an empty string because of lookup return cells, IF logic, or hidden zero settings/);
   assert.match(page, /\/excel-formula-not-copying-down\//);
   assert.match(page, /Fix formulas that will not fill down, copy the first result, or shift the wrong references after dragging/);
+  assert.match(page, /\/excel-sumifs-not-working\//);
+  assert.match(page, /Fix SUMIFS formulas that return 0, #VALUE!, or wrong totals because of criteria, ranges, dates, or argument order/);
   assert.match(page, /\/excel-value-error\//);
   assert.match(page, /Repair formulas blocked by text values, hidden spaces, wrong argument types, dates, or subtraction syntax/);
   assert.match(page, /\/excel-name-error\//);
@@ -233,6 +235,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-formula-wrong-result',
     'excel-formula-returns-zero-blank',
     'excel-formula-not-copying-down',
+    'excel-sumifs-not-working',
     'excel-value-error',
     'excel-name-error',
     'excel-div0-error',
@@ -399,6 +402,26 @@ test('excel formula not copying down page targets fill-down repair intent withou
   assert.match(homepage, /href="\/excel-formula-not-copying-down\/">Excel formula not copying down/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-formula-not-copying-down\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds/i);
+});
+
+test('excel SUMIFS not working page targets criteria repair intent without overclaiming', () => {
+  const page = read('excel-sumifs-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel SUMIFS Not Working Fixer/);
+  assert.match(page, /Fix an Excel SUMIFS formula that is not working/);
+  assert.match(page, /returns 0, #VALUE!, or the wrong total/);
+  assert.match(page, /criteria syntax, range sizes, dates, text values, and argument order/);
+  assert.match(page, /=SUMIFS\(D2:D500,A2:A500,&quot;South&quot;,C2:C500,&quot;Meat&quot;,B2:B500,&quot;&gt;=&quot;&amp;DATE\(2026,5,1\),B2:B500,&quot;&lt;&quot;&amp;DATE\(2026,6,1\)\)/);
+  assert.match(page, /Confirm the sum range is the first argument in SUMIFS/);
+  assert.match(page, /Make every criteria range the same height and width as the sum range/);
+  assert.match(page, /Open any source workbook referenced by the formula before trusting a #VALUE! diagnosis/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-sumifs-not-working\/">Excel SUMIFS not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-sumifs-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
 });
 
 test('excel value error page targets VALUE repair intent without overclaiming', () => {

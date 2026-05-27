@@ -538,6 +538,38 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-sumifs-not-working',
+    title: 'Excel SUMIFS Not Working Fixer | Write My Formula',
+    description: 'Fix Excel SUMIFS formulas that return 0, #VALUE!, wrong totals, or miss rows because of criteria, range size, date, or argument-order issues.',
+    eyebrow: 'Excel SUMIFS fixer',
+    h1: 'Fix an Excel SUMIFS formula that is not working.',
+    lede: 'Paste the SUMIFS formula that returns 0, #VALUE!, or the wrong total, add what it should count or sum, and get a focused repair path for criteria syntax, range sizes, dates, text values, and argument order.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=SUMIFS(D2:D500,A2:A500,"South",C2:C500,"Meat")'
+    },
+    intent: 'Help Excel users repair one SUMIFS formula where the visible problem is usually criteria syntax, mismatched range sizes, wrong SUMIF versus SUMIFS argument order, date/text criteria, closed external workbook references, or unexpected zero totals.',
+    bestFor: [
+      'SUMIFS formulas that return 0 even though matching rows appear to exist.',
+      '#VALUE! errors caused by mismatched ranges or references to a closed external workbook.',
+      'Date, text, wildcard, and comparison criteria where quotes, operators, or cell references are easy to mix up.',
+      'Reports where SUMIF and SUMIFS argument order were copied from one formula style into the other.'
+    ],
+    steps: [
+      'Paste the exact SUMIFS formula and the total Excel currently returns.',
+      'Add one row that should match the criteria and one row that should not.',
+      'Include the headers or range sizes for the sum range and each criteria range.'
+    ],
+    copyChecks: [
+      'Confirm the sum range is the first argument in SUMIFS.',
+      'Make every criteria range the same height and width as the sum range.',
+      'Wrap text criteria and comparison operators in quotes where Excel expects them.',
+      'Check whether dates and numbers are stored as real values rather than text.',
+      'Open any source workbook referenced by the formula before trusting a #VALUE! diagnosis.'
+    ]
+  },
+  {
     slug: 'excel-value-error',
     title: 'Excel #VALUE! Error Fixer | Write My Formula',
     description: 'Fix Excel #VALUE! errors caused by text in number cells, hidden spaces, wrong argument types, subtraction syntax, and date or text function issues.',
@@ -1594,6 +1626,20 @@ const pageEnhancements = {
       setup: 'A product lookup can work in the first row but break after filling down if the lookup table range moves with each copied formula.',
       formula: '=XLOOKUP(A2,Products!$A$2:$A$500,Products!$C$2:$C$500,"Not found")',
       read: 'The lookup value A2 stays relative so it changes to A3, A4, and later rows. The product lookup and return ranges stay locked so the filled formulas keep searching the same table.'
+    }
+  },
+  'excel-sumifs-not-working': {
+    gives: [
+      'A focused fix pass for one SUMIFS formula returning 0, #VALUE!, or a wrong total.',
+      'Checks for SUMIFS argument order, quoted criteria, matching range sizes, text/date storage, and external workbook references.',
+      'A revised SUMIFS path you can compare against one known matching row before changing a report.'
+    ],
+    useWhen: 'Use this page when a SUMIFS formula looks close but returns 0, #VALUE!, or the wrong total. It is strongest when you can paste the formula, the current result, and one row that should match every criterion.',
+    notWhen: 'Do not use it as proof that all totals in the workbook are correct. SUMIFS depends on range alignment, criteria syntax, stored value types, and source workbook state, so test the fix against known rows before replacing a live report formula.',
+    example: {
+      setup: 'A sales total can return 0 when text criteria are not quoted correctly, date criteria are stored as text, or the criteria ranges do not line up with the sales amount range.',
+      formula: '=SUMIFS(D2:D500,A2:A500,"South",C2:C500,"Meat",B2:B500,">="&DATE(2026,5,1),B2:B500,"<"&DATE(2026,6,1))',
+      read: 'The formula sums sales amounts in D only for South rows, Meat rows, and dates in May 2026. Check that every criteria range has the same row span as D2:D500 and that dates in column B are real Excel dates.'
     }
   },
   'excel-value-error': {
