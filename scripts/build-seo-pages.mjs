@@ -507,6 +507,37 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-formula-not-copying-down',
+    title: 'Excel Formula Not Copying Down Fixer | Write My Formula',
+    description: 'Fix Excel formulas that do not copy down, fill down, update each row, or keep the right relative and absolute references.',
+    eyebrow: 'Excel formula not copying down fixer',
+    h1: 'Fix an Excel formula that is not copying down.',
+    lede: 'Paste the formula that will not fill down correctly, describe what happens after you drag or press Ctrl+D, and get a focused repair path for fill handle settings, calculation mode, relative references, absolute references, and copied-range behavior.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=XLOOKUP(A2,Products!A:A,Products!C:C,"Not found")'
+    },
+    intent: 'Help Excel users fix one formula that will not copy, fill, or update correctly down a column, especially when the blocker is hidden fill-handle settings, manual calculation, drifting references, missing dollar signs, table fill behavior, or a formula copied from the wrong starting row.',
+    bestFor: [
+      'Formulas that copy the first result down the column instead of recalculating for each row.',
+      'Lookup, IF, SUMIFS, percentage, and text formulas where references shift incorrectly after dragging.',
+      'Cells where the fill handle is missing, Auto Fill Options picked the wrong behavior, or Ctrl+D gives a stale-looking result.',
+      'Reports where some references should move row by row while lookup tables, criteria ranges, or constants should stay locked.'
+    ],
+    steps: [
+      'Paste the formula from the first row and say where it should be filled.',
+      'Describe the visible symptom: it will not drag, copies the same value, shifts the wrong range, shows a stale result, or stops partway down.',
+      'Include one row where the filled formula should change and any ranges that should stay fixed.'
+    ],
+    copyChecks: [
+      'Check whether automatic workbook calculation is enabled before rewriting a formula that copied but did not recalculate.',
+      'Confirm which references should stay relative and which should be locked with dollar signs.',
+      'Use Ctrl+D or the Fill command when the fill handle is hidden or hard to drag accurately.',
+      'Test the repaired formula on the first filled row and one later row before replacing the whole column.'
+    ]
+  },
+  {
     slug: 'excel-value-error',
     title: 'Excel #VALUE! Error Fixer | Write My Formula',
     description: 'Fix Excel #VALUE! errors caused by text in number cells, hidden spaces, wrong argument types, subtraction syntax, and date or text function issues.',
@@ -1549,6 +1580,20 @@ const pageEnhancements = {
       setup: 'A VLOOKUP finds the SKU in the table, but the return cell in the price column is empty, so the formula shows 0 instead of a price.',
       formula: '=IF(VLOOKUP(A2,$D$2:$E$500,2,FALSE)=0,"No price on file",VLOOKUP(A2,$D$2:$E$500,2,FALSE))',
       read: 'The formula checks whether the lookup result is zero before showing a label. Use this only after confirming whether zero is ever a valid price in the return column; otherwise a blank source cell and a real zero will be treated the same.'
+    }
+  },
+  'excel-formula-not-copying-down': {
+    gives: [
+      'A focused fix pass for one formula that will not copy, fill, or update correctly down a column.',
+      'Checks for fill handle visibility, Ctrl+D behavior, automatic calculation, relative references, absolute references, and locked lookup ranges.',
+      'A revised formula path you can test on the first filled row and a later row before changing the whole column.'
+    ],
+    useWhen: 'Use this page when dragging the fill handle, using Fill Down, or pressing Ctrl+D does not produce the row-by-row formula you expected. It is strongest when you can paste the first-row formula, the formula or result after filling, and the ranges that should stay fixed.',
+    notWhen: 'Do not assume every copied formula should change the same way. Some references need to move with each row, while lookup tables, criteria ranges, and constants often need dollar signs so they stay anchored.',
+    example: {
+      setup: 'A product lookup can work in the first row but break after filling down if the lookup table range moves with each copied formula.',
+      formula: '=XLOOKUP(A2,Products!$A$2:$A$500,Products!$C$2:$C$500,"Not found")',
+      read: 'The lookup value A2 stays relative so it changes to A3, A4, and later rows. The product lookup and return ranges stay locked so the filled formulas keep searching the same table.'
     }
   },
   'excel-value-error': {

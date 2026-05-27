@@ -53,6 +53,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix formulas that calculate the wrong value because of references, parentheses, stored types, or lookup settings/);
   assert.match(page, /\/excel-formula-returns-zero-blank\//);
   assert.match(page, /Fix formulas that return 0, blank, or an empty string because of lookup return cells, IF logic, or hidden zero settings/);
+  assert.match(page, /\/excel-formula-not-copying-down\//);
+  assert.match(page, /Fix formulas that will not fill down, copy the first result, or shift the wrong references after dragging/);
   assert.match(page, /\/excel-value-error\//);
   assert.match(page, /Repair formulas blocked by text values, hidden spaces, wrong argument types, dates, or subtraction syntax/);
   assert.match(page, /\/excel-name-error\//);
@@ -230,6 +232,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-formula-not-calculating',
     'excel-formula-wrong-result',
     'excel-formula-returns-zero-blank',
+    'excel-formula-not-copying-down',
     'excel-value-error',
     'excel-name-error',
     'excel-div0-error',
@@ -375,6 +378,26 @@ test('excel formula returns zero blank page targets empty-output repair intent w
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/excel-formula-returns-zero-blank\/">Formula returns 0 or blank/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-formula-returns-zero-blank\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds/i);
+});
+
+test('excel formula not copying down page targets fill-down repair intent without overclaiming', () => {
+  const page = read('excel-formula-not-copying-down/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel Formula Not Copying Down Fixer/);
+  assert.match(page, /Fix an Excel formula that is not copying down/);
+  assert.match(page, /will not fill down correctly/);
+  assert.match(page, /fill handle settings, calculation mode, relative references, absolute references/);
+  assert.match(page, /=XLOOKUP\(A2,Products!\$A\$2:\$A\$500,Products!\$C\$2:\$C\$500,&quot;Not found&quot;\)/);
+  assert.match(page, /The lookup value A2 stays relative/);
+  assert.match(page, /Check whether automatic workbook calculation is enabled/);
+  assert.match(page, /Confirm which references should stay relative and which should be locked with dollar signs/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-formula-not-copying-down\/">Excel formula not copying down/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-formula-not-copying-down\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds/i);
 });
 
