@@ -720,6 +720,36 @@ const pages = [
     ]
   },
   {
+    slug: 'xlookup-na-error',
+    title: 'XLOOKUP #N/A Error Fixer | Write My Formula',
+    description: 'Fix XLOOKUP #N/A errors caused by missing matches, text-number mismatches, lookup-array issues, and fallback arguments.',
+    eyebrow: 'XLOOKUP #N/A error fixer',
+    h1: 'Fix an XLOOKUP #N/A error before you hide it.',
+    lede: 'Paste the XLOOKUP that is returning #N/A, describe what should match, and get a corrected formula path with checks for lookup arrays, match mode, text-number mismatches, and the if_not_found fallback.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=XLOOKUP(E2,$A$2:$A$500,$B$2:$B$500)'
+    },
+    intent: 'Help Excel users fix one XLOOKUP formula returning #N/A by checking whether the lookup value is truly missing, stored differently, pointed at the wrong array, or being masked too early with a fallback.',
+    bestFor: [
+      'XLOOKUP formulas where the value appears to exist but Excel still returns #N/A.',
+      'Imports where IDs, SKUs, dates, or account numbers may be stored as text in one range and numbers in another.',
+      'Modern lookup formulas that need a clear if_not_found value without hiding real data-quality problems.'
+    ],
+    steps: [
+      'Paste the exact XLOOKUP formula that returns #N/A.',
+      'Include one lookup value that should match and the first few values from the lookup array.',
+      'Say whether a missing match should stay #N/A, return blank, or show a readable message.'
+    ],
+    copyChecks: [
+      'Confirm the lookup array and return array cover the same rows.',
+      'Check whether the lookup value and lookup array use the same stored type.',
+      'Use the if_not_found argument only after deciding that a missing match is acceptable.',
+      'Review match_mode and search_mode when approximate matching or reverse search is intentional.'
+    ]
+  },
+  {
     slug: 'vlookup-formula-generator',
     title: 'VLOOKUP Formula Generator | Write My Formula',
     description: 'Build VLOOKUP formulas from a plain-English lookup task and pasted table context.',
@@ -1525,6 +1555,20 @@ const pageEnhancements = {
       setup: 'For a SKU in E2 and a product table in A2:C500, a VLOOKUP should usually use exact match and a clear not-found fallback.',
       formula: '=IFERROR(VLOOKUP(E2,$A$2:$C$500,2,FALSE),"Not found")',
       read: 'The formula searches for E2 in the first column of the table range, returns the second column, and uses exact match. The fallback hides the raw #N/A only after the range and source values have been checked.'
+    }
+  },
+  'xlookup-na-error': {
+    gives: [
+      'A focused fix pass for one XLOOKUP formula returning #N/A.',
+      'Checks for missing matches, text-number mismatches, lookup-array shape, match mode, and fallback wording.',
+      'A revised formula path you can test on one known matching row and one intentionally missing row.'
+    ],
+    useWhen: 'Use this page when XLOOKUP returns #N/A even though the value appears to exist, or when a lookup formula started failing after imported data, changed ranges, or copied formulas. It is strongest when you can paste the formula and one lookup value that should match.',
+    notWhen: 'Do not use a fallback argument just to make the error disappear. #N/A may be the correct signal for a missing record, a mismatched stored type, or a lookup array pointed at the wrong rows.',
+    example: {
+      setup: 'For a SKU in E2 and product SKUs in A2:A500, XLOOKUP can return a category from B2:B500 while showing a readable message only when the SKU is not found.',
+      formula: '=XLOOKUP(E2,$A$2:$A$500,$B$2:$B$500,"Not found",0)',
+      read: 'The formula searches for E2 in the SKU column, returns the category from the same row, and uses exact match. The fallback is added after checking that a missing SKU should display Not found.'
     }
   },
   'vlookup-formula-generator': {

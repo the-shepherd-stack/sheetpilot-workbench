@@ -65,6 +65,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Repair Sheets formulas with missing quotes, mismatched parentheses, wrong separators, or malformed QUERY syntax/);
   assert.match(page, /\/vlookup-na-error\//);
   assert.match(page, /Fix lookup formulas that return #N\/A because of exact-match settings/);
+  assert.match(page, /\/xlookup-na-error\//);
+  assert.match(page, /Fix XLOOKUP formulas with missing matches, mismatched stored types/);
   assert.match(page, /\/excel-if-formula-multiple-conditions\//);
   assert.match(page, /Write nested IF, AND, OR, and IFS logic with branch-order and edge-row checks/);
   assert.match(page, /\/date-formula-generator\//);
@@ -228,6 +230,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-ref-error',
     'google-sheets-formula-parse-error',
     'vlookup-na-error',
+    'xlookup-na-error',
     'excel-if-formula-multiple-conditions',
     'vlookup-formula-generator',
     'xlookup-formula-generator',
@@ -589,6 +592,24 @@ test('VLOOKUP NA error page targets lookup repair intent without overclaiming', 
   assert.match(page, /Upgrade \$9/);
   assert.doesNotMatch(page, /guarantee|guaranteed|always fixes|official Microsoft|official Google|affiliated/i);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/vlookup-na-error\//);
+});
+
+test('XLOOKUP NA error page targets modern lookup repair intent without overclaiming', () => {
+  const page = read('xlookup-na-error/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /XLOOKUP #N\/A Error Fixer/);
+  assert.match(page, /Fix an XLOOKUP #N\/A error before you hide it/);
+  assert.match(page, /lookup arrays/);
+  assert.match(page, /text-number mismatches/);
+  assert.match(page, /lookup array and return array cover the same rows/);
+  assert.match(page, /=XLOOKUP\(E2,\$A\$2:\$A\$500,\$B\$2:\$B\$500,&quot;Not found&quot;,0\)/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.doesNotMatch(page, /guarantee|guaranteed|always fixes|official Microsoft|official Google|affiliated|human reviewer|upload/i);
+  assert.match(homepage, /href="\/xlookup-na-error\/">XLOOKUP #N\/A error/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/xlookup-na-error\//);
 });
 
 test('excel IF formula multiple conditions page targets conditional logic intent', () => {
