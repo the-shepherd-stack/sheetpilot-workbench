@@ -65,6 +65,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix formulas blocked by zero or blank denominators, ratio logic, averages, and IFERROR tradeoffs/);
   assert.match(page, /\/excel-spill-error\//);
   assert.match(page, /Fix dynamic array formulas blocked by spill ranges, tables, merged cells, whole-column references, or changing array sizes/);
+  assert.match(page, /\/excel-calc-error\//);
+  assert.match(page, /Fix dynamic array and FILTER formulas blocked by empty results, nested arrays, range references, or unsupported calculations/);
   assert.match(page, /\/excel-num-error\//);
   assert.match(page, /Fix formulas blocked by invalid numeric values, formatted constants, non-converging IRR or RATE inputs, or numbers outside Excel limits/);
   assert.match(page, /\/excel-circular-reference\//);
@@ -240,6 +242,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-name-error',
     'excel-div0-error',
     'excel-spill-error',
+    'excel-calc-error',
     'excel-num-error',
     'excel-circular-reference',
     'excel-ref-error',
@@ -514,6 +517,25 @@ test('excel SPILL error page targets dynamic-array repair intent without overcla
   assert.match(homepage, /href="\/excel-spill-error\/">Excel #SPILL! error/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-spill-error\//);
   assert.doesNotMatch(page, /upload|workbook audit|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|working one/i);
+});
+
+test('excel CALC error page targets array-calculation repair intent without overclaiming', () => {
+  const page = read('excel-calc-error/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel #CALC! Error Fixer/);
+  assert.match(page, /Fix an Excel #CALC! error at the array formula/);
+  assert.match(page, /empty FILTER results, nested arrays, range references, and unsupported calculation cases/);
+  assert.match(page, /A FILTER formula can return #CALC! when no rows match/);
+  assert.match(page, /Add an if_empty argument to FILTER/);
+  assert.match(page, /custom-function referenced ranges in Excel for the web/);
+  assert.match(page, /=FILTER\(A2:C500,B2:B500=&quot;West&quot;,&quot;No matching rows&quot;\)/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-calc-error\/">Excel #CALC! error/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-calc-error\//);
+  assert.doesNotMatch(page, /upload|workbook audit|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
 });
 
 test('excel NUM error page targets invalid-number repair intent without overclaiming', () => {

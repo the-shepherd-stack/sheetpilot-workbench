@@ -692,6 +692,38 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-calc-error',
+    title: 'Excel #CALC! Error Fixer | Write My Formula',
+    description: 'Fix Excel #CALC! errors caused by empty FILTER results, nested arrays, range references inside arrays, and unsupported array calculations.',
+    eyebrow: 'Excel #CALC! error fixer',
+    h1: 'Fix an Excel #CALC! error at the array formula.',
+    lede: '#CALC! often means Excel cannot finish an array-style calculation. Paste the formula, describe the result you expected, and get a repair path for empty FILTER results, nested arrays, range references, and unsupported calculation cases.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=FILTER(A2:C500,B2:B500="West")'
+    },
+    intent: 'Help Excel users fix one formula returning #CALC! by checking whether an array formula returns no rows, tries to nest arrays, includes a range where Excel expects values, or uses a calculation pattern Excel cannot complete in the current environment.',
+    bestFor: [
+      'FILTER formulas that return #CALC! when no rows match the criteria and no if_empty value is supplied.',
+      'Dynamic array formulas that combine FILTER, SORT, UNIQUE, HSTACK, VSTACK, MAP, BYROW, or LAMBDA and fail with an array calculation error.',
+      'Formulas where an array constant or nested array includes a range reference Excel cannot calculate.',
+      'Excel for the web custom-function cases where the referenced range size may be too large.'
+    ],
+    steps: [
+      'Paste the exact formula that returns #CALC!.',
+      'Say whether the formula should return rows, a single value, a blank, or a message when nothing matches.',
+      'Include the relevant headers or sample rows when the formula uses FILTER criteria, array constants, or custom functions.'
+    ],
+    copyChecks: [
+      'Add an if_empty argument to FILTER when no matching rows is an acceptable result.',
+      'Check whether the formula is trying to place one array inside another array.',
+      'Replace range references inside array constants with a calculation pattern Excel can evaluate.',
+      'Reduce custom-function referenced ranges in Excel for the web when the formula touches too many cells.',
+      'Test the repaired formula on one no-match case and one expected-match case before filling it through a report.'
+    ]
+  },
+  {
     slug: 'excel-num-error',
     title: 'Excel #NUM! Error Fixer | Write My Formula',
     description: 'Fix Excel #NUM! errors caused by invalid numeric values, formatted constants, non-converging IRR or RATE functions, and numbers outside Excel limits.',
@@ -1696,6 +1728,20 @@ const pageEnhancements = {
       setup: 'A FILTER formula can return #SPILL! when it should return open rows, but another value is already sitting where the filtered results need to appear.',
       formula: '=FILTER(A2:C500,B2:B500="Open","No open rows")',
       read: 'The formula filters rows where Status equals Open and includes a no-match fallback. Before replacing the formula, clear the intended spill range and confirm the result starts outside an Excel table.'
+    }
+  },
+  'excel-calc-error': {
+    gives: [
+      'A focused fix pass for one formula returning #CALC!.',
+      'Checks for empty FILTER results, nested arrays, array constants with ranges, custom-function range size, and unsupported array calculation cases.',
+      'A revised formula direction you can test on a no-match row and a known-match row before replacing a report formula.'
+    ],
+    useWhen: 'Use this page when Excel returns #CALC! from a dynamic array, FILTER, LAMBDA-style helper, or custom function. It is strongest when you can paste the exact formula and explain what should appear when the filter or array has no result.',
+    notWhen: 'Do not hide #CALC! with a broad IFERROR before checking the array shape. The error often points to a missing no-results fallback, a nested-array pattern Excel cannot evaluate, or an environment limit that should be handled directly.',
+    example: {
+      setup: 'A FILTER formula can return #CALC! when no rows match the criteria and the formula does not say what to return for an empty result.',
+      formula: '=FILTER(A2:C500,B2:B500="West","No matching rows")',
+      read: 'The formula filters rows where column B equals West and returns a readable fallback when no rows match. Test both a matching case and a no-match case before using it in a report.'
     }
   },
   'excel-num-error': {
