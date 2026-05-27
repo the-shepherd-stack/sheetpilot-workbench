@@ -49,6 +49,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix formulas that stop calculating after imports, copied ranges, locale settings, or text-number mismatches/);
   assert.match(page, /\/excel-formula-not-calculating\//);
   assert.match(page, /Fix formulas that stay stale, show formula text, or only update after manual recalculation/);
+  assert.match(page, /\/excel-formula-wrong-result\//);
+  assert.match(page, /Fix formulas that calculate the wrong value because of references, parentheses, stored types, or lookup settings/);
   assert.match(page, /\/excel-value-error\//);
   assert.match(page, /Repair formulas blocked by text values, hidden spaces, wrong argument types, dates, or subtraction syntax/);
   assert.match(page, /\/excel-name-error\//);
@@ -224,6 +226,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-formula-not-showing-result',
     'excel-formulas-not-working',
     'excel-formula-not-calculating',
+    'excel-formula-wrong-result',
     'excel-value-error',
     'excel-name-error',
     'excel-div0-error',
@@ -333,6 +336,25 @@ test('excel formula not calculating page targets recalculation repair intent wit
   assert.match(homepage, /href="\/excel-formula-not-calculating\/">Excel formula not calculating/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-formula-not-calculating\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|faster than Microsoft|trained on Microsoft/i);
+});
+
+test('excel formula wrong result page targets incorrect-result repair intent without overclaiming', () => {
+  const page = read('excel-formula-wrong-result/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel Formula Wrong Result Fixer/);
+  assert.match(page, /Fix an Excel formula that gives the wrong result/);
+  assert.match(page, /runs the formula without an error but the answer is wrong/);
+  assert.match(page, /references, calculation order, stored value types, or lookup logic/);
+  assert.match(page, /=A2\+B2\*C2/);
+  assert.match(page, /Check whether parentheses are needed/);
+  assert.match(page, /Use exact-match lookup settings unless approximate matching is intentional/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-formula-wrong-result\/">Excel formula wrong result/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-formula-wrong-result\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds/i);
 });
 
 test('excel value error page targets VALUE repair intent without overclaiming', () => {

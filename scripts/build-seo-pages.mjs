@@ -445,6 +445,37 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-formula-wrong-result',
+    title: 'Excel Formula Wrong Result Fixer | Write My Formula',
+    description: 'Fix Excel formulas that calculate the wrong value because of references, order of operations, text-number issues, lookup settings, or copied ranges.',
+    eyebrow: 'Excel formula wrong result fixer',
+    h1: 'Fix an Excel formula that gives the wrong result.',
+    lede: 'When Excel runs the formula without an error but the answer is wrong, the problem is usually hiding in the references, calculation order, stored value types, or lookup logic. Paste the formula, add one expected result, and get a focused repair path before you fill it down.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=A2+B2*C2'
+    },
+    intent: 'Help Excel users fix one formula that calculates a believable but incorrect result, especially when the issue is operator precedence, copied references, text-number mismatches, approximate lookup settings, or a source range that no longer matches the report.',
+    bestFor: [
+      'Totals, margins, commissions, percentages, and score formulas where one row looks obviously wrong.',
+      'Formulas copied down a column where relative references drift to the wrong input row or column.',
+      'Lookup formulas that return a nearby or old value instead of an error because match settings or ranges are wrong.',
+      'Imported sheets where numbers look numeric but Excel is treating some inputs as text.'
+    ],
+    steps: [
+      'Paste the exact formula that returns the wrong result.',
+      'Add the result Excel returns and the result you expected for one row.',
+      'Include the referenced headers or sample values when the issue may involve copied ranges, text-number storage, lookup settings, or parentheses.'
+    ],
+    copyChecks: [
+      'Check whether parentheses are needed to force Excel to calculate in the intended order.',
+      'Confirm every referenced cell or range points at the intended row and column after copying.',
+      'Compare stored types when values look the same but some are text and others are numbers or dates.',
+      'Use exact-match lookup settings unless approximate matching is intentional and the lookup column is prepared for it.'
+    ]
+  },
+  {
     slug: 'excel-value-error',
     title: 'Excel #VALUE! Error Fixer | Write My Formula',
     description: 'Fix Excel #VALUE! errors caused by text in number cells, hidden spaces, wrong argument types, subtraction syntax, and date or text function issues.',
@@ -1459,6 +1490,20 @@ const pageEnhancements = {
       setup: 'A review flag can look stuck when Excel is in manual calculation mode or when the referenced revenue cell was imported as text.',
       formula: '=IF(VALUE(B2)>1000,"Review","OK")',
       read: 'The formula converts B2 to a number before testing the threshold. Use it only after checking that B2 should contain a numeric value and that workbook calculation settings are not the actual blocker.'
+    }
+  },
+  'excel-formula-wrong-result': {
+    gives: [
+      'A focused fix pass for one Excel formula that calculates but returns the wrong answer.',
+      'Checks for operator precedence, parentheses, copied references, stored value types, and lookup match settings.',
+      'A revised formula path you can compare against one expected result before changing a report column.'
+    ],
+    useWhen: 'Use this page when Excel is not showing an error, but the result is clearly wrong for at least one row. It is strongest when you can paste the exact formula, the result Excel returns, and the result you expected.',
+    notWhen: 'Do not use it as proof that an entire workbook is correct. A wrong result can come from source data, references, or formula logic, so test the repaired formula on a known row before filling it through a live report.',
+    example: {
+      setup: 'A total can look wrong when Excel follows normal operator precedence and multiplies before it adds.',
+      formula: '=(A2+B2)*C2',
+      read: 'The parentheses force Excel to add A2 and B2 first, then multiply the subtotal by C2. Without the parentheses, Excel evaluates the multiplication first, which can produce a different result while still returning a normal-looking number.'
     }
   },
   'excel-value-error': {
