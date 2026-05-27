@@ -476,6 +476,37 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-formula-returns-zero-blank',
+    title: 'Excel Formula Returns 0 or Blank Fixer | Write My Formula',
+    description: 'Fix Excel formulas that return 0, blank, or an empty string because of empty references, lookup return cells, IF logic, IFERROR fallbacks, or hidden zero settings.',
+    eyebrow: 'Excel formula returns 0 or blank fixer',
+    h1: 'Fix an Excel formula that returns 0 or blank.',
+    lede: 'Paste the formula that comes back empty, returns 0, or shows a blank-looking result when you expected a value. Get a focused repair path for empty references, lookup return cells, IF logic, IFERROR fallbacks, and hidden zero settings.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=VLOOKUP(A2,$D$2:$E$500,2,FALSE)'
+    },
+    intent: 'Help Excel users fix one formula that returns 0, blank, or an empty string when the expected result should be a visible number, text value, lookup result, or status label.',
+    bestFor: [
+      'VLOOKUP, XLOOKUP, or INDEX MATCH formulas that find a row but return 0 because the return cell is empty.',
+      'IF, IFS, IFERROR, and IFNA formulas where an empty-string fallback is masking the condition that actually fired.',
+      'Reports where zero display settings, blank source cells, or empty-looking formula results make a valid formula look broken.',
+      'Imported sheets where cells look blank but contain text, spaces, or formulas that return an empty string.'
+    ],
+    steps: [
+      'Paste the exact formula that returns 0 or blank.',
+      'Add what you expected to see and whether the source cell is truly empty, hidden, or filled by another formula.',
+      'Include one lookup value or sample row when the formula depends on a return range, blank test, or IFERROR fallback.'
+    ],
+    copyChecks: [
+      'Check whether the formula is correctly finding a row but returning an empty source cell.',
+      'Confirm whether a blank-looking result is a true blank, an empty string, a hidden zero, or a formula output.',
+      'Review IFERROR, IFNA, and IF branches before treating the formula as broken.',
+      'Test the repaired formula on one row where zero is valid and one row where blank should mean missing data.'
+    ]
+  },
+  {
     slug: 'excel-value-error',
     title: 'Excel #VALUE! Error Fixer | Write My Formula',
     description: 'Fix Excel #VALUE! errors caused by text in number cells, hidden spaces, wrong argument types, subtraction syntax, and date or text function issues.',
@@ -1504,6 +1535,20 @@ const pageEnhancements = {
       setup: 'A total can look wrong when Excel follows normal operator precedence and multiplies before it adds.',
       formula: '=(A2+B2)*C2',
       read: 'The parentheses force Excel to add A2 and B2 first, then multiply the subtotal by C2. Without the parentheses, Excel evaluates the multiplication first, which can produce a different result while still returning a normal-looking number.'
+    }
+  },
+  'excel-formula-returns-zero-blank': {
+    gives: [
+      'A focused fix pass for one formula returning 0, blank, or an empty string.',
+      'Checks for empty source cells, lookup return ranges, IF/IFERROR branches, hidden zero display, and blank-looking formula outputs.',
+      'A revised formula path you can test before filling it through a report column.'
+    ],
+    useWhen: 'Use this page when Excel returns 0, blank, or an empty-looking result and you expected a visible value. It is strongest when you can paste the formula, the value you expected, and one row or lookup value that produces the problem.',
+    notWhen: 'Do not assume 0 and blank mean the same thing. A real zero, a hidden zero, a true blank, and an empty string can behave differently in downstream formulas, so test the fix on known rows before replacing a report column.',
+    example: {
+      setup: 'A VLOOKUP finds the SKU in the table, but the return cell in the price column is empty, so the formula shows 0 instead of a price.',
+      formula: '=IF(VLOOKUP(A2,$D$2:$E$500,2,FALSE)=0,"No price on file",VLOOKUP(A2,$D$2:$E$500,2,FALSE))',
+      read: 'The formula checks whether the lookup result is zero before showing a label. Use this only after confirming whether zero is ever a valid price in the return column; otherwise a blank source cell and a real zero will be treated the same.'
     }
   },
   'excel-value-error': {

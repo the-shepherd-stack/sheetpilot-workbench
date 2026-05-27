@@ -51,6 +51,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix formulas that stay stale, show formula text, or only update after manual recalculation/);
   assert.match(page, /\/excel-formula-wrong-result\//);
   assert.match(page, /Fix formulas that calculate the wrong value because of references, parentheses, stored types, or lookup settings/);
+  assert.match(page, /\/excel-formula-returns-zero-blank\//);
+  assert.match(page, /Fix formulas that return 0, blank, or an empty string because of lookup return cells, IF logic, or hidden zero settings/);
   assert.match(page, /\/excel-value-error\//);
   assert.match(page, /Repair formulas blocked by text values, hidden spaces, wrong argument types, dates, or subtraction syntax/);
   assert.match(page, /\/excel-name-error\//);
@@ -227,6 +229,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-formulas-not-working',
     'excel-formula-not-calculating',
     'excel-formula-wrong-result',
+    'excel-formula-returns-zero-blank',
     'excel-value-error',
     'excel-name-error',
     'excel-div0-error',
@@ -354,6 +357,24 @@ test('excel formula wrong result page targets incorrect-result repair intent wit
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/excel-formula-wrong-result\/">Excel formula wrong result/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-formula-wrong-result\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds/i);
+});
+
+test('excel formula returns zero blank page targets empty-output repair intent without overclaiming', () => {
+  const page = read('excel-formula-returns-zero-blank/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel Formula Returns 0 or Blank Fixer/);
+  assert.match(page, /Fix an Excel formula that returns 0 or blank/);
+  assert.match(page, /comes back empty, returns 0, or shows a blank-looking result/);
+  assert.match(page, /empty references, lookup return cells, IF logic, IFERROR fallbacks, and hidden zero settings/);
+  assert.match(page, /=IF\(VLOOKUP\(A2,\$D\$2:\$E\$500,2,FALSE\)=0,&quot;No price on file&quot;,VLOOKUP\(A2,\$D\$2:\$E\$500,2,FALSE\)\)/);
+  assert.match(page, /A real zero, a hidden zero, a true blank, and an empty string can behave differently/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-formula-returns-zero-blank\/">Formula returns 0 or blank/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-formula-returns-zero-blank\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds/i);
 });
 
