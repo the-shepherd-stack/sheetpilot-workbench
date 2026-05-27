@@ -47,6 +47,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Diagnose formulas that show text, stay stale, return errors, or calculate the wrong value/);
   assert.match(page, /\/excel-formulas-not-working\//);
   assert.match(page, /Fix formulas that stop calculating after imports, copied ranges, locale settings, or text-number mismatches/);
+  assert.match(page, /\/excel-formula-not-calculating\//);
+  assert.match(page, /Fix formulas that stay stale, show formula text, or only update after manual recalculation/);
   assert.match(page, /\/excel-value-error\//);
   assert.match(page, /Repair formulas blocked by text values, hidden spaces, wrong argument types, dates, or subtraction syntax/);
   assert.match(page, /\/excel-name-error\//);
@@ -221,6 +223,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-formula-fixer',
     'excel-formula-not-showing-result',
     'excel-formulas-not-working',
+    'excel-formula-not-calculating',
     'excel-value-error',
     'excel-name-error',
     'excel-div0-error',
@@ -312,6 +315,24 @@ test('excel formulas not working page targets repair intent without overclaiming
   assert.doesNotMatch(page, /upload/i);
   assert.doesNotMatch(page, /guarantee/i);
   assert.doesNotMatch(page, /Microsoft partner/i);
+});
+
+test('excel formula not calculating page targets recalculation repair intent without overclaiming', () => {
+  const page = read('excel-formula-not-calculating/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel Formula Not Calculating Fixer/);
+  assert.match(page, /Fix an Excel formula that is not calculating/);
+  assert.match(page, /stuck, stale, or showing as text/);
+  assert.match(page, /manual calculation mode, Show Formulas, text-formatted cells/);
+  assert.match(page, /=IF\(VALUE\(B2\)&gt;1000,&quot;Review&quot;,&quot;OK&quot;\)/);
+  assert.match(page, /Turn off Show Formulas when the cell displays the formula instead of the result/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-formula-not-calculating\/">Excel formula not calculating/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-formula-not-calculating\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|faster than Microsoft|trained on Microsoft/i);
 });
 
 test('excel value error page targets VALUE repair intent without overclaiming', () => {

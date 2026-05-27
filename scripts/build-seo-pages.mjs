@@ -415,6 +415,36 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-formula-not-calculating',
+    title: 'Excel Formula Not Calculating Fixer | Write My Formula',
+    description: 'Fix Excel formulas that do not calculate, do not update automatically, show stale values, or display formula text instead of the result.',
+    eyebrow: 'Excel formula not calculating fixer',
+    h1: 'Fix an Excel formula that is not calculating.',
+    lede: 'Paste the formula that is stuck, stale, or showing as text, describe what should update, and get a focused repair path for calculation settings, text-formatted cells, references, and formula syntax.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=IF(B2>1000,"Review","OK")'
+    },
+    intent: 'Help Excel users repair one formula that is not recalculating, not updating after source-cell changes, displaying as formula text, or returning a stale value after a workbook setting, import, copy, or formula edit.',
+    bestFor: [
+      'Formulas that only update after pressing F9, saving, or editing the cell again.',
+      'Cells that show the formula text instead of the calculated result.',
+      'Imported or copied formulas where text formatting, manual calculation, references, or source values may be blocking the expected result.'
+    ],
+    steps: [
+      'Paste the exact formula that is not calculating.',
+      'Add what changed before the result got stuck, such as a source cell, workbook setting, imported data, or copied range.',
+      'Include one expected result so the repaired formula can be checked against a known row.'
+    ],
+    copyChecks: [
+      'Check whether the workbook is set to manual calculation before rewriting a valid formula.',
+      'Turn off Show Formulas when the cell displays the formula instead of the result.',
+      'Confirm the formula cell is not formatted as text before re-entering it.',
+      'Test one known row before filling the repaired formula through the workbook.'
+    ]
+  },
+  {
     slug: 'excel-value-error',
     title: 'Excel #VALUE! Error Fixer | Write My Formula',
     description: 'Fix Excel #VALUE! errors caused by text in number cells, hidden spaces, wrong argument types, subtraction syntax, and date or text function issues.',
@@ -1415,6 +1445,20 @@ const pageEnhancements = {
       setup: 'A SUMIFS formula can look correct but fail when dates are imported as text or when the workbook uses a different list separator.',
       formula: '=SUMIFS(C2:C500,B2:B500,"Paid",A2:A500,">="&DATE(2026,5,1),A2:A500,"<"&DATE(2026,6,1))',
       read: 'The formula totals paid rows in May 2026 using date boundaries built with DATE. The checks tell you to confirm real date values, matching range sizes, and the separator your Excel locale expects.'
+    }
+  },
+  'excel-formula-not-calculating': {
+    gives: [
+      'A focused fix pass for one Excel formula that is stuck, stale, or showing as text.',
+      'Checks for manual calculation mode, Show Formulas, text-formatted cells, source references, and formula syntax.',
+      'A repaired formula path you can test on one known row before changing a report column.'
+    ],
+    useWhen: 'Use this page when an Excel formula does not calculate automatically, returns an old value after source cells change, only updates after a manual recalculation, or displays the formula text instead of the result. It is strongest when you can paste the formula and name one expected result.',
+    notWhen: 'Do not assume the formula itself is wrong before checking workbook calculation mode, Show Formulas, and cell formatting. Those settings can make a correct formula look broken, and changing the formula first can hide the real cause.',
+    example: {
+      setup: 'A review flag can look stuck when Excel is in manual calculation mode or when the referenced revenue cell was imported as text.',
+      formula: '=IF(VALUE(B2)>1000,"Review","OK")',
+      read: 'The formula converts B2 to a number before testing the threshold. Use it only after checking that B2 should contain a numeric value and that workbook calculation settings are not the actual blocker.'
     }
   },
   'excel-value-error': {
