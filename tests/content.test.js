@@ -49,6 +49,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix formulas that stop calculating after imports, copied ranges, locale settings, or text-number mismatches/);
   assert.match(page, /\/excel-formula-not-calculating\//);
   assert.match(page, /Fix formulas that stay stale, show formula text, or only update after manual recalculation/);
+  assert.match(page, /\/excel-showing-formula-instead-of-result\//);
+  assert.match(page, /Fix cells that display the formula text because of Show Formulas mode, text formatting, or a leading apostrophe/);
   assert.match(page, /\/excel-formula-wrong-result\//);
   assert.match(page, /Fix formulas that calculate the wrong value because of references, parentheses, stored types, or lookup settings/);
   assert.match(page, /\/excel-formula-returns-zero-blank\//);
@@ -234,6 +236,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-formula-not-showing-result',
     'excel-formulas-not-working',
     'excel-formula-not-calculating',
+    'excel-showing-formula-instead-of-result',
     'excel-formula-wrong-result',
     'excel-formula-returns-zero-blank',
     'excel-formula-not-copying-down',
@@ -348,6 +351,26 @@ test('excel formula not calculating page targets recalculation repair intent wit
   assert.match(homepage, /href="\/excel-formula-not-calculating\/">Excel formula not calculating/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-formula-not-calculating\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|faster than Microsoft|trained on Microsoft/i);
+});
+
+test('excel showing formula instead of result page targets displayed-formula repair intent without overclaiming', () => {
+  const page = read('excel-showing-formula-instead-of-result/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel Showing Formula Instead of Result Fixer/);
+  assert.match(page, /Fix an Excel cell that shows the formula instead of the result/);
+  assert.match(page, /formula text instead of a calculated value/);
+  assert.match(page, /Show Formulas mode, text-formatted cells, linked text-formatted cells, leading apostrophes/);
+  assert.match(page, /=SUM\(B2:B20\)/);
+  assert.match(page, /Turn off Show Formulas if the whole worksheet is displaying formulas instead of results/);
+  assert.match(page, /Change text-formatted formula cells to General before re-entering the formula/);
+  assert.match(page, /Remove any leading apostrophe or space before the equals sign/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-showing-formula-instead-of-result\/">Excel showing formula instead of result/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-showing-formula-instead-of-result\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
 });
 
 test('excel formula wrong result page targets incorrect-result repair intent without overclaiming', () => {

@@ -445,6 +445,36 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-showing-formula-instead-of-result',
+    title: 'Excel Showing Formula Instead of Result Fixer | Write My Formula',
+    description: 'Fix Excel cells that show the formula text instead of the calculated result because of Show Formulas mode, text formatting, leading apostrophes, or re-entry issues.',
+    eyebrow: 'Excel showing formula instead of result fixer',
+    h1: 'Fix an Excel cell that shows the formula instead of the result.',
+    lede: 'Paste the formula Excel is displaying, describe whether one cell or the whole sheet is affected, and get a focused repair path for Show Formulas mode, text-formatted cells, leading characters, and formula re-entry.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=SUM(B2:B20)'
+    },
+    intent: 'Help Excel users repair a formula cell that displays the formula text, such as =SUM(B2:B20), instead of calculating the visible result.',
+    bestFor: [
+      'One cell showing formula text after a paste, import, or number-format change.',
+      'Whole worksheets showing formulas because Show Formulas mode is enabled.',
+      'Formulas entered with text formatting, a leading apostrophe, a leading space, or a linked text-formatted source cell.'
+    ],
+    steps: [
+      'Paste the exact formula text Excel is showing in the cell.',
+      'Say whether every formula on the sheet is visible or only one cell is affected.',
+      'Include the expected result for one row so the repaired formula can be checked after re-entry.'
+    ],
+    copyChecks: [
+      'Turn off Show Formulas if the whole worksheet is displaying formulas instead of results.',
+      'Change text-formatted formula cells to General before re-entering the formula.',
+      'Remove any leading apostrophe or space before the equals sign.',
+      'After changing the format, edit and re-enter the formula so Excel recalculates it.'
+    ]
+  },
+  {
     slug: 'excel-formula-wrong-result',
     title: 'Excel Formula Wrong Result Fixer | Write My Formula',
     description: 'Fix Excel formulas that calculate the wrong value because of references, order of operations, text-number issues, lookup settings, or copied ranges.',
@@ -1648,6 +1678,20 @@ const pageEnhancements = {
       setup: 'A review flag can look stuck when Excel is in manual calculation mode or when the referenced revenue cell was imported as text.',
       formula: '=IF(VALUE(B2)>1000,"Review","OK")',
       read: 'The formula converts B2 to a number before testing the threshold. Use it only after checking that B2 should contain a numeric value and that workbook calculation settings are not the actual blocker.'
+    }
+  },
+  'excel-showing-formula-instead-of-result': {
+    gives: [
+      'A focused repair pass for an Excel cell that displays formula text instead of a calculated value.',
+      'Checks for Show Formulas mode, text-formatted cells, linked text-formatted cells, leading apostrophes, leading spaces, and re-entry steps.',
+      'A cleaner formula path you can re-enter and test on one known row before changing more cells.'
+    ],
+    useWhen: 'Use this page when Excel shows the formula itself in the worksheet cell instead of the calculated result. It is strongest when you can say whether the whole sheet is showing formulas or only one pasted/imported formula cell is affected.',
+    notWhen: 'Do not rewrite a valid formula before checking display mode and cell format. Show Formulas mode and Text number format can make a good formula look broken, and the fix may be to change the setting or re-enter the cell rather than change the function.',
+    example: {
+      setup: 'A total cell shows =SUM(B2:B20) in the grid instead of the total after the cell was formatted as Text.',
+      formula: '=SUM(B2:B20)',
+      read: 'Change the cell format to General, edit the formula, and press Enter so Excel treats it as a formula again. If every formula on the sheet is visible, turn off Show Formulas before changing the formula text.'
     }
   },
   'excel-formula-wrong-result': {
