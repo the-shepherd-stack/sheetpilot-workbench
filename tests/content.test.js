@@ -265,6 +265,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-circular-reference',
     'excel-ref-error',
     'google-sheets-formula-parse-error',
+    'google-sheets-arrayformula-not-working',
     'conditional-formatting-formula-not-working',
     'excel-vlookup-not-working',
     'vlookup-na-error',
@@ -657,6 +658,27 @@ test('google sheets formula parse error page targets Sheets repair intent withou
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-formula-parse-error\//);
   assert.doesNotMatch(page, /upload|workbook audit|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated/i);
+});
+
+test('google sheets ARRAYFORMULA not working page targets spill and range repair intent without overclaiming', () => {
+  const page = read('google-sheets-arrayformula-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Google Sheets ARRAYFORMULA Not Working/);
+  assert.match(page, /Fix a Google Sheets ARRAYFORMULA that is not expanding correctly/);
+  assert.match(page, /blocked spill ranges, row-by-row logic, blank-row handling, and range shapes/);
+  assert.match(page, /array result was not expanded/);
+  assert.match(page, /repeats one value down a column/);
+  assert.match(page, /=ARRAYFORMULA\(IF\(A2:A=&quot;&quot;,&quot;&quot;,B2:B\*C2:C\)\)/);
+  assert.match(page, /Clear or move values that block the spill range/);
+  assert.match(page, /Use matching open-ended ranges, such as A2:A and B2:B/);
+  assert.match(page, /functions that are not row-aware inside an array formula/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-arrayformula-not-working\/">Google Sheets ARRAYFORMULA not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-arrayformula-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
 });
 
 test('conditional formatting formula not working page targets rule repair intent without overclaiming', () => {

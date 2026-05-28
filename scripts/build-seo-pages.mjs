@@ -1006,6 +1006,38 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-arrayformula-not-working',
+    title: 'Google Sheets ARRAYFORMULA Not Working? | Write My Formula',
+    description: 'Fix Google Sheets ARRAYFORMULA errors where results do not expand, overwrite cells, repeat the wrong value, or only fill one row.',
+    eyebrow: 'Google Sheets ARRAYFORMULA repair',
+    h1: 'Fix a Google Sheets ARRAYFORMULA that is not expanding correctly.',
+    lede: 'If Sheets says the array result was not expanded, fills only the top cell, or repeats one value down the column, paste the ARRAYFORMULA and add the output column. Get a focused repair path for blocked spill ranges, row-by-row logic, blank-row handling, and range shapes.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=ARRAYFORMULA(IF(A2:A="","",B2:B*C2:C))'
+    },
+    intent: 'Help Google Sheets users repair one ARRAYFORMULA where the visible problem is usually a blocked output range, a formula that was written for one row instead of a range, mismatched range sizes, blank rows, or logic that repeats the same value down the column.',
+    bestFor: [
+      'ARRAYFORMULA results that show #REF! because the array result cannot expand into cells that already contain values.',
+      'Formulas that only fill the top cell because one part of the formula still references a single cell instead of a range.',
+      'ARRAYFORMULA logic that repeats one value, returns every row blank, or keeps calculating through empty rows.',
+      'Imported, form-response, and shared-sheet columns where one formula should fill new rows automatically.'
+    ],
+    steps: [
+      'Paste the exact ARRAYFORMULA and the visible error message if Sheets shows one.',
+      'Say where the formula sits and which cells it is expected to fill.',
+      'Include one row that should return a result and one blank or excluded row so the row-by-row logic can be checked.'
+    ],
+    copyChecks: [
+      'Clear or move values that block the spill range before changing a valid array formula.',
+      'Use matching open-ended ranges, such as A2:A and B2:B, when the formula should evaluate each row.',
+      'Wrap row logic in IF checks so blank source rows do not create unwanted zeros or repeated output.',
+      'Check whether nested functions need range-aware alternatives before putting them inside ARRAYFORMULA.',
+      'Test the repaired formula in a copied column before replacing a shared sheet formula.'
+    ]
+  },
+  {
     slug: 'conditional-formatting-formula-not-working',
     title: 'Conditional Formatting Formula Not Working? | Write My Formula',
     description: 'Fix Excel and Google Sheets conditional formatting formulas that highlight nothing, highlight everything, shift references, or lose to another rule.',
@@ -2160,6 +2192,20 @@ const pageEnhancements = {
       setup: 'A QUERY formula can parse incorrectly when text criteria inside the query string are not quoted.',
       formula: '=QUERY(A1:D500,"select A, B where C = \'Open\'",1)',
       read: 'The formula keeps the query text inside double quotes, then wraps the Open criterion in single quotes so Google Sheets can parse the condition as text.'
+    }
+  },
+  'google-sheets-arrayformula-not-working': {
+    gives: [
+      'A focused repair pass for one Google Sheets ARRAYFORMULA.',
+      'Checks for blocked spill cells, open-ended range shapes, blank-row handling, and functions that are not row-aware inside an array formula.',
+      'A revised formula path you can test in one output column before replacing a shared sheet formula.'
+    ],
+    useWhen: 'Use this page when ARRAYFORMULA returns #REF!, says the array result was not expanded, only fills one row, repeats one value down a column, or keeps producing output for blank rows. It is strongest when you can paste the exact formula, the cell where it sits, and the output range it should fill.',
+    notWhen: 'Do not use it as a full sheet cleanup or permission audit. ARRAYFORMULA repair starts with one formula and one output area; protected ranges, hidden helper columns, and imported data flows may still need separate review.',
+    example: {
+      setup: 'Column A has order IDs, B has quantity, and C has unit price. D2 should fill totals for each row but stay blank when the source row is blank.',
+      formula: '=ARRAYFORMULA(IF(A2:A="","",B2:B*C2:C))',
+      read: 'The formula evaluates rows 2 and below as ranges, leaves blank source rows blank, and lets the result spill down column D as long as the output cells are clear.'
     }
   },
   'conditional-formatting-formula-not-working': {
