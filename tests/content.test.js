@@ -85,6 +85,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix lookup formulas that return #N\/A because of exact-match settings/);
   assert.match(page, /\/xlookup-na-error\//);
   assert.match(page, /Fix XLOOKUP formulas with missing matches, mismatched stored types/);
+  assert.match(page, /\/excel-xlookup-not-working\//);
+  assert.match(page, /Fix XLOOKUP formulas that return #N\/A, wrong rows, blank fallbacks, or unreliable results/);
   assert.match(page, /\/excel-if-formula-multiple-conditions\//);
   assert.match(page, /Write nested IF, AND, OR, and IFS logic with branch-order and edge-row checks/);
   assert.match(page, /\/date-formula-generator\//);
@@ -258,6 +260,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-vlookup-not-working',
     'vlookup-na-error',
     'xlookup-na-error',
+    'excel-xlookup-not-working',
     'excel-if-formula-multiple-conditions',
     'vlookup-formula-generator',
     'xlookup-formula-generator',
@@ -830,6 +833,26 @@ test('XLOOKUP NA error page targets modern lookup repair intent without overclai
   assert.doesNotMatch(page, /guarantee|guaranteed|always fixes|official Microsoft|official Google|affiliated|human reviewer|upload/i);
   assert.match(homepage, /href="\/xlookup-na-error\/">XLOOKUP #N\/A error/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/xlookup-na-error\//);
+});
+
+test('excel XLOOKUP not working page targets broader modern lookup repair intent without overclaiming', () => {
+  const page = read('excel-xlookup-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel XLOOKUP Not Working Fixer/);
+  assert.match(page, /Fix an Excel XLOOKUP formula that is not working/);
+  assert.match(page, /lookup arrays, return arrays, match mode, search mode, stored value types, and version support/);
+  assert.match(page, /lookup_array and return_array start and end on the same rows/);
+  assert.match(page, /Use binary search modes only when the lookup array is sorted as required/);
+  assert.match(page, /blank if_not_found value/);
+  assert.match(page, /=XLOOKUP\(E2,\$A\$2:\$A\$500,\$C\$2:\$C\$500,&quot;Not found&quot;,0\)/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-xlookup-not-working\/">Excel XLOOKUP not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-xlookup-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
 });
 
 test('excel IF formula multiple conditions page targets conditional logic intent', () => {

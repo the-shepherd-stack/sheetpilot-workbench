@@ -1063,6 +1063,39 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-xlookup-not-working',
+    title: 'Excel XLOOKUP Not Working Fixer | Write My Formula',
+    description: 'Fix Excel XLOOKUP formulas that return #N/A, wrong rows, blank fallbacks, or unreliable results because of lookup arrays, match modes, search modes, stored types, or version support.',
+    eyebrow: 'Excel XLOOKUP repair',
+    h1: 'Fix an Excel XLOOKUP formula that is not working.',
+    lede: 'Paste the XLOOKUP formula that is failing, describe what should match, and get a focused repair path for lookup arrays, return arrays, match mode, search mode, stored value types, and version support.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=XLOOKUP(E2,$A$2:$A$500,$C$2:$C$450,"",0,-1)'
+    },
+    intent: 'Help Excel users repair one XLOOKUP formula where the visible problem may be #N/A, a wrong returned row, a blank-looking fallback, mismatched lookup and return arrays, an unintended match or search mode, or an unsupported Excel version.',
+    bestFor: [
+      'XLOOKUP formulas that return #N/A even though the lookup value appears in the source data.',
+      'XLOOKUP formulas that return the wrong row because match_mode, search_mode, duplicates, or sort assumptions changed the match.',
+      'Lookup and return arrays that do not cover the same rows after a range edit, paste, filter, or copy-down change.',
+      'Imported IDs, SKUs, dates, or account numbers where stored text, numbers, spaces, or apostrophes do not match cleanly.',
+      'Workbooks shared with older Excel versions where XLOOKUP support needs to be checked before replacing a formula.'
+    ],
+    steps: [
+      'Paste the exact XLOOKUP formula that is not working.',
+      'Include one lookup value that should match and a few values from the lookup and return arrays.',
+      'Say whether the formula returns #N/A, a blank result, the wrong row, the first duplicate, the last duplicate, or a version error.'
+    ],
+    copyChecks: [
+      'Confirm lookup_array and return_array start and end on the same rows.',
+      'Check whether the lookup value and lookup array use the same stored type and trimmed text.',
+      'Review match_mode before using approximate or wildcard matching.',
+      'Use binary search modes only when the lookup array is sorted as required.',
+      'Add if_not_found only after deciding whether a missing match should be hidden, blank, or visible.'
+    ]
+  },
+  {
     slug: 'vlookup-formula-generator',
     title: 'VLOOKUP Formula Generator | Write My Formula',
     description: 'Build VLOOKUP formulas from a plain-English lookup task and pasted table context.',
@@ -2022,6 +2055,20 @@ const pageEnhancements = {
       setup: 'For a SKU in E2 and product SKUs in A2:A500, XLOOKUP can return a category from B2:B500 while showing a readable message only when the SKU is not found.',
       formula: '=XLOOKUP(E2,$A$2:$A$500,$B$2:$B$500,"Not found",0)',
       read: 'The formula searches for E2 in the SKU column, returns the category from the same row, and uses exact match. The fallback is added after checking that a missing SKU should display Not found.'
+    }
+  },
+  'excel-xlookup-not-working': {
+    gives: [
+      'A focused repair pass for one XLOOKUP formula returning #N/A, a blank fallback, a wrong row, or an unreliable result.',
+      'Checks for lookup-array and return-array alignment, stored value types, duplicate/search behavior, match mode, and version support.',
+      'A revised XLOOKUP path you can test on one known matching row and one missing-match row before changing the workbook.'
+    ],
+    useWhen: 'Use this page when XLOOKUP is close but not trustworthy: it returns #N/A, returns the wrong row, hides the issue with a blank fallback, changes behavior after copying, or depends on match/search mode choices you are not sure about. Paste the formula and one row that should match.',
+    notWhen: 'Do not make the error disappear with a blank if_not_found value before checking the lookup array, return array, match mode, and source values. A missing or wrong result may be the correct signal that the data or range changed.',
+    example: {
+      setup: 'A product table has SKUs in A and prices in C. XLOOKUP can return the price for the SKU in E2 when the lookup and return arrays cover the same rows and exact match is explicit.',
+      formula: '=XLOOKUP(E2,$A$2:$A$500,$C$2:$C$500,"Not found",0)',
+      read: 'The formula searches for E2 in the SKU column, returns the price from the same row, uses exact match, and shows Not found only after the ranges and source values have been checked.'
     }
   },
   'vlookup-formula-generator': {
