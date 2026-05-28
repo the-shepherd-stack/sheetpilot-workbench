@@ -600,6 +600,38 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-countifs-not-working',
+    title: 'Excel COUNTIFS Not Working Fixer | Write My Formula',
+    description: 'Fix Excel COUNTIFS formulas that return 0, #VALUE!, or wrong counts because of criteria syntax, range size, dates, text values, or closed workbooks.',
+    eyebrow: 'Excel COUNTIFS fixer',
+    h1: 'Fix an Excel COUNTIFS formula that is not working.',
+    lede: 'Paste the COUNTIFS formula that returns 0, #VALUE!, or the wrong count, add one row that should be counted, and get a focused repair path for criteria syntax, same-size ranges, dates, text values, empty criteria, and closed workbook references.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=COUNTIFS(A2:A500,"South",C2:C500,"Open")'
+    },
+    intent: 'Help Excel users repair one COUNTIFS formula where the visible problem is usually criteria syntax, mismatched criteria ranges, dates stored as text, an empty criteria cell treated as 0, a closed external workbook reference, or an unexpected zero count.',
+    bestFor: [
+      'COUNTIFS formulas that return 0 even though matching rows appear to exist.',
+      '#VALUE! errors caused by criteria ranges with different shapes or formulas pointing into a closed source workbook.',
+      'Date, number, text, wildcard, and comparison criteria where quotes, operators, or cell references are easy to mix up.',
+      'Reports where a blank criteria cell or imported text-number mismatch changes which rows are counted.'
+    ],
+    steps: [
+      'Paste the exact COUNTIFS formula and the count Excel currently returns.',
+      'Add one row that should match the criteria and one row that should not.',
+      'Include the headers or range sizes for every criteria range in the formula.'
+    ],
+    copyChecks: [
+      'Make every criteria range the same height and width as the first criteria range.',
+      'Wrap text criteria and comparison operators in quotes where Excel expects them.',
+      'Check whether dates and numbers are stored as real values rather than text.',
+      'Review blank criteria cells because COUNTIFS can treat an empty criteria reference as 0.',
+      'Open any source workbook referenced by the formula before trusting a #VALUE! diagnosis.'
+    ]
+  },
+  {
     slug: 'excel-value-error',
     title: 'Excel #VALUE! Error Fixer | Write My Formula',
     description: 'Fix Excel #VALUE! errors caused by text in number cells, hidden spaces, wrong argument types, subtraction syntax, and date or text function issues.',
@@ -1748,6 +1780,20 @@ const pageEnhancements = {
       setup: 'A sales total can return 0 when text criteria are not quoted correctly, date criteria are stored as text, or the criteria ranges do not line up with the sales amount range.',
       formula: '=SUMIFS(D2:D500,A2:A500,"South",C2:C500,"Meat",B2:B500,">="&DATE(2026,5,1),B2:B500,"<"&DATE(2026,6,1))',
       read: 'The formula sums sales amounts in D only for South rows, Meat rows, and dates in May 2026. Check that every criteria range has the same row span as D2:D500 and that dates in column B are real Excel dates.'
+    }
+  },
+  'excel-countifs-not-working': {
+    gives: [
+      'A focused fix pass for one COUNTIFS formula returning 0, #VALUE!, or a wrong count.',
+      'Checks for criteria syntax, same-size criteria ranges, date and text storage, blank criteria cells, and closed workbook references.',
+      'A revised COUNTIFS path you can test against one matching row and one non-matching row before changing a report.'
+    ],
+    useWhen: 'Use this page when COUNTIFS returns 0 even though matching rows seem present, returns #VALUE!, or counts the wrong rows after an import, criteria edit, copied range, date filter, or workbook-link change. Paste the formula and include at least one row that should count.',
+    notWhen: 'Do not hide a COUNTIFS problem with IFERROR before checking the criteria ranges and source values. A zero count may be correct, and a #VALUE! may point to a range-shape or closed-workbook issue that should be fixed directly.',
+    example: {
+      setup: 'A support dashboard should count open South-region tickets created in May 2026, but the formula returns 0 after the criteria were copied from another sheet.',
+      formula: '=COUNTIFS(A2:A500,"South",C2:C500,"Open",B2:B500,">="&DATE(2026,5,1),B2:B500,"<"&DATE(2026,6,1))',
+      read: 'Each criteria range has the same row span, text criteria are quoted, and date boundaries use DATE so Excel compares real date values instead of pasted text.'
     }
   },
   'excel-value-error': {

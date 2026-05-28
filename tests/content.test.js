@@ -59,6 +59,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix formulas that will not fill down, copy the first result, or shift the wrong references after dragging/);
   assert.match(page, /\/excel-sumifs-not-working\//);
   assert.match(page, /Fix SUMIFS formulas that return 0, #VALUE!, or wrong totals because of criteria, ranges, dates, or argument order/);
+  assert.match(page, /\/excel-countifs-not-working\//);
+  assert.match(page, /Fix COUNTIFS formulas that return 0, #VALUE!, or wrong counts because of criteria, range sizes, dates, or closed workbooks/);
   assert.match(page, /\/excel-value-error\//);
   assert.match(page, /Repair formulas blocked by text values, hidden spaces, wrong argument types, dates, or subtraction syntax/);
   assert.match(page, /\/excel-name-error\//);
@@ -241,6 +243,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-formula-returns-zero-blank',
     'excel-formula-not-copying-down',
     'excel-sumifs-not-working',
+    'excel-countifs-not-working',
     'excel-value-error',
     'excel-name-error',
     'excel-div0-error',
@@ -447,6 +450,26 @@ test('excel SUMIFS not working page targets criteria repair intent without overc
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/excel-sumifs-not-working\/">Excel SUMIFS not working/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-sumifs-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
+});
+
+test('excel COUNTIFS not working page targets count criteria repair intent without overclaiming', () => {
+  const page = read('excel-countifs-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel COUNTIFS Not Working Fixer/);
+  assert.match(page, /Fix an Excel COUNTIFS formula that is not working/);
+  assert.match(page, /returns 0, #VALUE!, or the wrong count/);
+  assert.match(page, /criteria syntax, same-size ranges, dates, text values, empty criteria, and closed workbook references/);
+  assert.match(page, /=COUNTIFS\(A2:A500,&quot;South&quot;,C2:C500,&quot;Open&quot;,B2:B500,&quot;&gt;=&quot;&amp;DATE\(2026,5,1\),B2:B500,&quot;&lt;&quot;&amp;DATE\(2026,6,1\)\)/);
+  assert.match(page, /Make every criteria range the same height and width as the first criteria range/);
+  assert.match(page, /Review blank criteria cells because COUNTIFS can treat an empty criteria reference as 0/);
+  assert.match(page, /Open any source workbook referenced by the formula before trusting a #VALUE! diagnosis/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-countifs-not-working\/">Excel COUNTIFS not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-countifs-not-working\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
 });
 
