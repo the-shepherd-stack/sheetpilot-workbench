@@ -105,6 +105,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Block bad IDs, duplicate values, missing fields, and invalid entries/);
   assert.match(page, /\/excel-data-validation-formula\//);
   assert.match(page, /Write custom validation rules for IDs, duplicates, required fields, dates, and allowed entries/);
+  assert.match(page, /\/excel-data-validation-formula-not-working\//);
+  assert.match(page, /Fix data validation formulas that accept invalid values, reject valid entries, or break after copying/);
   assert.match(page, /\/google-sheets-query-formula-generator\//);
   assert.match(page, /Build QUERY formulas for filtering, selecting, sorting, grouping, and labeling Sheets data/);
   assert.match(page, /\/pivot-table-calculated-field-formula-generator\//);
@@ -283,6 +285,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'text-formula-generator',
     'data-validation-formula-generator',
     'excel-data-validation-formula',
+    'excel-data-validation-formula-not-working',
     'google-sheets-query-formula-generator',
     'pivot-table-calculated-field-formula-generator',
     'conditional-formatting-formula-generator',
@@ -1036,6 +1039,27 @@ test('excel data validation formula page targets custom validation intent withou
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-data-validation-formula\//);
   assert.doesNotMatch(page, /upload|guarantee|guaranteed|always fixes|official Microsoft|Microsoft-certified|affiliated/i);
+});
+
+test('excel data validation formula not working page targets validation repair intent without overclaiming', () => {
+  const page = read('excel-data-validation-formula-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel Data Validation Formula Not Working/);
+  assert.match(page, /Fix an Excel data validation formula that is not working/);
+  assert.match(page, /TRUE\/FALSE logic, relative references, named ranges, blanks, and rule-dialog behavior/);
+  assert.match(page, /accepts entries it should block, rejects entries it should allow, throws a source or name error/);
+  assert.match(page, /=AND\(LEFT\(A2,3\)=&quot;ID-&quot;,COUNTIF\(\$A\$2:\$A\$500,A2\)=1\)/);
+  assert.match(page, /Write the formula as if it starts in the first cell of the applied validation range/);
+  assert.match(page, /Decide whether Ignore Blank should allow empty cells/);
+  assert.match(page, /data validation may not flag every existing value automatically/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-data-validation-formula-not-working\/">Excel data validation formula not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-data-validation-formula-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
 });
 
 test('google sheets query formula page targets report query intent', () => {

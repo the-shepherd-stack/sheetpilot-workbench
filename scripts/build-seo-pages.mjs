@@ -911,6 +911,41 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-data-validation-formula-not-working',
+    title: 'Excel Data Validation Formula Not Working? | Write My Formula',
+    description: 'Fix Excel data validation custom formulas that accept invalid values, reject valid entries, break after copying, or fail in the rule dialog.',
+    eyebrow: 'Excel data validation formula repair',
+    h1: 'Fix an Excel data validation formula that is not working.',
+    lede: 'Paste the custom validation formula, add the applied range and first cell, and get a focused repair path for TRUE/FALSE logic, relative references, named ranges, blanks, and rule-dialog behavior.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      task: 'Fix this data validation rule so customer IDs must start with ID- and cannot repeat.',
+      table: 'Customer ID,Customer\nID-0001234,Acme\nID-0001234,Northwind\n1234,Contoso',
+      range: 'Apply data validation to A2:A500; first cell is A2',
+      hint: 'Data Validation Custom',
+      formula: '=AND(LEFT($A$2,3)="ID-",COUNTIF(A:A,A2)=1)'
+    },
+    intent: 'Repair one Excel Data Validation custom formula where the rule does not behave the way the worksheet formula test suggests it should.',
+    bestFor: [
+      'Custom validation formulas that work in a worksheet cell but fail inside Data Validation.',
+      'Rules that accept invalid entries, reject valid entries, or shift references incorrectly after being applied down a range.',
+      'Validation sources that break because of named ranges, table names, dynamic arrays, blank handling, or a formula that does not return TRUE/FALSE.'
+    ],
+    steps: [
+      'Paste the current validation formula or source formula.',
+      'Include the exact applied range and the first cell Excel evaluates.',
+      'Add one value that should pass and one value that should be rejected.'
+    ],
+    copyChecks: [
+      'Custom validation formulas should return TRUE for accepted entries and FALSE for rejected entries.',
+      'Write the formula as if it starts in the first cell of the applied validation range.',
+      'Lock only the ranges that should stay fixed while the current-cell reference moves down.',
+      'Decide whether Ignore Blank should allow empty cells before adding LEN, ISBLANK, or required-field checks.',
+      'Test the rule by typing a new invalid value; data validation may not flag every existing value automatically.'
+    ]
+  },
+  {
     slug: 'excel-ref-error',
     title: 'Excel #REF! Error Fixer | Write My Formula',
     description: 'Fix Excel #REF! errors caused by deleted rows, removed columns, moved cells, invalid references, and broken lookup ranges.',
@@ -2097,6 +2132,20 @@ const pageEnhancements = {
       setup: 'For customer IDs in A2:A500, a validation rule can require the ID- prefix and reject duplicates in the applied range.',
       formula: '=AND(LEFT(A2,3)="ID-",COUNTIF($A$2:$A$500,A2)=1)',
       read: 'The formula returns TRUE only when A2 starts with ID- and the same value appears once in the validation range. A2 stays relative so Excel can evaluate each row, while the COUNTIF range stays fixed.'
+    }
+  },
+  'excel-data-validation-formula-not-working': {
+    gives: [
+      'A focused repair pass for one Excel Data Validation custom formula.',
+      'Checks for TRUE/FALSE output, first-cell references, fixed ranges, blank handling, named ranges, and copied-rule behavior.',
+      'A revised validation formula path you can test with one allowed entry and one rejected entry before applying it broadly.'
+    ],
+    useWhen: 'Use this page when an Excel Data Validation formula accepts entries it should block, rejects entries it should allow, throws a source or name error, or behaves differently in the validation dialog than it does in a normal cell. It is strongest when you can paste the formula, the applied range, and one pass/fail example.',
+    notWhen: 'Do not use data validation as proof that all existing workbook rows are clean. Validation is mainly an entry rule; changed references, pasted values, imports, and existing cells may need a separate check.',
+    example: {
+      setup: 'A customer ID rule is applied to A2:A500. Each ID should start with ID- and appear only once in that applied range.',
+      formula: '=AND(LEFT(A2,3)="ID-",COUNTIF($A$2:$A$500,A2)=1)',
+      read: 'The formula returns TRUE only when the current entry starts with ID- and appears once in the fixed validation range. A2 stays relative so the rule can evaluate each row; the COUNTIF range stays locked.'
     }
   },
   'google-sheets-formula-parse-error': {
