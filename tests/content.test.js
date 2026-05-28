@@ -91,6 +91,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix INDEX MATCH formulas that return #N\/A, #REF!, wrong rows, wrong columns, or unreliable results/);
   assert.match(page, /\/excel-if-formula-multiple-conditions\//);
   assert.match(page, /Write nested IF, AND, OR, and IFS logic with branch-order and edge-row checks/);
+  assert.match(page, /\/excel-if-formula-not-working\//);
+  assert.match(page, /Fix IF, nested IF, IFS, AND, and OR formulas that return the wrong label, FALSE, 0, blank, or #VALUE!/);
   assert.match(page, /\/date-formula-generator\//);
   assert.match(page, /Create due dates, workday counts, month-end dates, date differences, and overdue checks/);
   assert.match(page, /\/filter-formula-generator\//);
@@ -265,6 +267,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-xlookup-not-working',
     'excel-index-match-not-working',
     'excel-if-formula-multiple-conditions',
+    'excel-if-formula-not-working',
     'vlookup-formula-generator',
     'xlookup-formula-generator',
     'index-match-formula-generator',
@@ -891,6 +894,27 @@ test('excel IF formula multiple conditions page targets conditional logic intent
   assert.match(page, /Use IFS or SWITCH/);
   assert.doesNotMatch(page, /guarantee|guaranteed|always accurate|official Microsoft|affiliated/i);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-if-formula-multiple-conditions\//);
+});
+
+test('excel IF formula not working page targets IF repair intent without overclaiming', () => {
+  const page = read('excel-if-formula-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel IF Formula Not Working Fixer/);
+  assert.match(page, /Fix an Excel IF formula that is not working/);
+  assert.match(page, /wrong branches, missing quotes, AND\/OR logic, parentheses, list separators, and IFS alternatives/);
+  assert.match(page, /returns FALSE, 0, blank, #VALUE!, or a plausible label on the wrong rows/);
+  assert.match(page, /=IF\(AND\(B2&gt;=60,C2&gt;=80%\),&quot;Pass&quot;,&quot;Fail&quot;\)/);
+  assert.match(page, /removes the extra closing parenthesis/);
+  assert.match(page, /Check whether your Excel locale expects commas or semicolons between IF arguments/);
+  assert.match(page, /Use IFS, SWITCH, or a lookup table when a long nested IF is really an ordered decision list/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-if-formula-not-working\/">Excel IF formula not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-if-formula-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
 });
 
 test('date formula page targets deadline and workday intent', () => {

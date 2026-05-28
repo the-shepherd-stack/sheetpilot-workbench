@@ -1288,6 +1288,38 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-if-formula-not-working',
+    title: 'Excel IF Formula Not Working Fixer | Write My Formula',
+    description: 'Fix Excel IF, nested IF, IFS, AND, and OR formulas that return the wrong label, FALSE, 0, blank, #VALUE!, or a syntax error.',
+    eyebrow: 'Excel IF formula repair',
+    h1: 'Fix an Excel IF formula that is not working.',
+    lede: 'Paste the IF formula you are fighting, type what it should return, and get a focused repair path for wrong branches, missing quotes, AND/OR logic, parentheses, list separators, and IFS alternatives.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=IF(AND(B2>=60,C2>=80%),"Pass","Fail"))'
+    },
+    intent: 'Help Excel users repair one IF, nested IF, IFS, or IF-with-AND-or-OR formula that returns the wrong answer, shows FALSE or 0, fails syntax checks, or evaluates every row the same way.',
+    bestFor: [
+      'IF formulas that return FALSE, 0, blank, or the wrong label instead of the expected text.',
+      'Nested IF and IFS formulas where branch order, missing default results, or copied conditions send rows to the wrong outcome.',
+      'IF with AND or OR logic that throws #VALUE!, always evaluates TRUE, always evaluates FALSE, or handles blanks incorrectly.',
+      'Formulas copied from examples where separators, quotes, comparison operators, or parentheses do not match the workbook.'
+    ],
+    steps: [
+      'Paste the exact IF formula that is not working.',
+      'Add what the formula should return and one row where Excel currently gets it wrong.',
+      'Include any thresholds, text labels, blank-cell behavior, or AND/OR rules the formula is supposed to follow.'
+    ],
+    copyChecks: [
+      'Confirm every text result such as Pass, Yes, Review, or Fail is wrapped in quotes.',
+      'Count opening and closing parentheses before changing working logic.',
+      'Check whether your Excel locale expects commas or semicolons between IF arguments.',
+      'Test boundary values such as exactly 60 when the formula uses greater-than or greater-than-or-equal logic.',
+      'Use IFS, SWITCH, or a lookup table when a long nested IF is really an ordered decision list.'
+    ]
+  },
+  {
     slug: 'countifs-formula-generator',
     title: 'COUNTIFS Formula Generator | Write My Formula',
     description: 'Generate COUNTIFS formulas for Excel and Google Sheets from multiple criteria written in plain English.',
@@ -2185,6 +2217,20 @@ const pageEnhancements = {
       setup: 'For invoice rows with amount in B, payment status in C, and customer type in D, flag a row as Review when the amount is over 5000 and either the invoice is past due or the customer is new.',
       formula: '=IF(AND(B2>5000,OR(C2="Past Due",D2="New")),"Review","OK")',
       read: 'The formula first checks whether the amount is above 5000, then requires either Past Due status or New customer type. Only rows that pass both parts return Review.'
+    }
+  },
+  'excel-if-formula-not-working': {
+    gives: [
+      'A corrected IF-style formula matched to the exact condition, labels, and sample row you provide.',
+      'A plain-English read of which test runs first and why Excel is returning the wrong branch.',
+      'Checks for missing quotes, extra parentheses, separator mismatches, blank handling, and long nested logic.'
+    ],
+    useWhen: 'Use this page when an IF, nested IF, IFS, or IF with AND/OR formula is close but not reliable. It is especially useful when the formula returns FALSE, 0, blank, #VALUE!, or a plausible label on the wrong rows.',
+    notWhen: 'Do not keep patching nested IF formulas when the rule has many ordered outcomes or a table of thresholds. IFS, SWITCH, XLOOKUP, or a helper table can be easier to review and safer to fill down.',
+    example: {
+      setup: 'A teacher wants Pass when the score in B2 is at least 60 and attendance in C2 is at least 80%, and Fail otherwise.',
+      formula: '=IF(AND(B2>=60,C2>=80%),"Pass","Fail")',
+      read: 'The repaired formula keeps the two required conditions inside AND, returns Pass only when both are true, returns Fail otherwise, and removes the extra closing parenthesis that made the original formula invalid.'
     }
   },
   'countifs-formula-generator': {
