@@ -1070,6 +1070,38 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-importrange-not-working',
+    title: 'Google Sheets IMPORTRANGE Not Working? | Write My Formula',
+    description: 'Fix Google Sheets IMPORTRANGE formulas with #REF!, Allow access prompts, permission issues, result-size limits, slow refreshes, or volatile-function errors.',
+    eyebrow: 'Google Sheets IMPORTRANGE repair',
+    h1: 'Fix a Google Sheets IMPORTRANGE formula that is not working.',
+    lede: 'If IMPORTRANGE shows #REF!, asks for Allow access, says the result is too large, loads slowly, or breaks after a source-sheet change, paste the formula and add the source range. Get a focused repair path for URL syntax, range strings, permissions, import size, refresh behavior, and safer source ranges.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=IMPORTRANGE("https://docs.google.com/spreadsheets/d/source-id/edit","Orders!A:Z")'
+    },
+    intent: 'Help Google Sheets users repair one IMPORTRANGE formula where the visible problem may be a missing Allow access grant, a source-file permission issue, a malformed range string, an oversized import, a slow refresh, or a volatile source formula that Sheets will not import.',
+    bestFor: [
+      'IMPORTRANGE formulas that show #REF!, You need to connect these sheets, or a source access message.',
+      'Imports that return Result too large, stay slow, or refresh unreliably because the pulled range is too broad.',
+      'Formulas that combine IMPORTRANGE with QUERY, FILTER, VLOOKUP, or ARRAYFORMULA and need the import range narrowed before the rest of the formula can work.',
+      'Source sheets that include volatile NOW, RAND, or RANDBETWEEN logic that can block import functions.'
+    ],
+    steps: [
+      'Paste the exact IMPORTRANGE formula and the visible error text.',
+      'Say whether you own the source spreadsheet and whether Allow access has already been clicked.',
+      'Include the sheet tab name, intended columns, and whether the import is feeding QUERY, FILTER, or a lookup.'
+    ],
+    copyChecks: [
+      'Put the source spreadsheet URL and range string in quotes, or reference cells that contain those exact values.',
+      'Click Allow access from the destination sheet before rewriting a formula that is only waiting for permission.',
+      'Confirm your Google account can open the source spreadsheet when you do not own it.',
+      'Import only the rows and columns needed instead of whole-sheet ranges when the result is too large or slow.',
+      'Check whether the source range depends on NOW, RAND, or RANDBETWEEN before trusting a refresh diagnosis.'
+    ]
+  },
+  {
     slug: 'conditional-formatting-formula-not-working',
     title: 'Conditional Formatting Formula Not Working? | Write My Formula',
     description: 'Fix Excel and Google Sheets conditional formatting formulas that highlight nothing, highlight everything, shift references, or lose to another rule.',
@@ -2252,6 +2284,20 @@ const pageEnhancements = {
       setup: 'Column A has order IDs, B has quantity, and C has unit price. D2 should fill totals for each row but stay blank when the source row is blank.',
       formula: '=ARRAYFORMULA(IF(A2:A="","",B2:B*C2:C))',
       read: 'The formula evaluates rows 2 and below as ranges, leaves blank source rows blank, and lets the result spill down column D as long as the output cells are clear.'
+    }
+  },
+  'google-sheets-importrange-not-working': {
+    gives: [
+      'A focused repair pass for one Google Sheets IMPORTRANGE formula.',
+      'Checks for source URL syntax, quoted range strings, Allow access status, source permissions, import size, refresh behavior, and volatile source formulas.',
+      'A revised import path you can test with a smaller source range before rebuilding a shared report.'
+    ],
+    useWhen: 'Use this page when IMPORTRANGE returns #REF!, asks you to connect sheets, says you do not have source access, returns Result too large, refreshes slowly, or fails after the source tab or source formula changed. It is strongest when you can paste the exact formula, the source tab/range, and the visible error text.',
+    notWhen: 'Do not use it as a permission audit or full data-pipeline review. Write My Formula can help repair the formula shape and range strategy, but Google account access, source ownership, share limits, and source-file availability still have to be verified in Google Sheets.',
+    example: {
+      setup: 'A destination sheet needs only open orders from columns A through E of a source spreadsheet. The original formula imported every column first, then filtered later.',
+      formula: '=QUERY(IMPORTRANGE("https://docs.google.com/spreadsheets/d/source-id/edit","Orders!A:E"),"select Col1, Col3, Col5 where Col4 = \'Open\'",1)',
+      read: 'The formula narrows the import to the needed columns, then runs QUERY against the imported array with Col-style references. Permission still has to be granted once from the destination sheet before the formula can return data.'
     }
   },
   'conditional-formatting-formula-not-working': {
