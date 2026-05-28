@@ -87,6 +87,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix XLOOKUP formulas with missing matches, mismatched stored types/);
   assert.match(page, /\/excel-xlookup-not-working\//);
   assert.match(page, /Fix XLOOKUP formulas that return #N\/A, wrong rows, blank fallbacks, or unreliable results/);
+  assert.match(page, /\/excel-index-match-not-working\//);
+  assert.match(page, /Fix INDEX MATCH formulas that return #N\/A, #REF!, wrong rows, wrong columns, or unreliable results/);
   assert.match(page, /\/excel-if-formula-multiple-conditions\//);
   assert.match(page, /Write nested IF, AND, OR, and IFS logic with branch-order and edge-row checks/);
   assert.match(page, /\/date-formula-generator\//);
@@ -261,6 +263,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'vlookup-na-error',
     'xlookup-na-error',
     'excel-xlookup-not-working',
+    'excel-index-match-not-working',
     'excel-if-formula-multiple-conditions',
     'vlookup-formula-generator',
     'xlookup-formula-generator',
@@ -852,6 +855,26 @@ test('excel XLOOKUP not working page targets broader modern lookup repair intent
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/excel-xlookup-not-working\/">Excel XLOOKUP not working/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-xlookup-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
+});
+
+test('excel INDEX MATCH not working page targets lookup repair intent without overclaiming', () => {
+  const page = read('excel-index-match-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel INDEX MATCH Not Working Fixer/);
+  assert.match(page, /Fix an Excel INDEX MATCH formula that is not working/);
+  assert.match(page, /exact-match mode, lookup-array shape, row and column offsets, stored value types, and safer fallbacks/);
+  assert.match(page, /Use 0 in MATCH for exact match unless approximate matching is intentional/);
+  assert.match(page, /lookup array and return array cover the same row positions/);
+  assert.match(page, /row MATCH feeds the row_num argument and the column MATCH feeds the column_num argument/);
+  assert.match(page, /=IFNA\(INDEX\(\$C\$2:\$C\$500,MATCH\(E2,\$A\$2:\$A\$500,0\)\),&quot;Not found&quot;\)/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-index-match-not-working\/">Excel INDEX MATCH not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-index-match-not-working\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
 });
 

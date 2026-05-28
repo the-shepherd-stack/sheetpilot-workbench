@@ -1096,6 +1096,38 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-index-match-not-working',
+    title: 'Excel INDEX MATCH Not Working Fixer | Write My Formula',
+    description: 'Fix Excel INDEX MATCH formulas that return #N/A, #REF!, wrong rows, wrong columns, or unreliable results.',
+    eyebrow: 'Excel INDEX MATCH repair',
+    h1: 'Fix an Excel INDEX MATCH formula that is not working.',
+    lede: 'Paste the INDEX MATCH formula that is failing, describe what should match, and get a focused repair path for exact-match mode, lookup-array shape, row and column offsets, stored value types, and safer fallbacks.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=INDEX($C$2:$C$500,MATCH(E2,$A$2:$A$500,1))'
+    },
+    intent: 'Help Excel users repair one INDEX MATCH formula where the visible problem may be #N/A, #REF!, a wrong returned row, a row or column offset mistake, omitted approximate-match behavior, or imported values that look equal but are stored differently.',
+    bestFor: [
+      'INDEX MATCH formulas that return #N/A even though the lookup value appears in the source data.',
+      'INDEX MATCH formulas that return the wrong row because MATCH omitted the exact-match argument or the lookup array is sorted differently than the match type expects.',
+      'Two-way lookups where the row MATCH and column MATCH point at ranges with different shapes, offsets, or header positions.',
+      'Older workbooks where INDEX MATCH is still required but the formula needs clearer range alignment and fallback checks.'
+    ],
+    steps: [
+      'Paste the exact INDEX MATCH formula that is not working.',
+      'Include one lookup value that should match and the lookup range plus return range it depends on.',
+      'Say whether the failure is #N/A, #REF!, a wrong returned value, a blank result, or a formula that breaks after filling down.'
+    ],
+    copyChecks: [
+      'Use 0 in MATCH for exact match unless approximate matching is intentional.',
+      'Confirm the lookup array and return array cover the same row positions for one-way lookups.',
+      'For two-way lookups, check that the row MATCH feeds the row_num argument and the column MATCH feeds the column_num argument.',
+      'Check whether lookup values and source values are stored as matching numbers, text, dates, and trimmed values.',
+      'Use IFERROR or IFNA only after confirming the formula is otherwise returning the intended row and column.'
+    ]
+  },
+  {
     slug: 'vlookup-formula-generator',
     title: 'VLOOKUP Formula Generator | Write My Formula',
     description: 'Build VLOOKUP formulas from a plain-English lookup task and pasted table context.',
@@ -2069,6 +2101,20 @@ const pageEnhancements = {
       setup: 'A product table has SKUs in A and prices in C. XLOOKUP can return the price for the SKU in E2 when the lookup and return arrays cover the same rows and exact match is explicit.',
       formula: '=XLOOKUP(E2,$A$2:$A$500,$C$2:$C$500,"Not found",0)',
       read: 'The formula searches for E2 in the SKU column, returns the price from the same row, uses exact match, and shows Not found only after the ranges and source values have been checked.'
+    }
+  },
+  'excel-index-match-not-working': {
+    gives: [
+      'A focused repair pass for one INDEX MATCH formula returning #N/A, #REF!, a wrong row, or an unreliable value.',
+      'Checks for MATCH exact-match mode, lookup-array and return-array alignment, row and column offsets, stored value types, and fallback wording.',
+      'A revised INDEX MATCH path you can test on one known matching row and one missing-match row before changing the workbook.'
+    ],
+    useWhen: 'Use this page when INDEX MATCH is close but not trustworthy: it returns #N/A, returns the wrong row or column, breaks after columns move, fails in a two-way lookup, or depends on match_type choices you are not sure about. Paste the formula and one row that should match.',
+    notWhen: 'Do not make the error disappear with IFERROR before checking the MATCH result and INDEX range. A missing or wrong result may be the correct signal that the lookup value, range shape, row offset, column offset, or stored data type changed.',
+    example: {
+      setup: 'A product table has SKUs in A and prices in C. INDEX MATCH can return the price for the SKU in E2 when MATCH uses exact match and the return range covers the same rows as the lookup range.',
+      formula: '=IFNA(INDEX($C$2:$C$500,MATCH(E2,$A$2:$A$500,0)),"Not found")',
+      read: 'MATCH searches for E2 in the SKU column and returns the row position. INDEX returns the price from the same relative row in C2:C500. The fallback appears only after the ranges, exact-match mode, and source values have been checked.'
     }
   },
   'vlookup-formula-generator': {
