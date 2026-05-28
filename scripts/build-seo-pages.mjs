@@ -971,6 +971,38 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-vlookup-not-working',
+    title: 'Excel VLOOKUP Not Working Fixer | Write My Formula',
+    description: 'Fix Excel VLOOKUP formulas that return #N/A, #VALUE!, wrong matches, wrong columns, or blank-looking results.',
+    eyebrow: 'Excel VLOOKUP repair',
+    h1: 'Fix an Excel VLOOKUP formula that is not working.',
+    lede: 'Paste the VLOOKUP formula that is failing, describe what should match, and get a focused repair path for exact-match mode, lookup-column position, text-number mismatches, column indexes, and safer fallbacks.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=VLOOKUP(E2,$B$2:$D$500,3,TRUE)'
+    },
+    intent: 'Help Excel users repair one VLOOKUP formula where the visible problem may be #N/A, #VALUE!, an unexpected approximate match, a lookup table that starts on the wrong column, or a return-column number that no longer matches the selected range.',
+    bestFor: [
+      'VLOOKUP formulas that return #N/A even though the lookup value appears in the sheet.',
+      'VLOOKUP formulas that return a plausible but wrong row because the fourth argument is omitted or set to TRUE.',
+      'Lookup tables where the searched value is not in the first column of the selected table range.',
+      'Copied or edited VLOOKUP formulas where the column index, locked ranges, or stored value types changed.'
+    ],
+    steps: [
+      'Paste the exact VLOOKUP formula that is not working.',
+      'Include one lookup value that should match and the first few columns of the lookup table.',
+      'Say whether the failure is #N/A, #VALUE!, a wrong returned value, a blank result, or a formula that breaks after filling down.'
+    ],
+    copyChecks: [
+      'Use FALSE or 0 for exact match unless approximate matching is intentional.',
+      'Confirm the table range starts with the column being searched.',
+      'Count the return column from the first column of the selected table range.',
+      'Check whether the lookup value and first lookup column store matching numbers, text, dates, and trimmed values.',
+      'Add IFERROR or another fallback only after deciding that a missing match should be hidden.'
+    ]
+  },
+  {
     slug: 'vlookup-na-error',
     title: 'VLOOKUP #N/A Error Fixer | Write My Formula',
     description: 'Fix VLOOKUP #N/A errors caused by exact-match settings, text-number mismatches, lookup ranges, and missing fallbacks.',
@@ -1948,6 +1980,20 @@ const pageEnhancements = {
       setup: 'A QUERY formula can parse incorrectly when text criteria inside the query string are not quoted.',
       formula: '=QUERY(A1:D500,"select A, B where C = \'Open\'",1)',
       read: 'The formula keeps the query text inside double quotes, then wraps the Open criterion in single quotes so Google Sheets can parse the condition as text.'
+    }
+  },
+  'excel-vlookup-not-working': {
+    gives: [
+      'A focused repair pass for one VLOOKUP formula returning #N/A, #VALUE!, a wrong value, or a blank-looking result.',
+      'Checks for exact-match mode, first-column lookup behavior, return-column numbers, text-number mismatches, and locked table ranges.',
+      'A revised VLOOKUP path you can test on one known matching row and one missing-match row before changing a report.'
+    ],
+    useWhen: 'Use this page when VLOOKUP is close but not trustworthy: it returns #N/A, chooses the wrong match, returns the wrong column, fails after columns move, or breaks after imported IDs are stored as text. Paste the formula and one row that should match.',
+    notWhen: 'Do not hide a VLOOKUP problem with IFERROR before checking the lookup range and match mode. A missing result may be real, and an omitted fourth argument can make VLOOKUP use approximate matching when you expected an exact match.',
+    example: {
+      setup: 'A product table has SKUs in A, category in B, and price in C. A VLOOKUP can return the category for the SKU in E2 when the lookup range starts with the SKU column and exact match is explicit.',
+      formula: '=IFERROR(VLOOKUP(E2,$A$2:$C$500,2,FALSE),"Not found")',
+      read: 'The formula searches for E2 in the first column of A2:C500, returns the second column from the same row, and uses exact match. The fallback appears only after the range, column number, and source values have been checked.'
     }
   },
   'vlookup-na-error': {

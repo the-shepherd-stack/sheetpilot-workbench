@@ -79,6 +79,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Repair formulas broken by deleted rows, moved cells, invalid references, or shifted lookup ranges/);
   assert.match(page, /\/google-sheets-formula-parse-error\//);
   assert.match(page, /Repair Sheets formulas with missing quotes, mismatched parentheses, wrong separators, or malformed QUERY syntax/);
+  assert.match(page, /\/excel-vlookup-not-working\//);
+  assert.match(page, /Fix VLOOKUP formulas that return #N\/A, #VALUE!, wrong values, or broken column results/);
   assert.match(page, /\/vlookup-na-error\//);
   assert.match(page, /Fix lookup formulas that return #N\/A because of exact-match settings/);
   assert.match(page, /\/xlookup-na-error\//);
@@ -253,6 +255,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-circular-reference',
     'excel-ref-error',
     'google-sheets-formula-parse-error',
+    'excel-vlookup-not-working',
     'vlookup-na-error',
     'xlookup-na-error',
     'excel-if-formula-multiple-conditions',
@@ -639,6 +642,25 @@ test('google sheets formula parse error page targets Sheets repair intent withou
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-formula-parse-error\//);
   assert.doesNotMatch(page, /upload|workbook audit|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated/i);
+});
+
+test('excel VLOOKUP not working page targets broader lookup repair intent without overclaiming', () => {
+  const page = read('excel-vlookup-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel VLOOKUP Not Working Fixer/);
+  assert.match(page, /Fix an Excel VLOOKUP formula that is not working/);
+  assert.match(page, /exact-match mode, lookup-column position, text-number mismatches, column indexes, and safer fallbacks/);
+  assert.match(page, /omitted fourth argument can make VLOOKUP use approximate matching/);
+  assert.match(page, /Confirm the table range starts with the column being searched/);
+  assert.match(page, /Count the return column from the first column of the selected table range/);
+  assert.match(page, /=IFERROR\(VLOOKUP\(E2,\$A\$2:\$C\$500,2,FALSE\),&quot;Not found&quot;\)/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-vlookup-not-working\/">Excel VLOOKUP not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-vlookup-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
 });
 
 test('excel circular reference page targets circular-reference repair intent without overclaiming', () => {
