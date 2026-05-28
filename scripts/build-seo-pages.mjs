@@ -1006,6 +1006,38 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-query-not-working',
+    title: 'Google Sheets QUERY Not Working? | Write My Formula',
+    description: 'Fix Google Sheets QUERY formulas with parse errors, NO_COLUMN messages, wrong Col references, header problems, or missing rows.',
+    eyebrow: 'Google Sheets QUERY repair',
+    h1: 'Fix a broken Google Sheets QUERY formula.',
+    lede: 'If QUERY shows "Unable to parse query string for Function QUERY parameter 2", PARSE_ERROR, or a NO_COLUMN / Col reference message, paste the formula and add the source headers. Get a focused repair path for quoted criteria, column notation, header rows, and mixed data types.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=QUERY(A1:D500,"select Col1, Col3 where Col2 = Open",1)'
+    },
+    intent: 'Help Google Sheets users repair one QUERY formula where the visible problem is usually a malformed query string, text criteria without quotes, A/B versus Col notation confusion, a guessed header row, a missing source column, or mixed data types that turn some values into nulls.',
+    bestFor: [
+      'QUERY formulas that show Unable to parse query string, PARSE_ERROR, or NO_COLUMN errors.',
+      'Reports that return no rows or the wrong rows after changing select, where, group by, order by, label, or pivot clauses.',
+      'Formulas that combine ranges, arrays, or IMPORTRANGE data and need Col1-style references instead of A/B column letters.',
+      'Source columns where dates, numbers, or IDs are mixed with text and QUERY treats minority types as null values.'
+    ],
+    steps: [
+      'Paste the exact QUERY formula and the visible error text.',
+      'Include the source range headers and say whether the data argument is a plain range, array literal, FILTER result, or IMPORTRANGE.',
+      'Add one row that should appear in the result so the where clause and column references can be checked.'
+    ],
+    copyChecks: [
+      'Keep the query text inside double quotes or place it in a cell reference.',
+      'Put text criteria in single quotes inside the query string.',
+      'Use A, B, C notation for plain ranges and Col1, Col2, Col3 notation for array-style inputs.',
+      'Set the header-row argument deliberately when Sheets guesses the wrong number of headers.',
+      'Check mixed-type columns when QUERY returns blanks or misses rows that appear to match.'
+    ]
+  },
+  {
     slug: 'google-sheets-arrayformula-not-working',
     title: 'Google Sheets ARRAYFORMULA Not Working? | Write My Formula',
     description: 'Fix Google Sheets ARRAYFORMULA errors where results do not expand, overwrite cells, repeat the wrong value, or only fill one row.',
@@ -2192,6 +2224,20 @@ const pageEnhancements = {
       setup: 'A QUERY formula can parse incorrectly when text criteria inside the query string are not quoted.',
       formula: '=QUERY(A1:D500,"select A, B where C = \'Open\'",1)',
       read: 'The formula keeps the query text inside double quotes, then wraps the Open criterion in single quotes so Google Sheets can parse the condition as text.'
+    }
+  },
+  'google-sheets-query-not-working': {
+    gives: [
+      'A focused repair pass for one Google Sheets QUERY formula.',
+      'Checks for query-string syntax, quoted text criteria, selected columns, header rows, Col notation, and mixed data types.',
+      'A revised QUERY path you can test against one row that should appear in the output.'
+    ],
+    useWhen: 'Use this page when Google Sheets QUERY returns "Unable to parse query string for Function QUERY parameter 2", PARSE_ERROR, a NO_COLUMN message, blank output, wrong rows, wrong columns, or a query that worked before but broke after the source range changed. It is strongest when you can paste the formula, the source headers, and one expected matching row.',
+    notWhen: 'Do not use a repaired QUERY as proof that a whole report is correct. A syntactically valid query can still filter the wrong rows, guess headers incorrectly, or ignore values from mixed-type columns.',
+    example: {
+      setup: 'A source table in A1:D500 has headers Deal, Status, Region, and Value. The report should return open West deals over 5000.',
+      formula: '=QUERY(A1:D500,"select A, D where B = \'Open\' and C = \'West\' and D > 5000",1)',
+      read: 'The formula keeps the query string quoted, wraps text criteria in single quotes, uses source-range column letters, and sets one header row so the report filters the intended rows.'
     }
   },
   'google-sheets-arrayformula-not-working': {

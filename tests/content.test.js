@@ -79,6 +79,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Repair formulas broken by deleted rows, moved cells, invalid references, or shifted lookup ranges/);
   assert.match(page, /\/google-sheets-formula-parse-error\//);
   assert.match(page, /Repair Sheets formulas with missing quotes, mismatched parentheses, wrong separators, or malformed QUERY syntax/);
+  assert.match(page, /\/google-sheets-query-not-working\//);
+  assert.match(page, /Fix QUERY formulas with parse errors, NO_COLUMN messages, wrong Col references, header problems, or missing rows/);
   assert.match(page, /\/conditional-formatting-formula-not-working\//);
   assert.match(page, /Fix Excel and Google Sheets rules that highlight nothing, highlight everything, shift references, or lose to another rule/);
   assert.match(page, /\/excel-vlookup-not-working\//);
@@ -265,6 +267,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-circular-reference',
     'excel-ref-error',
     'google-sheets-formula-parse-error',
+    'google-sheets-query-not-working',
     'google-sheets-arrayformula-not-working',
     'conditional-formatting-formula-not-working',
     'excel-vlookup-not-working',
@@ -678,6 +681,27 @@ test('google sheets ARRAYFORMULA not working page targets spill and range repair
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/google-sheets-arrayformula-not-working\/">Google Sheets ARRAYFORMULA not working/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-arrayformula-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
+});
+
+test('google sheets QUERY not working page targets query repair intent without overclaiming', () => {
+  const page = read('google-sheets-query-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Google Sheets QUERY Not Working/);
+  assert.match(page, /Fix a broken Google Sheets QUERY formula/);
+  assert.match(page, /Unable to parse query string for Function QUERY parameter 2/);
+  assert.match(page, /PARSE_ERROR, or a NO_COLUMN \/ Col reference message/);
+  assert.match(page, /array-style inputs/);
+  assert.match(page, /mixed data types that turn some values into nulls/);
+  assert.match(page, /=QUERY\(A1:D500,&quot;select A, D where B = 'Open' and C = 'West' and D &gt; 5000&quot;,1\)/);
+  assert.match(page, /Keep the query text inside double quotes/);
+  assert.match(page, /Set the header-row argument deliberately/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-query-not-working\/">Google Sheets QUERY not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-query-not-working\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
 });
 
