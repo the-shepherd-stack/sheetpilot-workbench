@@ -971,6 +971,40 @@ const pages = [
     ]
   },
   {
+    slug: 'conditional-formatting-formula-not-working',
+    title: 'Conditional Formatting Formula Not Working? | Write My Formula',
+    description: 'Fix Excel and Google Sheets conditional formatting formulas that highlight nothing, highlight everything, shift references, or lose to another rule.',
+    eyebrow: 'Conditional formatting formula not working',
+    h1: 'Fix a conditional formatting formula that is not firing.',
+    lede: 'Paste the rule you tried, add the apply-to range, and get a corrected TRUE/FALSE formula with the anchors, first-row references, and rule-order checks spelled out.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      task: 'Fix this conditional formatting rule so overdue open tasks are highlighted across the whole row.',
+      table: 'Task,Due Date,Status\nRenew contract,2026-05-10,Open\nSend invoice,2026-05-25,Done',
+      range: 'Apply to A2:C100; due dates in B; status in C; first row is 2',
+      hint: 'conditional formatting formula not working',
+      formula: '=B2<TODAY() AND C2<>"Done"'
+    },
+    intent: 'Repair a custom conditional formatting formula that is not applying correctly in Excel or Google Sheets because the formula, references, selected range, or rule order does not match how the formatting engine evaluates the range.',
+    bestFor: [
+      'A rule that highlights nothing, highlights everything, or shifts down the range the wrong way.',
+      'A formula that works in a normal cell but fails inside the conditional formatting rule dialog.',
+      'A rule that stopped behaving after rows were added, ranges changed, or another rule was placed above it.'
+    ],
+    steps: [
+      'Paste the current rule or describe the highlight you wanted.',
+      'Include the exact apply-to range and the first row or cell in that range.',
+      'Copy the corrected formula into the rule dialog, then check rule order if another format covers the same cells.'
+    ],
+    copyChecks: [
+      'The rule formula should return TRUE or FALSE, or 1 or 0.',
+      'Write the formula for the first cell or row in the apply-to range.',
+      'Lock only the columns or rows that should stay fixed as the rule walks the range.',
+      'In Google Sheets, use INDIRECT when a custom formula must reference another sheet.'
+    ]
+  },
+  {
     slug: 'excel-vlookup-not-working',
     title: 'Excel VLOOKUP Not Working Fixer | Write My Formula',
     description: 'Fix Excel VLOOKUP formulas that return #N/A, #VALUE!, wrong matches, wrong columns, or blank-looking results.',
@@ -2077,6 +2111,20 @@ const pageEnhancements = {
       setup: 'A QUERY formula can parse incorrectly when text criteria inside the query string are not quoted.',
       formula: '=QUERY(A1:D500,"select A, B where C = \'Open\'",1)',
       read: 'The formula keeps the query text inside double quotes, then wraps the Open criterion in single quotes so Google Sheets can parse the condition as text.'
+    }
+  },
+  'conditional-formatting-formula-not-working': {
+    gives: [
+      'A corrected conditional-formatting formula for the rule you are trying to apply.',
+      'A plain-English read of the TRUE/FALSE logic, first-row reference, and locked columns or rows.',
+      'Checks for apply-to range, formula errors, cross-sheet references, and rule precedence.'
+    ],
+    useWhen: 'Use this page when a custom conditional formatting formula highlights the wrong cells, does not fire, applies to every row, shifts references incorrectly, or behaves differently in the rule dialog than it does in a normal worksheet cell.',
+    notWhen: 'Do not use it as a full-file review or as proof that every formatting rule is correct. Start with one rule, verify the apply-to range, and test the corrected formula on a small section before applying it broadly.',
+    example: {
+      setup: 'The apply-to range is A2:C100. Due dates are in column B and status is in column C. Highlight each row when the due date is before today and the status is not Done.',
+      formula: '=AND($B2<TODAY(),$C2<>"Done")',
+      read: 'The formula returns TRUE only when both checks pass. Columns B and C stay locked while the row number moves from row 2 downward, so each row checks its own due date and status.'
     }
   },
   'excel-vlookup-not-working': {

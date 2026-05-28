@@ -79,6 +79,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Repair formulas broken by deleted rows, moved cells, invalid references, or shifted lookup ranges/);
   assert.match(page, /\/google-sheets-formula-parse-error\//);
   assert.match(page, /Repair Sheets formulas with missing quotes, mismatched parentheses, wrong separators, or malformed QUERY syntax/);
+  assert.match(page, /\/conditional-formatting-formula-not-working\//);
+  assert.match(page, /Fix Excel and Google Sheets rules that highlight nothing, highlight everything, shift references, or lose to another rule/);
   assert.match(page, /\/excel-vlookup-not-working\//);
   assert.match(page, /Fix VLOOKUP formulas that return #N\/A, #VALUE!, wrong values, or broken column results/);
   assert.match(page, /\/vlookup-na-error\//);
@@ -261,6 +263,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-circular-reference',
     'excel-ref-error',
     'google-sheets-formula-parse-error',
+    'conditional-formatting-formula-not-working',
     'excel-vlookup-not-working',
     'vlookup-na-error',
     'xlookup-na-error',
@@ -651,6 +654,27 @@ test('google sheets formula parse error page targets Sheets repair intent withou
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-formula-parse-error\//);
   assert.doesNotMatch(page, /upload|workbook audit|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated/i);
+});
+
+test('conditional formatting formula not working page targets rule repair intent without overclaiming', () => {
+  const page = read('conditional-formatting-formula-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Conditional Formatting Formula Not Working/);
+  assert.match(page, /Fix a conditional formatting formula that is not firing/);
+  assert.match(page, /corrected TRUE\/FALSE formula with the anchors, first-row references, and rule-order checks/);
+  assert.match(page, /highlight nothing, highlight everything, shift references, or lose to another rule/);
+  assert.match(page, /rule dialog than it does in a normal worksheet cell/);
+  assert.match(page, /=AND\(\$B2&lt;TODAY\(\),\$C2&lt;&gt;&quot;Done&quot;\)/);
+  assert.match(page, /The rule formula should return TRUE or FALSE, or 1 or 0/);
+  assert.match(page, /Write the formula for the first cell or row in the apply-to range/);
+  assert.match(page, /use INDIRECT when a custom formula must reference another sheet/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/conditional-formatting-formula-not-working\/">Conditional formatting formula not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/conditional-formatting-formula-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|official Google|Microsoft partner|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
 });
 
 test('excel VLOOKUP not working page targets broader lookup repair intent without overclaiming', () => {
