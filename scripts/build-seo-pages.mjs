@@ -1135,6 +1135,37 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-circular-dependency',
+    title: 'Google Sheets Circular Dependency Fixer | Write My Formula',
+    description: 'Fix Google Sheets circular dependency errors caused by self-referencing cells, self-including ranges, indirect loops, and risky iterative-calculation settings.',
+    eyebrow: 'Google Sheets circular dependency fixer',
+    h1: 'Fix a Google Sheets circular dependency without hiding the loop.',
+    lede: 'Paste the formula that triggers "Circular dependency detected," add the cell it lives in, and get a corrected formula to try with checks for self-references, self-including ranges, indirect loops, and iterative calculation.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=SUM(D2:D20)'
+    },
+    intent: 'Help Google Sheets users repair one formula that points back to its own result cell directly, through a range that includes the formula cell, or through another formula chain.',
+    bestFor: [
+      'SUM, FILTER, ARRAYFORMULA, lookup, or running-total formulas that trigger "Circular dependency detected."',
+      'Ranges that accidentally include the cell where the formula result is supposed to appear.',
+      'Indirect loops where one helper cell depends on another cell that eventually points back at the original formula.',
+      'Deciding whether iterative calculation is appropriate or just hiding an accidental reference loop.'
+    ],
+    steps: [
+      'Paste the exact formula and name the cell where it lives.',
+      'Describe the cells or range the formula should read without including its own result.',
+      'Mention whether iterative calculation was already enabled or suggested by the error message.'
+    ],
+    copyChecks: [
+      'Remove the formula cell from any range it is summing, filtering, or otherwise calculating.',
+      'Trace helper cells that feed each other until you find the reference that points back to the formula result.',
+      'Use iterative calculation only when the circular model is intentional and you understand the max-iteration setting.',
+      'Test the repaired formula in one cell before filling it through a shared sheet.'
+    ]
+  },
+  {
     slug: 'google-sheets-filter-not-working',
     title: 'Google Sheets FILTER Not Working? | Write My Formula',
     description: 'Fix Google Sheets FILTER formulas with #N/A, mismatched range sizes, wrong rows, no matches, or row-versus-column condition issues.',
@@ -2481,6 +2512,20 @@ const pageEnhancements = {
       setup: 'A QUERY formula can parse incorrectly when text criteria inside the query string are not quoted.',
       formula: '=QUERY(A1:D500,"select A, B where C = \'Open\'",1)',
       read: 'The formula keeps the query text inside double quotes, then wraps the Open criterion in single quotes so Google Sheets can parse the condition as text.'
+    }
+  },
+  'google-sheets-circular-dependency': {
+    gives: [
+      'A focused repair pass for one Google Sheets formula with a circular dependency.',
+      'Checks for direct self-references, self-including ranges, helper-cell loops, and iterative-calculation settings.',
+      'A revised formula direction you can test before changing a shared sheet or enabling iteration.'
+    ],
+    useWhen: 'Use this page when Google Sheets shows "Circular dependency detected," returns #REF! with a circular-reference warning, or suggests iterative calculation after a formula edit. It is strongest when you can paste the formula, name the formula cell, and describe the intended source range.',
+    notWhen: 'Do not turn on iterative calculation just to silence the warning. Iteration can be valid for deliberate models, but accidental circular dependencies should usually be fixed by moving the formula, narrowing the range, or splitting the logic into helper cells.',
+    example: {
+      setup: 'A total formula lives in D2, but it accidentally totals D2:D20, so the result cell is inside the range being summed.',
+      formula: '=SUM(D3:D20)',
+      read: 'The repaired formula starts below D2, which keeps the total cell out of its own source range. If D2 should summarize rows below it, the range should begin at the first data row, not the formula cell.'
     }
   },
   'google-sheets-formulas-not-working': {

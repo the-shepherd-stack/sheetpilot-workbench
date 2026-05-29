@@ -85,6 +85,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Repair formulas broken by deleted rows, moved cells, invalid references, or shifted lookup ranges/);
   assert.match(page, /\/google-sheets-formula-parse-error\//);
   assert.match(page, /Repair Sheets formulas with missing quotes, mismatched parentheses, wrong separators, or malformed QUERY syntax/);
+  assert.match(page, /\/google-sheets-circular-dependency\//);
+  assert.match(page, /Fix circular dependency errors caused by self-referencing cells, self-including ranges, helper-cell loops, or iterative-calculation settings/);
   assert.match(page, /\/google-sheets-filter-not-working\//);
   assert.match(page, /Fix FILTER formulas with #N\/A, mismatched range sizes, wrong rows, no matches, or row-versus-column condition issues/);
   assert.match(page, /\/google-sheets-query-not-working\//);
@@ -285,6 +287,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'google-sheets-value-error',
     'google-sheets-na-error',
     'google-sheets-formula-parse-error',
+    'google-sheets-circular-dependency',
     'google-sheets-filter-not-working',
     'google-sheets-query-not-working',
     'google-sheets-arrayformula-not-working',
@@ -758,6 +761,27 @@ test('google sheets formula parse error page targets Sheets repair intent withou
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-formula-parse-error\//);
   assert.doesNotMatch(page, /upload|workbook audit|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated/i);
+});
+
+test('google sheets circular dependency page targets loop repair intent without overclaiming', () => {
+  const page = read('google-sheets-circular-dependency/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Google Sheets Circular Dependency Fixer/);
+  assert.match(page, /Fix a Google Sheets circular dependency without hiding the loop/);
+  assert.match(page, /Circular dependency detected/);
+  assert.match(page, /self-references, self-including ranges, indirect loops, and iterative calculation/);
+  assert.match(page, /direct self-references, self-including ranges, helper-cell loops, and iterative-calculation settings/);
+  assert.match(page, /=SUM\(D3:D20\)/);
+  assert.match(page, /The repaired formula starts below D2/);
+  assert.match(page, /Use iterative calculation only when the circular model is intentional/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-circular-dependency\/">Google Sheets circular dependency/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-circular-dependency\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|private|\blocal\b|secure by default|instant|in seconds|one click|automatic|pay before answer/i);
 });
 
 test('google sheets FILTER not working page targets filter repair intent without overclaiming', () => {
