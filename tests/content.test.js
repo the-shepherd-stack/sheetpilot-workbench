@@ -49,6 +49,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix formulas that stop calculating after imports, copied ranges, locale settings, or text-number mismatches/);
   assert.match(page, /\/google-sheets-ref-error\//);
   assert.match(page, /Fix formulas broken by deleted tabs, invalid ranges, moved references, blocked array output, or IMPORTRANGE source issues/);
+  assert.match(page, /\/google-sheets-value-error\//);
+  assert.match(page, /Fix formulas blocked by imported text numbers, unparseable VALUE inputs, date text, range shapes, or wrong argument types/);
   assert.match(page, /\/excel-formula-not-calculating\//);
   assert.match(page, /Fix formulas that stay stale, show formula text, or only update after manual recalculation/);
   assert.match(page, /\/excel-showing-formula-instead-of-result\//);
@@ -278,6 +280,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-ref-error',
     'google-sheets-formulas-not-working',
     'google-sheets-ref-error',
+    'google-sheets-value-error',
     'google-sheets-formula-parse-error',
     'google-sheets-filter-not-working',
     'google-sheets-query-not-working',
@@ -412,6 +415,24 @@ test('google sheets REF error page targets broken-reference repair intent withou
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/google-sheets-ref-error\/">Google Sheets #REF! error/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-ref-error\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|finds every|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|private|\blocal\b|secure by default|instant|in seconds|one click|automatic|pay before answer/i);
+});
+
+test('google sheets VALUE error page targets text-number repair intent without overclaiming', () => {
+  const page = read('google-sheets-value-error/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Google Sheets #VALUE! Error Fixer/);
+  assert.match(page, /Fix a Google Sheets #VALUE! error without hiding the bad input/);
+  assert.match(page, /text-stored numbers, date text, VALUE conversion, range shapes, and wrong argument types/);
+  assert.match(page, /VALUE parameter cannot be parsed/);
+  assert.match(page, /Remove currency symbols, commas, extra spaces, and labels before VALUE tries to parse imported numbers/);
+  assert.match(page, /=IFERROR\(VALUE\(REGEXREPLACE\(B2,&quot;\[\$,\]&quot;,&quot;&quot;\)\)\*C2,&quot;Check imported amount&quot;\)/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-value-error\/">Google Sheets #VALUE! error/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-value-error\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|finds every|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|private|\blocal\b|secure by default|instant|in seconds|one click|automatic|pay before answer/i);
 });
 

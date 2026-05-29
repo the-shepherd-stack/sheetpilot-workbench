@@ -481,6 +481,36 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-value-error',
+    title: 'Google Sheets #VALUE! Error Fixer | Write My Formula',
+    description: 'Fix Google Sheets #VALUE! errors caused by text where numbers are expected, unparseable VALUE inputs, date text, array ranges, and wrong argument types.',
+    eyebrow: 'Google Sheets #VALUE! error fixer',
+    h1: 'Fix a Google Sheets #VALUE! error without hiding the bad input.',
+    lede: 'Paste the formula returning #VALUE!, describe what the cell should calculate, and get a focused repair path for text-stored numbers, date text, VALUE conversion, range shapes, and wrong argument types.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=ARRAYFORMULA(VALUE(REGEXREPLACE(B2:B,"[$,]",""))*C2:C)'
+    },
+    intent: 'Help Google Sheets users repair one formula returning #VALUE! when the formula receives text, date text, a range shape, or another value type it cannot use in the calculation.',
+    bestFor: [
+      'Imported amounts, percentages, or dates that look right in the grid but are stored as text.',
+      'VALUE formulas that say the parameter cannot be parsed as a number.',
+      'ARRAYFORMULA, math, lookup, date, or text formulas that fail after source data changes type.'
+    ],
+    steps: [
+      'Paste the exact formula returning #VALUE!.',
+      'Add one source value that should calculate and one source value that currently breaks.',
+      'Describe whether the source data came from a CSV, form response, import, pasted report, or another formula.'
+    ],
+    copyChecks: [
+      'Convert only the cells that should be numeric or date values instead of wrapping the whole formula in IFERROR first.',
+      'Remove currency symbols, commas, extra spaces, and labels before VALUE tries to parse imported numbers.',
+      'Check whether dates are real date values or text strings before comparing or subtracting them.',
+      'Test the repaired formula on one known row before filling it through a shared sheet.'
+    ]
+  },
+  {
     slug: 'excel-formula-not-calculating',
     title: 'Excel Formula Not Calculating Fixer | Write My Formula',
     description: 'Fix Excel formulas that do not calculate, do not update automatically, show stale values, or display formula text instead of the result.',
@@ -2446,6 +2476,20 @@ const pageEnhancements = {
       setup: 'A summary formula used to total values from an Archive tab, but the tab was renamed to Closed Orders.',
       formula: '=SUM(\'Closed Orders\'!B2:B500)',
       read: 'The repaired formula points at the current tab name and quotes it because the sheet name contains a space. After replacing the broken reference, test the range on a small slice before copying the formula elsewhere.'
+    }
+  },
+  'google-sheets-value-error': {
+    gives: [
+      'A focused repair pass for one Google Sheets formula returning #VALUE!.',
+      'Checks for imported text numbers, date text, VALUE parsing, hidden spaces, range shapes, and wrong argument types.',
+      'A revised formula path you can test on one known row before changing a shared report.'
+    ],
+    useWhen: 'Use this page when Google Sheets shows #VALUE!, says a VALUE parameter cannot be parsed, or fails because a formula expected a number/date/logical value but received text or a mismatched range. It is strongest when you can paste the exact formula and one source value that should work.',
+    notWhen: 'Do not make #VALUE! disappear with a broad IFERROR before checking the input type. The error often points to imported text, symbols, hidden spaces, date text, or a range mismatch that should be fixed before the formula is trusted.',
+    example: {
+      setup: 'A report imports amounts such as $1,240.50 as text in column B, and column C contains quantities. The formula should multiply the cleaned amount by the quantity.',
+      formula: '=IFERROR(VALUE(REGEXREPLACE(B2,"[$,]",""))*C2,"Check imported amount")',
+      read: 'The formula removes currency symbols and commas from B2, converts the remaining text to a number, and multiplies by C2. The fallback is limited to the conversion path so the row can be reviewed instead of silently trusted.'
     }
   },
   'google-sheets-filter-not-working': {
