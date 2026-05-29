@@ -79,6 +79,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Repair formulas broken by deleted rows, moved cells, invalid references, or shifted lookup ranges/);
   assert.match(page, /\/google-sheets-formula-parse-error\//);
   assert.match(page, /Repair Sheets formulas with missing quotes, mismatched parentheses, wrong separators, or malformed QUERY syntax/);
+  assert.match(page, /\/google-sheets-filter-not-working\//);
+  assert.match(page, /Fix FILTER formulas with #N\/A, mismatched range sizes, wrong rows, no matches, or row-versus-column condition issues/);
   assert.match(page, /\/google-sheets-query-not-working\//);
   assert.match(page, /Fix QUERY formulas with parse errors, NO_COLUMN messages, wrong Col references, header problems, or missing rows/);
   assert.match(page, /\/google-sheets-importrange-not-working\//);
@@ -269,6 +271,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-circular-reference',
     'excel-ref-error',
     'google-sheets-formula-parse-error',
+    'google-sheets-filter-not-working',
     'google-sheets-query-not-working',
     'google-sheets-arrayformula-not-working',
     'google-sheets-importrange-not-working',
@@ -664,6 +667,26 @@ test('google sheets formula parse error page targets Sheets repair intent withou
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-formula-parse-error\//);
   assert.doesNotMatch(page, /upload|workbook audit|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated/i);
+});
+
+test('google sheets FILTER not working page targets filter repair intent without overclaiming', () => {
+  const page = read('google-sheets-filter-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Google Sheets FILTER Not Working/);
+  assert.match(page, /Fix a Google Sheets FILTER formula that is not returning the rows you expected/);
+  assert.match(page, /FILTER has mismatched range sizes/);
+  assert.match(page, /same-size ranges, condition logic, no-match handling, and row-versus-column filter shapes/);
+  assert.match(page, /condition arguments? the same length|condition ranges/i);
+  assert.match(page, /=FILTER\(A2:D,B2:B=&quot;Paid&quot;,C2:C=&quot;West&quot;\)/);
+  assert.match(page, /Use row conditions for row filtering and column conditions for column filtering/);
+  assert.match(page, /Check whether #N\/A means no rows matched/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-filter-not-working\/">Google Sheets FILTER not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-filter-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
 });
 
 test('google sheets ARRAYFORMULA not working page targets spill and range repair intent without overclaiming', () => {

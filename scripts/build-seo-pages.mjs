@@ -1006,6 +1006,38 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-filter-not-working',
+    title: 'Google Sheets FILTER Not Working? | Write My Formula',
+    description: 'Fix Google Sheets FILTER formulas with #N/A, mismatched range sizes, wrong rows, no matches, or row-versus-column condition issues.',
+    eyebrow: 'Google Sheets FILTER repair',
+    h1: 'Fix a Google Sheets FILTER formula that is not returning the rows you expected.',
+    lede: 'If FILTER shows #N/A, says FILTER has mismatched range sizes, returns blank output, or pulls the wrong rows, paste the formula and add the source headers. Get a focused repair path for same-size ranges, condition logic, no-match handling, and row-versus-column filter shapes.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=FILTER(A2:D,B2:B="Paid",C2:C="West")'
+    },
+    intent: 'Help Google Sheets users repair one FILTER formula where the visible problem is usually a condition range that is not the same length as the filtered range, a no-match #N/A result, offset criteria, mixed row and column conditions, or Boolean logic that returns the wrong rows.',
+    bestFor: [
+      'FILTER formulas that return #N/A because no row or column satisfies the provided conditions.',
+      'FILTER formulas that show FILTER has mismatched range sizes because the data range and condition range start or end on different rows.',
+      'Reports that return the wrong rows because the condition column is offset from the range being filtered.',
+      'Formulas that try to filter rows and columns in the same FILTER call instead of nesting two FILTER formulas.'
+    ],
+    steps: [
+      'Paste the exact FILTER formula and the visible error text.',
+      'Include the source headers and one row that should appear in the result.',
+      'Say whether the formula should return a blank, message, or #N/A when no rows match.'
+    ],
+    copyChecks: [
+      'Make every condition argument the same length as the range being filtered.',
+      'Use row conditions for row filtering and column conditions for column filtering; do not mix both in one FILTER call.',
+      'Check whether #N/A means no rows matched before treating it as a syntax problem.',
+      'Align open-ended ranges consistently, such as A2:D with B2:B and C2:C.',
+      'Test the repaired formula on one matching row and one no-match case before replacing a shared report formula.'
+    ]
+  },
+  {
     slug: 'google-sheets-query-not-working',
     title: 'Google Sheets QUERY Not Working? | Write My Formula',
     description: 'Fix Google Sheets QUERY formulas with parse errors, NO_COLUMN messages, wrong Col references, header problems, or missing rows.',
@@ -2256,6 +2288,20 @@ const pageEnhancements = {
       setup: 'A QUERY formula can parse incorrectly when text criteria inside the query string are not quoted.',
       formula: '=QUERY(A1:D500,"select A, B where C = \'Open\'",1)',
       read: 'The formula keeps the query text inside double quotes, then wraps the Open criterion in single quotes so Google Sheets can parse the condition as text.'
+    }
+  },
+  'google-sheets-filter-not-working': {
+    gives: [
+      'A focused repair pass for one Google Sheets FILTER formula.',
+      'Checks for same-length condition ranges, no-match #N/A results, offset criteria, row-versus-column condition shape, and Boolean condition logic.',
+      'A revised FILTER path you can test against one row that should match and one case where nothing should match.'
+    ],
+    useWhen: 'Use this page when FILTER returns #N/A, says FILTER has mismatched range sizes, returns no rows, returns the wrong rows, or breaks after you add another condition. It is strongest when you can paste the formula, the source headers, and one row that should appear in the result.',
+    notWhen: 'Do not use it as a full spreadsheet cleanup or data-model rebuild. FILTER repair starts with one formula; protected ranges, imported data, merged cells, and multi-step reports may still need separate review.',
+    example: {
+      setup: 'A source table in A2:D should return paid West orders. The original formula mixed an open-ended data range with a capped condition range.',
+      formula: '=FILTER(A2:D,B2:B="Paid",C2:C="West")',
+      read: 'The formula keeps each condition range aligned with the filtered range. If no row is both Paid and West, Sheets can still return #N/A because no values satisfy the conditions.'
     }
   },
   'google-sheets-query-not-working': {
