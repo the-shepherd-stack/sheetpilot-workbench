@@ -448,6 +448,39 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-ref-error',
+    title: 'Fix #REF! Errors in Google Sheets | Write My Formula',
+    description: 'Fix Google Sheets #REF! errors from deleted tabs, invalid ranges, moved references, IMPORTRANGE access, blocked arrays, or broken INDIRECT strings.',
+    eyebrow: 'Google Sheets #REF! error',
+    h1: 'Fix a #REF! error in Google Sheets.',
+    lede: 'Paste the broken formula, describe what the sheet was supposed to return, and get a focused repair path for invalid references, deleted tabs or ranges, moved lookup ranges, IMPORTRANGE references, blocked array output, and INDIRECT strings that no longer point anywhere valid.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=SUM(Archive!B2:B500)'
+    },
+    intent: 'Help Google Sheets users repair one formula returning #REF! after a referenced row, column, tab, source range, spill area, imported range, or text-built reference stops being valid.',
+    bestFor: [
+      'Formulas that broke after someone deleted or renamed a tab, row, column, or source range.',
+      'Lookup, summary, and cross-sheet formulas where the reference path no longer points at the intended data.',
+      'IMPORTRANGE formulas where the source range, permission prompt, or source access needs to be separated from the formula shape.',
+      'ARRAYFORMULA, FILTER, or QUERY outputs that show #REF! because the result cannot expand into occupied cells.',
+      'INDIRECT formulas where a text-built sheet or range name no longer resolves to a valid reference.'
+    ],
+    steps: [
+      'Paste the exact formula that returns #REF!, including any missing-reference tokens Sheets shows.',
+      'Describe the intended source sheet, range, lookup table, import, or output area.',
+      'Mention what changed recently, such as a deleted tab, moved column, renamed sheet, new import, or blocked spill range.'
+    ],
+    copyChecks: [
+      'Replace the broken reference with the current sheet, range, or tab before wrapping the formula in IFERROR.',
+      'Confirm whether IMPORTRANGE is waiting for access, pointing at a missing source range, or importing more data than the formula needs.',
+      'Clear the intended spill area before rewriting an array formula that is blocked by existing cells.',
+      'Check that INDIRECT text creates a real A1-style reference after sheet names, spaces, and quotes are handled.',
+      'Test the repaired formula on one small range before filling it through a shared sheet.'
+    ]
+  },
+  {
     slug: 'excel-formula-not-calculating',
     title: 'Excel Formula Not Calculating Fixer | Write My Formula',
     description: 'Fix Excel formulas that do not calculate, do not update automatically, show stale values, or display formula text instead of the result.',
@@ -2399,6 +2432,20 @@ const pageEnhancements = {
       setup: 'A SUMIF formula should total West-region amounts, but column D came from a CSV import and the amounts are stored as text.',
       formula: '=SUMPRODUCT((B:B="West")*IFERROR(VALUE(D:D),0))',
       read: 'The formula checks the same West criterion while coercing imported text amounts into numbers. IFERROR is limited to the conversion step so non-numeric imported cells do not break the sum.'
+    }
+  },
+  'google-sheets-ref-error': {
+    gives: [
+      'A focused repair pass for one Google Sheets formula returning #REF!.',
+      'Checks for deleted tabs, invalid ranges, moved references, IMPORTRANGE access or range issues, blocked array output, and broken INDIRECT strings.',
+      'A rebuilt reference path you can test on one small range before changing a shared sheet.'
+    ],
+    useWhen: 'Use this page when Google Sheets returns #REF! because a formula points at a tab, row, column, import, spill area, or text-built reference that is no longer valid. It is strongest when you can paste the exact formula and describe what changed before the error appeared.',
+    notWhen: 'Do not hide #REF! with IFERROR before replacing the missing reference. The error usually means Sheets cannot use part of the formula path, so the first job is to identify the intended current source range or output area.',
+    example: {
+      setup: 'A summary formula used to total values from an Archive tab, but the tab was renamed to Closed Orders.',
+      formula: '=SUM(\'Closed Orders\'!B2:B500)',
+      read: 'The repaired formula points at the current tab name and quotes it because the sheet name contains a space. After replacing the broken reference, test the range on a small slice before copying the formula elsewhere.'
     }
   },
   'google-sheets-filter-not-working': {

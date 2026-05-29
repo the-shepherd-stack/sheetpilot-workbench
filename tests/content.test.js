@@ -47,6 +47,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Diagnose formulas that show text, stay stale, return errors, or calculate the wrong value/);
   assert.match(page, /\/excel-formulas-not-working\//);
   assert.match(page, /Fix formulas that stop calculating after imports, copied ranges, locale settings, or text-number mismatches/);
+  assert.match(page, /\/google-sheets-ref-error\//);
+  assert.match(page, /Fix formulas broken by deleted tabs, invalid ranges, moved references, blocked array output, or IMPORTRANGE source issues/);
   assert.match(page, /\/excel-formula-not-calculating\//);
   assert.match(page, /Fix formulas that stay stale, show formula text, or only update after manual recalculation/);
   assert.match(page, /\/excel-showing-formula-instead-of-result\//);
@@ -275,6 +277,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-circular-reference',
     'excel-ref-error',
     'google-sheets-formulas-not-working',
+    'google-sheets-ref-error',
     'google-sheets-formula-parse-error',
     'google-sheets-filter-not-working',
     'google-sheets-query-not-working',
@@ -391,6 +394,25 @@ test('google sheets formulas not working page targets broad Sheets repair intent
   assert.match(homepage, /href="\/google-sheets-formulas-not-working\/">Google Sheets formulas not working/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-formulas-not-working\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
+});
+
+test('google sheets REF error page targets broken-reference repair intent without overclaiming', () => {
+  const page = read('google-sheets-ref-error/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Fix #REF! Errors in Google Sheets/);
+  assert.match(page, /Fix a #REF! error in Google Sheets/);
+  assert.match(page, /invalid references, deleted tabs or ranges, moved lookup ranges/);
+  assert.match(page, /IMPORTRANGE references, blocked array output, and INDIRECT strings/);
+  assert.match(page, /deleted or renamed a tab, row, column, or source range|deleted tabs, invalid ranges, moved references/);
+  assert.match(page, /Clear the intended spill area before rewriting an array formula/);
+  assert.match(page, /=SUM\('Closed Orders'!B2:B500\)/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-ref-error\/">Google Sheets #REF! error/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-ref-error\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|finds every|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|private|\blocal\b|secure by default|instant|in seconds|one click|automatic|pay before answer/i);
 });
 
 test('excel formula not calculating page targets recalculation repair intent without overclaiming', () => {
