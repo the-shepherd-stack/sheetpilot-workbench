@@ -1134,6 +1134,38 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-vlookup-not-working',
+    title: 'Google Sheets VLOOKUP Not Working? | Write My Formula',
+    description: 'Fix Google Sheets VLOOKUP formulas with #N/A, wrong matches, approximate-match issues, lookup-range mistakes, or return-column problems.',
+    eyebrow: 'Google Sheets VLOOKUP repair',
+    h1: 'Fix a Google Sheets VLOOKUP formula that is not returning the right value.',
+    lede: 'If VLOOKUP returns #N/A, pulls a plausible but wrong row, or breaks after you copy the formula down, paste the formula and add the lookup table headers. Get a focused repair path for exact match, sorted ranges, first-column lookup rules, return-column indexes, and text-number mismatches.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=VLOOKUP(E2,A2:D500,4,TRUE)'
+    },
+    intent: 'Help Google Sheets users repair one VLOOKUP formula where the visible problem is usually a missing exact match, an omitted is_sorted argument, an unsorted approximate-match range, a lookup table that does not start with the key column, a wrong return index, or stored text and numbers that look equal but do not match.',
+    bestFor: [
+      'VLOOKUP formulas that return #N/A even though the lookup value appears in the sheet.',
+      'VLOOKUP formulas that return the wrong row because is_sorted is TRUE or omitted while the first lookup column is not sorted.',
+      'Lookup ranges where the search key is not in the first column of the selected range.',
+      'Copied formulas where the return-column index, locked range, or stored value type changed.'
+    ],
+    steps: [
+      'Paste the exact VLOOKUP formula and the visible error text or wrong result.',
+      'Include one lookup value that should match and the first few columns of the lookup table.',
+      'Say whether the lookup should be exact or approximate, especially when the fourth argument is missing.'
+    ],
+    copyChecks: [
+      'Use FALSE or 0 for exact match unless approximate matching is intentional.',
+      'Sort the first column of the lookup range in ascending order before using TRUE approximate match.',
+      'Confirm the selected range starts with the column VLOOKUP should search.',
+      'Count the return index from the first column of the selected range, not from the sheet as a whole.',
+      'Check whether lookup IDs, dates, or numbers are stored as matching text or numeric values before adding a fallback.'
+    ]
+  },
+  {
     slug: 'conditional-formatting-formula-not-working',
     title: 'Conditional Formatting Formula Not Working? | Write My Formula',
     description: 'Fix Excel and Google Sheets conditional formatting formulas that highlight nothing, highlight everything, shift references, or lose to another rule.',
@@ -2344,6 +2376,20 @@ const pageEnhancements = {
       setup: 'A destination sheet needs only open orders from columns A through E of a source spreadsheet. The original formula imported every column first, then filtered later.',
       formula: '=QUERY(IMPORTRANGE("https://docs.google.com/spreadsheets/d/source-id/edit","Orders!A:E"),"select Col1, Col3, Col5 where Col4 = \'Open\'",1)',
       read: 'The formula narrows the import to the needed columns, then runs QUERY against the imported array with Col-style references. Permission still has to be granted once from the destination sheet before the formula can return data.'
+    }
+  },
+  'google-sheets-vlookup-not-working': {
+    gives: [
+      'A focused repair pass for one Google Sheets VLOOKUP formula.',
+      'Checks for exact-match mode, sorted approximate-match ranges, first-column lookup behavior, return-column indexes, and stored text-number mismatches.',
+      'A revised VLOOKUP path you can test against one known matching row and one missing-match case.'
+    ],
+    useWhen: 'Use this page when Google Sheets VLOOKUP returns #N/A, says it did not find a value, returns a wrong row, returns the wrong column, or starts failing after the formula is copied. It is strongest when you can paste the formula, the lookup table headers, and one value that should match.',
+    notWhen: 'Do not hide a lookup problem with IFERROR before checking the range, match mode, and stored value types. A #N/A result may be a real missing match, while an omitted fourth argument can make VLOOKUP use approximate matching when you expected exact match.',
+    example: {
+      setup: 'A product table in A2:D500 has SKU in the first column and status in the fourth column. The formula should return the status for the SKU in E2.',
+      formula: '=IFNA(VLOOKUP(E2,$A$2:$D$500,4,FALSE),"Not found")',
+      read: 'The formula searches for E2 in the first column of A2:D500, returns the fourth column from the same row, and uses exact match. The fallback appears only after the lookup range, return index, and source values have been checked.'
     }
   },
   'conditional-formatting-formula-not-working': {
