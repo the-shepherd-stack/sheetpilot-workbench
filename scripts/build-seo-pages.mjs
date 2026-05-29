@@ -415,6 +415,39 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-formulas-not-working',
+    title: 'Google Sheets Formulas Not Working? | Write My Formula',
+    description: 'Fix Google Sheets formulas that show errors, stay as text, stop updating, return wrong results, or break after imports and copied examples.',
+    eyebrow: 'Google Sheets formulas not working',
+    h1: 'Fix Google Sheets formulas that are not working.',
+    lede: 'Paste the Sheets formula that is failing, describe what should happen, and get a focused repair path for parse errors, text-formatted values, invalid references, stale results, locale separators, and common lookup or array failures.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=SUMIF(B:B,"West",D:D)'
+    },
+    intent: 'Help Google Sheets users repair one formula when the visible symptom is not yet narrowed to a single function: a formula parse error, #ERROR!, #REF!, #VALUE!, #N/A, text in the cell, stale output, or a plausible but wrong result.',
+    bestFor: [
+      'Formulas copied from Excel, a tutorial, or an AI answer that need Sheets syntax, separators, and function support checked.',
+      'Cells that show formula text instead of running, often because formatting or a leading apostrophe changed how Sheets reads the entry.',
+      'Imported CSV or app data where numbers, dates, or IDs look correct but are stored as text.',
+      'References that broke after a row, column, tab, or source range moved or was deleted.',
+      'Lookup, QUERY, FILTER, ARRAYFORMULA, SUMIF, and COUNTIF formulas that return errors, blanks, stale values, or wrong rows.'
+    ],
+    steps: [
+      'Paste the exact formula and the visible symptom, such as formula parse error, #REF!, #VALUE!, #N/A, text in the cell, stale value, blank, or wrong result.',
+      'Add one row or small sample where you know the expected answer.',
+      'Mention whether the formula came from Excel, a different locale, an import, a copied sheet, or a recent range edit.'
+    ],
+    copyChecks: [
+      'Check whether your sheet expects commas or semicolons between function arguments before changing the formula logic.',
+      'Confirm numbers, dates, and lookup IDs are stored as the type the formula expects.',
+      'Replace broken references with the intended current ranges before wrapping the formula in IFERROR.',
+      'Use IFNA or IFERROR only after deciding whether the error is acceptable to hide.',
+      'Test the repaired formula on one known row before filling it through a shared sheet.'
+    ]
+  },
+  {
     slug: 'excel-formula-not-calculating',
     title: 'Excel Formula Not Calculating Fixer | Write My Formula',
     description: 'Fix Excel formulas that do not calculate, do not update automatically, show stale values, or display formula text instead of the result.',
@@ -2352,6 +2385,20 @@ const pageEnhancements = {
       setup: 'A QUERY formula can parse incorrectly when text criteria inside the query string are not quoted.',
       formula: '=QUERY(A1:D500,"select A, B where C = \'Open\'",1)',
       read: 'The formula keeps the query text inside double quotes, then wraps the Open criterion in single quotes so Google Sheets can parse the condition as text.'
+    }
+  },
+  'google-sheets-formulas-not-working': {
+    gives: [
+      'A focused repair pass for one Google Sheets formula that is failing or returning the wrong result.',
+      'Checks for parse errors, invalid references, text-formatted values, locale separators, stale outputs, and missing matches.',
+      'A revised formula direction you can test on one known row before changing a shared sheet.'
+    ],
+    useWhen: 'Use this page when a Google Sheets formula shows #ERROR!, #REF!, #VALUE!, #N/A, stays as text, stops updating, returns blank, or calculates a wrong value and you have not narrowed the problem to one function yet. It is strongest when you can paste the exact formula plus one expected result.',
+    notWhen: 'Do not use it as a full sheet cleanup or file-inspection workflow. The repair starts with one formula and the surrounding context you type into the form; permissions, protected ranges, imports, and larger data-model issues may still need separate checks.',
+    example: {
+      setup: 'A SUMIF formula should total West-region amounts, but column D came from a CSV import and the amounts are stored as text.',
+      formula: '=SUMPRODUCT((B:B="West")*IFERROR(VALUE(D:D),0))',
+      read: 'The formula checks the same West criterion while coercing imported text amounts into numbers. IFERROR is limited to the conversion step so non-numeric imported cells do not break the sum.'
     }
   },
   'google-sheets-filter-not-working': {

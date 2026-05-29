@@ -274,6 +274,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-num-error',
     'excel-circular-reference',
     'excel-ref-error',
+    'google-sheets-formulas-not-working',
     'google-sheets-formula-parse-error',
     'google-sheets-filter-not-working',
     'google-sheets-query-not-working',
@@ -370,6 +371,26 @@ test('excel formulas not working page targets repair intent without overclaiming
   assert.doesNotMatch(page, /upload/i);
   assert.doesNotMatch(page, /guarantee/i);
   assert.doesNotMatch(page, /Microsoft partner/i);
+});
+
+test('google sheets formulas not working page targets broad Sheets repair intent without overclaiming', () => {
+  const page = read('google-sheets-formulas-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Google Sheets Formulas Not Working/);
+  assert.match(page, /Fix Google Sheets formulas that are not working/);
+  assert.match(page, /parse errors, text-formatted values, invalid references, stale results, locale separators/);
+  assert.match(page, /#ERROR!, #REF!, #VALUE!, #N\/A/);
+  assert.match(page, /commas or semicolons/);
+  assert.match(page, /numbers, dates, and lookup IDs are stored as the type/);
+  assert.match(page, /=SUMPRODUCT\(\(B:B=&quot;West&quot;\)\*IFERROR\(VALUE\(D:D\),0\)\)/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-formulas-not-working\/">Google Sheets formulas not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-formulas-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
 });
 
 test('excel formula not calculating page targets recalculation repair intent without overclaiming', () => {
