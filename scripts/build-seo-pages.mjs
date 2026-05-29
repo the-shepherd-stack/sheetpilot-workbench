@@ -511,6 +511,39 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-na-error',
+    title: 'Google Sheets #N/A Error Fixer | Write My Formula',
+    description: 'Fix Google Sheets #N/A errors from missing lookup matches, no-match FILTER results, text-number mismatches, hidden spaces, and fallback mistakes.',
+    eyebrow: 'Google Sheets #N/A error fixer',
+    h1: 'Fix a Google Sheets #N/A error before you hide it.',
+    lede: 'Paste the formula returning #N/A, add what should have matched, and get a focused repair path for lookup keys, FILTER no-match cases, stored text versus numbers, hidden spaces, range choices, and IFNA fallbacks.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=IFNA(VLOOKUP(E2,A2:D500,4,FALSE),"Not found")'
+    },
+    intent: 'Help Google Sheets users repair one formula returning #N/A when a lookup, FILTER, MATCH, XLOOKUP, VLOOKUP, or imported value does not match the source data the way the sheet author expects.',
+    bestFor: [
+      'Lookup formulas that return #N/A even though the value appears to exist in the source table.',
+      'FILTER formulas that show no matches when at least one row should pass the conditions.',
+      'Imported IDs, dates, or numbers that look equal but are stored as different types.',
+      'Cells with hidden spaces, inconsistent capitalization, or copied values that prevent an exact match.',
+      'IFNA or IFERROR fallbacks that may be hiding a real missing-match problem too early.'
+    ],
+    steps: [
+      'Paste the exact formula returning #N/A.',
+      'Add one lookup value, filter condition, or row that should match.',
+      'Include the relevant source headers and say whether a true missing match should stay #N/A, return blank, or show a message.'
+    ],
+    copyChecks: [
+      'Confirm the lookup or filter source range includes the row or column you expect to match.',
+      'Check whether the source value and lookup value are both text, both numbers, or both real dates.',
+      'Clean hidden spaces with TRIM only after confirming spaces are not meaningful in the source data.',
+      'Use IFNA for expected missing matches instead of wrapping every formula problem in IFERROR.',
+      'Test one known match and one true missing value before filling the repaired formula through a shared sheet.'
+    ]
+  },
+  {
     slug: 'excel-formula-not-calculating',
     title: 'Excel Formula Not Calculating Fixer | Write My Formula',
     description: 'Fix Excel formulas that do not calculate, do not update automatically, show stale values, or display formula text instead of the result.',
@@ -2490,6 +2523,20 @@ const pageEnhancements = {
       setup: 'A report imports amounts such as $1,240.50 as text in column B, and column C contains quantities. The formula should multiply the cleaned amount by the quantity.',
       formula: '=IFERROR(VALUE(REGEXREPLACE(B2,"[$,]",""))*C2,"Check imported amount")',
       read: 'The formula removes currency symbols and commas from B2, converts the remaining text to a number, and multiplies by C2. The fallback is limited to the conversion path so the row can be reviewed instead of silently trusted.'
+    }
+  },
+  'google-sheets-na-error': {
+    gives: [
+      'A focused repair pass for one Google Sheets formula returning #N/A.',
+      'Checks for lookup keys, no-match FILTER results, range selection, hidden spaces, stored value types, and fallback placement.',
+      'A revised formula path you can test on one known match and one true missing value before changing a shared report.'
+    ],
+    useWhen: 'Use this page when Google Sheets returns #N/A, says it did not find a value, or shows no matches even though a lookup value or FILTER condition appears to match the source data. It is strongest when you can paste the formula, the source headers, and one value or row that should match.',
+    notWhen: 'Do not hide every #N/A with IFERROR before checking the source data. A missing match may be correct, while a surprising #N/A often points to the wrong range, stored text versus numbers, hidden spaces, or a fallback placed before the formula is understood.',
+    example: {
+      setup: 'A product table in A2:D500 has SKU in the first column and status in the fourth column. E2 contains a SKU from an imported order file that should match the product table.',
+      formula: '=IFNA(VLOOKUP(TRIM(E2),$A$2:$D$500,4,FALSE),"Not found")',
+      read: 'The formula trims hidden spaces from the imported lookup value, searches the first column of the product table with exact match, and returns the status from column 4. The IFNA fallback appears only after the range and source values have been checked.'
     }
   },
   'google-sheets-filter-not-working': {

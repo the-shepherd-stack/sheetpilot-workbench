@@ -51,6 +51,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix formulas broken by deleted tabs, invalid ranges, moved references, blocked array output, or IMPORTRANGE source issues/);
   assert.match(page, /\/google-sheets-value-error\//);
   assert.match(page, /Fix formulas blocked by imported text numbers, unparseable VALUE inputs, date text, range shapes, or wrong argument types/);
+  assert.match(page, /\/google-sheets-na-error\//);
+  assert.match(page, /Fix formulas with missing lookup matches, no-match FILTER results, text-number mismatches, hidden spaces, or fallback mistakes/);
   assert.match(page, /\/excel-formula-not-calculating\//);
   assert.match(page, /Fix formulas that stay stale, show formula text, or only update after manual recalculation/);
   assert.match(page, /\/excel-showing-formula-instead-of-result\//);
@@ -281,6 +283,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'google-sheets-formulas-not-working',
     'google-sheets-ref-error',
     'google-sheets-value-error',
+    'google-sheets-na-error',
     'google-sheets-formula-parse-error',
     'google-sheets-filter-not-working',
     'google-sheets-query-not-working',
@@ -433,6 +436,24 @@ test('google sheets VALUE error page targets text-number repair intent without o
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/google-sheets-value-error\/">Google Sheets #VALUE! error/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-value-error\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|finds every|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|private|\blocal\b|secure by default|instant|in seconds|one click|automatic|pay before answer/i);
+});
+
+test('google sheets NA error page targets missing-match repair intent without overclaiming', () => {
+  const page = read('google-sheets-na-error/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Google Sheets #N\/A Error Fixer/);
+  assert.match(page, /Fix a Google Sheets #N\/A error before you hide it/);
+  assert.match(page, /lookup keys, FILTER no-match cases, stored text versus numbers, hidden spaces/);
+  assert.match(page, /Google Sheets returns #N\/A, says it did not find a value, or shows no matches/);
+  assert.match(page, /Use IFNA for expected missing matches instead of wrapping every formula problem in IFERROR/);
+  assert.match(page, /=IFNA\(VLOOKUP\(TRIM\(E2\),\$A\$2:\$D\$500,4,FALSE\),&quot;Not found&quot;\)/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-na-error\/">Google Sheets #N\/A error/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-na-error\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|finds every|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|private|\blocal\b|secure by default|instant|in seconds|one click|automatic|pay before answer/i);
 });
 
