@@ -87,6 +87,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix IMPORTRANGE formulas with #REF!, Allow access prompts, oversized imports, slow refreshes, or source permission issues/);
   assert.match(page, /\/google-sheets-vlookup-not-working\//);
   assert.match(page, /Fix VLOOKUP formulas with #N\/A, wrong matches, approximate-match issues, lookup-range mistakes, or return-column problems/);
+  assert.match(page, /\/google-sheets-xlookup-not-working\//);
+  assert.match(page, /Fix XLOOKUP formulas with #N\/A, wrong rows, blank fallbacks, range-size mismatches, or search-mode issues/);
   assert.match(page, /\/conditional-formatting-formula-not-working\//);
   assert.match(page, /Fix Excel and Google Sheets rules that highlight nothing, highlight everything, shift references, or lose to another rule/);
   assert.match(page, /\/excel-vlookup-not-working\//);
@@ -278,6 +280,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'google-sheets-arrayformula-not-working',
     'google-sheets-importrange-not-working',
     'google-sheets-vlookup-not-working',
+    'google-sheets-xlookup-not-working',
     'conditional-formatting-formula-not-working',
     'excel-vlookup-not-working',
     'vlookup-na-error',
@@ -752,6 +755,26 @@ test('google sheets VLOOKUP not working page targets lookup repair intent withou
   assert.match(homepage, /href="\/google-sheets-vlookup-not-working\/">Google Sheets VLOOKUP not working/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-vlookup-not-working\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
+});
+
+test('google sheets XLOOKUP not working page targets lookup repair intent without overclaiming', () => {
+  const page = read('google-sheets-xlookup-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Google Sheets XLOOKUP Not Working/);
+  assert.match(page, /Fix a Google Sheets XLOOKUP formula that is not matching correctly/);
+  assert.match(page, /#N\/A, pulls the wrong row, shows a blank fallback/);
+  assert.match(page, /XLOOKUP\(search_key, lookup_range, result_range, missing_value, match_mode, search_mode\)/);
+  assert.match(page, /XLOOKUP\(search_key, lookup_range, result_range|lookup_range and result_range alignment|match_mode, search_mode/);
+  assert.match(page, /=XLOOKUP\(E2,\$A\$2:\$A\$500,\$D\$2:\$D\$500,&quot;Not found&quot;,0,1\)/);
+  assert.match(page, /Use search_mode -1 only when the last matching duplicate should win/);
+  assert.match(page, /Sort the lookup range before using binary search_mode 2 or -2/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-xlookup-not-working\/">Google Sheets XLOOKUP not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-xlookup-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer|working version/i);
 });
 
 test('google sheets QUERY not working page targets query repair intent without overclaiming', () => {

@@ -1166,6 +1166,38 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-xlookup-not-working',
+    title: 'Google Sheets XLOOKUP Not Working? | Write My Formula',
+    description: 'Fix Google Sheets XLOOKUP formulas with #N/A, wrong rows, blank fallbacks, range-size mismatches, or search-mode issues.',
+    eyebrow: 'Google Sheets XLOOKUP repair',
+    h1: 'Fix a Google Sheets XLOOKUP formula that is not matching correctly.',
+    lede: 'If XLOOKUP returns #N/A, pulls the wrong row, shows a blank fallback, or changes behavior after a range edit, paste the formula and add the lookup table headers. Get a focused repair path for XLOOKUP(search_key, lookup_range, result_range, missing_value, match_mode, search_mode), including duplicates and stored text-number mismatches.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=XLOOKUP(E2,A2:A500,D2:D500,"Not found",0,1)'
+    },
+    intent: 'Help Google Sheets users repair one XLOOKUP formula where the visible problem is usually a missing exact match, mismatched lookup and result ranges, a blank or misleading missing_value fallback, duplicate keys, an unintended search direction, binary search on unsorted data, or stored text and numbers that look equal but do not match.',
+    bestFor: [
+      'XLOOKUP formulas that return #N/A even though the lookup value appears in the sheet.',
+      'XLOOKUP formulas that return the wrong row because duplicate keys need a deliberate first-to-last or last-to-first search mode.',
+      'Blank-looking results where missing_value hides a true missing match or the matched result cell is empty.',
+      'Lookup and result ranges that do not cover the same rows or use binary search without a correctly sorted lookup range.'
+    ],
+    steps: [
+      'Paste the exact XLOOKUP formula and the visible error text or wrong result.',
+      'Include one lookup value that should match and the lookup/result columns it should connect.',
+      'Say whether the formula should use exact match, wildcard match, next greater, next lesser, first match, or last match.'
+    ],
+    copyChecks: [
+      'Confirm lookup_range is one row or one column and result_range lines up with the same row or column positions.',
+      'Use match_mode 0 for exact match unless next greater, next lesser, or wildcard behavior is intentional.',
+      'Use search_mode -1 only when the last matching duplicate should win.',
+      'Sort the lookup range before using binary search_mode 2 or -2.',
+      'Check whether lookup IDs, dates, or numbers are stored as matching text or numeric values before adding a fallback.'
+    ]
+  },
+  {
     slug: 'conditional-formatting-formula-not-working',
     title: 'Conditional Formatting Formula Not Working? | Write My Formula',
     description: 'Fix Excel and Google Sheets conditional formatting formulas that highlight nothing, highlight everything, shift references, or lose to another rule.',
@@ -2390,6 +2422,20 @@ const pageEnhancements = {
       setup: 'A product table in A2:D500 has SKU in the first column and status in the fourth column. The formula should return the status for the SKU in E2.',
       formula: '=IFNA(VLOOKUP(E2,$A$2:$D$500,4,FALSE),"Not found")',
       read: 'The formula searches for E2 in the first column of A2:D500, returns the fourth column from the same row, and uses exact match. The fallback appears only after the lookup range, return index, and source values have been checked.'
+    }
+  },
+  'google-sheets-xlookup-not-working': {
+    gives: [
+      'A focused repair pass for one Google Sheets XLOOKUP formula.',
+      'Checks for lookup_range and result_range alignment, missing_value fallbacks, match_mode, search_mode, duplicates, and stored text-number mismatches.',
+      'A revised XLOOKUP path you can test against one known matching row and one missing-match case.'
+    ],
+    useWhen: 'Use this page when Google Sheets XLOOKUP returns #N/A, returns the wrong duplicate match, shows a blank or misleading fallback, breaks after a range edit, or depends on match_mode and search_mode choices you are not sure about. It is strongest when you can paste the formula, the lookup table headers, and one value that should match.',
+    notWhen: 'Do not hide a lookup problem with missing_value or IFERROR before checking the lookup range, result range, match mode, search mode, and stored value types. A #N/A result may be a real missing match, and a wrong duplicate result may mean the search direction needs to be deliberate.',
+    example: {
+      setup: 'A product table has SKU in A2:A500 and status in D2:D500. The formula should return the status for the SKU in E2, using exact match and a readable fallback only when the SKU is not found.',
+      formula: '=XLOOKUP(E2,$A$2:$A$500,$D$2:$D$500,"Not found",0,1)',
+      read: 'The formula searches for E2 in the SKU column, returns status from the same row in D, uses exact match, and searches from first entry to last. The fallback appears only after the lookup and result ranges have been checked.'
     }
   },
   'conditional-formatting-formula-not-working': {
