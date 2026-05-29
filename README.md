@@ -35,5 +35,12 @@ IndexNow key file: `8e6a0b9c4d2f41a7b5c3e8d9f0a1b2c6.txt`.
 
 ## Outreach Ledger
 
+- 2026-05-29: SpreadsheetClass first-touch sent to `corey.spreadsheetclass@gmail.com`; Gmail message id/thread id `19e7489a7f6fa8dd`; wait until `2026-06-01 16:20 UTC` before another Excel consulting/support-service prospect unless GetSpreadsheet, Easy Excel Answers, or SpreadsheetClass replies.
+- 2026-05-29: ProfessionalsExcel first-touch sent to `ask@davidringstrom.com`; Gmail message id/thread id `19e733fa8bda27d7`; wait until `2026-06-01 10:20 UTC` before another training/resource prospect unless Learn Excel Now, Excel Campus, or ProfessionalsExcel replies.
+- 2026-05-27: FormulaBoost replied no to the neutral-link ask; Gmail message id `19e6b20edd5c20d2`; do not re-contact FormulaBoost unless they ask for more information or Write My Formula has materially stronger proof.
+- 2026-05-27: FormulaDesk first-touch sent to `support@formuladesk.com`; Gmail message id/thread id `19e6b86788944dd4`; wait until `2026-05-30 22:20 UTC` before another spreadsheet add-in vendor prospect unless Ablebits or FormulaDesk replies.
+- 2026-05-26: FormulaBoost first-touch sent to `support@formulaboost.com`; Gmail message id/thread id `19e65f224f9ce9a0`; wait until `2026-05-29 20:19 UTC` before another spreadsheet add-in vendor prospect unless Ablebits or FormulaBoost replies.
+- 2026-05-26: Easy Excel Answers first-touch sent to `easyexcelanswers@gmail.com`; Gmail message id/thread id `19e65165bb2121e1`; wait until `2026-05-29 16:20 UTC` before another Excel consulting/support-service prospect unless GetSpreadsheet or Easy Excel Answers replies.
 - 2026-05-26: Excel Campus first-touch sent to `jon@excelcampus.com`; Gmail message id/thread id `19e63caa70f1ea7e`; wait until `2026-05-29 10:18 UTC` before another training/resource prospect unless Learn Excel Now or Excel Campus replies.
 - 2026-05-26: Someka first-touch sent to `contact@someka.net`; Gmail message id/thread id `19e643b23e96f337`; wait until `2026-05-29 12:20 UTC` before another marketplace/app-template prospect unless XLworks or Someka replies.
+- 2026-05-26: Someka replied positively about a link exchange; follow-up sent in thread `19e643b23e96f337` with Gmail id `19e650f5d90d4d83`. Wait for their requested URL/anchor and placement page before adding any reciprocal link.
