@@ -107,6 +107,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix IMPORTRANGE formulas with #REF!, Allow access prompts, oversized imports, slow refreshes, or source permission issues/);
   assert.match(page, /\/google-sheets-importxml-not-working\//);
   assert.match(page, /Fix IMPORTXML formulas with #N\/A, Imported content is empty, Could not fetch URL, XPath mistakes, oversized results, or blocked page content/);
+  assert.match(page, /\/google-sheets-conditional-formatting-not-working\//);
+  assert.match(page, /Fix conditional formatting custom formulas that highlight nothing, highlight the wrong rows, lose to another rule, or break across sheets/);
   assert.match(page, /\/google-sheets-vlookup-not-working\//);
   assert.match(page, /Fix VLOOKUP formulas with #N\/A, wrong matches, approximate-match issues, lookup-range mistakes, or return-column problems/);
   assert.match(page, /\/google-sheets-xlookup-not-working\//);
@@ -314,6 +316,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'google-sheets-arrayformula-not-working',
     'google-sheets-importrange-not-working',
     'google-sheets-importxml-not-working',
+    'google-sheets-conditional-formatting-not-working',
     'google-sheets-vlookup-not-working',
     'google-sheets-xlookup-not-working',
     'conditional-formatting-formula-not-working',
@@ -1027,6 +1030,28 @@ test('google sheets IMPORTXML not working page targets XPath repair intent witho
   assert.match(homepage, /href="\/google-sheets-importxml-not-working\/">Google Sheets IMPORTXML not working/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-importxml-not-working\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|working one back|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one click|automatic|pay before answer|detects JS|cancel any time/i);
+});
+
+test('google sheets conditional formatting page targets custom formula repair intent without overclaiming', () => {
+  const page = read('google-sheets-conditional-formatting-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Google Sheets Conditional Formatting Custom Formula Not Working/);
+  assert.match(page, /Fix a Google Sheets conditional formatting custom formula that is not working/);
+  assert.match(page, /custom formula can work in a normal cell and still fail in conditional formatting/);
+  assert.match(page, /apply-to range/);
+  assert.match(page, /top-left cell/);
+  assert.match(page, /dollar-sign anchors/);
+  assert.match(page, /TRUE\/FALSE/);
+  assert.match(page, /INDIRECT/);
+  assert.match(page, /=AND\(\$B2&lt;TODAY\(\),\$C2&lt;&gt;&quot;Done&quot;\)/);
+  assert.match(page, /Check whether a rule above this one is already setting the format/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-conditional-formatting-not-working\/">Google Sheets conditional formatting not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-conditional-formatting-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|full sheet design|guarantee|guaranteed|always fixes|fixes every|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one click|automatic|pay before answer/i);
 });
 
 test('google sheets VLOOKUP not working page targets lookup repair intent without overclaiming', () => {

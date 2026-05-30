@@ -1552,6 +1552,42 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-conditional-formatting-not-working',
+    title: 'Google Sheets Conditional Formatting Custom Formula Not Working? | Write My Formula',
+    description: 'Fix Google Sheets conditional formatting custom formulas that highlight nothing, highlight the wrong rows, lose to another rule, or break across sheets.',
+    eyebrow: 'Google Sheets conditional formatting repair',
+    h1: 'Fix a Google Sheets conditional formatting custom formula that is not working.',
+    lede: 'A custom formula can work in a normal cell and still fail in conditional formatting. The apply-to range may not match the first-row reference, the dollar signs may lock the wrong row or column, the rule may not return TRUE/FALSE, or another rule may be winning. Paste the rule and the range it applies to to get a focused repair path for Google Sheets custom formula rules.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      task: 'Fix this Google Sheets conditional formatting custom formula so open overdue tasks highlight the whole row.',
+      table: 'Task,Due Date,Status\nRenew contract,2026-05-10,Open\nSend invoice,2026-05-25,Done',
+      range: 'Apply to A2:C100; due dates in B; status in C; first row is 2',
+      hint: 'Google Sheets conditional formatting custom formula',
+      formula: '=AND(B2<TODAY(),C2<>"Done")'
+    },
+    intent: 'Help Google Sheets users repair one conditional-formatting custom formula where the visible problem is usually nothing highlighting, the wrong row lighting up, a copied rule using stale references, a cross-sheet reference that needs INDIRECT, or a rule-order conflict.',
+    bestFor: [
+      'Custom formula rules that highlight nothing even though the formula works in a worksheet cell.',
+      'Whole-row highlights where $A2, A$2, $A$2, or A2 anchoring changes which cells are checked.',
+      'Rules that shift one row or one column away from the intended match because the formula was not written for the top-left cell of the apply-to range.',
+      'Conditional-formatting formulas that need TRUE/FALSE output, same-sheet references, INDIRECT for another sheet, or rule-order checks.'
+    ],
+    steps: [
+      'Paste the exact custom formula from the conditional-formatting sidebar.',
+      'Add the apply-to range and the first cell or first row in that range.',
+      'Describe what should highlight and which cells currently highlight, if any.'
+    ],
+    copyChecks: [
+      'Write the formula as if it is being evaluated from the top-left cell of the apply-to range.',
+      'Lock only the column or row that should stay fixed as Google Sheets evaluates each cell.',
+      'Make sure the custom formula returns TRUE or FALSE for the cell or row being formatted.',
+      'Check whether a rule above this one is already setting the format for the same cells.',
+      'Use INDIRECT when a custom formula needs to reference another sheet.'
+    ]
+  },
+  {
     slug: 'google-sheets-vlookup-not-working',
     title: 'Google Sheets VLOOKUP Not Working? | Write My Formula',
     description: 'Fix Google Sheets VLOOKUP formulas with #N/A, wrong matches, approximate-match issues, lookup-range mistakes, or return-column problems.',
@@ -3008,6 +3044,20 @@ const pageEnhancements = {
       setup: 'A product page has price text in a span with class price. A shorter attribute-based XPath is usually easier to maintain than a full copied browser path.',
       formula: '=IMPORTXML("https://example.com/products/widget","//span[contains(@class,\'price\')]/text()")',
       read: 'The formula gives Sheets a quoted URL and a quoted XPath that targets price text directly. If the page does not expose that text in the HTML Sheets can fetch, the page source or data source has to be checked before adding IFERROR.'
+    }
+  },
+  'google-sheets-conditional-formatting-not-working': {
+    gives: [
+      'A corrected Google Sheets custom formula to try in the conditional-formatting sidebar.',
+      'A plain-English read of the apply-to range, top-left cell, dollar-sign anchors, and TRUE/FALSE condition.',
+      'Checks for rule order, copied formatting rules, and cross-sheet references that need INDIRECT.'
+    ],
+    useWhen: 'Use this when a Google Sheets conditional-formatting custom formula highlights nothing, highlights the wrong rows, works in a normal cell but not in the rule, or changes behavior after copying formatting from another range.',
+    notWhen: 'Do not use this as a broad spreadsheet formatting audit. It is for one custom formula rule and the range that rule applies to.',
+    example: {
+      setup: 'The apply-to range is A2:C100. Due dates are in column B, status is in column C, and the whole row should highlight when the due date is before today and status is not Done.',
+      formula: '=AND($B2<TODAY(),$C2<>"Done")',
+      read: 'The dollar signs lock columns B and C so every formatted cell in the row checks the same due date and status. The row number stays relative, so row 3 checks B3 and C3.'
     }
   },
   'google-sheets-vlookup-not-working': {
