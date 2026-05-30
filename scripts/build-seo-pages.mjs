@@ -1199,6 +1199,38 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-if-formula-not-working',
+    title: 'Google Sheets IF Formula Not Working? | Write My Formula',
+    description: 'Fix Google Sheets IF formulas that return FALSE, blank, the wrong label, parse errors, or confusing nested IF results.',
+    eyebrow: 'Google Sheets IF formula repair',
+    h1: 'Fix a Google Sheets IF formula that is returning the wrong result.',
+    lede: 'IF formulas often fail quietly: FALSE appears where a label should be, a blank hides a missing false branch, quoted text breaks the syntax, or nested conditions run in the wrong order. Paste the formula and one expected row to get a focused repair path for logical tests, true/false branches, AND/OR conditions, empty strings, and locale separators.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=IF(AND(B2="Paid",C2>0),"Ready","Review")'
+    },
+    intent: 'Help Google Sheets users repair one IF, nested IF, IFS, AND, or OR formula where the visible problem is usually FALSE, blank output, a wrong label, a parse error, or branch logic that handles the wrong case first.',
+    bestFor: [
+      'IF formulas that return FALSE because the false branch is missing or the condition is not matching.',
+      'Nested IF or IFS formulas where branch order makes a broad rule catch rows before a more specific rule.',
+      'AND and OR conditions where every comparison needs to be checked against one known row.',
+      'Blank-looking cells, empty strings, quoted text outputs, and comma-versus-semicolon separator issues in shared Google Sheets.'
+    ],
+    steps: [
+      'Paste the exact IF formula and the result Google Sheets currently returns.',
+      'Add one row that should return the true result and one row that should return the false result.',
+      'Say whether blank output should mean no match, waiting for data, or an actual empty string.'
+    ],
+    copyChecks: [
+      'Put value_if_true and value_if_false in the intended order before rewriting the condition.',
+      'Add a deliberate false branch instead of letting Google Sheets return a blank by default.',
+      'Wrap text results in quotes and check whether your Sheets locale expects commas or semicolons.',
+      'For AND and OR tests, verify each comparison separately on one known row.',
+      'Use IFERROR only after the IF logic is correct, so real parse, reference, or value problems stay visible while you repair the formula.'
+    ]
+  },
+  {
     slug: 'google-sheets-circular-dependency',
     title: 'Google Sheets Circular Dependency Fixer | Write My Formula',
     description: 'Fix Google Sheets circular dependency errors caused by self-referencing cells, self-including ranges, indirect loops, and risky iterative-calculation settings.',
@@ -2687,6 +2719,20 @@ const pageEnhancements = {
       setup: 'A dashboard should total paid rows for today, but the total stays the same after new rows are added.',
       formula: '=SUMIFS(D2:D500,B2:B500,"Paid",A2:A500,TODAY())',
       read: 'The formula checks a fixed source range, the Paid status, and today\'s date. If new rows land below row 500, the range must expand; if TODAY is involved, the sheet calculation setting also matters.'
+    }
+  },
+  'google-sheets-if-formula-not-working': {
+    gives: [
+      'A focused repair pass for one Google Sheets IF formula.',
+      'Checks for logical tests, true/false branch order, missing false outputs, AND/OR conditions, quoted text, blank-looking values, and locale separators.',
+      'A revised IF path you can test against one true row and one false row before changing a shared sheet.'
+    ],
+    useWhen: 'Use this page when Google Sheets IF returns FALSE, blank, the wrong label, a parse error, or a nested-IF result you cannot trust. It is strongest when you can paste the formula plus one row that should pass the condition and one row that should fail it.',
+    notWhen: 'Do not use it as a full decision-table rebuild or file review. IF repair starts with one formula and the row examples you type into the form; larger rule systems, protected ranges, and imported data cleanup may still need separate checks.',
+    example: {
+      setup: 'A fulfillment sheet should mark paid orders with a positive quantity as Ready, but the formula was returning FALSE for rows that need review.',
+      formula: '=IF(AND(B2="Paid",C2>0),"Ready","Review")',
+      read: 'The formula tests both conditions with AND, returns Ready only when status and quantity both pass, and provides an explicit Review result when either condition fails instead of leaving the false branch implicit.'
     }
   },
   'google-sheets-circular-dependency': {

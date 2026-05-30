@@ -822,6 +822,7 @@ code {
 }
 
 .detail-card {
+  min-width: 0;
   min-height: 220px;
   border: 1px solid var(--line);
   border-radius: 8px;

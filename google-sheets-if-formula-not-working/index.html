@@ -3,16 +3,17 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Write My Formula | Excel and Google Sheets Formula Helper</title>
-    <meta name="description" content="Write Excel and Google Sheets formulas from plain English, explain pasted formulas, and fix common spreadsheet syntax problems.">
-    <link rel="canonical" href="https://writemyformula.com/">
+    <title>Google Sheets IF Formula Not Working? | Write My Formula</title>
+    <meta name="description" content="Fix Google Sheets IF formulas that return FALSE, blank, the wrong label, parse errors, or confusing nested IF results.">
+    <link rel="canonical" href="https://writemyformula.com/google-sheets-if-formula-not-working/">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <meta property="og:title" content="Write My Formula">
-    <meta property="og:description" content="A focused spreadsheet workbench for formula generation, explanation, and fixing.">
-    <meta property="og:url" content="https://writemyformula.com/">
+    <meta property="og:title" content="Google Sheets IF Formula Not Working?">
+    <meta property="og:description" content="Fix Google Sheets IF formulas that return FALSE, blank, the wrong label, parse errors, or confusing nested IF results.">
+    <meta property="og:url" content="https://writemyformula.com/google-sheets-if-formula-not-working/">
     <meta property="og:site_name" content="Write My Formula">
     <meta name="twitter:card" content="summary">
     <link rel="stylesheet" href="/styles.css">
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://writemyformula.com/google-sheets-if-formula-not-working/#webpage","url":"https://writemyformula.com/google-sheets-if-formula-not-working/","name":"Google Sheets IF Formula Not Working?","description":"Fix Google Sheets IF formulas that return FALSE, blank, the wrong label, parse errors, or confusing nested IF results.","isPartOf":{"@type":"WebSite","@id":"https://writemyformula.com/#website","name":"Write My Formula","url":"https://writemyformula.com/"},"primaryImageOfPage":"https://writemyformula.com/favicon.svg","mainEntity":{"@id":"https://writemyformula.com/google-sheets-if-formula-not-working/#app"}},{"@type":"SoftwareApplication","@id":"https://writemyformula.com/google-sheets-if-formula-not-working/#app","name":"Write My Formula","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://writemyformula.com/google-sheets-if-formula-not-working/","description":"Fix Google Sheets IF formulas that return FALSE, blank, the wrong label, parse errors, or confusing nested IF results.","featureList":["Google Sheets IF formula repair","Plain-English spreadsheet formula requests","Formula explanation and copy checks","A focused repair pass for one Google Sheets IF formula.","Checks for logical tests, true/false branch order, missing false outputs, AND/OR conditions, quoted text, blank-looking values, and locale separators.","A revised IF path you can test against one true row and one false row before changing a shared sheet."],"offers":{"@type":"Offer","price":"9.00","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://writemyformula.com/google-sheets-if-formula-not-working/"}},{"@type":"BreadcrumbList","@id":"https://writemyformula.com/google-sheets-if-formula-not-working/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Write My Formula","item":"https://writemyformula.com/"},{"@type":"ListItem","position":2,"name":"Google Sheets IF formula repair","item":"https://writemyformula.com/google-sheets-if-formula-not-working/"}]}]}</script>
   </head>
   <body data-mode="write">
     <div class="page">
@@ -34,10 +35,10 @@
         <section class="hero" aria-labelledby="hero-title">
           <div class="hero-copy">
             <div>
-              <p class="eyebrow">Excel and Google Sheets formula helper</p>
-              <h1 id="hero-title">Write formulas without wrestling with syntax.</h1>
+              <p class="eyebrow">Google Sheets IF formula repair</p>
+              <h1 id="hero-title">Fix a Google Sheets IF formula that is returning the wrong result.</h1>
             </div>
-            <p class="lede">Describe the spreadsheet job, add the cells you are working with, and get a clean formula with notes you can actually use.</p>
+            <p class="lede">IF formulas often fail quietly: FALSE appears where a label should be, a blank hides a missing false branch, quoted text breaks the syntax, or nested conditions run in the wrong order. Paste the formula and one expected row to get a focused repair path for logical tests, true/false branches, AND/OR conditions, empty strings, and locale separators.</p>
           </div>
 
           <section class="workbench" aria-label="Spreadsheet formula workbench">
@@ -505,6 +506,45 @@ Northwind,Team,79</textarea>
           </div>
         </section>
 
+        <section class="section seo-detail" aria-labelledby="google-sheets-if-formula-not-working-detail-title">
+          <div class="section-copy">
+            <p class="eyebrow">Use case</p>
+            <h2 id="google-sheets-if-formula-not-working-detail-title">Google Sheets IF formula repair for spreadsheet work.</h2>
+            <p>Help Google Sheets users repair one IF, nested IF, IFS, AND, or OR formula where the visible problem is usually FALSE, blank output, a wrong label, a parse error, or branch logic that handles the wrong case first.</p>
+          </div>
+          <div class="detail-grid">
+            <article class="detail-card">
+              <h3>What this page gives you</h3>
+              <ul>
+                <li>A focused repair pass for one Google Sheets IF formula.</li>
+              <li>Checks for logical tests, true/false branch order, missing false outputs, AND/OR conditions, quoted text, blank-looking values, and locale separators.</li>
+              <li>A revised IF path you can test against one true row and one false row before changing a shared sheet.</li>
+              </ul>
+            </article>
+            <article class="detail-card">
+              <h3>When to use it</h3>
+              <p>Use this page when Google Sheets IF returns FALSE, blank, the wrong label, a parse error, or a nested-IF result you cannot trust. It is strongest when you can paste the formula plus one row that should pass the condition and one row that should fail it.</p>
+              <p>Do not use it as a full decision-table rebuild or file review. IF repair starts with one formula and the row examples you type into the form; larger rule systems, protected ranges, and imported data cleanup may still need separate checks.</p>
+            </article>
+            <article class="detail-card">
+              <h3>Worked example</h3>
+              <p>A fulfillment sheet should mark paid orders with a positive quantity as Ready, but the formula was returning FALSE for rows that need review.</p>
+              <pre><code>=IF(AND(B2=&quot;Paid&quot;,C2&gt;0),&quot;Ready&quot;,&quot;Review&quot;)</code></pre>
+              <p>The formula tests both conditions with AND, returns Ready only when status and quantity both pass, and provides an explicit Review result when either condition fails instead of leaving the false branch implicit.</p>
+            </article>
+          </div>
+          <div class="paste-check">
+            <h3>Check before you paste</h3>
+            <ul>
+              <li>Put value_if_true and value_if_false in the intended order before rewriting the condition.</li>
+              <li>Add a deliberate false branch instead of letting Google Sheets return a blank by default.</li>
+              <li>Wrap text results in quotes and check whether your Sheets locale expects commas or semicolons.</li>
+              <li>For AND and OR tests, verify each comparison separately on one known row.</li>
+              <li>Use IFERROR only after the IF logic is correct, so real parse, reference, or value problems stay visible while you repair the formula.</li>
+            </ul>
+          </div>
+        </section>
+
         <section class="section pricing" id="pricing" aria-labelledby="pricing-title">
           <div class="pricing-copy">
             <p class="eyebrow">Upgrade when the work piles up</p>
@@ -526,6 +566,7 @@ Northwind,Team,79</textarea>
       </footer>
     </div>
 
+    <script>window.WMF_PAGE_PRESET = {"mode":"fix","platform":"sheets","formula":"=IF(AND(B2=\"Paid\",C2>0),\"Ready\",\"Review\")"};</script>
     <script type="module" src="/app/app.js"></script>
   </body>
 </html>

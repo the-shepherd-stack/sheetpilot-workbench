@@ -87,6 +87,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Repair formulas broken by deleted rows, moved cells, invalid references, or shifted lookup ranges/);
   assert.match(page, /\/google-sheets-formula-parse-error\//);
   assert.match(page, /Repair Sheets formulas with missing quotes, mismatched parentheses, wrong separators, or malformed QUERY syntax/);
+  assert.match(page, /\/google-sheets-if-formula-not-working\//);
+  assert.match(page, /Fix IF formulas that return FALSE, blank, the wrong label, parse errors, or confusing nested IF results/);
   assert.match(page, /\/google-sheets-circular-dependency\//);
   assert.match(page, /Fix circular dependency errors caused by self-referencing cells, self-including ranges, helper-cell loops, or iterative-calculation settings/);
   assert.match(page, /\/google-sheets-sumifs-not-working\//);
@@ -297,6 +299,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'google-sheets-div0-error',
     'google-sheets-formula-parse-error',
     'google-sheets-formula-not-updating',
+    'google-sheets-if-formula-not-working',
     'google-sheets-circular-dependency',
     'google-sheets-sumifs-not-working',
     'google-sheets-countifs-not-working',
@@ -813,6 +816,26 @@ test('google sheets formula not updating page targets stale result repair intent
   assert.match(homepage, /href="\/google-sheets-formula-not-updating\/">Google Sheets formula not updating/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-formula-not-updating\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one click|automatic repair|pay before answer|full sheet/i);
+});
+
+test('google sheets IF formula not working page targets branch repair intent without overclaiming', () => {
+  const page = read('google-sheets-if-formula-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Google Sheets IF Formula Not Working/);
+  assert.match(page, /Fix a Google Sheets IF formula that is returning the wrong result/);
+  assert.match(page, /FALSE appears where a label should be/);
+  assert.match(page, /logical tests, true\/false branches, AND\/OR conditions, empty strings, and locale separators/);
+  assert.match(page, /value_if_true and value_if_false/);
+  assert.match(page, /Add a deliberate false branch/);
+  assert.match(page, /=IF\(AND\(B2=&quot;Paid&quot;,C2&gt;0\),&quot;Ready&quot;,&quot;Review&quot;\)/);
+  assert.match(page, /provides an explicit Review result/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-if-formula-not-working\/">Google Sheets IF formula not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-if-formula-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one click|automatic|pay before answer|whole sheet|full sheet/i);
 });
 
 test('google sheets circular dependency page targets loop repair intent without overclaiming', () => {
