@@ -1199,6 +1199,39 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-date-formula-not-working',
+    title: 'Google Sheets Date Formula Not Working? | Write My Formula',
+    description: 'Fix Google Sheets date formulas with DATEVALUE parse errors, text dates, locale mismatches, serial numbers, QUERY date literals, or date criteria issues.',
+    eyebrow: 'Google Sheets date formula repair',
+    h1: 'Fix a Google Sheets date formula that is not working.',
+    lede: 'Date formulas break when imported dates are really text, a locale reads the day and month differently, DATEVALUE says the value cannot be parsed to date/time, QUERY needs a date literal, or a serial number displays where a date should appear. Paste the formula and the date value it is choking on to get a focused repair path for parsing, formatting, comparisons, and criteria.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=DATEVALUE(A2)'
+    },
+    intent: 'Help Google Sheets users repair one date formula where the visible problem is usually DATEVALUE not parsing text, date criteria returning zero rows, serial numbers appearing instead of formatted dates, locale ambiguity, or QUERY/FILTER/SUMIFS/COUNTIFS comparing text dates incorrectly.',
+    bestFor: [
+      'DATEVALUE formulas that return VALUE parameter cannot be parsed to date/time or fail on imported date text.',
+      'Date strings with extra words, time zones, slashes, dots, or day/month order that does not match the spreadsheet locale.',
+      'QUERY formulas where date criteria need yyyy-mm-dd date literals instead of normal-looking cell text.',
+      'SUMIFS, COUNTIFS, FILTER, or SORT formulas that miss rows because dates are stored as text or include hidden time values.',
+      'Cells showing serial numbers instead of dates because the value converted but the number format did not.'
+    ],
+    steps: [
+      'Paste the exact formula and the date value or sample row it is reading.',
+      'Add the visible error text, wrong result, or serial number that appears.',
+      'Say whether the source date came from a paste, import, form response, export, or QUERY/FILTER criteria.'
+    ],
+    copyChecks: [
+      'Check whether the source date is a real date value or text that only looks like a date.',
+      'Confirm the spreadsheet locale before deciding whether 03/04 means March 4 or April 3.',
+      'For QUERY date filters, use a date literal in yyyy-mm-dd form inside the query string.',
+      'Format converted serial numbers as dates before assuming the formula is still wrong.',
+      'Test date criteria against one known row before filling the formula through a report.'
+    ]
+  },
+  {
     slug: 'google-sheets-if-formula-not-working',
     title: 'Google Sheets IF Formula Not Working? | Write My Formula',
     description: 'Fix Google Sheets IF formulas that return FALSE, blank, the wrong label, parse errors, or confusing nested IF results.',
@@ -2751,6 +2784,20 @@ const pageEnhancements = {
       setup: 'A dashboard should total paid rows for today, but the total stays the same after new rows are added.',
       formula: '=SUMIFS(D2:D500,B2:B500,"Paid",A2:A500,TODAY())',
       read: 'The formula checks a fixed source range, the Paid status, and today\'s date. If new rows land below row 500, the range must expand; if TODAY is involved, the sheet calculation setting also matters.'
+    }
+  },
+  'google-sheets-date-formula-not-working': {
+    gives: [
+      'A focused repair pass for one Google Sheets date formula.',
+      'Checks for DATEVALUE parsing, locale order, imported text dates, hidden time values, QUERY date literals, and date number formatting.',
+      'A revised date formula or criteria pattern you can test against one known row before using it in a report.'
+    ],
+    useWhen: 'Use this page when DATEVALUE says it cannot parse a date, a formula returns a serial number instead of a displayed date, date criteria return zero rows, or QUERY, FILTER, SUMIFS, COUNTIFS, or SORT behave as if dates are text. It is strongest when you can paste the formula and one date value that should work.',
+    notWhen: 'Do not treat it as a full data-cleaning audit. Write My Formula can help repair one formula or criteria pattern, but source exports, spreadsheet locale settings, and final date formatting still need to be checked in Google Sheets.',
+    example: {
+      setup: 'An export puts date text in A2, but DATEVALUE cannot parse the mixed string until the usable date portion is extracted first.',
+      formula: '=DATEVALUE(REGEXEXTRACT(A2,"\\d{4}-\\d{2}-\\d{2}"))',
+      read: 'The formula extracts a yyyy-mm-dd date string before DATEVALUE converts it. After conversion, the result may still need to be formatted as a date instead of a plain serial number.'
     }
   },
   'google-sheets-if-formula-not-working': {

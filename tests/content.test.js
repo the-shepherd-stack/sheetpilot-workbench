@@ -87,6 +87,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Repair formulas broken by deleted rows, moved cells, invalid references, or shifted lookup ranges/);
   assert.match(page, /\/google-sheets-formula-parse-error\//);
   assert.match(page, /Repair Sheets formulas with missing quotes, mismatched parentheses, wrong separators, or malformed QUERY syntax/);
+  assert.match(page, /\/google-sheets-date-formula-not-working\//);
+  assert.match(page, /Fix DATEVALUE parse errors, text dates, locale mismatches, serial numbers, QUERY date literals, or date criteria issues/);
   assert.match(page, /\/google-sheets-if-formula-not-working\//);
   assert.match(page, /Fix IF formulas that return FALSE, blank, the wrong label, parse errors, or confusing nested IF results/);
   assert.match(page, /\/google-sheets-circular-dependency\//);
@@ -301,6 +303,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'google-sheets-div0-error',
     'google-sheets-formula-parse-error',
     'google-sheets-formula-not-updating',
+    'google-sheets-date-formula-not-working',
     'google-sheets-if-formula-not-working',
     'google-sheets-circular-dependency',
     'google-sheets-sumifs-not-working',
@@ -819,6 +822,28 @@ test('google sheets formula not updating page targets stale result repair intent
   assert.match(homepage, /href="\/google-sheets-formula-not-updating\/">Google Sheets formula not updating/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-formula-not-updating\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one click|automatic repair|pay before answer|full sheet/i);
+});
+
+test('google sheets date formula not working page targets date parsing repair intent without overclaiming', () => {
+  const page = read('google-sheets-date-formula-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Google Sheets Date Formula Not Working/);
+  assert.match(page, /Fix a Google Sheets date formula that is not working/);
+  assert.match(page, /DATEVALUE says the value cannot be parsed to date\/time/);
+  assert.match(page, /QUERY needs a date literal/);
+  assert.match(page, /serial number displays where a date should appear/);
+  assert.match(page, /value cannot be parsed to date\/time/);
+  assert.match(page, /Confirm the spreadsheet locale/);
+  assert.match(page, /yyyy-mm-dd/);
+  assert.match(page, /=DATEVALUE\(REGEXEXTRACT\(A2,&quot;\\d\{4\}-\\d\{2\}-\\d\{2\}&quot;\)\)/);
+  assert.match(page, /formatted as a date instead of a plain serial number/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-date-formula-not-working\/">Google Sheets date formula not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-date-formula-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|fixes every|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one click|automatic|pay before answer|whole sheet|full sheet/i);
 });
 
 test('google sheets IF formula not working page targets branch repair intent without overclaiming', () => {
