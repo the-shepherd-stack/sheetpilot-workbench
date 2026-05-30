@@ -1295,6 +1295,38 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-sort-not-working',
+    title: 'Google Sheets SORT Not Working? | Write My Formula',
+    description: 'Fix Google Sheets SORT formulas that return the wrong order, sort headers as data, separate rows, or misread dates and numbers stored as text.',
+    eyebrow: 'Google Sheets SORT repair',
+    h1: 'Fix a Google Sheets SORT formula that is not sorting correctly.',
+    lede: 'SORT mistakes can look like bad data: headers move into the results, rows separate from their records, dates sort like text, or the wrong column controls the order. Paste the formula and source headers to get a focused repair path for ranges, sort_column positions, header rows, stored types, and multi-column sorting.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=SORT(A1:D500,3,TRUE)'
+    },
+    intent: 'Help Google Sheets users repair one SORT formula where the visible problem is usually a header row included as data, a selected range that does not include every row field, a sort_column index counted from the wrong range, dates or numbers stored as text, or a second sort key applied in the wrong order.',
+    bestFor: [
+      'SORT formulas that return a plausible order but put the header row in the middle of the result.',
+      'Tables where names, dates, or notes detach from the row they belong to after a sort range is narrowed too far.',
+      'Date and number sorts that behave alphabetically because imported values are stored as text.',
+      'Multi-column SORT formulas where the first and second sort keys need to be checked against the selected range.'
+    ],
+    steps: [
+      'Paste the exact SORT formula and say which column should control the order.',
+      'Include the source headers and one row that currently lands in the wrong position.',
+      'Say whether the source includes a header row and whether dates, amounts, or IDs came from an import.'
+    ],
+    copyChecks: [
+      'Exclude the header row from the sorted range or add it separately above the sorted output.',
+      'Count sort_column from the first column of the selected range, not from column A of the file.',
+      'Keep every row field inside the range so related cells move together.',
+      'Check whether dates and numbers are stored as real values rather than text before trusting the order.',
+      'Put the primary sort key first, then add secondary sort_column and is_ascending pairs only when needed.'
+    ]
+  },
+  {
     slug: 'google-sheets-filter-not-working',
     title: 'Google Sheets FILTER Not Working? | Write My Formula',
     description: 'Fix Google Sheets FILTER formulas with #N/A, mismatched range sizes, wrong rows, no matches, or row-versus-column condition issues.',
@@ -2697,6 +2729,20 @@ const pageEnhancements = {
       setup: 'A subscription sheet should count paid rows in March 2026, but one date criteria range was copied one row longer than the status range.',
       formula: '=COUNTIFS(B2:B500,"Paid",A2:A500,">="&DATE(2026,3,1),A2:A500,"<"&DATE(2026,4,1))',
       read: 'The repaired formula keeps the status and date ranges aligned from row 2 through row 500. It also builds the date criteria with DATE so Sheets compares against real date values instead of a loose text string.'
+    }
+  },
+  'google-sheets-sort-not-working': {
+    gives: [
+      'A focused repair pass for one Google Sheets SORT formula.',
+      'Checks for selected range boundaries, header-row handling, sort_column position, stored dates or numbers, and secondary sort keys.',
+      'A revised SORT path you can test against one known row before replacing a shared report formula.'
+    ],
+    useWhen: 'Use this page when Google Sheets SORT returns the wrong order, moves headers into the sorted output, separates row values that should stay together, or sorts dates and numbers alphabetically. It is strongest when you can paste the formula, the source headers, and one row that is visibly out of order.',
+    notWhen: 'Do not use it as proof that every related formula in the sheet survived a menu sort. SORT repair starts with one formula and source range; formulas outside the sorted output, protected ranges, and typed side columns may still need separate checks.',
+    example: {
+      setup: 'A task table has headers in row 1 and due dates in column C. The result should sort the data rows by due date without moving the header into the output.',
+      formula: '=SORT(A2:D500,C2:C500,TRUE)',
+      read: 'The formula excludes the header row by starting at A2:D500 and sorts those same rows by the due-date values in C2:C500. If the due dates are stored as text, the source values need cleanup before the order can be trusted.'
     }
   },
   'google-sheets-formulas-not-working': {

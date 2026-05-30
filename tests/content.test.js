@@ -93,6 +93,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix SUMIFS formulas that return 0, #VALUE!, or wrong totals because of range sizes, criteria, dates, text values, or argument order/);
   assert.match(page, /\/google-sheets-countifs-not-working\//);
   assert.match(page, /Fix COUNTIFS formulas that return 0, #VALUE!, wrong counts, or miss rows because of range sizes, dates, stored text, hidden spaces, or separators/);
+  assert.match(page, /\/google-sheets-sort-not-working\//);
+  assert.match(page, /Fix SORT formulas that return the wrong order, sort headers as data, separate rows, or misread dates and numbers stored as text/);
   assert.match(page, /\/google-sheets-filter-not-working\//);
   assert.match(page, /Fix FILTER formulas with #N\/A, mismatched range sizes, wrong rows, no matches, or row-versus-column condition issues/);
   assert.match(page, /\/google-sheets-query-not-working\//);
@@ -298,6 +300,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'google-sheets-circular-dependency',
     'google-sheets-sumifs-not-working',
     'google-sheets-countifs-not-working',
+    'google-sheets-sort-not-working',
     'google-sheets-filter-not-working',
     'google-sheets-query-not-working',
     'google-sheets-arrayformula-not-working',
@@ -870,6 +873,25 @@ test('google sheets COUNTIFS not working page targets count repair intent withou
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/google-sheets-countifs-not-working\/">Google Sheets COUNTIFS not working/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-countifs-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one click|automatic|pay before answer|whole sheet|full sheet/i);
+});
+
+test('google sheets SORT not working page targets sort repair intent without overclaiming', () => {
+  const page = read('google-sheets-sort-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Google Sheets SORT Not Working/);
+  assert.match(page, /Fix a Google Sheets SORT formula that is not sorting correctly/);
+  assert.match(page, /headers move into the results, rows separate from their records/);
+  assert.match(page, /ranges, sort_column positions, header rows, stored types, and multi-column sorting/);
+  assert.match(page, /Count sort_column from the first column of the selected range/);
+  assert.match(page, /=SORT\(A2:D500,C2:C500,TRUE\)/);
+  assert.match(page, /If the due dates are stored as text/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-sort-not-working\/">Google Sheets SORT not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-sort-not-working\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one click|automatic|pay before answer|whole sheet|full sheet/i);
 });
 
