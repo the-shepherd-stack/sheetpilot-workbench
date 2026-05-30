@@ -1231,6 +1231,38 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-countifs-not-working',
+    title: 'Google Sheets COUNTIFS Not Working? | Write My Formula',
+    description: 'Fix Google Sheets COUNTIFS formulas that return 0, #VALUE!, wrong counts, or miss rows because of range sizes, dates, stored text, hidden spaces, or separators.',
+    eyebrow: 'Google Sheets COUNTIFS repair',
+    h1: 'Fix a Google Sheets COUNTIFS formula that is counting wrong.',
+    lede: 'COUNTIFS can look right and still return 0, #VALUE!, or a count that misses rows. Paste the formula, add one row that should count, and get a focused repair path for criteria ranges, date criteria, stored text, hidden spaces, blank criteria, and locale separators.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=COUNTIFS(B2:B500,"Paid",A2:A501,">="&DATE(2026,3,1),A2:A500,"<"&DATE(2026,4,1))'
+    },
+    intent: 'Help Google Sheets users repair one COUNTIFS formula where the visible problem is usually a zero count, a #VALUE! range mismatch, a wrong date or text criterion, hidden spaces, an empty criteria reference, or imported values stored as text.',
+    bestFor: [
+      'COUNTIFS formulas that return 0 even though matching rows appear to exist.',
+      '#VALUE! or range-size failures where one criteria range covers a different row span.',
+      'Date, text, wildcard, and comparison criteria where quotes, operators, separators, or cell references are easy to mix up.',
+      'Imported reports where IDs, dates, or status values look right but include hidden spaces or are stored as text.'
+    ],
+    steps: [
+      'Paste the exact COUNTIFS formula and the count Google Sheets currently returns.',
+      'Add one row that should match every criterion and one row that should not.',
+      'Include the headers or row spans for each criteria range.'
+    ],
+    copyChecks: [
+      'Make every additional criteria range the same height and width as the first criteria range.',
+      'Join comparison operators to cell references or date functions, such as ">="&DATE(2026,3,1).',
+      'Check whether dates, IDs, or status values are stored as text even though they look formatted correctly.',
+      'Trim hidden spaces before deciding a matching row is missing.',
+      'Check whether your Sheets locale expects commas or semicolons before pasting the repaired formula.'
+    ]
+  },
+  {
     slug: 'google-sheets-filter-not-working',
     title: 'Google Sheets FILTER Not Working? | Write My Formula',
     description: 'Fix Google Sheets FILTER formulas with #N/A, mismatched range sizes, wrong rows, no matches, or row-versus-column condition issues.',
@@ -2619,6 +2651,20 @@ const pageEnhancements = {
       setup: 'A revenue sheet should sum March 2026 revenue for Acme, but one criteria range is one row longer than the sum range.',
       formula: '=SUMIFS(D2:D500,B2:B500,"Acme",A2:A500,">="&DATE(2026,3,1),A2:A500,"<"&DATE(2026,4,1))',
       read: 'The repaired formula keeps the sum range and both criteria ranges aligned from row 2 through row 500. It also builds the date criteria with DATE so Sheets compares against real date values instead of a loose text string.'
+    }
+  },
+  'google-sheets-countifs-not-working': {
+    gives: [
+      'A focused repair pass for one Google Sheets COUNTIFS formula.',
+      'Checks for criteria-range mismatches, date criteria, hidden spaces, text-stored values, empty criteria references, and locale separators.',
+      'A revised COUNTIFS path you can test against one matching row and one non-matching row before changing a shared report.'
+    ],
+    useWhen: 'Use this page when Google Sheets COUNTIFS returns 0, #VALUE!, a wrong count, or a count you cannot reconcile with visible rows. It is strongest when you can paste the formula, the source headers, and one row that should match every criterion.',
+    notWhen: 'Do not use it as full-sheet inspection. COUNTIFS repair starts with one formula and the surrounding context you type into the form; imported data cleanup, protected ranges, and larger report logic may still need separate checks.',
+    example: {
+      setup: 'A subscription sheet should count paid rows in March 2026, but one date criteria range was copied one row longer than the status range.',
+      formula: '=COUNTIFS(B2:B500,"Paid",A2:A500,">="&DATE(2026,3,1),A2:A500,"<"&DATE(2026,4,1))',
+      read: 'The repaired formula keeps the status and date ranges aligned from row 2 through row 500. It also builds the date criteria with DATE so Sheets compares against real date values instead of a loose text string.'
     }
   },
   'google-sheets-formulas-not-working': {

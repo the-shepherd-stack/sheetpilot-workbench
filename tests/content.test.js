@@ -89,6 +89,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix circular dependency errors caused by self-referencing cells, self-including ranges, helper-cell loops, or iterative-calculation settings/);
   assert.match(page, /\/google-sheets-sumifs-not-working\//);
   assert.match(page, /Fix SUMIFS formulas that return 0, #VALUE!, or wrong totals because of range sizes, criteria, dates, text values, or argument order/);
+  assert.match(page, /\/google-sheets-countifs-not-working\//);
+  assert.match(page, /Fix COUNTIFS formulas that return 0, #VALUE!, wrong counts, or miss rows because of range sizes, dates, stored text, hidden spaces, or separators/);
   assert.match(page, /\/google-sheets-filter-not-working\//);
   assert.match(page, /Fix FILTER formulas with #N\/A, mismatched range sizes, wrong rows, no matches, or row-versus-column condition issues/);
   assert.match(page, /\/google-sheets-query-not-working\//);
@@ -292,6 +294,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'google-sheets-formula-not-updating',
     'google-sheets-circular-dependency',
     'google-sheets-sumifs-not-working',
+    'google-sheets-countifs-not-working',
     'google-sheets-filter-not-working',
     'google-sheets-query-not-working',
     'google-sheets-arrayformula-not-working',
@@ -826,6 +829,26 @@ test('google sheets SUMIFS not working page targets criteria repair intent witho
   assert.match(homepage, /href="\/google-sheets-sumifs-not-working\/">Google Sheets SUMIFS not working/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-sumifs-not-working\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one click|automatic|pay before answer|straight into the cell|next minute/i);
+});
+
+test('google sheets COUNTIFS not working page targets count repair intent without overclaiming', () => {
+  const page = read('google-sheets-countifs-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Google Sheets COUNTIFS Not Working/);
+  assert.match(page, /Fix a Google Sheets COUNTIFS formula that is counting wrong/);
+  assert.match(page, /return 0, #VALUE!, or a count that misses rows/);
+  assert.match(page, /criteria ranges, date criteria, stored text, hidden spaces, blank criteria, and locale separators/);
+  assert.match(page, /additional criteria range the same height and width as the first criteria range/);
+  assert.match(page, /=COUNTIFS\(B2:B500,&quot;Paid&quot;,A2:A500,&quot;&gt;=&quot;&amp;DATE\(2026,3,1\),A2:A500,&quot;&lt;&quot;&amp;DATE\(2026,4,1\)\)/);
+  assert.match(page, /DATE so Sheets compares against real date values/);
+  assert.match(page, /Trim hidden spaces before deciding a matching row is missing/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-countifs-not-working\/">Google Sheets COUNTIFS not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-countifs-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one click|automatic|pay before answer|whole sheet|full sheet/i);
 });
 
 test('google sheets FILTER not working page targets filter repair intent without overclaiming', () => {
