@@ -87,6 +87,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Repair Sheets formulas with missing quotes, mismatched parentheses, wrong separators, or malformed QUERY syntax/);
   assert.match(page, /\/google-sheets-circular-dependency\//);
   assert.match(page, /Fix circular dependency errors caused by self-referencing cells, self-including ranges, helper-cell loops, or iterative-calculation settings/);
+  assert.match(page, /\/google-sheets-sumifs-not-working\//);
+  assert.match(page, /Fix SUMIFS formulas that return 0, #VALUE!, or wrong totals because of range sizes, criteria, dates, text values, or argument order/);
   assert.match(page, /\/google-sheets-filter-not-working\//);
   assert.match(page, /Fix FILTER formulas with #N\/A, mismatched range sizes, wrong rows, no matches, or row-versus-column condition issues/);
   assert.match(page, /\/google-sheets-query-not-working\//);
@@ -288,6 +290,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'google-sheets-na-error',
     'google-sheets-formula-parse-error',
     'google-sheets-circular-dependency',
+    'google-sheets-sumifs-not-working',
     'google-sheets-filter-not-working',
     'google-sheets-query-not-working',
     'google-sheets-arrayformula-not-working',
@@ -782,6 +785,26 @@ test('google sheets circular dependency page targets loop repair intent without 
   assert.match(homepage, /href="\/google-sheets-circular-dependency\/">Google Sheets circular dependency/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-circular-dependency\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|private|\blocal\b|secure by default|instant|in seconds|one click|automatic|pay before answer/i);
+});
+
+test('google sheets SUMIFS not working page targets criteria repair intent without overclaiming', () => {
+  const page = read('google-sheets-sumifs-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Google Sheets SUMIFS Not Working/);
+  assert.match(page, /Fix a Google Sheets SUMIFS formula that is not adding up/);
+  assert.match(page, /0 when matching rows exist, #VALUE! from mismatched ranges/);
+  assert.match(page, /range sizes, criteria order, dates, stored text, hidden spaces, and separators/);
+  assert.match(page, /SUMIFS starts with the sum range/);
+  assert.match(page, /=SUMIFS\(D2:D500,B2:B500,&quot;Acme&quot;,A2:A500,&quot;&gt;=&quot;&amp;DATE\(2026,3,1\),A2:A500,&quot;&lt;&quot;&amp;DATE\(2026,4,1\)\)/);
+  assert.match(page, /DATE so Sheets compares against real date values/);
+  assert.match(page, /Check whether your Sheets locale expects commas or semicolons/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-sumifs-not-working\/">Google Sheets SUMIFS not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-sumifs-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one click|automatic|pay before answer|straight into the cell|next minute/i);
 });
 
 test('google sheets FILTER not working page targets filter repair intent without overclaiming', () => {

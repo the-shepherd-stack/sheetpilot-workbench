@@ -1166,6 +1166,39 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-sumifs-not-working',
+    title: 'Google Sheets SUMIFS Not Working? | Write My Formula',
+    description: 'Fix Google Sheets SUMIFS formulas that return 0, #VALUE!, wrong totals, or miss rows because of range sizes, criteria, dates, text values, or argument order.',
+    eyebrow: 'Google Sheets SUMIFS repair',
+    h1: 'Fix a Google Sheets SUMIFS formula that is not adding up.',
+    lede: 'SUMIFS can fail quietly: 0 when matching rows exist, #VALUE! from mismatched ranges, or a total that looks close enough to be dangerous. Paste the formula, add what it should sum, and get a focused repair path for range sizes, criteria order, dates, stored text, hidden spaces, and separators.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=SUMIFS(D2:D500,B2:B501,"Acme",A2:A500,">="&DATE(2026,3,1),A2:A500,"<"&DATE(2026,4,1))'
+    },
+    intent: 'Help Google Sheets users repair one SUMIFS formula where the visible problem is usually a zero total, a #VALUE! range mismatch, a wrong date or text criterion, SUMIF-versus-SUMIFS argument order, hidden spaces, or imported values stored as text.',
+    bestFor: [
+      'SUMIFS formulas that return 0 even though matching rows appear to exist.',
+      '#VALUE! or range-size errors where the sum range and criteria ranges do not cover the same rows.',
+      'Date, text, wildcard, and comparison criteria where quotes, operators, separators, or cell references are easy to mix up.',
+      'Imported reports where amounts, dates, or criteria values look right but are stored as text or include hidden spaces.'
+    ],
+    steps: [
+      'Paste the exact SUMIFS formula and the total Google Sheets currently returns.',
+      'Add one row that should match the criteria and one row that should not.',
+      'Include the headers or range sizes for the sum range and each criteria range.'
+    ],
+    copyChecks: [
+      'Confirm Google Sheets SUMIFS starts with the sum range, then each criteria range and criterion pair.',
+      'Make every criteria range the same height and width as the sum range.',
+      'Join comparison operators to cell references or date functions, such as ">="&DATE(2026,3,1).',
+      'Check whether dates, amounts, or IDs are stored as text even though they look formatted correctly.',
+      'Trim hidden spaces from imported criteria values before trusting a zero result.',
+      'Check whether your Sheets locale expects commas or semicolons before treating the formula as broken.'
+    ]
+  },
+  {
     slug: 'google-sheets-filter-not-working',
     title: 'Google Sheets FILTER Not Working? | Write My Formula',
     description: 'Fix Google Sheets FILTER formulas with #N/A, mismatched range sizes, wrong rows, no matches, or row-versus-column condition issues.',
@@ -2526,6 +2559,20 @@ const pageEnhancements = {
       setup: 'A total formula lives in D2, but it accidentally totals D2:D20, so the result cell is inside the range being summed.',
       formula: '=SUM(D3:D20)',
       read: 'The repaired formula starts below D2, which keeps the total cell out of its own source range. If D2 should summarize rows below it, the range should begin at the first data row, not the formula cell.'
+    }
+  },
+  'google-sheets-sumifs-not-working': {
+    gives: [
+      'A focused repair pass for one Google Sheets SUMIFS formula.',
+      'Checks for range-size mismatches, criteria order, date criteria, hidden spaces, text-stored numbers, and locale separators.',
+      'A revised SUMIFS path you can test against one known matching row before changing a shared report.'
+    ],
+    useWhen: 'Use this page when Google Sheets SUMIFS returns 0, #VALUE!, an obviously wrong total, or a plausible total you cannot trust. It is strongest when you can paste the formula, the source headers, and one row that should be included in the sum.',
+    notWhen: 'Do not use it as full-file inspection. The repair starts with one formula and the surrounding context you type into the form; protected ranges, imported data cleanup, and larger report logic may still need separate checks.',
+    example: {
+      setup: 'A revenue sheet should sum March 2026 revenue for Acme, but one criteria range is one row longer than the sum range.',
+      formula: '=SUMIFS(D2:D500,B2:B500,"Acme",A2:A500,">="&DATE(2026,3,1),A2:A500,"<"&DATE(2026,4,1))',
+      read: 'The repaired formula keeps the sum range and both criteria ranges aligned from row 2 through row 500. It also builds the date criteria with DATE so Sheets compares against real date values instead of a loose text string.'
     }
   },
   'google-sheets-formulas-not-working': {
