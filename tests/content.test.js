@@ -103,6 +103,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix QUERY formulas with parse errors, NO_COLUMN messages, wrong Col references, header problems, or missing rows/);
   assert.match(page, /\/google-sheets-importrange-not-working\//);
   assert.match(page, /Fix IMPORTRANGE formulas with #REF!, Allow access prompts, oversized imports, slow refreshes, or source permission issues/);
+  assert.match(page, /\/google-sheets-importxml-not-working\//);
+  assert.match(page, /Fix IMPORTXML formulas with #N\/A, Imported content is empty, Could not fetch URL, XPath mistakes, oversized results, or blocked page content/);
   assert.match(page, /\/google-sheets-vlookup-not-working\//);
   assert.match(page, /Fix VLOOKUP formulas with #N\/A, wrong matches, approximate-match issues, lookup-range mistakes, or return-column problems/);
   assert.match(page, /\/google-sheets-xlookup-not-working\//);
@@ -308,6 +310,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'google-sheets-query-not-working',
     'google-sheets-arrayformula-not-working',
     'google-sheets-importrange-not-working',
+    'google-sheets-importxml-not-working',
     'google-sheets-vlookup-not-working',
     'google-sheets-xlookup-not-working',
     'conditional-formatting-formula-not-working',
@@ -978,6 +981,27 @@ test('google sheets IMPORTRANGE not working page targets import repair intent wi
   assert.match(homepage, /href="\/google-sheets-importrange-not-working\/">Google Sheets IMPORTRANGE not working/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-importrange-not-working\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
+});
+
+test('google sheets IMPORTXML not working page targets XPath repair intent without overclaiming', () => {
+  const page = read('google-sheets-importxml-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Google Sheets IMPORTXML Not Working/);
+  assert.match(page, /Fix a Google Sheets IMPORTXML formula that is returning #N\/A or empty content/);
+  assert.match(page, /Imported content is empty, Could not fetch URL/);
+  assert.match(page, /URL quoting, protocol, XPath syntax, page visibility to Sheets, result-size limits/);
+  assert.match(page, /JavaScript-rendered page content/);
+  assert.match(page, /=IMPORTXML\(&quot;https:\/\/example\.com\/products\/widget&quot;,&quot;\/\/span\[contains\(@class,'price'\)\]\/text\(\)&quot;\)/);
+  assert.match(page, /Make sure the URL includes http or https and is quoted/);
+  assert.match(page, /Check whether the data exists in the page source without JavaScript/);
+  assert.match(page, /resource contents exceeded the maximum size/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-importxml-not-working\/">Google Sheets IMPORTXML not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-importxml-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|working one back|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one click|automatic|pay before answer|detects JS|cancel any time/i);
 });
 
 test('google sheets VLOOKUP not working page targets lookup repair intent without overclaiming', () => {

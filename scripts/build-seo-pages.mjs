@@ -1487,6 +1487,38 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-importxml-not-working',
+    title: 'Google Sheets IMPORTXML Not Working? | Write My Formula',
+    description: 'Fix Google Sheets IMPORTXML formulas with #N/A, Imported content is empty, Could not fetch URL, XPath mistakes, oversized results, or blocked page content.',
+    eyebrow: 'Google Sheets IMPORTXML repair',
+    h1: 'Fix a Google Sheets IMPORTXML formula that is returning #N/A or empty content.',
+    lede: 'IMPORTXML breaks when the URL string is wrong, the XPath points at the wrong node, the page content is not visible to Sheets, or the query pulls back too much. Paste the formula and the value you wanted to extract to get a focused repair path for URL quoting, XPath shape, page limits, and safer fallbacks.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=IMPORTXML("https://example.com/products","//span[@class=\'price\']")'
+    },
+    intent: 'Help Google Sheets users repair one IMPORTXML formula where the visible problem is usually #N/A, Imported content is empty, Could not fetch URL, an XPath copied from DevTools, JavaScript-rendered page content, or a query that returns too much data.',
+    bestFor: [
+      'IMPORTXML formulas that return #N/A, Imported content is empty, or Could not fetch URL instead of the expected page value.',
+      'URLs or XPath queries where missing quotes, missing protocol, cell references, or locale separators may be breaking the formula before the page is read.',
+      'Copied full XPaths that stop working after the page layout changes or point at a wrapper node instead of the text or attribute you need.',
+      'Imports that fail because the page hides the data from Google Sheets, blocks fetches, changes markup, or returns more content than the XPath should pull.'
+    ],
+    steps: [
+      'Paste the exact IMPORTXML formula and the visible Google Sheets error text.',
+      'Describe the value you expected, such as a price, title, href, table cell, or list of names.',
+      'Include the page URL and any nearby HTML class, id, tag, or attribute you used to build the XPath.'
+    ],
+    copyChecks: [
+      'Make sure the URL includes http or https and is quoted, or points to a cell that contains the full URL.',
+      'Quote the XPath query and use an XPath that targets the actual text or attribute rather than a brittle full page path.',
+      'Check whether the data exists in the page source without JavaScript before treating the XPath as the only problem.',
+      'Reduce the XPath result when Google Sheets says the resource contents exceeded the maximum size.',
+      'Use IFERROR only after URL, XPath, page visibility, and result-size limits have been checked.'
+    ]
+  },
+  {
     slug: 'google-sheets-vlookup-not-working',
     title: 'Google Sheets VLOOKUP Not Working? | Write My Formula',
     description: 'Fix Google Sheets VLOOKUP formulas with #N/A, wrong matches, approximate-match issues, lookup-range mistakes, or return-column problems.',
@@ -2915,6 +2947,20 @@ const pageEnhancements = {
       setup: 'A destination sheet needs only open orders from columns A through E of a source spreadsheet. The original formula imported every column first, then filtered later.',
       formula: '=QUERY(IMPORTRANGE("https://docs.google.com/spreadsheets/d/source-id/edit","Orders!A:E"),"select Col1, Col3, Col5 where Col4 = \'Open\'",1)',
       read: 'The formula narrows the import to the needed columns, then runs QUERY against the imported array with Col-style references. Permission still has to be granted once from the destination sheet before the formula can return data.'
+    }
+  },
+  'google-sheets-importxml-not-working': {
+    gives: [
+      'A focused repair pass for one Google Sheets IMPORTXML formula.',
+      'Checks for URL quoting, protocol, XPath syntax, page visibility to Sheets, result-size limits, and safer fallback handling.',
+      'A revised XPath or import strategy you can test against one expected page value before filling a report.'
+    ],
+    useWhen: 'Use this page when IMPORTXML returns #N/A, Imported content is empty, Could not fetch URL, a maximum-size message, or the wrong page value. It is strongest when you can paste the exact formula, the target URL, the visible error, and the specific text or attribute the formula should return.',
+    notWhen: 'Do not treat IMPORTXML as a full web-scraping system. If the page content is rendered only after JavaScript runs, blocked from Google fetches, behind a login, or no longer present in the page source, a formula rewrite may not be enough.',
+    example: {
+      setup: 'A product page has price text in a span with class price. A shorter attribute-based XPath is usually easier to maintain than a full copied browser path.',
+      formula: '=IMPORTXML("https://example.com/products/widget","//span[contains(@class,\'price\')]/text()")',
+      read: 'The formula gives Sheets a quoted URL and a quoted XPath that targets price text directly. If the page does not expose that text in the HTML Sheets can fetch, the page source or data source has to be checked before adding IFERROR.'
     }
   },
   'google-sheets-vlookup-not-working': {
