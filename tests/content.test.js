@@ -289,6 +289,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'google-sheets-value-error',
     'google-sheets-na-error',
     'google-sheets-formula-parse-error',
+    'google-sheets-formula-not-updating',
     'google-sheets-circular-dependency',
     'google-sheets-sumifs-not-working',
     'google-sheets-filter-not-working',
@@ -764,6 +765,26 @@ test('google sheets formula parse error page targets Sheets repair intent withou
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-formula-parse-error\//);
   assert.doesNotMatch(page, /upload|workbook audit|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated/i);
+});
+
+test('google sheets formula not updating page targets stale result repair intent without overclaiming', () => {
+  const page = read('google-sheets-formula-not-updating/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Google Sheets Formula Not Updating/);
+  assert.match(page, /Fix a Google Sheets formula that is not updating/);
+  assert.match(page, /first check whether it is a recalculation setting or a broken formula/);
+  assert.match(page, /stale values, volatile functions, text-stored inputs, range drift, and copied formulas/);
+  assert.match(page, /volatile functions/);
+  assert.match(page, /Check File, Settings, Calculation/);
+  assert.match(page, /=SUMIFS\(D2:D500,B2:B500,&quot;Paid&quot;,A2:A500,TODAY\(\)\)/);
+  assert.match(page, /If new rows land below row 500, the range must expand/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-formula-not-updating\/">Google Sheets formula not updating/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-formula-not-updating\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one click|automatic repair|pay before answer|full sheet/i);
 });
 
 test('google sheets circular dependency page targets loop repair intent without overclaiming', () => {

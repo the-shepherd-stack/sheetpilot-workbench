@@ -1135,6 +1135,38 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-formula-not-updating',
+    title: 'Google Sheets Formula Not Updating? | Write My Formula',
+    description: 'Fix Google Sheets formulas that keep stale values, do not recalculate after edits, or need recalculation-setting and formula checks.',
+    eyebrow: 'Google Sheets formula not updating',
+    h1: 'Fix a Google Sheets formula that is not updating.',
+    lede: 'If a Sheets formula keeps an old result after the source cells change, first check whether it is a recalculation setting or a broken formula. Paste the stuck formula, describe what changed, and get a focused repair path for stale values, volatile functions, text-stored inputs, range drift, and copied formulas.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=SUMIFS(D2:D500,B2:B500,"Paid",A2:A500,TODAY())'
+    },
+    intent: 'Help Google Sheets users diagnose one formula that appears stuck, stale, or slow to recalculate after source cells, imports, form responses, or referenced ranges change.',
+    bestFor: [
+      'SUMIF, SUMIFS, lookup, ARRAYFORMULA, INDEX/MATCH, or dashboard formulas that keep showing an old value.',
+      'Formulas that update only after reloading the sheet, editing the cell, or changing a referenced value again.',
+      'Sheets where recalculation settings, volatile functions such as TODAY, NOW, RAND, or RANDBETWEEN, and formula logic need to be separated.',
+      'Copied formulas or imported data where references shifted, ranges stopped including new rows, or numbers and dates are stored as text.'
+    ],
+    steps: [
+      'Paste the exact formula that is not updating and the value it currently shows.',
+      'Describe the source cell, row, import, or form response that changed.',
+      'Add the value you expected so the repair can distinguish a stale result from a formula that is calculating the wrong input.'
+    ],
+    copyChecks: [
+      'Check File, Settings, Calculation before rewriting a formula that depends on volatile functions.',
+      'Confirm the formula range still includes the new row, import, or source tab.',
+      'Check whether source numbers or dates are stored as text after a paste, import, or form response.',
+      'Avoid hiding a stale result with IFERROR before the source range and recalculation behavior are understood.',
+      'Test the repaired formula on one known changed row before filling it through a shared sheet.'
+    ]
+  },
+  {
     slug: 'google-sheets-circular-dependency',
     title: 'Google Sheets Circular Dependency Fixer | Write My Formula',
     description: 'Fix Google Sheets circular dependency errors caused by self-referencing cells, self-including ranges, indirect loops, and risky iterative-calculation settings.',
@@ -2545,6 +2577,20 @@ const pageEnhancements = {
       setup: 'A QUERY formula can parse incorrectly when text criteria inside the query string are not quoted.',
       formula: '=QUERY(A1:D500,"select A, B where C = \'Open\'",1)',
       read: 'The formula keeps the query text inside double quotes, then wraps the Open criterion in single quotes so Google Sheets can parse the condition as text.'
+    }
+  },
+  'google-sheets-formula-not-updating': {
+    gives: [
+      'A focused repair pass for one Google Sheets formula that appears stuck on an old result.',
+      'Checks for recalculation settings, volatile functions, shifted ranges, imported text values, and copied-reference problems.',
+      'A revised formula path you can test against one known changed row before editing a shared report.'
+    ],
+    useWhen: 'Use this page when a Google Sheets formula does not update after source data changes, updates only after a reload or manual edit, or gives a stale dashboard value after an import or form response. It is strongest when you can paste the exact formula, the changed source value, and the result you expected.',
+    notWhen: 'Do not use it as proof that every stale value in the file is fixed. Spreadsheet-wide calculation settings and large-sheet performance can affect many formulas; this repair starts with the one formula and context you type into the form.',
+    example: {
+      setup: 'A dashboard should total paid rows for today, but the total stays the same after new rows are added.',
+      formula: '=SUMIFS(D2:D500,B2:B500,"Paid",A2:A500,TODAY())',
+      read: 'The formula checks a fixed source range, the Paid status, and today\'s date. If new rows land below row 500, the range must expand; if TODAY is involved, the sheet calculation setting also matters.'
     }
   },
   'google-sheets-circular-dependency': {
