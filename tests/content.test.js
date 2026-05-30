@@ -53,6 +53,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix formulas blocked by imported text numbers, unparseable VALUE inputs, date text, range shapes, or wrong argument types/);
   assert.match(page, /\/google-sheets-na-error\//);
   assert.match(page, /Fix formulas with missing lookup matches, no-match FILTER results, text-number mismatches, hidden spaces, or fallback mistakes/);
+  assert.match(page, /\/google-sheets-div0-error\//);
+  assert.match(page, /Fix formulas blocked by zero or blank denominators, ratio logic, averages, percentages, and IFERROR tradeoffs/);
   assert.match(page, /\/excel-formula-not-calculating\//);
   assert.match(page, /Fix formulas that stay stale, show formula text, or only update after manual recalculation/);
   assert.match(page, /\/excel-showing-formula-instead-of-result\//);
@@ -290,6 +292,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'google-sheets-ref-error',
     'google-sheets-value-error',
     'google-sheets-na-error',
+    'google-sheets-div0-error',
     'google-sheets-formula-parse-error',
     'google-sheets-formula-not-updating',
     'google-sheets-circular-dependency',
@@ -464,6 +467,25 @@ test('google sheets NA error page targets missing-match repair intent without ov
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/google-sheets-na-error\/">Google Sheets #N\/A error/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-na-error\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|finds every|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|private|\blocal\b|secure by default|instant|in seconds|one click|automatic|pay before answer/i);
+});
+
+test('google sheets DIV0 error page targets divide-by-zero repair intent without overclaiming', () => {
+  const page = read('google-sheets-div0-error/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Google Sheets #DIV\/0! Error Fixer/);
+  assert.match(page, /Fix #DIV\/0! in Google Sheets without hiding the wrong error/);
+  assert.match(page, /zero or blank denominators, ratio formulas, averages, percentages/);
+  assert.match(page, /Use IF to test the denominator directly when only division-by-zero should be handled/);
+  assert.match(page, /Use IFERROR carefully because it can also hide #VALUE!, #REF!, #N\/A, parse errors/);
+  assert.match(page, /=IF\(C2=0,,B2\/C2\)/);
+  assert.match(page, /Other formula errors remain visible instead of being hidden by a broad IFERROR wrapper/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-div0-error\/">Google Sheets #DIV\/0! error/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-div0-error\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|finds every|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|private|\blocal\b|secure by default|instant|in seconds|one click|automatic|pay before answer/i);
 });
 

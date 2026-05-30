@@ -544,6 +544,38 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-div0-error',
+    title: 'Google Sheets #DIV/0! Error Fixer | Write My Formula',
+    description: 'Fix Google Sheets #DIV/0! errors caused by zero or blank denominators, ratio formulas, averages, percentages, and broad IFERROR fallbacks.',
+    eyebrow: 'Google Sheets #DIV/0! error fixer',
+    h1: 'Fix #DIV/0! in Google Sheets without hiding the wrong error.',
+    lede: 'Paste the formula that is dividing by zero or a blank cell, describe what the result should mean, and get a focused repair path for denominators, ratios, averages, percentages, and IFERROR fallbacks that should not cover every possible error.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=B2/C2'
+    },
+    intent: 'Help Google Sheets users repair one formula returning #DIV/0! by checking whether the divisor is zero, blank, calculated from another formula, or being hidden too broadly with IFERROR.',
+    bestFor: [
+      'Ratio, percentage, rate, and margin formulas that divide by a blank or zero denominator.',
+      'AVERAGE, weighted-average, and report formulas that show #DIV/0! before enough source data exists.',
+      'Formulas where IFERROR may be useful, but only after the denominator and other referenced errors are understood.',
+      'Shared sheets where a blank result, 0, #N/A, or an input-needed message needs to be chosen deliberately.'
+    ],
+    steps: [
+      'Paste the exact formula returning #DIV/0!.',
+      'Describe what should happen when the denominator is zero, blank, or waiting for future data.',
+      'Include one source row where the division should work and one row where the denominator is missing or zero.'
+    ],
+    copyChecks: [
+      'Check whether the divisor is a true zero, a blank cell, text, or another formula returning an empty-looking value.',
+      'Decide whether a zero denominator should return blank, 0, #N/A, or a clear message before adding a fallback.',
+      'Use IF to test the denominator directly when only division-by-zero should be handled.',
+      'Use IFERROR carefully because it can also hide #VALUE!, #REF!, #N/A, parse errors, or other formula problems.',
+      'Test the repaired formula on one valid denominator and one zero or blank denominator before filling it through a shared sheet.'
+    ]
+  },
+  {
     slug: 'excel-formula-not-calculating',
     title: 'Excel Formula Not Calculating Fixer | Write My Formula',
     description: 'Fix Excel formulas that do not calculate, do not update automatically, show stale values, or display formula text instead of the result.',
@@ -2721,6 +2753,20 @@ const pageEnhancements = {
       setup: 'A product table in A2:D500 has SKU in the first column and status in the fourth column. E2 contains a SKU from an imported order file that should match the product table.',
       formula: '=IFNA(VLOOKUP(TRIM(E2),$A$2:$D$500,4,FALSE),"Not found")',
       read: 'The formula trims hidden spaces from the imported lookup value, searches the first column of the product table with exact match, and returns the status from column 4. The IFNA fallback appears only after the range and source values have been checked.'
+    }
+  },
+  'google-sheets-div0-error': {
+    gives: [
+      'A focused repair pass for one Google Sheets formula returning #DIV/0!.',
+      'Checks for zero or blank denominators, calculated divisor cells, ratio logic, averages, and fallback placement.',
+      'A revised formula path you can test against one valid denominator and one zero or blank denominator before changing a shared report.'
+    ],
+    useWhen: 'Use this page when Google Sheets returns #DIV/0!, says a function parameter cannot divide by zero, or shows divide-by-zero errors in ratios, percentages, averages, margins, or score formulas. It is strongest when you can paste the exact formula and one row where the denominator should be valid.',
+    notWhen: 'Do not wrap the whole formula in IFERROR before checking the denominator. IFERROR can be right for a finished report, but it can also hide unrelated reference, value, lookup, or parse problems that should stay visible while you repair the formula.',
+    example: {
+      setup: 'A report calculates conversion rate from signups in B and visits in C. Rows with no visits yet should stay blank, but rows with visits should calculate normally.',
+      formula: '=IF(C2=0,,B2/C2)',
+      read: 'The formula checks the denominator directly, returns a blank only when visits are zero, and performs the division when the denominator is available. Other formula errors remain visible instead of being hidden by a broad IFERROR wrapper.'
     }
   },
   'google-sheets-filter-not-working': {
