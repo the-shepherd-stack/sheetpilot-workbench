@@ -35,6 +35,7 @@ IndexNow key file: `8e6a0b9c4d2f41a7b5c3e8d9f0a1b2c6.txt`.
 
 ## Outreach Ledger
 
+- 2026-05-30: RefTreeAnalyser first-touch sent to `info@jkp-ads.com`; Gmail message id/thread id `19e7af9505e85905`; wait until `2026-06-02 22:20 UTC` before another spreadsheet add-in vendor prospect unless Ablebits, FormulaDesk, FormulaBoost, or RefTreeAnalyser replies.
 - 2026-05-29: SpreadsheetClass first-touch sent to `corey.spreadsheetclass@gmail.com`; Gmail message id/thread id `19e7489a7f6fa8dd`; wait until `2026-06-01 16:20 UTC` before another Excel consulting/support-service prospect unless GetSpreadsheet, Easy Excel Answers, or SpreadsheetClass replies.
 - 2026-05-29: ProfessionalsExcel first-touch sent to `ask@davidringstrom.com`; Gmail message id/thread id `19e733fa8bda27d7`; wait until `2026-06-01 10:20 UTC` before another training/resource prospect unless Learn Excel Now, Excel Campus, or ProfessionalsExcel replies.
 - 2026-05-27: FormulaBoost replied no to the neutral-link ask; Gmail message id `19e6b20edd5c20d2`; do not re-contact FormulaBoost unless they ask for more information or Write My Formula has materially stronger proof.
