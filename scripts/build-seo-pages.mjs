@@ -1718,6 +1718,42 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-data-validation-formula-not-working',
+    title: 'Google Sheets Data Validation Formula Not Working? | Write My Formula',
+    description: 'Fix Google Sheets data validation custom formulas that warn instead of rejecting, reject valid entries, or shift references after copying.',
+    eyebrow: 'Google Sheets data validation repair',
+    h1: 'Fix a Google Sheets data validation custom formula that is not working.',
+    lede: 'A custom formula rule can look right in a normal cell but behave differently in Google Sheets data validation. Paste the rule, applied range, and one allowed or rejected value to get a focused repair path for TRUE/FALSE logic, reject input settings, dropdown criteria, and relative references.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      task: 'Fix this Google Sheets data validation rule so each task owner is required when the task status is Open.',
+      table: 'Task,Status,Owner\nRenew contract,Open,\nSend invoice,Done,Sam',
+      range: 'Apply data validation to C2:C100; status is in B; first row is 2',
+      hint: 'Google Sheets data validation custom formula',
+      formula: '=OR($B2<>"Open",LEN(C2)>0)'
+    },
+    intent: 'Help Google Sheets users repair one data-validation custom formula where the visible problem is usually Show warning versus Reject input, wrong first-row references, a formula that does not return TRUE/FALSE, copied-rule drift, or confusion between dropdown-from-range and custom formula criteria.',
+    bestFor: [
+      'Data validation rules that only show a warning when the sheet owner expected invalid entries to be blocked.',
+      'Custom formulas that reject valid entries, accept invalid entries, or shift one row after being applied to a range.',
+      'Rules that work in a worksheet cell but fail in the data validation panel because the current-cell reference or locked range is wrong.',
+      'Dropdown and validation setups where the rule needs to be separated into list criteria, reject-input behavior, and a TRUE/FALSE custom formula.'
+    ],
+    steps: [
+      'Paste the exact custom formula from the data-validation rule.',
+      'Add the applied range, the first cell in that range, and whether invalid data is set to Show warning or Reject input.',
+      'Include one value that should pass and one value that should be rejected.'
+    ],
+    copyChecks: [
+      'Set invalid data to Reject input when the rule should block entries instead of only marking them.',
+      'Write the formula as if Google Sheets evaluates it from the first cell in the applied range.',
+      'Keep the current input cell relative and lock only helper ranges, columns, or rows that should stay fixed.',
+      'Make sure the custom formula returns TRUE for allowed entries and FALSE for rejected entries.',
+      'Use dropdown-from-range criteria for menu choices and custom formulas for validation tests; they solve different problems.'
+    ]
+  },
+  {
     slug: 'google-sheets-vlookup-not-working',
     title: 'Google Sheets VLOOKUP Not Working? | Write My Formula',
     description: 'Fix Google Sheets VLOOKUP formulas with #N/A, wrong matches, approximate-match issues, lookup-range mistakes, or return-column problems.',
@@ -3216,6 +3252,20 @@ const pageEnhancements = {
       setup: 'The apply-to range is A2:C100. Due dates are in column B, status is in column C, and the whole row should highlight when the due date is before today and status is not Done.',
       formula: '=AND($B2<TODAY(),$C2<>"Done")',
       read: 'The dollar signs lock columns B and C so every formatted cell in the row checks the same due date and status. The row number stays relative, so row 3 checks B3 and C3.'
+    }
+  },
+  'google-sheets-data-validation-formula-not-working': {
+    gives: [
+      'A focused repair pass for one Google Sheets data-validation custom formula.',
+      'Checks for Show warning versus Reject input, TRUE/FALSE output, first-cell references, locked ranges, and copied-rule behavior.',
+      'A revised validation formula path you can test with one allowed entry and one rejected entry before applying it broadly.'
+    ],
+    useWhen: 'Use this page when a Google Sheets data validation custom formula accepts entries it should block, rejects entries it should allow, only shows warning triangles, or changes behavior after the rule is copied to another range. It is strongest when you can paste the formula, applied range, first cell, and one pass/fail example.',
+    notWhen: 'Do not use it as a broad data-quality audit. Data validation controls future entry behavior for the rule you set; existing values, pasted data, protected ranges, and Apps Script workflows may still need separate checks.',
+    example: {
+      setup: 'The validation rule is applied to C2:C100. Owner is required only when Status in column B is Open.',
+      formula: '=OR($B2<>"Open",LEN(C2)>0)',
+      read: 'The formula returns TRUE when the row is not Open or when the current Owner cell is filled. Column B stays locked because the status check always reads the same row in B, while C2 stays relative so each validated cell checks itself.'
     }
   },
   'google-sheets-vlookup-not-working': {

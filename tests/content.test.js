@@ -115,6 +115,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix IMPORTXML formulas with #N\/A, Imported content is empty, Could not fetch URL, XPath mistakes, oversized results, or blocked page content/);
   assert.match(page, /\/google-sheets-conditional-formatting-not-working\//);
   assert.match(page, /Fix conditional formatting custom formulas that highlight nothing, highlight the wrong rows, lose to another rule, or break across sheets/);
+  assert.match(page, /\/google-sheets-data-validation-formula-not-working\//);
+  assert.match(page, /Fix Google Sheets data validation custom formulas that warn instead of rejecting, reject valid entries, or shift references after copying/);
   assert.match(page, /\/google-sheets-vlookup-not-working\//);
   assert.match(page, /Fix VLOOKUP formulas with #N\/A, wrong matches, approximate-match issues, lookup-range mistakes, or return-column problems/);
   assert.match(page, /\/google-sheets-xlookup-not-working\//);
@@ -326,6 +328,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'google-sheets-importrange-not-working',
     'google-sheets-importxml-not-working',
     'google-sheets-conditional-formatting-not-working',
+    'google-sheets-data-validation-formula-not-working',
     'google-sheets-vlookup-not-working',
     'google-sheets-xlookup-not-working',
     'conditional-formatting-formula-not-working',
@@ -1139,6 +1142,27 @@ test('google sheets conditional formatting page targets custom formula repair in
   assert.match(homepage, /href="\/google-sheets-conditional-formatting-not-working\/">Google Sheets conditional formatting not working/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-conditional-formatting-not-working\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|full sheet design|guarantee|guaranteed|always fixes|fixes every|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one click|automatic|pay before answer/i);
+});
+
+test('google sheets data validation formula page targets rule repair intent without overclaiming', () => {
+  const page = read('google-sheets-data-validation-formula-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Google Sheets Data Validation Formula Not Working/);
+  assert.match(page, /Fix a Google Sheets data validation custom formula that is not working/);
+  assert.match(page, /Show warning versus Reject input/);
+  assert.match(page, /TRUE\/FALSE output/);
+  assert.match(page, /first-cell references/);
+  assert.match(page, /dropdown-from-range/);
+  assert.match(page, /=OR\(\$B2&lt;&gt;&quot;Open&quot;,LEN\(C2\)&gt;0\)/);
+  assert.match(page, /Set invalid data to Reject input/);
+  assert.match(page, /custom formula returns TRUE for allowed entries and FALSE for rejected entries/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-data-validation-formula-not-working\/">Google Sheets data validation formula not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-data-validation-formula-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|full-sheet|guarantee|guaranteed|always fixes|fixes every|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one click|automatic|pay before answer|partnership/i);
 });
 
 test('google sheets VLOOKUP not working page targets lookup repair intent without overclaiming', () => {
