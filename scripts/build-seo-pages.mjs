@@ -857,6 +857,38 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-indirect-not-working',
+    title: 'Excel INDIRECT Not Working Fixer | Write My Formula',
+    description: 'Fix Excel INDIRECT formulas returning #REF!, wrong cells, broken dynamic sheet names, dependent dropdown issues, named-range failures, or browser workbook limits.',
+    eyebrow: 'Excel INDIRECT fixer',
+    h1: 'Fix an Excel INDIRECT formula that is not working.',
+    lede: 'Paste the INDIRECT formula that returns #REF!, points at the wrong cell, or breaks when a sheet name, named range, dropdown, or external workbook reference changes. Get a focused repair path for reference text, quotes, tab names, workbook state, named ranges, and Excel web limits.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=INDIRECT(A1&"!B2")'
+    },
+    intent: 'Help Excel users repair one INDIRECT formula where the visible problem is usually invalid reference text, unquoted sheet names, renamed tabs, closed source workbooks, named-range scope, data-validation dependent dropdowns, or Excel for the web limitations.',
+    bestFor: [
+      'INDIRECT formulas returning #REF! even though the referenced sheet or range looks close.',
+      'Dynamic sheet-name formulas where spaces, apostrophes, deleted tabs, or renamed tabs break the reference text.',
+      'Dependent dropdowns and named-range formulas that work on one sheet but fail after copying, renaming, or changing scope.',
+      'External workbook references that behave differently in Excel desktop, SharePoint, OneDrive, or Excel for the web.'
+    ],
+    steps: [
+      'Paste the exact INDIRECT formula and the current error or wrong result.',
+      'Add the text value that INDIRECT is trying to turn into a reference, such as the tab name, named range, or address in the source cell.',
+      'Mention whether the formula points to another workbook, a browser-hosted file, a data-validation rule, or a named range.'
+    ],
+    copyChecks: [
+      'Confirm the text inside INDIRECT evaluates to a valid A1 or R1C1 reference.',
+      'Wrap sheet names in apostrophes when tab names contain spaces, punctuation, or apostrophes.',
+      'Open any external source workbook before treating an INDIRECT #REF! as a syntax-only problem.',
+      'Check whether the name is scoped to one sheet or to the whole workbook.',
+      'Avoid relying on external INDIRECT references in Excel for the web when the desktop workbook behavior cannot be reproduced there.'
+    ]
+  },
+  {
     slug: 'excel-value-error',
     title: 'Excel #VALUE! Error Fixer | Write My Formula',
     description: 'Fix Excel #VALUE! errors caused by text in number cells, hidden spaces, wrong argument types, subtraction syntax, and date or text function issues.',
@@ -3248,6 +3280,20 @@ const pageEnhancements = {
       setup: 'A report has customer IDs in A and notes in B. E2 contains one customer ID, and the formula should join only that customer\'s notes with comma separators.',
       formula: '=TEXTJOIN(", ",TRUE,FILTER($B$2:$B$500,$A$2:$A$500=E2))',
       read: 'The formula filters notes to the matching customer ID, joins only the visible matches, and ignores empty values. Test the FILTER result separately if the joined output is blank or returns an error.'
+    }
+  },
+  'excel-indirect-not-working': {
+    gives: [
+      'A focused repair pass for one INDIRECT formula returning #REF!, a wrong cell, or a broken dropdown reference.',
+      'Checks for valid reference text, tab-name quoting, named-range scope, closed source workbooks, and Excel for the web limitations.',
+      'A revised INDIRECT path you can test against the resolved reference before changing a shared workbook or data-validation rule.'
+    ],
+    useWhen: 'Use this page when INDIRECT is close but brittle: it returns #REF!, points at the wrong tab or cell, fails inside a dependent dropdown, or behaves differently after a workbook, sheet name, named range, or browser-hosted file changes. Paste the formula and the text value it is trying to turn into a reference.',
+    notWhen: 'Do not use it for a whole-workbook reference audit or as proof every linked workbook is healthy. INDIRECT depends on the exact text it receives, source workbook state, and Excel environment, so test the repaired formula on one known reference first.',
+    example: {
+      setup: 'A summary sheet stores a tab name in A1, and the formula should pull B2 from that tab. The tab is named Q1 Sales, so the sheet name needs apostrophe wrapping inside the reference text.',
+      formula: '=INDIRECT("\'"&A1&"\'!B2")',
+      read: 'The formula builds a reference like \'Q1 Sales\'!B2 before INDIRECT evaluates it. Without the apostrophes, sheet names with spaces can turn into invalid reference text and return #REF!.'
     }
   },
   'excel-index-match-not-working': {

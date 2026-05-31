@@ -73,6 +73,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix COUNTIFS formulas that return 0, #VALUE!, or wrong counts because of criteria, range sizes, dates, or closed workbooks/);
   assert.match(page, /\/excel-textjoin-not-working\//);
   assert.match(page, /Fix TEXTJOIN formulas with #VALUE!, #NAME\?, extra delimiters, blank joins, IF or FILTER array issues, line breaks, or version support problems/);
+  assert.match(page, /\/excel-indirect-not-working\//);
+  assert.match(page, /Fix INDIRECT formulas with #REF!, dynamic sheet names, dependent dropdowns, named ranges, or external workbook limits/);
   assert.match(page, /\/excel-value-error\//);
   assert.match(page, /Repair formulas blocked by text values, hidden spaces, wrong argument types, dates, or subtraction syntax/);
   assert.match(page, /\/excel-name-error\//);
@@ -295,6 +297,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-sumifs-not-working',
     'excel-countifs-not-working',
     'excel-textjoin-not-working',
+    'excel-indirect-not-working',
     'excel-value-error',
     'excel-name-error',
     'excel-div0-error',
@@ -680,6 +683,26 @@ test('excel TEXTJOIN not working page targets text-join repair intent without ov
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/excel-textjoin-not-working\/">Excel TEXTJOIN not working/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-textjoin-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole spreadsheet/i);
+});
+
+test('excel INDIRECT not working page targets dynamic reference repair intent without overclaiming', () => {
+  const page = read('excel-indirect-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel INDIRECT Not Working Fixer/);
+  assert.match(page, /Fix an Excel INDIRECT formula that is not working/);
+  assert.match(page, /returns #REF!, points at the wrong cell, or breaks when a sheet name, named range, dropdown, or external workbook reference changes/);
+  assert.match(page, /reference text, quotes, tab names, workbook state, named ranges, and Excel web limits/);
+  assert.match(page, /=INDIRECT\(&quot;'&quot;&amp;A1&amp;&quot;'!B2&quot;\)/);
+  assert.match(page, /Confirm the text inside INDIRECT evaluates to a valid A1 or R1C1 reference/);
+  assert.match(page, /Open any external source workbook before treating an INDIRECT #REF! as a syntax-only problem/);
+  assert.match(page, /Avoid relying on external INDIRECT references in Excel for the web/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-indirect-not-working\/">Excel INDIRECT not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-indirect-not-working\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole spreadsheet/i);
 });
 
