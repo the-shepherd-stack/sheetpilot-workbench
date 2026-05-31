@@ -1715,6 +1715,40 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-regexextract-not-working',
+    title: 'Google Sheets REGEXEXTRACT Not Working? | Write My Formula',
+    description: 'Fix Google Sheets REGEXEXTRACT formulas with #N/A no-match errors, invalid regex patterns, text-input issues, greedy matches, and RE2 syntax limits.',
+    eyebrow: 'Google Sheets REGEXEXTRACT repair',
+    h1: 'Fix a Google Sheets REGEXEXTRACT formula that is not matching.',
+    lede: 'REGEXEXTRACT fails when the pattern is too strict, a special character is not escaped, the input is not text, or the regex syntax works somewhere else but not in Google Sheets. Paste the formula and one sample cell to get a focused repair path for no-match errors, capture groups, greedy matches, and RE2 limits.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=REGEXEXTRACT(A2,"Order #(\\d+)")'
+    },
+    intent: 'Help Google Sheets users repair one REGEXEXTRACT formula where the visible problem is usually #N/A because the pattern does not match, a number used where text is expected, a copied regex that uses syntax Sheets does not support, or a capture group that returns more or less than expected.',
+    bestFor: [
+      'REGEXEXTRACT formulas that return #N/A or say the regular expression does not match the input text.',
+      'Patterns copied from regex testers, JavaScript, or Python that use lookbehind, lookaround, backreferences, or other syntax Google Sheets regex formulas cannot run.',
+      'Extracting order IDs, invoice numbers, domains, names, prices, or text after a label from imported cells.',
+      'Capture groups that spill into multiple columns, return only part of the match, or miss optional spacing and punctuation.',
+      'Text and number inputs where REGEXEXTRACT needs TEXT before matching or VALUE after extracting a numeric result.'
+    ],
+    steps: [
+      'Paste the exact REGEXEXTRACT formula and the sample cell text it is reading.',
+      'Add the exact substring you expected the formula to return.',
+      'Mention whether the pattern came from another regex tool, Apps Script, Excel, Python, or a web example.'
+    ],
+    copyChecks: [
+      'Confirm the input is text before matching; use TEXT when the source value is a number or date.',
+      'Escape literal dots, brackets, parentheses, slashes, plus signs, and question marks when they should be matched as characters.',
+      'Use capture groups deliberately because REGEXEXTRACT returns captured groups instead of the whole match when groups are present.',
+      'Make optional spaces and punctuation explicit when imported text varies from row to row.',
+      'Avoid unsupported RE2 syntax such as lookbehind, lookaround, and backreferences in Google Sheets formulas.',
+      'Use VALUE only after extraction when the result should behave as a number in later formulas.'
+    ]
+  },
+  {
     slug: 'google-sheets-conditional-formatting-not-working',
     title: 'Google Sheets Conditional Formatting Custom Formula Not Working? | Write My Formula',
     description: 'Fix Google Sheets conditional formatting custom formulas that highlight nothing, highlight the wrong rows, lose to another rule, or break across sheets.',
@@ -3285,6 +3319,20 @@ const pageEnhancements = {
       setup: 'A product page has price text in a span with class price. A shorter attribute-based XPath is usually easier to maintain than a full copied browser path.',
       formula: '=IMPORTXML("https://example.com/products/widget","//span[contains(@class,\'price\')]/text()")',
       read: 'The formula gives Sheets a quoted URL and a quoted XPath that targets price text directly. If the page does not expose that text in the HTML Sheets can fetch, the page source or data source has to be checked before adding IFERROR.'
+    }
+  },
+  'google-sheets-regexextract-not-working': {
+    gives: [
+      'A focused repair pass for one Google Sheets REGEXEXTRACT formula.',
+      'Checks for no-match #N/A results, text-only input, capture groups, escaped characters, greedy patterns, and RE2 syntax limits.',
+      'A revised pattern path you can test against one matching cell and one non-matching cell before filling it through imported data.'
+    ],
+    useWhen: 'Use this page when REGEXEXTRACT returns #N/A, says the pattern does not match the text, extracts too much text, spills unexpected capture groups, or fails after a regex was copied from another tool. It is strongest when you can paste the exact formula, one sample input cell, and the exact substring you wanted back.',
+    notWhen: 'Do not use it as proof that a whole import or scraping workflow is correct. REGEXEXTRACT can repair one text pattern, but source data changes, locale formatting, Apps Script behavior, and downstream numeric calculations may still need separate checks.',
+    example: {
+      setup: 'Column A contains imported order labels such as Order #A-1048 - paid. The formula should extract only the order code after the label.',
+      formula: '=REGEXEXTRACT(TO_TEXT(A2),"Order #([A-Z]-\\d+)")',
+      read: 'The formula converts the input to text before matching, looks for the literal label, and captures only the order code. If some rows omit the space or use a different prefix, the pattern should be loosened before wrapping the result in IFERROR.'
     }
   },
   'google-sheets-conditional-formatting-not-working': {

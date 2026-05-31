@@ -115,6 +115,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix IMPORTRANGE formulas with #REF!, Allow access prompts, oversized imports, slow refreshes, or source permission issues/);
   assert.match(page, /\/google-sheets-importxml-not-working\//);
   assert.match(page, /Fix IMPORTXML formulas with #N\/A, Imported content is empty, Could not fetch URL, XPath mistakes, oversized results, or blocked page content/);
+  assert.match(page, /\/google-sheets-regexextract-not-working\//);
+  assert.match(page, /Fix REGEXEXTRACT formulas with #N\/A no-match errors, invalid regex patterns, text-input issues, greedy matches, and RE2 syntax limits/);
   assert.match(page, /\/google-sheets-conditional-formatting-not-working\//);
   assert.match(page, /Fix conditional formatting custom formulas that highlight nothing, highlight the wrong rows, lose to another rule, or break across sheets/);
   assert.match(page, /\/google-sheets-data-validation-formula-not-working\//);
@@ -1144,6 +1146,26 @@ test('google sheets IMPORTXML not working page targets XPath repair intent witho
   assert.match(homepage, /href="\/google-sheets-importxml-not-working\/">Google Sheets IMPORTXML not working/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-importxml-not-working\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|working one back|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one click|automatic|pay before answer|detects JS|cancel any time/i);
+});
+
+test('google sheets REGEXEXTRACT not working page targets regex repair intent without overclaiming', () => {
+  const page = read('google-sheets-regexextract-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Google Sheets REGEXEXTRACT Not Working/);
+  assert.match(page, /Fix a Google Sheets REGEXEXTRACT formula that is not matching/);
+  assert.match(page, /#N\/A because the pattern does not match/);
+  assert.match(page, /text-only input, capture groups, escaped characters, greedy patterns, and RE2 syntax limits/);
+  assert.match(page, /lookbehind, lookaround, and backreferences/);
+  assert.match(page, /=REGEXEXTRACT\(TO_TEXT\(A2\),&quot;Order #\(\[A-Z\]-\\d\+\)&quot;\)/);
+  assert.match(page, /Avoid unsupported RE2 syntax such as lookbehind, lookaround, and backreferences/);
+  assert.match(page, /Use VALUE only after extraction/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-regexextract-not-working\/">Google Sheets REGEXEXTRACT not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-regexextract-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|whole-sheet|full-sheet|guarantee|guaranteed|always fixes|fixes every|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one click|automatic|pay before answer|we know what you meant|trained on millions/i);
 });
 
 test('google sheets conditional formatting page targets custom formula repair intent without overclaiming', () => {
