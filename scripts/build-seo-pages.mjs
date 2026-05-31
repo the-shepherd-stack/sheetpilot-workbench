@@ -729,6 +729,38 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-table-formula-not-working',
+    title: 'Excel Table Formula Not Working? | Write My Formula',
+    description: 'Fix Excel table formulas with broken structured references, calculated columns that do not fill, @ row references, or wrong table-column ranges.',
+    eyebrow: 'Excel table formula repair',
+    h1: 'Fix an Excel table formula that is not working.',
+    lede: 'Excel tables use structured references, calculated columns, and @ row references that behave differently from normal A1 ranges. Paste the table formula that is misbehaving, describe the column it lives in, and get a focused repair path for table names, column headers, row context, copied formulas, and fill-down behavior.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=XLOOKUP([@SKU],Products[SKU],Products[Price],"Not found")'
+    },
+    intent: 'Help Excel users repair one table formula where the visible problem is usually a calculated column that stopped filling, a structured reference that points at the wrong table column, an @ this-row reference used outside its row context, or a formula copied in a way that changes column specifiers unexpectedly.',
+    bestFor: [
+      'Excel table formulas that do not fill into new rows or do not update the whole calculated column.',
+      'Structured references with table names, column headers, special characters, or renamed columns that no longer match the workbook.',
+      'Formulas where @ should read the current row but the copied formula returns the wrong row or a single value.',
+      'Lookup, SUMIFS, COUNTIFS, IF, and calculated-column formulas that need table references checked before switching back to A1 ranges.'
+    ],
+    steps: [
+      'Paste the exact formula from the Excel table column.',
+      'Add the table name, relevant column headers, and whether the formula is inside the table or outside it.',
+      'Describe what happens now: it does not fill, fills only some rows, uses plain cell references, returns the wrong row, or breaks after a column rename.'
+    ],
+    copyChecks: [
+      'Confirm the source range is an actual Excel table, not a normal range formatted to look like one.',
+      'Check whether the formula belongs inside the table, where unqualified structured references and @ row references are valid.',
+      'Use the exact table and column names after any header rename, including brackets for headers with special characters.',
+      'Check whether Excel calculated-column behavior is turned on before rewriting a valid formula that simply stopped filling.',
+      'Test the repaired formula in one table row and then confirm the calculated column uses the same formula in the rest of the column.'
+    ]
+  },
+  {
     slug: 'excel-sumifs-not-working',
     title: 'Excel SUMIFS Not Working Fixer | Write My Formula',
     description: 'Fix Excel SUMIFS formulas that return 0, #VALUE!, wrong totals, or miss rows because of criteria, range size, date, or argument-order issues.',
@@ -2610,6 +2642,20 @@ const pageEnhancements = {
       setup: 'A product lookup can work in the first row but break after filling down if the lookup table range moves with each copied formula.',
       formula: '=XLOOKUP(A2,Products!$A$2:$A$500,Products!$C$2:$C$500,"Not found")',
       read: 'The lookup value A2 stays relative so it changes to A3, A4, and later rows. The product lookup and return ranges stay locked so the filled formulas keep searching the same table.'
+    }
+  },
+  'excel-table-formula-not-working': {
+    gives: [
+      'A focused fix pass for one Excel table formula using structured references.',
+      'Checks for table names, column headers, @ row references, calculated-column fill behavior, and copied structured references.',
+      'A revised formula path you can test in one table row before replacing the calculated column.'
+    ],
+    useWhen: 'Use this page when an Excel table formula does not fill down, stops using structured references, returns the wrong row, or breaks after a table or column rename. It is strongest when you can paste the exact formula plus the table name and headers it should reference.',
+    notWhen: 'Do not assume a normal range behaves like an Excel table. Structured references, @ row context, and calculated columns only make sense when the source is an actual table and the formula is written for the right table location.',
+    example: {
+      setup: 'A table named Orders has a SKU column, and a separate Products table stores the price for each SKU.',
+      formula: '=XLOOKUP([@SKU],Products[SKU],Products[Price],"Not found")',
+      read: 'The [@SKU] reference reads the SKU from the current Orders row, while Products[SKU] and Products[Price] point at the full lookup and return columns in the Products table. Test the formula in one Orders row before applying it through the calculated column.'
     }
   },
   'excel-sumifs-not-working': {

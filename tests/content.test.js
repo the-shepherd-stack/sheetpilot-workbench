@@ -65,6 +65,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix formulas that return 0, blank, or an empty string because of lookup return cells, IF logic, or hidden zero settings/);
   assert.match(page, /\/excel-formula-not-copying-down\//);
   assert.match(page, /Fix formulas that will not fill down, copy the first result, or shift the wrong references after dragging/);
+  assert.match(page, /\/excel-table-formula-not-working\//);
+  assert.match(page, /Fix structured references, calculated columns, @ row references, and table formulas that stop filling correctly/);
   assert.match(page, /\/excel-sumifs-not-working\//);
   assert.match(page, /Fix SUMIFS formulas that return 0, #VALUE!, or wrong totals because of criteria, ranges, dates, or argument order/);
   assert.match(page, /\/excel-countifs-not-working\//);
@@ -597,6 +599,25 @@ test('excel formula not copying down page targets fill-down repair intent withou
   assert.match(homepage, /href="\/excel-formula-not-copying-down\/">Excel formula not copying down/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-formula-not-copying-down\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds/i);
+});
+
+test('excel table formula not working page targets structured-reference repair intent without overclaiming', () => {
+  const page = read('excel-table-formula-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel Table Formula Not Working/);
+  assert.match(page, /Fix an Excel table formula that is not working/);
+  assert.match(page, /structured references, calculated columns, and @ row references/);
+  assert.match(page, /table names, column headers, row context, copied formulas, and fill-down behavior/);
+  assert.match(page, /=XLOOKUP\(\[@SKU\],Products\[SKU\],Products\[Price\],&quot;Not found&quot;\)/);
+  assert.match(page, /Confirm the source range is an actual Excel table/);
+  assert.match(page, /Check whether Excel calculated-column behavior is turned on/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-table-formula-not-working\/">Excel table formula not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-table-formula-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|Microsoft-certified|Google-approved|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|whole spreadsheet/i);
 });
 
 test('excel SUMIFS not working page targets criteria repair intent without overclaiming', () => {
