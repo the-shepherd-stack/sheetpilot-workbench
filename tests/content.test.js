@@ -311,6 +311,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'google-sheets-value-error',
     'google-sheets-na-error',
     'google-sheets-div0-error',
+    'google-sheets-name-error',
     'google-sheets-formula-parse-error',
     'google-sheets-formula-not-updating',
     'google-sheets-date-formula-not-working',
@@ -436,6 +437,25 @@ test('google sheets formulas not working page targets broad Sheets repair intent
   assert.match(homepage, /href="\/google-sheets-formulas-not-working\/">Google Sheets formulas not working/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-formulas-not-working\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
+});
+
+test('google sheets NAME error page targets unknown-name repair intent without overclaiming', () => {
+  const page = read('google-sheets-name-error/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Google Sheets #NAME\? Error Fixer/);
+  assert.match(page, /Fix a Google Sheets #NAME\? error at the name Sheets cannot read/);
+  assert.match(page, /#NAME\? or says Unknown range name/);
+  assert.match(page, /function name, named range, named function, unquoted text value, or copied reference/);
+  assert.match(page, /Use underscores instead of spaces or hyphens/);
+  assert.match(page, /Data, Named ranges/);
+  assert.match(page, /=SUM\(My_Range\)/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-name-error\/">Google Sheets #NAME\? error/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-name-error\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|finds every|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|private|\blocal\b|secure by default|instant|in seconds|one click|automatic|pay before answer/i);
 });
 
 test('google sheets REF error page targets broken-reference repair intent without overclaiming', () => {

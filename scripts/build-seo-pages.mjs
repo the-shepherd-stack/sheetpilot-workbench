@@ -576,6 +576,40 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-name-error',
+    title: 'Google Sheets #NAME? Error Fixer | Write My Formula',
+    description: 'Fix Google Sheets #NAME? and Unknown range name errors caused by misspelled functions, deleted named ranges, named functions, quoted text, or locale issues.',
+    eyebrow: 'Google Sheets #NAME? error fixer',
+    h1: 'Fix a Google Sheets #NAME? error at the name Sheets cannot read.',
+    lede: 'When Google Sheets shows #NAME? or says Unknown range name, it usually cannot recognize a function name, named range, named function, unquoted text value, or copied reference. Paste the formula and the name Sheets is complaining about to get a focused repair path before you change a shared sheet.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=SUM(My Range)'
+    },
+    intent: 'Help Google Sheets users repair one formula returning #NAME? or Unknown range name by finding the function, named range, named function, text label, or localized syntax that Sheets cannot interpret.',
+    bestFor: [
+      'Formulas with misspelled function names such as VLOKUP, SUMIFs, or an Excel-only function name that Sheets does not recognize.',
+      'Named ranges that were deleted, renamed, scoped unexpectedly, or typed with spaces, hyphens, or A1-style names Sheets cannot use.',
+      'Named functions that conflict with built-in function names, TRUE/FALSE, A1-style names, or placeholders that were pasted into a formula as real arguments.',
+      'Copied formulas where a named range or named function did not come along with the destination spreadsheet.',
+      'Formulas copied from another locale where the visible function name or separator style does not match the current Google Sheets file.'
+    ],
+    steps: [
+      'Paste the exact formula returning #NAME? or the Unknown range name message.',
+      'Add the named range, named function, or function name that Sheets highlights or mentions in the tooltip.',
+      'Mention whether the formula was copied from Excel, another Google Sheet, a template, a different language, or a file where named ranges were edited.'
+    ],
+    copyChecks: [
+      'Check every function name and named range for spelling differences before adding IFERROR.',
+      'Use underscores instead of spaces or hyphens when a named range should be referenced directly in a formula.',
+      'Confirm the named range still exists under Data, Named ranges, and that it points at the intended cells.',
+      'Check named function names against built-in functions, TRUE, FALSE, and A1 or R1C1-style names.',
+      'Wrap literal text criteria in quotes so Sheets does not read the text as an unknown range name.',
+      'Test the repaired formula on one known row before filling it through a shared sheet.'
+    ]
+  },
+  {
     slug: 'excel-formula-not-calculating',
     title: 'Excel Formula Not Calculating Fixer | Write My Formula',
     description: 'Fix Excel formulas that do not calculate, do not update automatically, show stale values, or display formula text instead of the result.',
@@ -3084,6 +3118,20 @@ const pageEnhancements = {
       setup: 'A report calculates conversion rate from signups in B and visits in C. Rows with no visits yet should stay blank, but rows with visits should calculate normally.',
       formula: '=IF(C2=0,,B2/C2)',
       read: 'The formula checks the denominator directly, returns a blank only when visits are zero, and performs the division when the denominator is available. Other formula errors remain visible instead of being hidden by a broad IFERROR wrapper.'
+    }
+  },
+  'google-sheets-name-error': {
+    gives: [
+      'A focused repair pass for one Google Sheets formula returning #NAME? or Unknown range name.',
+      'Checks for misspelled functions, deleted named ranges, named-function conflicts, unquoted text, copied-sheet references, and locale differences.',
+      'A revised formula path you can test on one known row before changing a shared sheet.'
+    ],
+    useWhen: 'Use this page when Google Sheets cannot read a name in your formula: a function name, a named range, a named function, text that should have been quoted, or a reference copied from another file. It is strongest when you can paste the exact formula and the name Sheets highlights.',
+    notWhen: 'Do not hide #NAME? with IFERROR before fixing the name Sheets cannot resolve. The error usually means the formula text itself points at something Sheets does not recognize, so the repair should start with the function, named range, named function, or quoted text.',
+    example: {
+      setup: 'A formula tries to sum a named range typed as My Range. Google Sheets reads the space as separate formula text, so it reports Unknown range name instead of summing the intended values.',
+      formula: '=SUM(My_Range)',
+      read: 'The repaired formula uses a named range with an underscore so Sheets can read it as one name. If the range was deleted or renamed, confirm it under Data, Named ranges before filling the formula elsewhere.'
     }
   },
   'google-sheets-filter-not-working': {
