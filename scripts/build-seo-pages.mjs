@@ -825,6 +825,38 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-textjoin-not-working',
+    title: 'Excel TEXTJOIN Not Working Fixer | Write My Formula',
+    description: 'Fix Excel TEXTJOIN formulas with #VALUE!, #NAME?, extra delimiters, blank joins, IF or FILTER array issues, line breaks, or version support problems.',
+    eyebrow: 'Excel TEXTJOIN fixer',
+    h1: 'Fix an Excel TEXTJOIN formula that is not working.',
+    lede: 'Paste the TEXTJOIN formula that returns #VALUE!, #NAME?, extra separators, blank output, or a broken IF/FILTER join. Get a focused repair path for quoted delimiters, TRUE/FALSE empty handling, text ranges, line breaks, array criteria, version support, and Excel cell-length limits.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=TEXTJOIN(", ",TRUE,IF($A$2:$A$500=E2,$B$2:$B$500,""))'
+    },
+    intent: 'Help Excel users repair one TEXTJOIN formula where the visible problem is usually an unquoted delimiter, wrong ignore_empty setting, array criteria that need a compatible formula pattern, #NAME? from unsupported Excel versions, extra delimiters, hidden blanks, line-break formatting, or #VALUE! from Excel text-length limits.',
+    bestFor: [
+      'TEXTJOIN formulas that return #VALUE!, #NAME?, blank output, or separators with missing values between them.',
+      'TEXTJOIN with IF or FILTER criteria where the formula should join only matching rows.',
+      'Line-break joins using CHAR(10) where wrap-text, delimiter, or empty-cell behavior needs to be checked.',
+      'Long joined text where Excel cell limits may be the real failure rather than the delimiter syntax.'
+    ],
+    steps: [
+      'Paste the exact TEXTJOIN formula and the visible error or unwanted output.',
+      'Add one source row that should be included and one row that should be ignored.',
+      'Mention your Excel version if the error is #NAME? or the formula uses FILTER.'
+    ],
+    copyChecks: [
+      'Put the delimiter in quotes, or point it at a cell that contains the delimiter text.',
+      'Set ignore_empty deliberately to TRUE or FALSE instead of guessing from the output.',
+      'Check whether the joined result is too long for one Excel cell before rewriting a formula that otherwise looks valid.',
+      'Use CHAR(10) for line breaks and turn on Wrap Text before treating the formula as broken.',
+      'Test any IF or FILTER criteria on a short range before filling it through a large report.'
+    ]
+  },
+  {
     slug: 'excel-value-error',
     title: 'Excel #VALUE! Error Fixer | Write My Formula',
     description: 'Fix Excel #VALUE! errors caused by text in number cells, hidden spaces, wrong argument types, subtraction syntax, and date or text function issues.',
@@ -3202,6 +3234,20 @@ const pageEnhancements = {
       setup: 'A product table has SKUs in A and prices in C. XLOOKUP can return the price for the SKU in E2 when the lookup and return arrays cover the same rows and exact match is explicit.',
       formula: '=XLOOKUP(E2,$A$2:$A$500,$C$2:$C$500,"Not found",0)',
       read: 'The formula searches for E2 in the SKU column, returns the price from the same row, uses exact match, and shows Not found only after the ranges and source values have been checked.'
+    }
+  },
+  'excel-textjoin-not-working': {
+    gives: [
+      'A focused repair pass for one TEXTJOIN formula returning #VALUE!, #NAME?, blank output, or unwanted delimiters.',
+      'Checks for delimiter quoting, TRUE/FALSE empty handling, text ranges, IF or FILTER criteria, line-break delimiters, version support, and Excel cell-length limits.',
+      'A revised TEXTJOIN path you can test on a short source range before changing a larger report.'
+    ],
+    useWhen: 'Use this page when TEXTJOIN is close but not reliable: it joins the wrong cells, leaves extra separators, returns blank output, shows #VALUE!, or fails inside an IF or FILTER condition. Paste the formula and a small sample of the rows that should be included.',
+    notWhen: 'Do not hide TEXTJOIN errors with IFERROR before checking the delimiter, ignore_empty argument, source ranges, and final text length. A #VALUE! result can mean the joined string is too long for one Excel cell.',
+    example: {
+      setup: 'A report has customer IDs in A and notes in B. E2 contains one customer ID, and the formula should join only that customer\'s notes with comma separators.',
+      formula: '=TEXTJOIN(", ",TRUE,FILTER($B$2:$B$500,$A$2:$A$500=E2))',
+      read: 'The formula filters notes to the matching customer ID, joins only the visible matches, and ignores empty values. Test the FILTER result separately if the joined output is blank or returns an error.'
     }
   },
   'excel-index-match-not-working': {

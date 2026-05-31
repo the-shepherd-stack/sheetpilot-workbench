@@ -71,6 +71,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix SUMIFS formulas that return 0, #VALUE!, or wrong totals because of criteria, ranges, dates, or argument order/);
   assert.match(page, /\/excel-countifs-not-working\//);
   assert.match(page, /Fix COUNTIFS formulas that return 0, #VALUE!, or wrong counts because of criteria, range sizes, dates, or closed workbooks/);
+  assert.match(page, /\/excel-textjoin-not-working\//);
+  assert.match(page, /Fix TEXTJOIN formulas with #VALUE!, #NAME\?, extra delimiters, blank joins, IF or FILTER array issues, line breaks, or version support problems/);
   assert.match(page, /\/excel-value-error\//);
   assert.match(page, /Repair formulas blocked by text values, hidden spaces, wrong argument types, dates, or subtraction syntax/);
   assert.match(page, /\/excel-name-error\//);
@@ -292,6 +294,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-formula-not-copying-down',
     'excel-sumifs-not-working',
     'excel-countifs-not-working',
+    'excel-textjoin-not-working',
     'excel-value-error',
     'excel-name-error',
     'excel-div0-error',
@@ -658,6 +661,26 @@ test('excel COUNTIFS not working page targets count criteria repair intent witho
   assert.match(homepage, /href="\/excel-countifs-not-working\/">Excel COUNTIFS not working/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-countifs-not-working\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
+});
+
+test('excel TEXTJOIN not working page targets text-join repair intent without overclaiming', () => {
+  const page = read('excel-textjoin-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel TEXTJOIN Not Working Fixer/);
+  assert.match(page, /Fix an Excel TEXTJOIN formula that is not working/);
+  assert.match(page, /returns #VALUE!, #NAME\?, extra separators, blank output, or a broken IF\/FILTER join/);
+  assert.match(page, /quoted delimiters, TRUE\/FALSE empty handling, text ranges, line breaks, array criteria, version support, and Excel cell-length limits/);
+  assert.match(page, /=TEXTJOIN\(&quot;, &quot;,TRUE,FILTER\(\$B\$2:\$B\$500,\$A\$2:\$A\$500=E2\)\)/);
+  assert.match(page, /Put the delimiter in quotes/);
+  assert.match(page, /Check whether the joined result is too long for one Excel cell/);
+  assert.match(page, /Use CHAR\(10\) for line breaks and turn on Wrap Text/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-textjoin-not-working\/">Excel TEXTJOIN not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-textjoin-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole spreadsheet/i);
 });
 
 test('excel value error page targets VALUE repair intent without overclaiming', () => {
