@@ -65,6 +65,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix formulas that return 0, blank, or an empty string because of lookup return cells, IF logic, or hidden zero settings/);
   assert.match(page, /\/excel-formula-not-copying-down\//);
   assert.match(page, /Fix formulas that will not fill down, copy the first result, or shift the wrong references after dragging/);
+  assert.match(page, /\/excel-date-formula-not-working\//);
+  assert.match(page, /Fix Excel date formulas with DATEVALUE #VALUE!, text dates, locale mismatches, serial numbers, DATEDIF, or criteria issues/);
   assert.match(page, /\/excel-table-formula-not-working\//);
   assert.match(page, /Fix structured references, calculated columns, @ row references, and table formulas that stop filling correctly/);
   assert.match(page, /\/excel-sumifs-not-working\//);
@@ -296,6 +298,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-formula-wrong-result',
     'excel-formula-returns-zero-blank',
     'excel-formula-not-copying-down',
+    'excel-date-formula-not-working',
     'excel-sumifs-not-working',
     'excel-countifs-not-working',
     'excel-textjoin-not-working',
@@ -628,6 +631,27 @@ test('excel formula not copying down page targets fill-down repair intent withou
   assert.match(homepage, /href="\/excel-formula-not-copying-down\/">Excel formula not copying down/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-formula-not-copying-down\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds/i);
+});
+
+test('excel date formula not working page targets date repair intent without overclaiming', () => {
+  const page = read('excel-date-formula-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel Date Formula Not Working/);
+  assert.match(page, /Your Excel date formula is not working/);
+  assert.match(page, /DATEVALUE returns #VALUE!/);
+  assert.match(page, /shows a serial number/);
+  assert.match(page, /DATEDIF can return an error/);
+  assert.match(page, /SUMIFS, COUNTIFS, FILTER, and TODAY comparisons can quietly return the wrong answer/);
+  assert.match(page, /Check whether the source value is a real Excel date serial or text/);
+  assert.match(page, /Use DATE to build criteria boundaries/);
+  assert.match(page, /=SUMIFS\(C2:C500,A2:A500,&quot;&gt;=&quot;&amp;DATE\(2026,5,1\),A2:A500,&quot;&lt;&quot;&amp;DATE\(2026,6,1\)\)/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-date-formula-not-working\/">Excel date formula not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-date-formula-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|whole spreadsheet|pay before answer/i);
 });
 
 test('excel table formula not working page targets structured-reference repair intent without overclaiming', () => {

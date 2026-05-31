@@ -763,6 +763,39 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-date-formula-not-working',
+    title: 'Excel Date Formula Not Working? | Write My Formula',
+    description: 'Fix Excel date formulas with DATEVALUE #VALUE! errors, text dates, locale mismatches, serial numbers, DATEDIF issues, or date criteria failures.',
+    eyebrow: 'Excel date formula repair',
+    h1: 'Your Excel date formula is not working. Here is how to fix it.',
+    lede: 'Most broken date formulas come down to one thing: Excel is not reading your dates as dates. The cell looks like 3/14/2025, but the formula sees text, shows a serial number like 45730, or reads the day and month in the wrong order. That is why DATEVALUE returns #VALUE!, why DATEDIF can return an error, and why SUMIFS, COUNTIFS, FILTER, and TODAY comparisons can quietly return the wrong answer. Paste the formula and one date value it is reading to get a focused repair path for that formula.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=DATEVALUE(A2)'
+    },
+    intent: 'Help Excel users repair one date formula where the visible problem is usually DATEVALUE failing on text, regional date-order ambiguity, serial-number display, DATEDIF or TODAY logic, hidden time values, or date criteria comparing text instead of real Excel dates.',
+    bestFor: [
+      'DATEVALUE formulas returning #VALUE! because the date text does not match the system date settings.',
+      'Imported dates that look like dates but sort, filter, or calculate like text.',
+      'Day/month order problems where 03/04 is read differently from the source report.',
+      'DATEDIF, TODAY, SUMIFS, COUNTIFS, or FILTER formulas that miss rows, return negative-looking results, or calculate the wrong date interval.',
+      'Cells showing date serial numbers where a formatted date should appear.'
+    ],
+    steps: [
+      'Paste the exact formula and the date value or sample row it is reading.',
+      'Add the visible error, wrong result, serial number, or row that should have matched.',
+      'Say whether the dates came from a CSV, export, pasted report, form response, another workbook, or a typed value.'
+    ],
+    copyChecks: [
+      'Check whether the source value is a real Excel date serial or text that only looks like a date.',
+      'Confirm the system or workbook date order before deciding whether 03/04 means March 4 or April 3.',
+      'Use DATE to build criteria boundaries when a report needs month, year, or between-date logic.',
+      'Format converted serial numbers as dates before assuming the formula is still broken.',
+      'Test date criteria against one known matching row before filling the formula through a report.'
+    ]
+  },
+  {
     slug: 'excel-table-formula-not-working',
     title: 'Excel Table Formula Not Working? | Write My Formula',
     description: 'Fix Excel table formulas with broken structured references, calculated columns that do not fill, @ row references, or wrong table-column ranges.',
@@ -2776,6 +2809,20 @@ const pageEnhancements = {
       setup: 'A product lookup can work in the first row but break after filling down if the lookup table range moves with each copied formula.',
       formula: '=XLOOKUP(A2,Products!$A$2:$A$500,Products!$C$2:$C$500,"Not found")',
       read: 'The lookup value A2 stays relative so it changes to A3, A4, and later rows. The product lookup and return ranges stay locked so the filled formulas keep searching the same table.'
+    }
+  },
+  'excel-date-formula-not-working': {
+    gives: [
+      'A focused repair pass for one Excel date formula.',
+      'Checks for DATEVALUE parsing, regional date order, imported text dates, hidden time values, DATEDIF/TODAY logic, and date number formatting.',
+      'A revised date formula or criteria pattern you can test against one known row before changing a report.'
+    ],
+    useWhen: 'Use this page when DATEVALUE returns #VALUE!, a date displays as a serial number, date criteria return zero rows, DATEDIF or TODAY logic gives the wrong interval, or imported dates behave like text. It is strongest when you can paste the formula and one date value that should work.',
+    notWhen: 'Do not use it as a whole-workbook cleanup pass. Write My Formula can help repair one formula or criteria pattern, but source exports, regional settings, and final number formatting still need to be checked in Excel.',
+    example: {
+      setup: 'A report exports order dates as text, and the May total returns 0 because Excel is not comparing real date values.',
+      formula: '=SUMIFS(C2:C500,A2:A500,">="&DATE(2026,5,1),A2:A500,"<"&DATE(2026,6,1))',
+      read: 'The formula builds May 2026 date boundaries with DATE so Excel compares real date serials. If A contains text dates, convert or parse that column before relying on the criteria result.'
     }
   },
   'excel-table-formula-not-working': {
