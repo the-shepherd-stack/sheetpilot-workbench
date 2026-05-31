@@ -2076,6 +2076,38 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-match-not-working',
+    title: 'Excel MATCH Not Working Fixer | Write My Formula',
+    description: 'Fix Excel MATCH formulas returning #N/A, wrong positions, or unreliable results because of match_type, sorting, text-number mismatches, or hidden spaces.',
+    eyebrow: 'Excel MATCH repair',
+    h1: 'Fix an Excel MATCH formula that is not working.',
+    lede: 'If MATCH returns #N/A or gives the wrong position, the problem is often the match_type, the sort order of the lookup array, or values that look equal but are stored differently. Paste the formula and one value that should match to get a focused repair path before the result feeds INDEX or another lookup formula.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=MATCH(E2,$A$2:$A$500,1)'
+    },
+    intent: 'Help Excel users repair one MATCH formula where the visible problem may be #N/A, an unexpected position number, omitted approximate-match behavior, sorted-versus-unsorted lookup arrays, or imported values that look equal but do not match cleanly.',
+    bestFor: [
+      'MATCH formulas that return #N/A even though the lookup value appears in the source range.',
+      'MATCH formulas that return a plausible but wrong position because match_type was omitted or set to 1 or -1 without the required sort order.',
+      'INDEX MATCH formulas where the INDEX part is fine but the MATCH row or column position is wrong.',
+      'Imported IDs, SKUs, dates, names, or account numbers with hidden spaces, apostrophes, text-number mismatches, or inconsistent source values.'
+    ],
+    steps: [
+      'Paste the exact MATCH formula and the #N/A or wrong position it returns.',
+      'Include one lookup value that should match and a few values from the lookup array.',
+      'Say whether the formula should use exact match, next smaller, or next larger behavior.'
+    ],
+    copyChecks: [
+      'Use 0 for exact match unless approximate matching is intentional.',
+      'Remember that omitted match_type behaves like 1, so the lookup array must be sorted ascending for that mode.',
+      'Use -1 only when the lookup array is sorted descending.',
+      'Check whether the lookup value and lookup array store the same text, number, or date type.',
+      'Test MATCH by itself before feeding the position into INDEX or another formula.'
+    ]
+  },
+  {
     slug: 'vlookup-formula-generator',
     title: 'VLOOKUP Formula Generator | Write My Formula',
     description: 'Build VLOOKUP formulas from a plain-English lookup task and pasted table context.',
@@ -3501,6 +3533,20 @@ const pageEnhancements = {
       setup: 'A product table has SKUs in A and prices in C. INDEX MATCH can return the price for the SKU in E2 when MATCH uses exact match and the return range covers the same rows as the lookup range.',
       formula: '=IFNA(INDEX($C$2:$C$500,MATCH(E2,$A$2:$A$500,0)),"Not found")',
       read: 'MATCH searches for E2 in the SKU column and returns the row position. INDEX returns the price from the same relative row in C2:C500. The fallback appears only after the ranges, exact-match mode, and source values have been checked.'
+    }
+  },
+  'excel-match-not-working': {
+    gives: [
+      'A focused repair pass for one MATCH formula returning #N/A, a wrong position, or a result that breaks INDEX MATCH.',
+      'Checks for exact-match mode, omitted match_type defaults, sorted lookup arrays, hidden spaces, and stored text-number mismatches.',
+      'A revised MATCH path you can test by itself before it feeds INDEX, CHOOSE, or another lookup formula.'
+    ],
+    useWhen: 'Use this page when MATCH is close but not trustworthy: it returns #N/A, returns the wrong position, changes after a sort, or feeds a bad row or column number into INDEX MATCH. Paste the formula and one value that should match.',
+    notWhen: 'Do not hide MATCH with IFERROR before checking match_type, sort order, and source values. A #N/A result may be the correct signal that the lookup value is missing or stored differently from the source range.',
+    example: {
+      setup: 'A product list has SKUs in A2:A500, and E2 contains the SKU you need to locate before an INDEX formula returns the price.',
+      formula: '=IFNA(MATCH(TRIM(E2),$A$2:$A$500,0),"Not found")',
+      read: 'The formula trims the lookup value, searches the SKU range with exact match, and returns the relative position only after the source range has been checked for matching stored values.'
     }
   },
   'vlookup-formula-generator': {
