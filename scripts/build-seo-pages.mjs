@@ -1589,6 +1589,40 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-match-not-working',
+    title: 'Google Sheets MATCH Not Working? | Write My Formula',
+    description: 'Fix Google Sheets MATCH formulas with #N/A, wrong positions, omitted search_type defaults, one-dimensional range issues, or sorted-range assumptions.',
+    eyebrow: 'Google Sheets MATCH repair',
+    h1: 'Fix a Google Sheets MATCH formula that is returning the wrong position.',
+    lede: 'MATCH returns a relative position, not the value itself, so a small setting mistake can break the next INDEX, lookup, or validation formula. Paste the MATCH formula and one value that should match to get a focused repair path for search_type, sorted ranges, one-dimensional ranges, and stored value types.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=MATCH(E2,A2:A500,1)'
+    },
+    intent: 'Help Google Sheets users repair one MATCH formula where the visible problem is usually #N/A, an unexpected position, an omitted search_type argument, approximate matching on an unsorted range, a two-dimensional lookup range, or values that look equal but are stored differently.',
+    bestFor: [
+      'MATCH formulas that return #N/A even though the lookup value appears to exist.',
+      'MATCH formulas that return a plausible but wrong position because search_type was omitted or set to 1 on an unsorted range.',
+      'INDEX MATCH formulas where the returned row or column number is wrong before INDEX ever reads the result range.',
+      'Formulas that search across more than one row and column even though Google Sheets MATCH expects a one-dimensional range.',
+      'Imported IDs, dates, names, or SKU values with hidden spaces, apostrophes, or text-number mismatches.'
+    ],
+    steps: [
+      'Paste the exact MATCH formula and the #N/A or wrong position it returns.',
+      'Include one lookup value that should match and a few values from the searched row or column.',
+      'Say whether the result should be exact match, next smaller in ascending order, or next larger in descending order.'
+    ],
+    copyChecks: [
+      'Use search_type 0 for exact match when the range is not deliberately sorted for approximate matching.',
+      'Remember that omitted search_type behaves like 1 and assumes ascending order.',
+      'Use -1 only when the searched range is sorted descending.',
+      'Keep the searched range one-dimensional: one row or one column, not a block with both height and width.',
+      'Check whether lookup values and source values are stored as matching text, numbers, dates, and trimmed values.',
+      'Test MATCH by itself before feeding the position into INDEX or another formula.'
+    ]
+  },
+  {
     slug: 'google-sheets-filter-not-working',
     title: 'Google Sheets FILTER Not Working? | Write My Formula',
     description: 'Fix Google Sheets FILTER formulas with #N/A, mismatched range sizes, wrong rows, no matches, or row-versus-column condition issues.',
@@ -3469,6 +3503,20 @@ const pageEnhancements = {
       setup: 'A product table has SKU in A2:A500 and status in D2:D500. The formula should return the status for the SKU in E2, using exact match and a readable fallback only when the SKU is not found.',
       formula: '=XLOOKUP(E2,$A$2:$A$500,$D$2:$D$500,"Not found",0,1)',
       read: 'The formula searches for E2 in the SKU column, returns status from the same row in D, uses exact match, and searches from first entry to last. The fallback appears only after the lookup and result ranges have been checked.'
+    }
+  },
+  'google-sheets-match-not-working': {
+    gives: [
+      'A focused repair pass for one Google Sheets MATCH formula.',
+      'Checks for search_type, exact-match mode, sorted approximate-match ranges, one-dimensional lookup ranges, and stored value mismatches.',
+      'A revised MATCH path you can test by itself before it feeds INDEX or another lookup formula.'
+    ],
+    useWhen: 'Use this page when Google Sheets MATCH returns #N/A, gives a wrong position, changes after a sort, or feeds a bad row or column number into INDEX MATCH. It is strongest when you can paste the formula, the searched row or column, and one value that should match.',
+    notWhen: 'Do not hide MATCH with IFERROR before checking search_type, sort order, range shape, and source values. A #N/A result may be the correct signal that the lookup value is missing, stored differently, or being searched in a two-dimensional range.',
+    example: {
+      setup: 'A product list has SKUs in A2:A500, and E2 contains the SKU you need to locate before an INDEX formula returns the price.',
+      formula: '=IFNA(MATCH(TRIM(E2),$A$2:$A$500,0),"Not found")',
+      read: 'The formula trims the lookup value, searches one SKU column with exact match, and returns the relative position. Test this MATCH result before using it as the row number inside INDEX.'
     }
   },
   'conditional-formatting-formula-not-working': {
