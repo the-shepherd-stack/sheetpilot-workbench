@@ -1555,6 +1555,40 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-unique-not-working',
+    title: 'Google Sheets UNIQUE Not Working? | Write My Formula',
+    description: 'Fix Google Sheets UNIQUE formulas that keep duplicates, remove the wrong rows, return unexpected columns, or confuse by_column and exactly_once settings.',
+    eyebrow: 'Google Sheets UNIQUE repair',
+    h1: 'Fix a Google Sheets UNIQUE formula that is not removing duplicates correctly.',
+    lede: 'UNIQUE can look broken when duplicates differ by hidden spaces, stored types, or formatting, or when a multi-column range makes each row unique. Paste the formula and source examples to get a focused repair path for row uniqueness, by_column, exactly_once, cleanup steps, and output range blockers.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=UNIQUE(A2:C500)'
+    },
+    intent: 'Help Google Sheets users repair one UNIQUE formula where the visible problem is usually hidden spaces or formatting differences, multi-column row uniqueness, a misunderstood exactly_once setting, by-column mode, or a blocked output area.',
+    bestFor: [
+      'UNIQUE formulas that still show apparent duplicates because values include hidden spaces, non-printing characters, or inconsistent number/date formatting.',
+      'Multi-column UNIQUE formulas where Google Sheets returns unique rows instead of deduplicating one selected column.',
+      'Reports where exactly_once is returning only values that appear once, not one copy of each repeated value.',
+      'UNIQUE formulas combined with FILTER or SORT where the cleanup, filter, dedupe, and ordering steps need to happen in the right order.',
+      'Output ranges where a dynamic UNIQUE result cannot expand cleanly because cells below or beside the formula are occupied.'
+    ],
+    steps: [
+      'Paste the exact UNIQUE formula and say whether you expect unique cells, unique rows, or values that appear exactly once.',
+      'Include two values or rows that look duplicated but both remain in the result.',
+      'Mention whether the source data came from an import, form response, pasted CSV, FILTER result, or SORT formula.'
+    ],
+    copyChecks: [
+      'Check whether the duplicate-looking values contain trailing spaces, non-printing characters, or inconsistent capitalization before changing the formula.',
+      'Format numeric values consistently when numbers, dates, or imported IDs appear to duplicate but do not collapse.',
+      'Use a single-column range when you want a unique list from one field; multi-column ranges return unique row combinations.',
+      'Use exactly_once only when repeated values should disappear entirely instead of leaving one representative value.',
+      'Clear the spill area before rewriting a valid UNIQUE formula that cannot expand into neighboring cells.',
+      'Test the repaired formula on a small sample before replacing a shared report formula.'
+    ]
+  },
+  {
     slug: 'google-sheets-filter-not-working',
     title: 'Google Sheets FILTER Not Working? | Write My Formula',
     description: 'Fix Google Sheets FILTER formulas with #N/A, mismatched range sizes, wrong rows, no matches, or row-versus-column condition issues.',
@@ -3197,6 +3231,20 @@ const pageEnhancements = {
       setup: 'A task table has headers in row 1 and due dates in column C. The result should sort the data rows by due date without moving the header into the output.',
       formula: '=SORT(A2:D500,C2:C500,TRUE)',
       read: 'The formula excludes the header row by starting at A2:D500 and sorts those same rows by the due-date values in C2:C500. If the due dates are stored as text, the source values need cleanup before the order can be trusted.'
+    }
+  },
+  'google-sheets-unique-not-working': {
+    gives: [
+      'A focused repair pass for one Google Sheets UNIQUE formula.',
+      'Checks for hidden spaces, stored value types, multi-column row uniqueness, by_column mode, exactly_once behavior, and blocked output cells.',
+      'A revised UNIQUE path you can test on a small sample before changing a shared report.'
+    ],
+    useWhen: 'Use this page when UNIQUE keeps apparent duplicates, removes more rows than expected, returns unique row combinations instead of one unique field, or behaves differently after it is wrapped around FILTER or SORT. It is strongest when you can paste the exact formula and two source values or rows that should deduplicate.',
+    notWhen: 'Do not assume every visible duplicate is identical. UNIQUE compares the underlying values in the selected range, so hidden spaces, non-printing characters, stored text versus numbers, capitalization choices, and extra columns can all make rows distinct.',
+    example: {
+      setup: 'A form export has customer emails in A2:A, but some entries include trailing spaces. UNIQUE appears to keep duplicates because the underlying text is different.',
+      formula: '=UNIQUE(ARRAYFORMULA(TRIM(A2:A)))',
+      read: 'The formula trims hidden leading and trailing spaces before deduplicating the email list. If capitalization matters in the source workflow, normalize case only after deciding how the list should treat those entries.'
     }
   },
   'google-sheets-formulas-not-working': {

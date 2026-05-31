@@ -107,6 +107,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix COUNTIFS formulas that return 0, #VALUE!, wrong counts, or miss rows because of range sizes, dates, stored text, hidden spaces, or separators/);
   assert.match(page, /\/google-sheets-sort-not-working\//);
   assert.match(page, /Fix SORT formulas that return the wrong order, sort headers as data, separate rows, or misread dates and numbers stored as text/);
+  assert.match(page, /\/google-sheets-unique-not-working\//);
+  assert.match(page, /Fix UNIQUE formulas that keep duplicates, remove the wrong rows, return unexpected columns, or confuse by_column and exactly_once settings/);
   assert.match(page, /\/google-sheets-filter-not-working\//);
   assert.match(page, /Fix FILTER formulas with #N\/A, mismatched range sizes, wrong rows, no matches, or row-versus-column condition issues/);
   assert.match(page, /\/google-sheets-query-not-working\//);
@@ -329,6 +331,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'google-sheets-sumifs-not-working',
     'google-sheets-countifs-not-working',
     'google-sheets-sort-not-working',
+    'google-sheets-unique-not-working',
     'google-sheets-filter-not-working',
     'google-sheets-query-not-working',
     'google-sheets-arrayformula-not-working',
@@ -1065,6 +1068,25 @@ test('google sheets SORT not working page targets sort repair intent without ove
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/google-sheets-sort-not-working\/">Google Sheets SORT not working/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-sort-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one click|automatic|pay before answer|whole sheet|full sheet/i);
+});
+
+test('google sheets UNIQUE not working page targets duplicate repair intent without overclaiming', () => {
+  const page = read('google-sheets-unique-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Google Sheets UNIQUE Not Working/);
+  assert.match(page, /Fix a Google Sheets UNIQUE formula that is not removing duplicates correctly/);
+  assert.match(page, /hidden spaces, stored types, or formatting/);
+  assert.match(page, /multi-column range makes each row unique/);
+  assert.match(page, /by_column, exactly_once/);
+  assert.match(page, /Use exactly_once only when repeated values should disappear entirely/);
+  assert.match(page, /=UNIQUE\(ARRAYFORMULA\(TRIM\(A2:A\)\)\)/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-unique-not-working\/">Google Sheets UNIQUE not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-unique-not-working\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one click|automatic|pay before answer|whole sheet|full sheet/i);
 });
 
