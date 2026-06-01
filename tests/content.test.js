@@ -151,6 +151,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix MATCH formulas with #N\/A, wrong positions, omitted match_type defaults, sort-order issues, or text-number mismatches/);
   assert.match(page, /\/excel-xmatch-not-working\//);
   assert.match(page, /Fix XMATCH formulas with #N\/A, #VALUE!, wrong positions, wildcard mode, binary search sorting, or first-versus-last match issues/);
+  assert.match(page, /\/excel-sort-not-working\//);
+  assert.match(page, /Fix SORT formulas with #SPILL!, wrong sort columns, header-row mistakes, row separation, text-stored dates or numbers, and version support issues/);
   assert.match(page, /\/excel-if-formula-multiple-conditions\//);
   assert.match(page, /Write nested IF, AND, OR, and IFS logic with branch-order and edge-row checks/);
   assert.match(page, /\/excel-if-formula-not-working\//);
@@ -363,6 +365,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-index-match-not-working',
     'excel-match-not-working',
     'excel-xmatch-not-working',
+    'excel-sort-not-working',
     'excel-if-formula-multiple-conditions',
     'excel-if-formula-not-working',
     'vlookup-formula-generator',
@@ -1707,6 +1710,29 @@ test('excel XMATCH not working page targets modern lookup-position repair intent
   assert.match(homepage, /href="\/excel-xmatch-not-working\/">Excel XMATCH not working/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-xmatch-not-working\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole spreadsheet/i);
+});
+
+test('excel SORT not working page targets dynamic-array sort repair intent without overclaiming', () => {
+  const page = read('excel-sort-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel SORT Not Working Fixer/);
+  assert.match(page, /Fix an Excel SORT formula that is not sorting correctly/);
+  assert.match(page, /#SPILL! because the output range is blocked/);
+  assert.match(page, /wrong sort_index/);
+  assert.match(page, /dates and numbers sorting like text/);
+  assert.match(page, /Clear or move anything blocking the intended spill range/);
+  assert.match(page, /Count sort_index from the first column or row inside the array argument/);
+  assert.match(page, /Use sort_order -1 deliberately for descending order/);
+  assert.match(page, /Check Excel version support when SORT appears as #NAME\? or _xlfn.SORT/);
+  assert.match(page, /=SORT\(A2:D500,3,-1\)/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-sort-not-working\/">Excel SORT not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-sort-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole spreadsheet|exact cause/i);
 });
 
 test('excel IF formula multiple conditions page targets conditional logic intent', () => {

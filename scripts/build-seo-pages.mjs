@@ -2344,6 +2344,41 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-sort-not-working',
+    title: 'Excel SORT Not Working Fixer | Write My Formula',
+    description: 'Fix Excel SORT formulas with #SPILL!, wrong sort columns, header-row mistakes, row separation, text-stored dates or numbers, and version support issues.',
+    eyebrow: 'Excel SORT repair',
+    h1: 'Fix an Excel SORT formula that is not sorting correctly.',
+    lede: 'SORT can fail in ways that look like bad data: #SPILL! because the output range is blocked, a header row pulled into the result, the wrong sort_index, rows that no longer stay together, or dates and numbers sorting like text. Paste the formula and the expected order to get a focused repair path before you replace it in the workbook.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=SORT(A1:D500,3,-1)'
+    },
+    intent: 'Help Excel users repair one SORT formula where the visible problem may be #SPILL!, a wrong column or row sort, a header included as data, a narrowed source range that separates row fields, imported values stored as text, or an Excel version that does not support dynamic arrays.',
+    bestFor: [
+      'SORT formulas that return #SPILL! because the dynamic-array output range is blocked or the formula is placed where it cannot spill.',
+      'SORT formulas that use a sheet column number instead of the relative sort_index inside the selected array.',
+      'Tables where the header row gets sorted into the result or related row fields separate because the source range is too narrow.',
+      'Date, number, score, or ID columns that sort alphabetically because imported values are stored as text.',
+      'Workbooks where SORT appears as #NAME? or _xlfn.SORT because the Excel version does not support the function.'
+    ],
+    steps: [
+      'Paste the exact SORT formula and the #SPILL!, #NAME?, wrong order, or separated-row result it returns.',
+      'Say which column or row should control the order and whether it should be ascending or descending.',
+      'Include the source headers and one row that currently lands in the wrong place.'
+    ],
+    copyChecks: [
+      'Clear or move anything blocking the intended spill range before changing a valid dynamic-array formula.',
+      'Count sort_index from the first column or row inside the array argument, not from the worksheet edge.',
+      'Exclude the header row from the sorted array or place headers separately above the spilled result.',
+      'Keep every field that belongs to a record inside the array so SORT moves whole rows together.',
+      'Check whether dates, scores, prices, and IDs are stored as real values rather than text.',
+      'Use sort_order -1 deliberately for descending order; omitted sort_order defaults to ascending.',
+      'Check Excel version support when SORT appears as #NAME? or _xlfn.SORT.'
+    ]
+  },
+  {
     slug: 'vlookup-formula-generator',
     title: 'VLOOKUP Formula Generator | Write My Formula',
     description: 'Build VLOOKUP formulas from a plain-English lookup task and pasted table context.',
@@ -3881,6 +3916,20 @@ const pageEnhancements = {
       setup: 'A product table has SKUs in A2:A500 and prices in C2:C500. E2 contains the SKU to locate before INDEX returns the price.',
       formula: '=INDEX($C$2:$C$500,XMATCH(TRIM(E2),$A$2:$A$500,0,1))',
       read: 'XMATCH searches the SKU range with exact match, returns the relative row position, and INDEX uses that position to return the price. If the newest duplicate should win, change the search direction deliberately instead of leaving the default first-to-last search.'
+    }
+  },
+  'excel-sort-not-working': {
+    gives: [
+      'A focused repair pass for one SORT formula returning #SPILL!, #NAME?, the wrong order, or separated row fields.',
+      'Checks for blocked spill ranges, sort_index counted from the selected array, sort_order, by_col, header rows, source-range width, stored text values, and Excel version support.',
+      'A revised SORT path you can test on one small range before replacing a report formula.'
+    ],
+    useWhen: 'Use this page when SORT is close but not trustworthy: it spills into blocked cells, sorts by the wrong column, pulls the header into the results, sorts dates or numbers alphabetically, or rearranges only part of each record. Paste the formula and a small sample of the range it should sort.',
+    notWhen: 'Do not hide SORT errors with IFERROR before checking the output range, selected array, sort_index, and stored value types. A #SPILL! result can mean the formula is valid but the destination cells are not available.',
+    example: {
+      setup: 'A report has headers in row 1 and data in A2:D500. The output should sort whole rows by the third column, newest or highest first, without moving the header row into the result.',
+      formula: '=SORT(A2:D500,3,-1)',
+      read: 'The formula sorts the data rows only, counts the third column relative to A:D, and uses -1 for descending order. If the result returns #SPILL!, check the cells below the formula before changing the sort logic.'
     }
   },
   'vlookup-formula-generator': {
