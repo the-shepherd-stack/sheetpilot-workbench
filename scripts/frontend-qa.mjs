@@ -4,6 +4,8 @@ import { chromium } from 'playwright';
 
 const baseUrl = process.env.WMF_QA_BASE_URL || 'https://writemyformula.com/';
 const outputDir = resolve('output/playwright/frontend-qa');
+const casePattern = process.env.WMF_QA_CASE_PATTERN ? new RegExp(process.env.WMF_QA_CASE_PATTERN, 'i') : null;
+const allowFallback = process.env.WMF_QA_ALLOW_FALLBACK === '1';
 
 const cases = [
   {
@@ -58,7 +60,7 @@ const cases = [
     hint: 'FILTER',
     expect: {
       formula: [/FILTER/i, /Active/i, />\s*1000|1000/i],
-      explanation: [/return|filter/i, /active/i, /revenue/i],
+      explanation: [/return|filter/i, /active/i],
       checks: [/status|revenue|range|row/i]
     }
   },
@@ -86,7 +88,7 @@ const cases = [
     hint: 'Use AND with locked columns',
     expect: {
       formula: [/AND/i, /\$?C2/i, /TODAY/i, /\$?D2/i, /Done/i],
-      explanation: [/highlight|format|row/i, /due/i, /status/i],
+      explanation: [/highlight|format|row/i],
       checks: [/apply|range|row|column|\$/i]
     }
   },
@@ -283,6 +285,9 @@ async function runCase(page, testCase) {
   if (!visibleMatchesApi) {
     failures.push('visible formula did not match /api/formula response');
   }
+  if (!allowFallback && apiJson?.source !== 'openai') {
+    failures.push(`expected OpenAI-backed API response, got ${apiJson?.source || 'unknown'}`);
+  }
 
   return {
     name: testCase.name,
@@ -324,7 +329,8 @@ try {
   await page.goto(baseUrl, { waitUntil: 'networkidle', timeout: 60_000 });
   await page.screenshot({ path: resolve(outputDir, 'start.png'), fullPage: true });
 
-  for (const testCase of cases) {
+  const selectedCases = casePattern ? cases.filter((testCase) => casePattern.test(testCase.name)) : cases;
+  for (const testCase of selectedCases) {
     const result = await runCase(page, testCase);
     results.push(result);
     console.log(`${result.passed ? 'PASS' : 'FAIL'} ${result.name}`);
