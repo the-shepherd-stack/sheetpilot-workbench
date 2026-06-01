@@ -415,6 +415,39 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-formula-parse-error',
+    title: 'Fix "There is a Problem With This Formula" | Write My Formula',
+    description: 'Paste the formula Excel rejected and describe what it should calculate. Get a repair path for separators, quotes, parentheses, and equal signs.',
+    eyebrow: 'Excel formula parse error',
+    h1: 'Excel says "There is a problem with this formula." Paste it here.',
+    lede: 'Excel can reject a formula before it ever calculates when a separator, quote, parenthesis, or equal sign is wrong. Paste the formula and tell us in one line what it should calculate. You get a written repair path for the syntax Excel cannot read.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=IF(A2="Open",SUM(B2:D2),"")'
+    },
+    intent: 'Help Excel users repair one formula that Excel refuses to enter because the syntax cannot be parsed, often after copying a formula from a tutorial, another locale, an AI answer, or another workbook.',
+    bestFor: [
+      'Formulas that trigger Excel\'s "There is a problem with this formula" or "We found a problem with this formula" message before a cell result appears.',
+      'Comma versus semicolon separators that do not match your Excel locale.',
+      'Copied formulas where curly quotes, smart apostrophes, or pasted line breaks make valid-looking logic fail.',
+      'Nested IF, SUMIFS, XLOOKUP, FILTER, LET, or LAMBDA formulas where one missing parenthesis, quote, or argument separator blocks entry.',
+      'Cells where Excel treats the entry as text or asks whether you are trying to type a formula because the equal sign, apostrophe, or cell format is wrong.'
+    ],
+    steps: [
+      'Paste the exact formula Excel rejected, including the punctuation.',
+      'Say whether the formula was copied from a website, another Excel locale, Google Sheets, or an AI answer.',
+      'Add one sentence about the result you expected so the repair can preserve the intended logic.'
+    ],
+    copyChecks: [
+      'Check whether your Excel locale expects commas or semicolons between function arguments.',
+      'Replace curly quotes and copied smart apostrophes with plain straight quotes before changing the formula logic.',
+      'Count opening and closing parentheses around nested IF, SUMIFS, FILTER, LET, and LAMBDA sections.',
+      'Start the formula with an equal sign unless you intentionally want Excel to store it as text.',
+      'Test the repaired formula in one blank cell before replacing a formula in a live report.'
+    ]
+  },
+  {
     slug: 'google-sheets-formulas-not-working',
     title: 'Google Sheets Formulas Not Working? | Write My Formula',
     description: 'Fix Google Sheets formulas that show errors, stay as text, stop updating, return wrong results, or break after imports and copied examples.',
@@ -2906,6 +2939,20 @@ const pageEnhancements = {
       setup: 'A SUMIFS formula can look correct but fail when dates are imported as text or when the workbook uses a different list separator.',
       formula: '=SUMIFS(C2:C500,B2:B500,"Paid",A2:A500,">="&DATE(2026,5,1),A2:A500,"<"&DATE(2026,6,1))',
       read: 'The formula totals paid rows in May 2026 using date boundaries built with DATE. The checks tell you to confirm real date values, matching range sizes, and the separator your Excel locale expects.'
+    }
+  },
+  'excel-formula-parse-error': {
+    gives: [
+      'A focused repair pass for one formula Excel refuses to accept.',
+      'Checks for argument separators, quote marks, missing equal signs, parentheses, copied line breaks, and locale-specific syntax.',
+      'A revised formula path you can test in a blank cell before replacing a report formula.'
+    ],
+    useWhen: 'Use this page when Excel says there is a problem with the formula before it calculates anything. It is strongest when you can paste the exact rejected formula and say whether it came from another locale, Google Sheets, a tutorial, or an AI answer.',
+    notWhen: 'Do not use it as a full-file review. A parse message usually means Excel cannot read one formula entry, so repair the syntax first and then test the result separately for #VALUE!, #N/A, #REF!, or wrong-answer issues.',
+    example: {
+      setup: 'A copied IF formula can be rejected when the formula uses the wrong list separator for the Excel locale or includes smart quotes copied from a formatted page.',
+      formula: '=IF(A2="Open",SUM(B2:D2),"")',
+      read: 'The formula starts with an equal sign, uses straight quotes around the text value, and separates arguments with commas. If your Excel expects semicolons, change the separators before changing the IF logic.'
     }
   },
   'excel-formula-not-calculating': {

@@ -47,6 +47,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Diagnose formulas that show text, stay stale, return errors, or calculate the wrong value/);
   assert.match(page, /\/excel-formulas-not-working\//);
   assert.match(page, /Fix formulas that stop calculating after imports, copied ranges, locale settings, or text-number mismatches/);
+  assert.match(page, /\/excel-formula-parse-error\//);
+  assert.match(page, /Fix formulas rejected by Excel because of separators, quotes, missing equals signs, parentheses, or copied syntax/);
   assert.match(page, /\/google-sheets-ref-error\//);
   assert.match(page, /Fix formulas broken by deleted tabs, invalid ranges, moved references, blocked array output, or IMPORTRANGE source issues/);
   assert.match(page, /\/google-sheets-value-error\//);
@@ -303,6 +305,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-formula-fixer',
     'excel-formula-not-showing-result',
     'excel-formulas-not-working',
+    'excel-formula-parse-error',
     'excel-formula-not-calculating',
     'excel-showing-formula-instead-of-result',
     'excel-formula-wrong-result',
@@ -918,6 +921,27 @@ test('excel OFFSET function not working page targets OFFSET repair intent withou
   assert.match(homepage, /href="\/excel-offset-not-working\/">Excel OFFSET function not working/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-offset-not-working\//);
   assert.doesNotMatch(page, /upload|workbook audit|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
+});
+
+test('excel formula parse error page targets rejected-formula repair intent without overclaiming', () => {
+  const page = read('excel-formula-parse-error/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Fix &quot;There is a Problem With This Formula&quot;/);
+  assert.match(page, /Excel says &quot;There is a problem with this formula.&quot; Paste it here/);
+  assert.match(page, /Excel can reject a formula before it ever calculates/);
+  assert.match(page, /written repair path for the syntax Excel cannot read/);
+  assert.match(page, /wrong list separator for the Excel locale/);
+  assert.match(page, /Excel locale expects commas or semicolons/);
+  assert.match(page, /Replace curly quotes and copied smart apostrophes with plain straight quotes/);
+  assert.match(page, /Count opening and closing parentheses around nested IF, SUMIFS, FILTER, LET, and LAMBDA/);
+  assert.match(page, /=IF\(A2=&quot;Open&quot;,SUM\(B2:D2\),&quot;&quot;\)/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-formula-parse-error\/">Excel formula parse error/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-formula-parse-error\//);
+  assert.doesNotMatch(page, /upload|workbook audit|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer|whole-spreadsheet/i);
 });
 
 test('excel NUM error page targets invalid-number repair intent without overclaiming', () => {
