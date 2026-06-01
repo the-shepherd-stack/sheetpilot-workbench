@@ -87,6 +87,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix dynamic array formulas blocked by spill ranges, tables, merged cells, whole-column references, or changing array sizes/);
   assert.match(page, /\/excel-calc-error\//);
   assert.match(page, /Fix dynamic array and FILTER formulas blocked by empty results, nested arrays, range references, or unsupported calculations/);
+  assert.match(page, /\/excel-offset-not-working\//);
+  assert.match(page, /Fix OFFSET formulas with #REF!, #VALUE!, wrong ranges, dynamic named range problems, text references, or volatile recalculation issues/);
   assert.match(page, /\/excel-num-error\//);
   assert.match(page, /Fix formulas blocked by invalid numeric values, formatted constants, non-converging IRR or RATE inputs, or numbers outside Excel limits/);
   assert.match(page, /\/excel-circular-reference\//);
@@ -316,6 +318,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-div0-error',
     'excel-spill-error',
     'excel-calc-error',
+    'excel-offset-not-working',
     'excel-num-error',
     'excel-circular-reference',
     'excel-ref-error',
@@ -892,6 +895,28 @@ test('excel FILTER function not working page targets FILTER repair intent withou
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/excel-filter-function-not-working\/">Excel FILTER function not working/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-filter-function-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
+});
+
+test('excel OFFSET function not working page targets OFFSET repair intent without overclaiming', () => {
+  const page = read('excel-offset-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel OFFSET Function Not Working/);
+  assert.match(page, /Fix an Excel OFFSET formula that points at the wrong range/);
+  assert.match(page, /#REF!, #VALUE!, dynamic named ranges, and wrong-size ranges/);
+  assert.match(page, /height or width arguments that are not positive numbers/);
+  assert.match(page, /text passed where Excel needs a reference/);
+  assert.match(page, /worksheet-edge offsets/);
+  assert.match(page, /Make height and width positive numbers/);
+  assert.match(page, /replacing volatile OFFSET with INDEX/);
+  assert.match(page, /=SUM\(OFFSET\(A1,1,0,COUNTA\(A:A\)-1,1\)\)/);
+  assert.match(page, /=OFFSET\(A1,-2,0,1,1\)/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-offset-not-working\/">Excel OFFSET function not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-offset-not-working\//);
   assert.doesNotMatch(page, /upload|workbook audit|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
 });
 

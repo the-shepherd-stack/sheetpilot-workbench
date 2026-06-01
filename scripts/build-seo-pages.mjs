@@ -1142,6 +1142,39 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-offset-not-working',
+    title: 'Excel OFFSET Function Not Working | Write My Formula',
+    description: 'Fix Excel OFFSET formulas with #REF!, #VALUE!, wrong ranges, dynamic named range problems, text references, or volatile recalculation issues.',
+    eyebrow: 'Excel OFFSET function repair',
+    h1: 'Fix an Excel OFFSET formula that points at the wrong range.',
+    lede: 'OFFSET breaks when the reference, row shift, column shift, height, or width points Excel somewhere invalid. Paste the formula, describe the range it should return, and get a focused repair path for #REF!, #VALUE!, dynamic named ranges, and wrong-size ranges.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=SUM(OFFSET(A1,1,0,COUNTA(A:A)-1,1))'
+    },
+    intent: 'Help Excel users repair one OFFSET formula where the visible problem is usually an invalid starting reference, rows or columns that move outside the worksheet, height or width arguments that are not positive numbers, omitted size arguments, text passed where Excel needs a reference, or volatile recalculation slowing a workbook.',
+    bestFor: [
+      'OFFSET formulas returning #REF! because the row or column shift lands outside the worksheet.',
+      'OFFSET formulas returning #VALUE! because the reference is not a valid adjacent cell or range.',
+      'Dynamic named ranges that do not expand as expected because height, width, COUNTA, or header-row logic is off.',
+      'OFFSET formulas returning the wrong cells because rows, cols, height, or width are off by one.',
+      'Models where OFFSET volatility is causing recalculation confusion and an INDEX-style rewrite may be clearer.'
+    ],
+    steps: [
+      'Paste the exact OFFSET formula that is not working.',
+      'Say what range or value the formula should return and what it returns now.',
+      'Include the starting cell, any named range definition, and one sample row when height or width is calculated from COUNTA, MATCH, or another formula.'
+    ],
+    copyChecks: [
+      'Check whether the row or column offset moves above row 1, left of column A, or past the worksheet edge.',
+      'Confirm the reference argument is a real cell or adjacent range, not text that needs a different reference strategy.',
+      'Make height and width positive numbers and decide whether omitted size arguments should inherit the starting reference size.',
+      'Test COUNTA, MATCH, or other helper calculations separately when they control OFFSET height or width.',
+      'Consider replacing volatile OFFSET with INDEX when the formula is stable but recalculation is making the workbook hard to trust.'
+    ]
+  },
+  {
     slug: 'excel-num-error',
     title: 'Excel #NUM! Error Fixer | Write My Formula',
     description: 'Fix Excel #NUM! errors caused by invalid numeric values, formatted constants, non-converging IRR or RATE functions, and numbers outside Excel limits.',
@@ -3083,6 +3116,20 @@ const pageEnhancements = {
       setup: 'A FILTER formula can return #CALC! when no rows match unless the optional fallback tells Excel what to return.',
       formula: '=FILTER(A2:D500,(B2:B500="West")*(C2:C500="Open"),"No matching rows")',
       read: 'The formula filters rows where Region is West and Status is Open, using multiplication for AND logic. The final argument returns a message when no rows match instead of leaving Excel with an empty array.'
+    }
+  },
+  'excel-offset-not-working': {
+    gives: [
+      'A focused repair pass for one OFFSET formula returning an error or the wrong range.',
+      'Checks for invalid references, worksheet-edge offsets, height and width arguments, named-range size logic, and volatile recalculation tradeoffs.',
+      'A revised OFFSET direction, or a clearer INDEX-style alternative when OFFSET is the source of the confusion.'
+    ],
+    useWhen: 'Use this page when an Excel OFFSET formula returns #REF!, #VALUE!, points at the wrong cells, or behaves differently inside a dynamic named range. It is strongest when you can paste the formula and describe the range Excel should return.',
+    notWhen: 'Do not use this as a whole-model rebuild or a review of every formula in the file. OFFSET problems are easiest to repair one formula or one named-range definition at a time, especially when helper functions such as COUNTA or MATCH control the returned size.',
+    example: {
+      setup: 'An OFFSET formula can return #REF! when a negative row argument pushes the reference above the first worksheet row.',
+      formula: '=OFFSET(A1,-2,0,1,1)',
+      read: 'The row shift asks Excel to move two rows above A1, which is outside the sheet. A repair path starts by anchoring the formula to a valid starting cell or changing the row-offset logic before the result is used in SUM, COUNTA, or a named range.'
     }
   },
   'excel-num-error': {
