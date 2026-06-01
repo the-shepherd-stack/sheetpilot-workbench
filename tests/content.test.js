@@ -149,6 +149,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix INDEX MATCH formulas that return #N\/A, #REF!, wrong rows, wrong columns, or unreliable results/);
   assert.match(page, /\/excel-match-not-working\//);
   assert.match(page, /Fix MATCH formulas with #N\/A, wrong positions, omitted match_type defaults, sort-order issues, or text-number mismatches/);
+  assert.match(page, /\/excel-xmatch-not-working\//);
+  assert.match(page, /Fix XMATCH formulas with #N\/A, #VALUE!, wrong positions, wildcard mode, binary search sorting, or first-versus-last match issues/);
   assert.match(page, /\/excel-if-formula-multiple-conditions\//);
   assert.match(page, /Write nested IF, AND, OR, and IFS logic with branch-order and edge-row checks/);
   assert.match(page, /\/excel-if-formula-not-working\//);
@@ -360,6 +362,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-xlookup-not-working',
     'excel-index-match-not-working',
     'excel-match-not-working',
+    'excel-xmatch-not-working',
     'excel-if-formula-multiple-conditions',
     'excel-if-formula-not-working',
     'vlookup-formula-generator',
@@ -1683,6 +1686,27 @@ test('excel MATCH not working page targets match position repair intent without 
   assert.match(homepage, /href="\/excel-match-not-working\/">Excel MATCH not working/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-match-not-working\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer|which one/i);
+});
+
+test('excel XMATCH not working page targets modern lookup-position repair intent without overclaiming', () => {
+  const page = read('excel-xmatch-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel XMATCH Not Working Fixer/);
+  assert.match(page, /Fix an Excel XMATCH formula returning #N\/A, #VALUE!, or the wrong position/);
+  assert.match(page, /match_mode, search_mode, wildcard mode, binary search sorting, or stored value types/);
+  assert.match(page, /Use only valid match_mode and search_mode values before treating #VALUE! as a data problem/);
+  assert.match(page, /Use match_mode 2 when \* or \? should be treated as wildcard characters/);
+  assert.match(page, /Use binary search modes only when the lookup array is sorted ascending for 2 or descending for -2/);
+  assert.match(page, /Check Excel version support when XMATCH appears as #NAME\? or _xlfn.XMATCH/);
+  assert.match(page, /=INDEX\(\$C\$2:\$C\$500,XMATCH\(TRIM\(E2\),\$A\$2:\$A\$500,0,1\)\)/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-xmatch-not-working\/">Excel XMATCH not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-xmatch-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole spreadsheet/i);
 });
 
 test('excel IF formula multiple conditions page targets conditional logic intent', () => {

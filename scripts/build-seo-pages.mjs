@@ -2309,6 +2309,41 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-xmatch-not-working',
+    title: 'Excel XMATCH Not Working Fixer | Write My Formula',
+    description: 'Fix Excel XMATCH formulas returning #N/A, #VALUE!, wrong positions, or unreliable results because of match_mode, search_mode, wildcards, sorted data, stored types, or version support.',
+    eyebrow: 'Excel XMATCH repair',
+    h1: 'Fix an Excel XMATCH formula returning #N/A, #VALUE!, or the wrong position.',
+    lede: 'XMATCH defaults to exact match, but it can still fail when match_mode, search_mode, wildcard mode, binary search sorting, or stored value types do not match the data. Paste the formula that is not working and get a focused repair path before the position feeds INDEX, CHOOSE, or another lookup formula.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=XMATCH(E2,$A$2:$A$500,0,2)'
+    },
+    intent: 'Help Excel users repair one XMATCH formula where the visible problem may be #N/A, #VALUE!, a wrong relative position, first-versus-last duplicate behavior, wildcard confusion, binary search on unsorted data, or an unsupported Excel version.',
+    bestFor: [
+      'XMATCH formulas that return #N/A even though the lookup value appears in the source range.',
+      'XMATCH formulas that return a plausible but wrong position because search_mode uses binary search on data that is not sorted as required.',
+      '#VALUE! errors caused by an invalid match_mode or search_mode argument.',
+      'Wildcard lookups where the formula needs match_mode 2 before * and ? behave as wildcards.',
+      'INDEX XMATCH formulas where the returned position must be tested before it feeds the return range.'
+    ],
+    steps: [
+      'Paste the exact XMATCH formula and the #N/A, #VALUE!, or wrong position it returns.',
+      'Include one lookup value that should match and a few values from the lookup array.',
+      'Say whether the formula should find the first match, the last match, a wildcard match, the next smaller item, or the next larger item.'
+    ],
+    copyChecks: [
+      'Use match_mode 0 for exact match unless approximate or wildcard matching is intentional.',
+      'Use match_mode 2 when * or ? should be treated as wildcard characters.',
+      'Use only valid match_mode and search_mode values before treating #VALUE! as a data problem.',
+      'Use search_mode -1 when you need the last matching item instead of the first.',
+      'Use binary search modes only when the lookup array is sorted ascending for 2 or descending for -2.',
+      'Check whether the lookup value and lookup array store the same text, number, or date type.',
+      'Check Excel version support when XMATCH appears as #NAME? or _xlfn.XMATCH.'
+    ]
+  },
+  {
     slug: 'vlookup-formula-generator',
     title: 'VLOOKUP Formula Generator | Write My Formula',
     description: 'Build VLOOKUP formulas from a plain-English lookup task and pasted table context.',
@@ -3832,6 +3867,20 @@ const pageEnhancements = {
       setup: 'A product list has SKUs in A2:A500, and E2 contains the SKU you need to locate before an INDEX formula returns the price.',
       formula: '=IFNA(MATCH(TRIM(E2),$A$2:$A$500,0),"Not found")',
       read: 'The formula trims the lookup value, searches the SKU range with exact match, and returns the relative position only after the source range has been checked for matching stored values.'
+    }
+  },
+  'excel-xmatch-not-working': {
+    gives: [
+      'A focused repair pass for one XMATCH formula returning #N/A, #VALUE!, a wrong position, or a result that breaks INDEX XMATCH.',
+      'Checks for match_mode, search_mode, wildcard mode, binary-search sort order, duplicate search direction, stored types, and Excel version support.',
+      'A revised XMATCH path you can test by itself before it feeds INDEX, CHOOSE, or another lookup formula.'
+    ],
+    useWhen: 'Use this page when XMATCH is close but not trustworthy: it returns #N/A, returns #VALUE!, finds the first duplicate when you needed the last, treats wildcards as literal text, or returns the wrong position after a search_mode change. Paste the formula and one value that should match.',
+    notWhen: 'Do not hide XMATCH with IFERROR before checking match_mode, search_mode, sorted-data requirements, and source values. A #N/A or wrong position may be the correct signal that the lookup value, range, sort order, or stored data type changed.',
+    example: {
+      setup: 'A product table has SKUs in A2:A500 and prices in C2:C500. E2 contains the SKU to locate before INDEX returns the price.',
+      formula: '=INDEX($C$2:$C$500,XMATCH(TRIM(E2),$A$2:$A$500,0,1))',
+      read: 'XMATCH searches the SKU range with exact match, returns the relative row position, and INDEX uses that position to return the price. If the newest duplicate should win, change the search direction deliberately instead of leaving the default first-to-last search.'
     }
   },
   'vlookup-formula-generator': {
