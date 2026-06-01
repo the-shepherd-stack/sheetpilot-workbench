@@ -753,6 +753,26 @@ test('excel TEXTJOIN not working page targets text-join repair intent without ov
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole spreadsheet/i);
 });
 
+test('excel TEXTSPLIT not working page targets split-text repair intent without overclaiming', () => {
+  const page = read('excel-textsplit-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel TEXTSPLIT Not Working Fixer/);
+  assert.match(page, /Fix an Excel TEXTSPLIT formula that is not splitting text correctly/);
+  assert.match(page, /returns #SPILL!, fills extra #N\/A cells, splits in the wrong direction, or leaves the text unchanged/);
+  assert.match(page, /column delimiters, row delimiters, missing spaces, case matching, empty values, pad_with behavior/);
+  assert.match(page, /row-versus-column delimiter placement/);
+  assert.match(page, /Set pad_with deliberately when uneven row-and-column splits should not show #N\/A/);
+  assert.match(page, /Check Excel version support when TEXTSPLIT appears as #NAME\? or _xlfn.TEXTSPLIT/);
+  assert.match(page, /=TRIM\(TEXTSPLIT\(A2,&quot;, &quot;\)\)/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-textsplit-not-working\/">Excel TEXTSPLIT not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-textsplit-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole spreadsheet/i);
+});
+
 test('excel INDIRECT not working page targets dynamic reference repair intent without overclaiming', () => {
   const page = read('excel-indirect-not-working/index.html');
   const homepage = read('index.html');

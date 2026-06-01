@@ -957,6 +957,39 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-textsplit-not-working',
+    title: 'Excel TEXTSPLIT Not Working Fixer | Write My Formula',
+    description: 'Fix Excel TEXTSPLIT formulas with #SPILL!, #N/A padding, wrong delimiters, row-versus-column split issues, or version support problems.',
+    eyebrow: 'Excel TEXTSPLIT fixer',
+    h1: 'Fix an Excel TEXTSPLIT formula that is not splitting text correctly.',
+    lede: 'Paste the TEXTSPLIT formula that returns #SPILL!, fills extra #N/A cells, splits in the wrong direction, or leaves the text unchanged. Get a focused repair path for column delimiters, row delimiters, missing spaces, case matching, empty values, pad_with behavior, spill ranges, and Excel version support.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=TEXTSPLIT(A2,", ")'
+    },
+    intent: 'Help Excel users repair one TEXTSPLIT formula where the visible problem is usually an exact delimiter mismatch, row-versus-column delimiter placement, blocked dynamic-array output, uneven split rows that need pad_with, empty tokens, case-sensitive matching, or a workbook opened in an Excel version without TEXTSPLIT support.',
+    bestFor: [
+      'TEXTSPLIT formulas that do not split because the delimiter in the source text is not the delimiter in the formula.',
+      'Formulas that spill across columns when the result should go down rows, or down rows when it should go across columns.',
+      '#SPILL! errors caused by occupied cells, merged cells, or formulas entered inside Excel tables.',
+      '#N/A padding in uneven row-and-column splits where a blank, 0, or another pad_with value would be clearer.',
+      '#NAME? or _xlfn behavior when the workbook is opened in an Excel version that does not support TEXTSPLIT.'
+    ],
+    steps: [
+      'Paste the exact TEXTSPLIT formula and one source text value it should split.',
+      'Say whether the result should spill across columns, down rows, or into a two-dimensional grid.',
+      'Include the visible error text or unwanted output, such as #SPILL!, #N/A padding, unchanged text, or missing items.'
+    ],
+    copyChecks: [
+      'Match the delimiter exactly, including spaces after commas, line breaks, tabs, and semicolons.',
+      'Use the column delimiter argument for results across columns and the row delimiter argument for results down rows.',
+      'Clear the spill range or move the formula outside an Excel table before changing valid TEXTSPLIT logic.',
+      'Set pad_with deliberately when uneven row-and-column splits should not show #N/A.',
+      'Check Excel version support when TEXTSPLIT appears as #NAME? or _xlfn.TEXTSPLIT.'
+    ]
+  },
+  {
     slug: 'excel-indirect-not-working',
     title: 'Excel INDIRECT Not Working Fixer | Write My Formula',
     description: 'Fix Excel INDIRECT formulas returning #REF!, wrong cells, broken dynamic sheet names, dependent dropdown issues, named-range failures, or browser workbook limits.',
@@ -3743,6 +3776,20 @@ const pageEnhancements = {
       setup: 'A report has customer IDs in A and notes in B. E2 contains one customer ID, and the formula should join only that customer\'s notes with comma separators.',
       formula: '=TEXTJOIN(", ",TRUE,FILTER($B$2:$B$500,$A$2:$A$500=E2))',
       read: 'The formula filters notes to the matching customer ID, joins only the visible matches, and ignores empty values. Test the FILTER result separately if the joined output is blank or returns an error.'
+    }
+  },
+  'excel-textsplit-not-working': {
+    gives: [
+      'A focused repair pass for one TEXTSPLIT formula.',
+      'Checks for exact delimiters, row-versus-column split direction, empty tokens, case matching, #N/A padding, blocked spill ranges, and version support.',
+      'A revised TEXTSPLIT direction you can test on one source text value before filling it through an import or report.'
+    ],
+    useWhen: 'Use this page when TEXTSPLIT leaves the text unchanged, splits on the wrong character, returns #SPILL!, fills extra cells with #N/A, or behaves differently after a workbook is opened in another Excel version. It is strongest when you can paste the formula and one text value that should split.',
+    notWhen: 'Do not treat every TEXTSPLIT problem as a formula-writing problem. The formula may be valid while the output range is blocked, the source text uses a different delimiter, or the current Excel version cannot run TEXTSPLIT.',
+    example: {
+      setup: 'A cell contains comma-space separated tags, but the formula uses only a comma delimiter and leaves leading spaces in the split values.',
+      formula: '=TRIM(TEXTSPLIT(A2,", "))',
+      read: 'The formula splits on the exact comma-space delimiter and trims each returned value. If the source sometimes uses semicolons, line breaks, or inconsistent spaces, handle those delimiter cases deliberately before filling the formula down.'
     }
   },
   'excel-indirect-not-working': {
