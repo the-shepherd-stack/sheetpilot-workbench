@@ -6,6 +6,7 @@
   "scripts": {
     "build:seo": "node scripts/build-seo-pages.mjs",
     "analytics:summary": "node scripts/funnel-summary.mjs",
+    "qa:frontend": "npx --yes --package playwright node scripts/frontend-qa.mjs",
     "test": "node --test tests/*.test.js"
   }
 }

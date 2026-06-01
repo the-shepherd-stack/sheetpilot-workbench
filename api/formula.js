@@ -113,6 +113,25 @@ function normalizeAiResult(result) {
   };
 }
 
+function enforceFixModeSafety(body, result, localFallback) {
+  const originalFormula = String(body.formula || '');
+  const resultText = `${result.formula || ''} ${result.explanation || ''} ${(result.steps || []).join(' ')} ${(result.checks || []).join(' ')}`;
+
+  if (
+    body.mode === 'fix'
+    && /XLOOKUP|VLOOKUP|MATCH/i.test(originalFormula)
+    && !/IFERROR|IFNA|not\s+found|no\s+match|if_not_found/i.test(resultText)
+  ) {
+    return {
+      ...localFallback,
+      source: result.source || 'openai',
+      warning: 'Applied lookup fallback safety repair.'
+    };
+  }
+
+  return result;
+}
+
 function ensureFormula(value) {
   const formula = String(value || '').trim();
   if (!formula) return '=';
@@ -258,6 +277,9 @@ export default async function handler(request, response) {
           'For counting rows matching multiple criteria, prefer COUNTIFS.',
           'For summing rows matching multiple criteria, prefer SUMIFS.',
           'For lookup requests, prefer XLOOKUP unless the user asks for VLOOKUP.',
+          'In fix mode, repair the pasted formula; do not simply explain it unchanged when an obvious missing-match, range-size, exact-match, syntax, or fallback issue is present.',
+          'When fixing lookup formulas, add a readable missing-match fallback with IFERROR, IFNA, or the lookup function fallback argument unless the user asks not to.',
+          'Use the user-provided header names and business labels in explanations and checks, not only cell letters.',
           'Never invent unavailable columns. If context is insufficient, make a conservative formula and include a check.',
           `Relevant function catalog: ${functionCatalog.join(' | ')}`
         ].join('\n'),
@@ -294,8 +316,10 @@ export default async function handler(request, response) {
     const payload = await upstream.json();
     const text = extractResponseText(payload);
     const parsed = JSON.parse(text);
+    const normalized = normalizeAiResult(parsed);
+    const safeResult = enforceFixModeSafety(body, normalized, localFallback);
     logFormulaEvent('completed', { ...eventDetails, source: 'openai', status: 200 });
-    json(response, 200, { ...normalizeAiResult(parsed), source: 'openai' });
+    json(response, 200, { ...safeResult, source: 'openai' });
   } catch {
     logFormulaEvent('completed', { ...eventDetails, source: 'fallback', status: 200 });
     json(response, 200, { ...localFallback, source: 'fallback', warning: 'OpenAI response could not be used.' });
