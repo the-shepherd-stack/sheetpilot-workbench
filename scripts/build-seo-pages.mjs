@@ -1208,6 +1208,40 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-unique-not-working',
+    title: 'Excel UNIQUE Not Working? Fix Duplicates, #SPILL, by_col, exactly_once | Write My Formula',
+    description: 'Fix Excel UNIQUE formulas that keep apparent duplicates, return unexpected rows, show #SPILL!, or confuse by_col and exactly_once settings.',
+    eyebrow: 'Excel UNIQUE repair',
+    h1: 'Fix an Excel UNIQUE formula that returns duplicates or the wrong rows.',
+    lede: 'UNIQUE looks broken for a few common reasons. Two cells that look identical can differ by a trailing space, a non-printing character, or a number stored as text. A multi-column range treats each row as unique if any one cell differs. The exactly_once argument returns only values that appear once in the source, not one copy of each repeated value. And #SPILL! means the output range is blocked.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=UNIQUE(A2:C500)'
+    },
+    intent: 'Help Excel users repair one UNIQUE formula where the visible problem is usually hidden spaces or non-printing characters, text-versus-number storage, multi-column row uniqueness, exactly_once behavior, by_col direction, blocked spill output, or version support.',
+    bestFor: [
+      'UNIQUE formulas that still show apparent duplicates because the source values are not truly identical.',
+      'Multi-column UNIQUE formulas that return unique row combinations instead of one distinct field.',
+      'Lists where exactly_once removes repeated values entirely instead of returning one copy of each value.',
+      'UNIQUE formulas that return #SPILL! because the result cannot expand into nearby cells.',
+      'Files opened in older Excel versions where dynamic array functions may not behave as expected.'
+    ],
+    steps: [
+      'Paste the exact UNIQUE formula and say whether you expected unique cells, unique rows, or values that appear exactly once.',
+      'Include two or three source rows that look duplicated but remain in the output.',
+      'Say whether the result should spill down rows or across columns.'
+    ],
+    copyChecks: [
+      'Clean hidden leading, trailing, and non-printing characters before deciding UNIQUE is wrong.',
+      'Check whether numbers or dates are stored as text even though they look formatted correctly.',
+      'Use a one-column range when you want a distinct list from one field; multi-column ranges deduplicate whole rows.',
+      'Use exactly_once only when repeated values should disappear entirely.',
+      'Clear the spill range or move the formula outside an Excel table before changing valid UNIQUE logic.',
+      'Confirm your Excel version supports dynamic array functions before relying on UNIQUE in a shared file.'
+    ]
+  },
+  {
     slug: 'excel-num-error',
     title: 'Excel #NUM! Error Fixer | Write My Formula',
     description: 'Fix Excel #NUM! errors caused by invalid numeric values, formatted constants, non-converging IRR or RATE functions, and numbers outside Excel limits.',
@@ -3177,6 +3211,20 @@ const pageEnhancements = {
       setup: 'An OFFSET formula can return #REF! when a negative row argument pushes the reference above the first worksheet row.',
       formula: '=OFFSET(A1,-2,0,1,1)',
       read: 'The row shift asks Excel to move two rows above A1, which is outside the sheet. A repair path starts by anchoring the formula to a valid starting cell or changing the row-offset logic before the result is used in SUM, COUNTA, or a named range.'
+    }
+  },
+  'excel-unique-not-working': {
+    gives: [
+      'A focused repair pass for one Excel UNIQUE formula.',
+      'Checks for hidden characters, stored value types, multi-column row uniqueness, exactly_once behavior, by_col direction, blocked output cells, and version support.',
+      'A revised UNIQUE path you can test on a small sample before replacing a report formula.'
+    ],
+    useWhen: 'Use this page when Excel UNIQUE keeps apparent duplicates, removes more rows than expected, returns unique row combinations instead of one distinct field, spills in the wrong direction, or returns #SPILL!. It is strongest when you can paste the exact formula and two source rows that should deduplicate.',
+    notWhen: 'Do not use it as a workbook cleanup audit. UNIQUE compares the values and ranges it receives; source cleanup, version support, blocked output cells, and downstream report logic may still need separate checks in Excel.',
+    example: {
+      setup: 'A customer list in A2:A500 has repeated emails, but some imported entries include trailing spaces. UNIQUE appears to keep duplicates because the underlying text differs.',
+      formula: '=UNIQUE(TRIM(A2:A500))',
+      read: 'The formula trims leading and trailing spaces before returning the distinct email list. Test the result on a small copied range first, especially if capitalization, non-printing characters, or stored number formats matter.'
     }
   },
   'excel-num-error': {

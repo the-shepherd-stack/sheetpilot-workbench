@@ -91,6 +91,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix dynamic array and FILTER formulas blocked by empty results, nested arrays, range references, or unsupported calculations/);
   assert.match(page, /\/excel-offset-not-working\//);
   assert.match(page, /Fix OFFSET formulas with #REF!, #VALUE!, wrong ranges, dynamic named range problems, text references, or volatile recalculation issues/);
+  assert.match(page, /\/excel-unique-not-working\//);
+  assert.match(page, /Fix UNIQUE formulas that keep apparent duplicates, return unexpected rows, show #SPILL!, or confuse by_col and exactly_once settings/);
   assert.match(page, /\/excel-num-error\//);
   assert.match(page, /Fix formulas blocked by invalid numeric values, formatted constants, non-converging IRR or RATE inputs, or numbers outside Excel limits/);
   assert.match(page, /\/excel-circular-reference\//);
@@ -322,6 +324,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-spill-error',
     'excel-calc-error',
     'excel-offset-not-working',
+    'excel-unique-not-working',
     'excel-num-error',
     'excel-circular-reference',
     'excel-ref-error',
@@ -921,6 +924,25 @@ test('excel OFFSET function not working page targets OFFSET repair intent withou
   assert.match(homepage, /href="\/excel-offset-not-working\/">Excel OFFSET function not working/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-offset-not-working\//);
   assert.doesNotMatch(page, /upload|workbook audit|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
+});
+
+test('excel UNIQUE not working page targets duplicate repair intent without overclaiming', () => {
+  const page = read('excel-unique-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel UNIQUE Not Working\? Fix Duplicates, #SPILL, by_col, exactly_once/);
+  assert.match(page, /Fix an Excel UNIQUE formula that returns duplicates or the wrong rows/);
+  assert.match(page, /Two cells that look identical can differ by a trailing space/);
+  assert.match(page, /exactly_once argument returns only values that appear once/);
+  assert.match(page, /multi-column row uniqueness/);
+  assert.match(page, /Clear the spill range or move the formula outside an Excel table/);
+  assert.match(page, /=UNIQUE\(TRIM\(A2:A500\)\)/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-unique-not-working\/">Excel UNIQUE not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-unique-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one click|automatic|pay before answer|whole spreadsheet/i);
 });
 
 test('excel formula parse error page targets rejected-formula repair intent without overclaiming', () => {
