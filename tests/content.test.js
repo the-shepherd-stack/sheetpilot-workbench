@@ -1925,3 +1925,24 @@ test('pivot table calculated field page targets pivot formulas', () => {
   assert.match(page, /pivot table calculated field/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/pivot-table-calculated-field-formula-generator\//);
 });
+
+test('excel pivot table calculated field not working page targets pivot repair intent without overclaiming', () => {
+  const page = read('excel-pivot-table-calculated-field-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel Pivot Table Calculated Field Not Working/);
+  assert.match(page, /Fix an Excel PivotTable calculated field that is not working/);
+  assert.match(page, /wrong totals, invalid cell references, field-name syntax, OLAP limits, and helper-column cases/);
+  assert.match(page, /PivotTable formulas do not behave like normal worksheet formulas/);
+  assert.match(page, /Use PivotTable field names rather than worksheet cell references or defined names/);
+  assert.match(page, /calculated fields operate on summarized field totals/);
+  assert.match(page, /Move row-level multiplication, division, or IF logic into a helper column/);
+  assert.match(page, /=\('Revenue'-'Cost'\)\/'Revenue'/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-pivot-table-calculated-field-not-working\/">Excel PivotTable calculated field repair/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-pivot-table-calculated-field-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook/i);
+});

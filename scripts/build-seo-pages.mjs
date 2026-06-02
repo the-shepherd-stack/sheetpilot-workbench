@@ -2827,6 +2827,43 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-pivot-table-calculated-field-not-working',
+    title: 'Excel Pivot Table Calculated Field Not Working? | Write My Formula',
+    description: 'Fix Excel PivotTable calculated fields that return wrong totals, reject cell references, break on field names, or need a source helper column.',
+    eyebrow: 'Excel PivotTable calculated field repair',
+    h1: 'Fix an Excel PivotTable calculated field that is not working.',
+    lede: 'PivotTable formulas do not behave like normal worksheet formulas. Paste the calculated field formula, list the source field names, and get a repair path for wrong totals, invalid cell references, field-name syntax, OLAP limits, and helper-column cases.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      task: 'Fix this PivotTable calculated field so gross margin works from the pivot source fields.',
+      table: 'Region,Product,Revenue,Cost\nWest,Hardware,12000,7800\nEast,Software,18000,6300',
+      range: 'Pivot source fields: Revenue and Cost; calculated field name: Gross Margin',
+      hint: 'PivotTable calculated field',
+      formula: "=('Revenue'-'Cost')/'Revenue'"
+    },
+    intent: 'Help Excel users repair one PivotTable calculated field when the formula is rejected, returns a surprising total, uses worksheet-style references, points at the wrong source field, or should be moved into a source-table helper column before the pivot aggregates it.',
+    bestFor: [
+      'Calculated fields that need source field names instead of A1-style cell references.',
+      'Margin, revenue, variance, average price, or ratio formulas where the row values look plausible but subtotals or grand totals are surprising.',
+      'Pivot formulas that break because a field name has spaces, symbols, numbers, or the wrong calculated-field versus calculated-item shape.',
+      'Cases where the calculation must happen per source row before the PivotTable summarizes it.'
+    ],
+    steps: [
+      'Paste the exact calculated field formula Excel rejected or calculated incorrectly.',
+      'List the PivotTable source field names exactly as they appear in the field list.',
+      'Add one source row and one PivotTable total that shows the mismatch.',
+      'Mention whether the PivotTable is based on a normal worksheet range, Data Model, Power Pivot, or OLAP source.'
+    ],
+    copyChecks: [
+      'Use PivotTable field names rather than worksheet cell references or defined names.',
+      'Check whether the formula is a calculated field or a calculated item before rewriting it.',
+      'Remember that calculated fields operate on summarized field totals, not on each individual source row.',
+      'Move row-level multiplication, division, or IF logic into a helper column when the total needs to be summed after each row is calculated.',
+      'Do not try to add a normal calculated field to an OLAP PivotTable; use the appropriate measure workflow instead.'
+    ]
+  },
+  {
     slug: 'conditional-formatting-formula-generator',
     title: 'Conditional Formatting Formula Generator for Excel and Sheets | Write My Formula',
     description: 'Write conditional formatting formulas for Excel and Google Sheets that return TRUE for the right rows: overdue dates, duplicates, status checks, and whole-row highlights.',
@@ -4126,6 +4163,20 @@ const pageEnhancements = {
       setup: 'For a pivot source with Revenue and Cost fields, a calculated field can show gross margin as a percentage.',
       formula: "=('Revenue'-'Cost')/'Revenue'",
       read: 'The formula subtracts Cost from Revenue, divides by Revenue, and can be formatted as a percentage in the pivot table values area.'
+    }
+  },
+  'excel-pivot-table-calculated-field-not-working': {
+    gives: [
+      'A focused repair pass for one PivotTable calculated field.',
+      'A plain-English check of whether the formula belongs in the pivot or in the source table.',
+      'Checks for field-name syntax, wrong totals, invalid cell references, calculated item confusion, and OLAP limits.'
+    ],
+    useWhen: 'Use this page when an Excel PivotTable calculated field is rejected, returns a surprising subtotal or grand total, uses normal worksheet references, or needs to be rebuilt from the exact source field names.',
+    notWhen: 'Do not use a calculated field when the calculation must happen row by row before aggregation. Put that logic in the source data first, refresh the PivotTable, and then summarize the helper field.',
+    example: {
+      setup: 'For a PivotTable source with Revenue and Cost fields, gross margin can be a calculated field when the metric is acceptable at the summarized-field level.',
+      formula: "=('Revenue'-'Cost')/'Revenue'",
+      read: 'The formula uses the PivotTable field names, not cells like B2 or C2. Check the grand total carefully because PivotTable calculated fields work from summed fields rather than each original row.'
     }
   },
   'conditional-formatting-formula-generator': {
