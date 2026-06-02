@@ -163,6 +163,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix SORT formulas with #SPILL!, wrong sort columns, header-row mistakes, row separation, text-stored dates or numbers, and version support issues/);
   assert.match(page, /\/excel-vstack-hstack-not-working\//);
   assert.match(page, /Fix stacked arrays with #N\/A padding, #SPILL! blockers, #NAME\? version issues, mismatched array sizes, or the wrong combine direction/);
+  assert.match(page, /\/excel-choosecols-chooserows-not-working\//);
+  assert.match(page, /Fix CHOOSECOLS and CHOOSEROWS formulas with #VALUE!, #NAME\?, #SPILL!, wrong selected columns or rows, and nested-array errors/);
   assert.match(page, /\/excel-if-formula-multiple-conditions\//);
   assert.match(page, /Write nested IF, AND, OR, and IFS logic with branch-order and edge-row checks/);
   assert.match(page, /\/excel-if-formula-not-working\//);
@@ -381,6 +383,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-xmatch-not-working',
     'excel-sort-not-working',
     'excel-vstack-hstack-not-working',
+    'excel-choosecols-chooserows-not-working',
     'excel-if-formula-multiple-conditions',
     'excel-if-formula-not-working',
     'vlookup-formula-generator',
@@ -1844,6 +1847,28 @@ test('excel VSTACK and HSTACK not working page targets stack repair intent witho
   assert.match(homepage, /href="\/excel-vstack-hstack-not-working\/">Excel VSTACK or HSTACK not working/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-vstack-hstack-not-working\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole spreadsheet|exact cause/i);
+});
+
+test('excel CHOOSECOLS and CHOOSEROWS not working page targets row and column selection repair intent without overclaiming', () => {
+  const page = read('excel-choosecols-chooserows-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel CHOOSECOLS or CHOOSEROWS Not Working Fixer/);
+  assert.match(page, /Fix an Excel CHOOSECOLS or CHOOSEROWS formula that is not working/);
+  assert.match(page, /position is 0 or outside the selected array/);
+  assert.match(page, /table column name is used where a number belongs/);
+  assert.match(page, /FILTER, INDEX, or SORT feeding the formula already returns an error/);
+  assert.match(page, /=CHOOSECOLS\(FILTER\(A2:F500,C2:C500=&quot;Open&quot;\),1,3,6\)/);
+  assert.match(page, /Use numeric positions such as 1, 3, or -1/);
+  assert.match(page, /Count positions from the array argument/);
+  assert.match(page, /Microsoft 365, Excel for the web, or Excel 2024/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-choosecols-chooserows-not-working\/">Excel CHOOSECOLS or CHOOSEROWS not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-choosecols-chooserows-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole spreadsheet|exact cause|any Excel version/i);
 });
 
 test('excel IF formula multiple conditions page targets conditional logic intent', () => {

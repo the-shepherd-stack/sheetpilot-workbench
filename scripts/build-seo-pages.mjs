@@ -2540,6 +2540,40 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-choosecols-chooserows-not-working',
+    title: 'Excel CHOOSECOLS or CHOOSEROWS Not Working Fixer | Write My Formula',
+    description: 'Fix Excel CHOOSECOLS and CHOOSEROWS formulas with #VALUE!, #NAME?, #SPILL!, wrong selected columns or rows, and broken nested arrays.',
+    eyebrow: 'Excel CHOOSECOLS and CHOOSEROWS repair',
+    h1: 'Fix an Excel CHOOSECOLS or CHOOSEROWS formula that is not working.',
+    lede: 'CHOOSECOLS and CHOOSEROWS can break when a position is 0 or outside the selected array, the workbook opens in an unsupported Excel version, the spill range is blocked, a table column name is used where a number belongs, or the FILTER, INDEX, or SORT feeding the formula already returns an error. Paste the formula exactly as it appears in the cell.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=CHOOSECOLS(FILTER(A2:F500,C2:C500="Open"),1,3,6)'
+    },
+    intent: 'Help Excel users repair one CHOOSECOLS or CHOOSEROWS formula where the visible problem is usually #VALUE! from zero or out-of-range positions, #NAME? from unsupported Excel versions, #SPILL! from blocked output cells, wrong rows or columns from relative position counting, or an upstream dynamic-array error.',
+    bestFor: [
+      'CHOOSECOLS formulas that return #VALUE! because a requested column number is 0 or larger than the array width.',
+      'CHOOSEROWS formulas that return #VALUE! because a requested row number is 0 or larger than the array height.',
+      'Dynamic-array formulas that show #NAME? after a file opens outside Microsoft 365, Excel for the web, or Excel 2024.',
+      'Reports where the selected columns or rows are wrong because the position was counted from the sheet edge instead of the array argument.',
+      'Nested FILTER, INDEX, SORT, TAKE, or DROP formulas where CHOOSECOLS or CHOOSEROWS is only exposing an upstream error.'
+    ],
+    steps: [
+      'Paste the exact CHOOSECOLS or CHOOSEROWS formula and the error or wrong output it returns.',
+      'Include the source array width or height after any FILTER, SORT, TAKE, DROP, or INDEX step.',
+      'Say which columns or rows should appear in the result and whether negative positions should count from the end.'
+    ],
+    copyChecks: [
+      'Use numeric positions such as 1, 3, or -1; table column names and structured references do not replace col_num or row_num arguments.',
+      'Check whether any requested position is 0 or outside the array returned by the first argument.',
+      'Count positions from the array argument, not from the worksheet column letters or row numbers.',
+      'Clear the intended spill range before rewriting a formula that is otherwise valid.',
+      'Check the nested FILTER, INDEX, SORT, TAKE, or DROP result before treating CHOOSECOLS or CHOOSEROWS as the root cause.',
+      'Confirm the workbook is being opened in Microsoft 365, Excel for the web, or Excel 2024 when the function appears as #NAME? or _xlfn.'
+    ]
+  },
+  {
     slug: 'vlookup-formula-generator',
     title: 'VLOOKUP Formula Generator | Write My Formula',
     description: 'Build VLOOKUP formulas from a plain-English lookup task and pasted table context.',
@@ -4198,6 +4232,20 @@ const pageEnhancements = {
       setup: 'A workbook combines two department extracts. One extract has three columns and another has only two, so VSTACK pads the missing third column with #N/A.',
       formula: '=IFNA(VSTACK(A2:C20,F2:H20),"")',
       read: 'The formula stacks both extracts vertically and turns expected padding into blanks. Before using the fallback, check whether the missing column should be mapped, added, or left blank.'
+    }
+  },
+  'excel-choosecols-chooserows-not-working': {
+    gives: [
+      'A focused repair pass for one CHOOSECOLS or CHOOSEROWS formula returning #VALUE!, #NAME?, #SPILL!, or the wrong selected rows or columns.',
+      'Checks for zero and out-of-range positions, array-relative counting, blocked spill output, supported Excel versions, and nested dynamic-array errors.',
+      'A revised selection formula you can test on a small source array before replacing a report formula.'
+    ],
+    useWhen: 'Use this page when CHOOSECOLS or CHOOSEROWS is close but not reliable: it returns #VALUE!, is not recognized, spills into blocked cells, chooses the wrong rows or columns, or fails after wrapping FILTER, INDEX, SORT, TAKE, or DROP. It is strongest when you can paste the full nested formula and the source array shape.',
+    notWhen: 'Do not use table column names, sheet letters, or absolute row numbers where CHOOSECOLS and CHOOSEROWS expect numeric positions inside the returned array. First confirm the array produced by the first argument, then count from that array.',
+    example: {
+      setup: 'A filtered report should return only the customer, status, and amount columns from a six-column source after keeping open rows.',
+      formula: '=CHOOSECOLS(FILTER(A2:F500,C2:C500="Open"),1,3,6)',
+      read: 'FILTER creates the reduced source array first. CHOOSECOLS then returns columns 1, 3, and 6 relative to that filtered array. If column 6 no longer exists after the nested step, Excel returns #VALUE!.'
     }
   },
   'vlookup-formula-generator': {
