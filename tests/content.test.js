@@ -85,6 +85,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix formulas with misspelled functions, undefined names, missing quotes, or unsupported functions/);
   assert.match(page, /\/excel-div0-error\//);
   assert.match(page, /Fix formulas blocked by zero or blank denominators, ratio logic, averages, and IFERROR tradeoffs/);
+  assert.match(page, /\/excel-null-error\//);
+  assert.match(page, /Fix formulas blocked by accidental range intersections, missing commas, missing colons, or non-overlapping cell ranges/);
   assert.match(page, /\/excel-spill-error\//);
   assert.match(page, /Fix dynamic array formulas blocked by spill ranges, tables, merged cells, whole-column references, or changing array sizes/);
   assert.match(page, /\/excel-calc-error\//);
@@ -325,6 +327,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-value-error',
     'excel-name-error',
     'excel-div0-error',
+    'excel-null-error',
     'excel-spill-error',
     'excel-calc-error',
     'excel-offset-not-working',
@@ -1495,6 +1498,25 @@ test('excel REF error page targets broken-reference repair intent without overcl
   assert.match(homepage, /href="\/excel-ref-error\/">Excel #REF! error/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-ref-error\//);
   assert.doesNotMatch(page, /upload|workbook audit|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|pay before answer/i);
+});
+
+test('excel NULL error page targets accidental range-intersection repair intent without overclaiming', () => {
+  const page = read('excel-null-error/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel #NULL! Error Fixer/);
+  assert.match(page, /Fix an Excel #NULL! error in one formula/);
+  assert.match(page, /accidental intersection spaces, missing commas, missing colons/);
+  assert.match(page, /ranges that do not overlap/);
+  assert.match(page, /=SUM\(A2:A10 C2:C10\)/);
+  assert.match(page, /Replace an accidental space between ranges with a comma/);
+  assert.match(page, /Keep the intersection space only when you truly want the cells shared by two overlapping ranges/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-null-error\/">Excel #NULL! error/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-null-error\//);
+  assert.doesNotMatch(page, /upload|workbook audit|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatic fix|pay before answer/i);
 });
 
 test('AI Excel formula generator page targets plain-English AI formula intent without overclaiming', () => {

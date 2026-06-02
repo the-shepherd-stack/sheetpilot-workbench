@@ -1113,6 +1113,37 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-null-error',
+    title: 'Excel #NULL! Error Fixer | Write My Formula',
+    description: 'Fix Excel #NULL! errors caused by accidental range intersections, missing commas, missing colons, and non-overlapping cell ranges.',
+    eyebrow: 'Excel #NULL! error fixer',
+    h1: 'Fix an Excel #NULL! error in one formula.',
+    lede: 'Paste the formula that returns #NULL!, describe what the ranges were supposed to do, and get a repair path for accidental intersection spaces, missing commas, missing colons, and ranges that do not overlap.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=SUM(A2:A10 C2:C10)'
+    },
+    intent: 'Help Excel users repair one formula returning #NULL! by checking whether a space is being read as the intersection operator, whether a comma or colon is missing, or whether two ranges are being intersected even though they do not overlap.',
+    bestFor: [
+      'SUM, COUNT, lookup, and named-range formulas where two references appear side by side and Excel returns #NULL!.',
+      'Copied formulas where a separator was changed into a space or a range colon was removed.',
+      'Intersection formulas that should work only when the two referenced ranges actually overlap.'
+    ],
+    steps: [
+      'Paste the exact formula that returns #NULL!.',
+      'Say whether the formula should combine ranges, sum one continuous range, or use the overlapping cells between two ranges.',
+      'Include the referenced cells or named ranges when the formula uses spaces, commas, colons, or structured references.'
+    ],
+    copyChecks: [
+      'Replace an accidental space between ranges with a comma when the function needs separate arguments.',
+      'Replace a mistaken space with a colon when the formula should use one continuous range.',
+      'Keep the intersection space only when you truly want the cells shared by two overlapping ranges.',
+      'Confirm the two ranges overlap before treating #NULL! as a normal intersection result.',
+      'Fix the range operator directly before wrapping the formula in IFERROR.'
+    ]
+  },
+  {
     slug: 'excel-spill-error',
     title: 'Excel #SPILL! Error Fixer | Write My Formula',
     description: 'Fix Excel #SPILL! formula errors caused by blocked spill ranges, dynamic arrays, Excel tables, merged cells, worksheet edges, and volatile array sizes.',
@@ -3295,6 +3326,20 @@ const pageEnhancements = {
       setup: 'A margin formula can return #DIV/0! when revenue is blank or zero while a row is still being filled in.',
       formula: '=IF(C2=0,"",(B2-C2)/C2)',
       read: 'The formula checks the denominator before dividing. If C2 is zero, it returns blank; otherwise it calculates the margin. Choose blank, 0, #N/A, or a message based on how the report should treat missing input.'
+    }
+  },
+  'excel-null-error': {
+    gives: [
+      'A focused fix pass for one formula returning #NULL!.',
+      'Checks for accidental intersection spaces, missing commas, missing colons, named ranges, and non-overlapping references.',
+      'A revised formula path you can test before hiding the range-operator problem with an error fallback.'
+    ],
+    useWhen: 'Use this page when Excel returns #NULL! because two references are separated by a space, a comma or colon was missed, or an intended intersection uses ranges that do not overlap. It is strongest when you can paste the exact formula and describe whether the ranges should combine, continue, or intersect.',
+    notWhen: 'Do not hide #NULL! with IFERROR before checking the range operator. The formula may need a comma, a colon, or a real overlapping intersection, and a fallback can conceal a simple reference typo.',
+    example: {
+      setup: 'A summary formula should add two separate ranges, but a pasted space between the references makes Excel look for cells shared by both ranges.',
+      formula: '=SUM(A2:A10,C2:C10)',
+      read: 'The comma tells SUM to use two separate ranges. If the intended formula was one continuous block, use a colon instead; if the intended formula was an intersection, confirm the two ranges actually overlap.'
     }
   },
   'excel-spill-error': {
