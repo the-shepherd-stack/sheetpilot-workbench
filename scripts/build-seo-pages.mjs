@@ -2442,6 +2442,39 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-vstack-hstack-not-working',
+    title: 'Excel VSTACK or HSTACK Not Working? Fix #N/A, #SPILL, #NAME | Write My Formula',
+    description: 'Fix Excel VSTACK and HSTACK formulas with #N/A padding, #SPILL! blockers, #NAME? version issues, mismatched array sizes, and wrong stack direction.',
+    eyebrow: 'Excel VSTACK and HSTACK repair',
+    h1: 'Fix an Excel VSTACK or HSTACK formula that will not combine arrays cleanly.',
+    lede: 'VSTACK and HSTACK can look broken when arrays have different widths or heights, the result spills into occupied cells, the function is not available in the Excel version opening the file, or the stack direction does not match the report layout. Paste the formula and a small sample of the ranges you are trying to combine.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=VSTACK(A2:C20,F2:H20)'
+    },
+    intent: 'Help Excel users repair one VSTACK or HSTACK formula where the visible problem is usually #N/A padding from uneven arrays, #SPILL! from blocked output cells or tables, #NAME? from unsupported Excel versions, or rows and columns being appended in the wrong direction.',
+    bestFor: [
+      'VSTACK formulas that add #N/A cells because one source range has fewer columns than another.',
+      'HSTACK formulas that add #N/A cells because one source range has fewer rows than another.',
+      'Stacked dynamic-array results that return #SPILL! because the output area is occupied, merged, or inside an Excel table.',
+      'Files where VSTACK or HSTACK returns #NAME? after the workbook opens in an older Excel version.',
+      'Reports where the formula stacks the arrays vertically when the user needed a horizontal append, or the reverse.'
+    ],
+    steps: [
+      'Paste the exact VSTACK or HSTACK formula that is not working.',
+      'Include the dimensions or sample rows for each source array you are combining.',
+      'Say whether blanks, #N/A padding, or a readable fallback should appear when one array is shorter than another.'
+    ],
+    copyChecks: [
+      'Decide whether the arrays should be appended by rows with VSTACK or by columns with HSTACK before changing the formula.',
+      'Check whether every source range has the same width for VSTACK or the same height for HSTACK.',
+      'Use IFERROR or IFNA for expected padding only after confirming the #N/A cells are from uneven array sizes.',
+      'Clear the spill range or move the formula outside an Excel table before rewriting valid stack logic.',
+      'Confirm the workbook will be opened in an Excel version that supports VSTACK and HSTACK.'
+    ]
+  },
+  {
     slug: 'vlookup-formula-generator',
     title: 'VLOOKUP Formula Generator | Write My Formula',
     description: 'Build VLOOKUP formulas from a plain-English lookup task and pasted table context.',
@@ -4058,6 +4091,20 @@ const pageEnhancements = {
       setup: 'A report has headers in row 1 and data in A2:D500. The output should sort whole rows by the third column, newest or highest first, without moving the header row into the result.',
       formula: '=SORT(A2:D500,3,-1)',
       read: 'The formula sorts the data rows only, counts the third column relative to A:D, and uses -1 for descending order. If the result returns #SPILL!, check the cells below the formula before changing the sort logic.'
+    }
+  },
+  'excel-vstack-hstack-not-working': {
+    gives: [
+      'A focused repair pass for one VSTACK or HSTACK formula returning #N/A, #SPILL!, #NAME?, or the wrong combined layout.',
+      'Checks for uneven array widths or heights, expected padding, blocked spill ranges, table placement, stack direction, and Excel version support.',
+      'A revised stack formula direction you can test on a small sample before replacing a report formula.'
+    ],
+    useWhen: 'Use this page when VSTACK or HSTACK is close but not trustworthy: the formula pads the combined result with #N/A, spills into blocked cells, is not recognized in the workbook, or combines rows and columns in the wrong direction. It is strongest when you can paste the formula and the source range sizes.',
+    notWhen: 'Do not treat every #N/A in a stacked array as a lookup failure. With VSTACK and HSTACK, #N/A can be expected padding when one array is narrower or shorter than the largest array being combined.',
+    example: {
+      setup: 'A workbook combines two department extracts. One extract has three columns and another has only two, so VSTACK pads the missing third column with #N/A.',
+      formula: '=IFNA(VSTACK(A2:C20,F2:H20),"")',
+      read: 'The formula stacks both extracts vertically and turns expected padding into blanks. Before using the fallback, check whether the missing column should be mapped, added, or left blank.'
     }
   },
   'vlookup-formula-generator': {

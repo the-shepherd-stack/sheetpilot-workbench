@@ -157,6 +157,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix XMATCH formulas with #N\/A, #VALUE!, wrong positions, wildcard mode, binary search sorting, or first-versus-last match issues/);
   assert.match(page, /\/excel-sort-not-working\//);
   assert.match(page, /Fix SORT formulas with #SPILL!, wrong sort columns, header-row mistakes, row separation, text-stored dates or numbers, and version support issues/);
+  assert.match(page, /\/excel-vstack-hstack-not-working\//);
+  assert.match(page, /Fix stacked arrays with #N\/A padding, #SPILL! blockers, #NAME\? version issues, mismatched array sizes, or the wrong combine direction/);
   assert.match(page, /\/excel-if-formula-multiple-conditions\//);
   assert.match(page, /Write nested IF, AND, OR, and IFS logic with branch-order and edge-row checks/);
   assert.match(page, /\/excel-if-formula-not-working\//);
@@ -372,6 +374,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-match-not-working',
     'excel-xmatch-not-working',
     'excel-sort-not-working',
+    'excel-vstack-hstack-not-working',
     'excel-if-formula-multiple-conditions',
     'excel-if-formula-not-working',
     'vlookup-formula-generator',
@@ -1776,6 +1779,26 @@ test('excel SORT not working page targets dynamic-array sort repair intent witho
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/excel-sort-not-working\/">Excel SORT not working/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-sort-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole spreadsheet|exact cause/i);
+});
+
+test('excel VSTACK and HSTACK not working page targets stack repair intent without overclaiming', () => {
+  const page = read('excel-vstack-hstack-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel VSTACK or HSTACK Not Working\? Fix #N\/A, #SPILL, #NAME/);
+  assert.match(page, /Fix an Excel VSTACK or HSTACK formula that will not combine arrays cleanly/);
+  assert.match(page, /#N\/A padding from uneven arrays/);
+  assert.match(page, /function is not available in the Excel version opening the file/);
+  assert.match(page, /same width for VSTACK or the same height for HSTACK/);
+  assert.match(page, /Use IFERROR or IFNA for expected padding/);
+  assert.match(page, /=IFNA\(VSTACK\(A2:C20,F2:H20\),&quot;&quot;\)/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-vstack-hstack-not-working\/">Excel VSTACK or HSTACK not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-vstack-hstack-not-working\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole spreadsheet|exact cause/i);
 });
 
