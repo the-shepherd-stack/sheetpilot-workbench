@@ -79,6 +79,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix COUNTIFS formulas that return 0, #VALUE!, or wrong counts because of criteria, range sizes, dates, or closed workbooks/);
   assert.match(page, /\/excel-textjoin-not-working\//);
   assert.match(page, /Fix TEXTJOIN formulas with #VALUE!, #NAME\?, extra delimiters, blank joins, IF or FILTER array issues, line breaks, or version support problems/);
+  assert.match(page, /\/excel-textbefore-textafter-not-working\//);
+  assert.match(page, /Fix text extraction formulas with #N\/A delimiter misses, #VALUE! instance issues, case matching, fallbacks, or version support problems/);
   assert.match(page, /\/excel-indirect-not-working\//);
   assert.match(page, /Fix INDIRECT formulas with #REF!, dynamic sheet names, dependent dropdowns, named ranges, or external workbook limits/);
   assert.match(page, /\/excel-value-error\//);
@@ -327,6 +329,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-sumifs-not-working',
     'excel-countifs-not-working',
     'excel-textjoin-not-working',
+    'excel-textbefore-textafter-not-working',
     'excel-indirect-not-working',
     'excel-value-error',
     'excel-name-error',
@@ -478,6 +481,24 @@ test('google sheets formulas not working page targets broad Sheets repair intent
   assert.match(homepage, /href="\/google-sheets-formulas-not-working\/">Google Sheets formulas not working/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-formulas-not-working\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
+});
+
+test('excel TEXTBEFORE and TEXTAFTER page targets text-extraction repair intent without overclaiming', () => {
+  const page = read('excel-textbefore-textafter-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel TEXTBEFORE \/ TEXTAFTER Not Working Fixer/);
+  assert.match(page, /Fix a TEXTBEFORE or TEXTAFTER formula that is not extracting the right text/);
+  assert.match(page, /#N\/A delimiter errors, #VALUE! instance issues, case matching, fallback arguments, or version support/);
+  assert.match(page, /instance_num, match_mode, match_end, if_not_found/);
+  assert.match(page, /Missing @/);
+  assert.match(page, /=TEXTAFTER\(A2,&quot;@&quot;,1,0,0,&quot;Missing @&quot;\)/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-textbefore-textafter-not-working\/">Excel TEXTBEFORE \/ TEXTAFTER not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-textbefore-textafter-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|finds every|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|private|\blocal\b|secure by default|instant|in seconds|one click|automatic|pay before answer/i);
 });
 
 test('google sheets NAME error page targets unknown-name repair intent without overclaiming', () => {

@@ -989,6 +989,39 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-textbefore-textafter-not-working',
+    title: 'Excel TEXTBEFORE / TEXTAFTER Not Working Fixer | Write My Formula',
+    description: 'Fix Excel TEXTBEFORE and TEXTAFTER formulas with #N/A delimiter errors, #VALUE! instance issues, case matching, fallback arguments, or version support problems.',
+    eyebrow: 'Excel TEXTBEFORE and TEXTAFTER fixer',
+    h1: 'Fix a TEXTBEFORE or TEXTAFTER formula that is not extracting the right text.',
+    lede: 'Paste the TEXTBEFORE or TEXTAFTER formula that returns #N/A, #VALUE!, #NAME?, the wrong piece of text, or a blank-looking fallback. Get a focused repair path for delimiters, instance numbers, case matching, match_end, if_not_found, and Excel version support.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=TEXTAFTER(A2,"@")'
+    },
+    intent: 'Help Excel users repair one TEXTBEFORE or TEXTAFTER formula where the visible problem is usually a delimiter that is not actually present, an instance number pointing at the wrong occurrence, case-sensitive matching, a fallback argument that hides the issue, or a workbook opened in an Excel version without the newer text functions.',
+    bestFor: [
+      'TEXTBEFORE formulas that return #N/A because the delimiter is missing, differently cased, or not the occurrence the formula is searching for.',
+      'TEXTAFTER formulas that extract the wrong segment because instance_num, match_mode, or match_end is not set deliberately.',
+      '#VALUE! errors caused by invalid instance numbers or formulas asking for an occurrence Excel cannot use.',
+      '#NAME? or _xlfn behavior when the workbook is opened in an Excel version that does not support TEXTBEFORE or TEXTAFTER.',
+      'Imported text where email domains, file names, IDs, or labels need a safer delimiter fallback.'
+    ],
+    steps: [
+      'Paste the exact TEXTBEFORE or TEXTAFTER formula and one source text value.',
+      'Say which part of the text should be returned and what Excel returns now.',
+      'Mention whether the delimiter might be missing, repeated, differently cased, or coming from a copied export.'
+    ],
+    copyChecks: [
+      'Match the delimiter exactly, including spaces, punctuation, line breaks, and case-sensitive text.',
+      'Set instance_num deliberately when the delimiter appears more than once.',
+      'Use match_mode only when case-insensitive matching is intended.',
+      'Use if_not_found after checking whether a missing delimiter is normal or a data problem.',
+      'Check Excel version support when the formula appears as #NAME? or _xlfn.TEXTAFTER.'
+    ]
+  },
+  {
     slug: 'excel-textsplit-not-working',
     title: 'Excel TEXTSPLIT Not Working Fixer | Write My Formula',
     description: 'Fix Excel TEXTSPLIT formulas with #SPILL!, #N/A padding, wrong delimiters, row-versus-column split issues, or version support problems.',
@@ -4007,6 +4040,20 @@ const pageEnhancements = {
       setup: 'A report has customer IDs in A and notes in B. E2 contains one customer ID, and the formula should join only that customer\'s notes with comma separators.',
       formula: '=TEXTJOIN(", ",TRUE,FILTER($B$2:$B$500,$A$2:$A$500=E2))',
       read: 'The formula filters notes to the matching customer ID, joins only the visible matches, and ignores empty values. Test the FILTER result separately if the joined output is blank or returns an error.'
+    }
+  },
+  'excel-textbefore-textafter-not-working': {
+    gives: [
+      'A focused repair pass for one TEXTBEFORE or TEXTAFTER formula.',
+      'Checks for delimiter presence, exact spaces and punctuation, instance_num, match_mode, match_end, if_not_found, and version support.',
+      'A revised text-extraction path you can test on one source value before filling it through an imported list.'
+    ],
+    useWhen: 'Use this page when TEXTBEFORE or TEXTAFTER returns #N/A, #VALUE!, #NAME?, the wrong segment, or a fallback that looks blank. It is strongest when you can paste the formula and one source text value that should extract correctly.',
+    notWhen: 'Do not hide every delimiter miss with IFERROR before checking the source text. A missing delimiter may be a real data-quality signal, and a wrong segment often means the occurrence number, case matching, or end-matching behavior needs to be deliberate.',
+    example: {
+      setup: 'A list has email addresses in A2:A500, and the formula should extract the domain after the @ symbol while leaving rows without @ easy to review.',
+      formula: '=TEXTAFTER(A2,"@",1,0,0,"Missing @")',
+      read: 'The formula looks after the first @ symbol, uses case-sensitive matching by default, does not treat the end of the text as a delimiter, and returns Missing @ only after the delimiter check fails.'
     }
   },
   'excel-textsplit-not-working': {
