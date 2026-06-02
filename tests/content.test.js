@@ -57,6 +57,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix formulas with missing lookup matches, no-match FILTER results, text-number mismatches, hidden spaces, or fallback mistakes/);
   assert.match(page, /\/google-sheets-div0-error\//);
   assert.match(page, /Fix formulas blocked by zero or blank denominators, ratio logic, averages, percentages, and IFERROR tradeoffs/);
+  assert.match(page, /\/google-sheets-num-error\//);
+  assert.match(page, /Fix formulas blocked by invalid numeric inputs, impossible math, oversized results, XIRR or RATE failures, and out-of-range row choices/);
   assert.match(page, /\/excel-formula-not-calculating\//);
   assert.match(page, /Fix formulas that stay stale, show formula text, or only update after manual recalculation/);
   assert.match(page, /\/excel-showing-formula-instead-of-result\//);
@@ -340,6 +342,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'google-sheets-value-error',
     'google-sheets-na-error',
     'google-sheets-div0-error',
+    'google-sheets-num-error',
     'google-sheets-name-error',
     'google-sheets-formula-parse-error',
     'google-sheets-formula-not-updating',
@@ -1030,6 +1033,25 @@ test('google sheets formula parse error page targets Sheets repair intent withou
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-formula-parse-error\//);
   assert.doesNotMatch(page, /upload|workbook audit|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated/i);
+});
+
+test('google sheets NUM error page targets invalid-number repair intent without overclaiming', () => {
+  const page = read('google-sheets-num-error/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Google Sheets #NUM! Error Fixer/);
+  assert.match(page, /Fix a Google Sheets #NUM! error by checking the number Sheets cannot use/);
+  assert.match(page, /invalid numeric inputs, impossible math, oversized results, XIRR or RATE failures, and out-of-range row choices/);
+  assert.match(page, /formula asks for a number Sheets cannot calculate with/);
+  assert.match(page, /Keep row, INDEX, RANDBETWEEN, and random-pick positions inside the size of the source range/);
+  assert.match(page, /financial function has the required signs, dates, and inputs/);
+  assert.match(page, /=XIRR\(B2:B12,A2:A12\)/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-num-error\/">Google Sheets #NUM! error/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-num-error\//);
+  assert.doesNotMatch(page, /upload|workbook audit|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer|whole-sheet|full-sheet/i);
 });
 
 test('google sheets formula not updating page targets stale result repair intent without overclaiming', () => {

@@ -609,6 +609,38 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-num-error',
+    title: 'Google Sheets #NUM! Error Fixer | Write My Formula',
+    description: 'Fix Google Sheets #NUM! errors caused by invalid numeric inputs, impossible math, oversized results, XIRR or RATE failures, and out-of-range row choices.',
+    eyebrow: 'Google Sheets #NUM! error fixer',
+    h1: 'Fix a Google Sheets #NUM! error by checking the number Sheets cannot use.',
+    lede: '#NUM! usually means the formula is asking Google Sheets to calculate with a number it cannot accept: an impossible math input, a result that is too large, a financial function that cannot settle on a rate, or an index number outside the available rows. Paste the formula and one input that triggers the error to get a focused repair path.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=XIRR(B2:B12,A2:A12)'
+    },
+    intent: 'Help Google Sheets users repair one formula returning #NUM! by identifying whether the failure comes from invalid numeric inputs, a non-converging financial function, a number outside supported limits, or an out-of-range position argument.',
+    bestFor: [
+      'XIRR, IRR, RATE, or similar formulas that return #NUM! because the inputs cannot produce a valid result.',
+      'Math formulas where a negative, zero, or extreme value is invalid for the function being used.',
+      'INDEX, random-pick, or row-number formulas where the requested position is outside the source range.',
+      'Imported numbers or dates that look usable but leave the numeric formula with bad inputs.'
+    ],
+    steps: [
+      'Paste the exact Google Sheets formula returning #NUM!.',
+      'Include one source value, date, row number, or cash-flow range that triggers the error.',
+      'Say what result should be acceptable when the number is impossible, missing, or outside the source range.'
+    ],
+    copyChecks: [
+      'Check whether a financial function has the required signs, dates, and inputs before hiding the error.',
+      'Keep row, INDEX, RANDBETWEEN, and random-pick positions inside the size of the source range.',
+      'Confirm negative, zero, or very large values are valid for the specific function being used.',
+      'Convert imported dates and numbers before deciding the formula itself is broken.',
+      'Use IFERROR only after choosing what a true invalid-number case should return.'
+    ]
+  },
+  {
     slug: 'google-sheets-name-error',
     title: 'Google Sheets #NAME? Error Fixer | Write My Formula',
     description: 'Fix Google Sheets #NAME? and Unknown range name errors caused by misspelled functions, deleted named ranges, named functions, quoted text, or locale issues.',
@@ -3578,6 +3610,20 @@ const pageEnhancements = {
       setup: 'A subscription sheet should count paid rows in March 2026, but one date criteria range was copied one row longer than the status range.',
       formula: '=COUNTIFS(B2:B500,"Paid",A2:A500,">="&DATE(2026,3,1),A2:A500,"<"&DATE(2026,4,1))',
       read: 'The repaired formula keeps the status and date ranges aligned from row 2 through row 500. It also builds the date criteria with DATE so Sheets compares against real date values instead of a loose text string.'
+    }
+  },
+  'google-sheets-num-error': {
+    gives: [
+      'A focused repair pass for one Google Sheets formula returning #NUM!.',
+      'Checks for invalid numeric inputs, non-converging financial functions, impossible math, out-of-range positions, and oversized results.',
+      'A revised formula direction you can test before hiding the numeric problem with a broad fallback.'
+    ],
+    useWhen: 'Use this page when Google Sheets returns #NUM! because a formula asks for a number Sheets cannot calculate with, a financial function such as XIRR or RATE cannot find a result, or an INDEX/random selection points outside the source range. It is strongest when you can paste the formula and include the input values that trigger the error.',
+    notWhen: 'Do not use IFERROR as the first fix if the numeric problem changes the meaning of the result. A clean fallback can hide a failed financial calculation, invalid date or amount, or source-range size problem that should be checked directly.',
+    example: {
+      setup: 'An XIRR formula can return #NUM! when the cash-flow dates and values do not give Sheets enough valid inputs to settle on a result.',
+      formula: '=XIRR(B2:B12,A2:A12)',
+      read: 'The formula uses the cash-flow values in B and the matching dates in A. The checks tell you to confirm the values include the signs and dates needed for a meaningful rate before relying on a fallback.'
     }
   },
   'google-sheets-sort-not-working': {
