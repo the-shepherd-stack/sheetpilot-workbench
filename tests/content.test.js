@@ -165,6 +165,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix stacked arrays with #N\/A padding, #SPILL! blockers, #NAME\? version issues, mismatched array sizes, or the wrong combine direction/);
   assert.match(page, /\/excel-choosecols-chooserows-not-working\//);
   assert.match(page, /Fix CHOOSECOLS and CHOOSEROWS formulas with #VALUE!, #NAME\?, #SPILL!, wrong selected columns or rows, and nested-array errors/);
+  assert.match(page, /\/excel-take-drop-not-working\//);
+  assert.match(page, /Fix TAKE and DROP formulas with #CALC!, #NUM!, #NAME\?, #SPILL!, wrong rows or columns, and nested-array errors/);
   assert.match(page, /\/excel-if-formula-multiple-conditions\//);
   assert.match(page, /Write nested IF, AND, OR, and IFS logic with branch-order and edge-row checks/);
   assert.match(page, /\/excel-if-formula-not-working\//);
@@ -2081,4 +2083,25 @@ test('excel pivot table calculated field not working page targets pivot repair i
   assert.match(homepage, /href="\/excel-pivot-table-calculated-field-not-working\/">Excel PivotTable calculated field repair/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-pivot-table-calculated-field-not-working\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook/i);
+});
+
+test('excel TAKE DROP not working page targets dynamic array slice repair without overclaiming', () => {
+  const page = read('excel-take-drop-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel TAKE or DROP Not Working Fixer/);
+  assert.match(page, /Fix an Excel TAKE or DROP formula that is not returning the right slice/);
+  assert.match(page, /#CALC! from an empty array/);
+  assert.match(page, /#NUM! from an oversized array/);
+  assert.match(page, /positive or negative counts/);
+  assert.match(page, /Microsoft 365, Excel for the web, or Excel 2024/);
+  assert.match(page, /=TAKE\(SORT\(FILTER\(A2:D500,C2:C500=&quot;Open&quot;\),4,-1\),10\)/);
+  assert.match(page, /Check the nested FILTER, SORT, VSTACK, HSTACK, CHOOSECOLS, or CHOOSEROWS result/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-take-drop-not-working\/">Excel TAKE and DROP repair/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-take-drop-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause/i);
 });

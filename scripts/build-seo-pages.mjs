@@ -2574,6 +2574,40 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-take-drop-not-working',
+    title: 'Excel TAKE or DROP Not Working Fixer | Write My Formula',
+    description: 'Fix Excel TAKE and DROP formulas with #CALC!, #NUM!, #NAME?, #SPILL!, wrong rows or columns, and broken nested dynamic arrays.',
+    eyebrow: 'Excel TAKE and DROP repair',
+    h1: 'Fix an Excel TAKE or DROP formula that is not returning the right slice.',
+    lede: 'TAKE and DROP can break when a row or column count is 0, the requested slice removes everything, the workbook opens in an unsupported Excel version, the spill range is blocked, or a positive or negative count is pulling from the wrong side of the array. Paste the formula and a small sample of the array you are slicing.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=TAKE(SORT(A2:D500,4,-1),10)'
+    },
+    intent: 'Help Excel users repair one TAKE or DROP formula where the visible problem is usually #CALC! from an empty array, #NUM! from an oversized array, #NAME? from unsupported Excel versions, #SPILL! from blocked output cells, wrong direction from positive or negative counts, or an upstream dynamic-array error.',
+    bestFor: [
+      'TAKE formulas that return the wrong top, bottom, left, or right part of a report after SORT, FILTER, or VSTACK.',
+      'DROP formulas that remove the wrong rows or columns because positive and negative counts were counted from the wrong side.',
+      '#CALC! errors when rows or columns are 0, or when the formula drops every row or column from the array.',
+      '#NUM! errors when the requested array is too large for Excel to calculate.',
+      'Files where TAKE or DROP appears as #NAME? or _xlfn after opening outside Microsoft 365, Excel for the web, or Excel 2024.'
+    ],
+    steps: [
+      'Paste the exact TAKE or DROP formula and the error or wrong output it returns.',
+      'Include the source array shape after any FILTER, SORT, VSTACK, HSTACK, CHOOSECOLS, or CHOOSEROWS step.',
+      'Say whether the formula should keep or remove rows, columns, or both, and whether the count should work from the start or the end.'
+    ],
+    copyChecks: [
+      'Use positive counts to work from the start of the array and negative counts to work from the end.',
+      'Check whether any rows or columns argument is 0 before treating #CALC! as a data problem.',
+      'Confirm DROP is not removing every row or column from the array.',
+      'Clear the intended spill range before rewriting a TAKE or DROP formula that is otherwise valid.',
+      'Check the nested FILTER, SORT, VSTACK, HSTACK, CHOOSECOLS, or CHOOSEROWS result before treating TAKE or DROP as the root cause.',
+      'Confirm the workbook is being opened in Microsoft 365, Excel for the web, or Excel 2024 when the function appears as #NAME? or _xlfn.'
+    ]
+  },
+  {
     slug: 'vlookup-formula-generator',
     title: 'VLOOKUP Formula Generator | Write My Formula',
     description: 'Build VLOOKUP formulas from a plain-English lookup task and pasted table context.',
@@ -4246,6 +4280,20 @@ const pageEnhancements = {
       setup: 'A filtered report should return only the customer, status, and amount columns from a six-column source after keeping open rows.',
       formula: '=CHOOSECOLS(FILTER(A2:F500,C2:C500="Open"),1,3,6)',
       read: 'FILTER creates the reduced source array first. CHOOSECOLS then returns columns 1, 3, and 6 relative to that filtered array. If column 6 no longer exists after the nested step, Excel returns #VALUE!.'
+    }
+  },
+  'excel-take-drop-not-working': {
+    gives: [
+      'A focused repair pass for one TAKE or DROP formula returning #CALC!, #NUM!, #NAME?, #SPILL!, or the wrong slice of a dynamic array.',
+      'Checks for zero counts, empty arrays, oversized array requests, positive and negative direction, blocked spill output, supported Excel versions, and nested dynamic-array errors.',
+      'A revised TAKE or DROP path you can test on a small source array before replacing a report formula.'
+    ],
+    useWhen: 'Use this page when TAKE or DROP is close but not reliable: it returns #CALC!, is not recognized, spills into blocked cells, keeps the wrong rows or columns, drops too much, or fails after wrapping FILTER, SORT, VSTACK, HSTACK, CHOOSECOLS, or CHOOSEROWS. It is strongest when you can paste the full nested formula and the source array shape.',
+    notWhen: 'Do not hide TAKE or DROP with IFERROR before checking the rows and columns arguments. A 0 count or a DROP formula that removes every row or column can produce an empty array that needs a formula decision, not just a fallback.',
+    example: {
+      setup: 'A report should show the top 10 open deals after sorting by value descending from a four-column source table.',
+      formula: '=TAKE(SORT(FILTER(A2:D500,C2:C500="Open"),4,-1),10)',
+      read: 'FILTER keeps open rows first, SORT orders that filtered array by the fourth column, and TAKE returns the first 10 rows from the sorted result. If the filter returns no rows or the output range is blocked, the TAKE step is not the first place to fix.'
     }
   },
   'vlookup-formula-generator': {
