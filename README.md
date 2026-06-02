@@ -35,6 +35,7 @@ IndexNow key file: `8e6a0b9c4d2f41a7b5c3e8d9f0a1b2c6.txt`.
 
 ## Outreach Ledger
 
+- 2026-06-02: Ablebits recontact sent to `support@ablebits.com` from `Mara Ellis <mara@theshepherdstack.com>`; delegated Gmail message id/thread id `19e87d9509aba184`. Correction: project state shows Ablebits had already been contacted on 2026-05-23 in older thread `19e567ef5f67bb60`, so do not contact Ablebits again unless they reply. Wait until `2026-06-05 10:19 UTC` before another spreadsheet add-in vendor prospect unless FormulaDesk, FormulaBoost, RefTreeAnalyser, Ablebits, or another active add-in-vendor prospect replies.
 - 2026-06-02: Excel University first-touch sent to `support@excelu.com` from `Mara Ellis <mara@theshepherdstack.com>`; delegated Gmail message id/thread id `19e876d433106f01`; wait until `2026-06-05 08:22 UTC` before another Write My Formula training/resource prospect unless Excel University or another active training/resource prospect replies.
 - 2026-06-01: Excelerate Solutions first-touch sent to `ELISHA@EXCELERATESOLUTIONS.NET`; Gmail message id/thread id `19e83fcc753db84f`; wait until `2026-06-04 16:20 UTC` before another Excel consulting/support-service prospect unless GetSpreadsheet, Easy Excel Answers, SpreadsheetClass, or Excelerate Solutions replies.
 - 2026-06-01: TrumpExcel first-touch sent to `sumitbansal@trumpexcel.com`; Gmail message id/thread id `19e82b34a5e9f830`; wait until `2026-06-04 10:24 UTC` before another training/resource prospect unless Learn Excel Now, Excel Campus, ProfessionalsExcel, or TrumpExcel replies.
