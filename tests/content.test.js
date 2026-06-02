@@ -75,6 +75,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix structured references, calculated columns, @ row references, and table formulas that stop filling correctly/);
   assert.match(page, /\/excel-sumifs-not-working\//);
   assert.match(page, /Fix SUMIFS formulas that return 0, #VALUE!, or wrong totals because of criteria, ranges, dates, or argument order/);
+  assert.match(page, /\/excel-sumproduct-not-working\//);
+  assert.match(page, /Fix SUMPRODUCT formulas that return #VALUE!, 0, or wrong totals because of array sizes, text numbers, hidden spaces, errors, or full-column references/);
   assert.match(page, /\/excel-countifs-not-working\//);
   assert.match(page, /Fix COUNTIFS formulas that return 0, #VALUE!, or wrong counts because of criteria, range sizes, dates, or closed workbooks/);
   assert.match(page, /\/excel-textjoin-not-working\//);
@@ -327,6 +329,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-formula-not-copying-down',
     'excel-date-formula-not-working',
     'excel-sumifs-not-working',
+    'excel-sumproduct-not-working',
     'excel-countifs-not-working',
     'excel-textjoin-not-working',
     'excel-textbefore-textafter-not-working',
@@ -747,6 +750,26 @@ test('excel SUMIFS not working page targets criteria repair intent without overc
   assert.match(homepage, /href="\/excel-sumifs-not-working\/">Excel SUMIFS not working/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-sumifs-not-working\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
+});
+
+test('excel SUMPRODUCT not working page targets array repair intent without overclaiming', () => {
+  const page = read('excel-sumproduct-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel SUMPRODUCT Not Working Fixer/);
+  assert.match(page, /Fix an Excel SUMPRODUCT formula that is not working/);
+  assert.match(page, /returns #VALUE!, 0, or the wrong total/);
+  assert.match(page, /same-size arrays, imported text numbers, hidden spaces, errors inside arrays/);
+  assert.match(page, /=SUMPRODUCT\(\(A2:A500=&quot;South&quot;\)\*\(B2:B500=&quot;Open&quot;\)\*D2:D500\)/);
+  assert.match(page, /Make every array argument the same height and width/);
+  assert.match(page, /Check whether imported numbers, dates, or IDs are stored as text/);
+  assert.match(page, /Avoid mixing full-column references with shorter arrays/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-sumproduct-not-working\/">Excel SUMPRODUCT not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-sumproduct-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatic-fix|pay before answer/i);
 });
 
 test('excel COUNTIFS not working page targets count criteria repair intent without overclaiming', () => {

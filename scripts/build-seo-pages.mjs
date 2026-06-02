@@ -925,6 +925,38 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-sumproduct-not-working',
+    title: 'Excel SUMPRODUCT Not Working Fixer | Write My Formula',
+    description: 'Fix Excel SUMPRODUCT formulas that return #VALUE!, 0, or wrong totals because of array sizes, text numbers, hidden spaces, errors, or full-column references.',
+    eyebrow: 'Excel SUMPRODUCT fixer',
+    h1: 'Fix an Excel SUMPRODUCT formula that is not working.',
+    lede: 'Paste the SUMPRODUCT formula that returns #VALUE!, 0, or the wrong total, add what the formula should multiply and sum, and get a focused repair path for same-size arrays, imported text numbers, hidden spaces, errors inside arrays, and range references that do not line up.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=SUMPRODUCT((A2:A500="South")*(B2:B500="Open")*D2:D500)'
+    },
+    intent: 'Help Excel users repair one SUMPRODUCT formula where the visible problem is usually a #VALUE! error from mismatched array sizes, a zero result from criteria that never evaluate TRUE, text stored as numbers, hidden spaces, errors inside source ranges, or full-column references mixed with shorter arrays.',
+    bestFor: [
+      'SUMPRODUCT formulas that return #VALUE! after a range was copied, filtered, renamed, or changed to a table/named range.',
+      'Weighted totals, conditional sums, and multi-criteria formulas that return 0 even though matching rows seem to exist.',
+      'Imported data where amounts, dates, IDs, or criteria values look right but are stored as text or include hidden spaces.',
+      'Older workbooks where SUMPRODUCT is used instead of newer FILTER, SUMIFS, or dynamic-array formulas.'
+    ],
+    steps: [
+      'Paste the exact SUMPRODUCT formula and the value Excel currently returns.',
+      'Add one row that should be included and one row that should be excluded.',
+      'Include the size of each referenced range, especially if one reference is a full column or named range.'
+    ],
+    copyChecks: [
+      'Make every array argument the same height and width before checking anything else.',
+      'Check whether imported numbers, dates, or IDs are stored as text.',
+      'Look for hidden spaces in criteria values when the formula returns 0.',
+      'Decide whether errors inside the source ranges should be fixed, excluded, or handled deliberately.',
+      'Avoid mixing full-column references with shorter arrays unless every array reference is written the same way.'
+    ]
+  },
+  {
     slug: 'excel-countifs-not-working',
     title: 'Excel COUNTIFS Not Working Fixer | Write My Formula',
     description: 'Fix Excel COUNTIFS formulas that return 0, #VALUE!, or wrong counts because of criteria syntax, range size, dates, text values, or closed workbooks.',
@@ -3368,6 +3400,20 @@ const pageEnhancements = {
       setup: 'A sales total can return 0 when text criteria are not quoted correctly, date criteria are stored as text, or the criteria ranges do not line up with the sales amount range.',
       formula: '=SUMIFS(D2:D500,A2:A500,"South",C2:C500,"Meat",B2:B500,">="&DATE(2026,5,1),B2:B500,"<"&DATE(2026,6,1))',
       read: 'The formula sums sales amounts in D only for South rows, Meat rows, and dates in May 2026. Check that every criteria range has the same row span as D2:D500 and that dates in column B are real Excel dates.'
+    }
+  },
+  'excel-sumproduct-not-working': {
+    gives: [
+      'A focused fix pass for one SUMPRODUCT formula returning #VALUE!, 0, or a wrong total.',
+      'Checks for same-size array arguments, text-stored numbers, hidden spaces, source-range errors, and full-column reference mismatches.',
+      'A revised SUMPRODUCT path you can compare against one known included row before changing a report.'
+    ],
+    useWhen: 'Use this page when SUMPRODUCT is close enough to inspect but returns #VALUE!, 0, or a total that does not match known rows. It is strongest when you can paste the exact formula, the current result, and the ranges each array is supposed to cover.',
+    notWhen: 'Do not hide SUMPRODUCT errors with IFERROR before checking array sizes and source values. A single mismatched range, text value, hidden space, or upstream error can change the whole result, so isolate the source before replacing the formula.',
+    example: {
+      setup: 'A report should total open South-region deal values, but SUMPRODUCT returns 0 or #VALUE! after the source data was imported.',
+      formula: '=SUMPRODUCT((A2:A500="South")*(B2:B500="Open")*D2:D500)',
+      read: 'The formula creates two TRUE/FALSE criteria arrays, multiplies them by the values in D, and sums the matching rows. Check that A2:A500, B2:B500, and D2:D500 are the same size and that D contains real numbers.'
     }
   },
   'excel-countifs-not-working': {
