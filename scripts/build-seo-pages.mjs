@@ -298,6 +298,35 @@ const pages = [
     ]
   },
   {
+    slug: 'excelbot-alternative',
+    title: 'ExcelBot Alternative for Excel Formulas | Write My Formula',
+    description: 'A focused ExcelBot alternative for writing, explaining, and fixing Excel and Google Sheets formulas without a VBA or data-analysis workspace.',
+    eyebrow: 'ExcelBot alternative',
+    h1: 'An ExcelBot alternative for focused formula work.',
+    lede: 'Use Write My Formula when the job is one Excel or Google Sheets formula, explanation, or repair, and you want range notes and paste checks before copying it into a sheet.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=XLOOKUP(E2,$A$2:$A$500,$C$2:$C$500,"",0,-1)'
+    },
+    intent: 'Help spreadsheet users comparing AI Excel tools choose a narrow formula workbench when they need to write, understand, or repair one formula rather than generate VBA, upload data, or ask broad analysis questions.',
+    bestFor: [
+      'Fixing one lookup, summary, IF, text, date, conditional-formatting, or validation formula.',
+      'Explaining inherited Excel or Google Sheets formulas before editing shared workbook logic.',
+      'Writing a formula from plain English with the relevant headers, sample rows, and ranges visible.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the broken formula, headers, sample rows, or expected result so the answer has context.',
+      'Review the range notes and compatibility checks before copying the formula into the workbook.'
+    ],
+    copyChecks: [
+      'Use a broader spreadsheet AI if you need VBA generation, uploaded-data analysis, dashboards, charts, or workbook-wide work.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair.',
+      'Test the formula on one known row before replacing formulas across an important workbook.'
+    ]
+  },
+  {
     slug: 'excel-formula-cheat-sheet',
     title: 'Excel Formula Cheat Sheet | Write My Formula',
     description: 'A practical Excel formula cheat sheet with common lookup, logic, text, date, percentage, and summary formulas plus examples.',
@@ -3321,6 +3350,20 @@ const pageEnhancements = {
       setup: 'A revenue sheet needs June 2026 paid invoice totals, but the existing SUMIFS uses loose text dates that can fail by locale.',
       formula: '=SUMIFS(C2:C500,B2:B500,"Paid",A2:A500,">="&DATE(2026,6,1),A2:A500,"<"&DATE(2026,7,1))',
       read: 'The formula totals amounts only for rows marked Paid with invoice dates in June 2026. The checks tell you to confirm the date column contains real Excel dates and that all SUMIFS ranges have the same height.'
+    }
+  },
+  'excelbot-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a VBA, macro, or uploaded-data workspace.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and copy checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing AI Excel tools and the immediate job is still formula-shaped: repair an XLOOKUP, explain an inherited IF, write a SUMIFS, build a custom rule, or adapt one formula to the ranges in your sheet.',
+    notWhen: 'Do not use Write My Formula as a replacement for tools that generate VBA, analyze uploaded data files, create dashboards, build charts, or automate a full workbook. It is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A product lookup should return the latest matching price, but the existing XLOOKUP points at mismatched ranges and hides missing matches with a blank.',
+      formula: '=XLOOKUP(E2,$A$2:$A$500,$C$2:$C$500,"Not found",0,-1)',
+      read: 'The formula searches the product IDs in A, returns the price from C, uses exact match, and searches from the bottom when duplicate IDs exist. The checks tell you to confirm the lookup and return ranges cover the same rows before filling down.'
     }
   },
   'excel-formula-cheat-sheet': {

@@ -197,6 +197,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Compare a narrow formula helper for writing, explaining, and fixing formulas/);
   assert.match(page, /\/gptexcel-alternative\//);
   assert.match(page, /Use a focused formula workbench when the job is one formula, explanation, or repair/);
+  assert.match(page, /\/excelbot-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than VBA or data analysis/);
   assert.match(page, /\/index-match-formula-generator\//);
   assert.match(page, /Build flexible lookup formulas for left lookups, two-way lookups, and older Excel files/);
   assert.match(page, /data-checkout/);
@@ -322,6 +324,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'ai-google-sheets-formula-generator',
     'formula-bot-alternative',
     'sheetsolver-ai-alternative',
+    'excelbot-alternative',
     'excel-formula-cheat-sheet',
     'excel-formula-explainer',
     'excel-formula-fixer',
@@ -1669,6 +1672,22 @@ test('GPTExcel alternative page targets comparison intent without overclaiming',
   assert.match(page, /=SUMIFS\(C2:C500,B2:B500,&quot;Paid&quot;,A2:A500,&quot;&gt;=&quot;&amp;DATE\(2026,6,1\),A2:A500,&quot;&lt;&quot;&amp;DATE\(2026,7,1\)\)/);
   assert.doesNotMatch(page, /guarantee|guaranteed|official GPTExcel|affiliated|uploads? your workbook/i);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/gptexcel-alternative\//);
+});
+
+test('ExcelBot alternative page targets comparison intent without overclaiming', () => {
+  const page = read('excelbot-alternative/index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /ExcelBot Alternative for Excel Formulas/);
+  assert.match(page, /An ExcelBot alternative for focused formula work/);
+  assert.match(page, /one Excel or Google Sheets formula, explanation, or repair/);
+  assert.match(page, /rather than generate VBA, upload data, or ask broad analysis questions/);
+  assert.match(page, /VBA, macro, or uploaded-data workspace/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /\$9 founding access for 500 runs per month/);
+  assert.match(page, /=XLOOKUP\(E2,\$A\$2:\$A\$500,\$C\$2:\$C\$500,&quot;Not found&quot;,0,-1\)/);
+  assert.doesNotMatch(page, /guarantee|guaranteed|official ExcelBot|affiliated|uploads? your workbook|VBA generator|data analyzer|instant|in seconds|one click|automatic|human reviewer|same-day|PDF|data never leaves|price lock/i);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excelbot-alternative\//);
 });
 
 test('percentage formula page targets percent calculation intent', () => {
