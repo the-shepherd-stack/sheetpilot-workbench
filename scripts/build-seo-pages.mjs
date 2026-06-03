@@ -417,6 +417,35 @@ const pages = [
     ]
   },
   {
+    slug: 'formulr-alternative',
+    title: 'Formulr Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused Formulr alternative for writing, explaining, or fixing one Excel or Google Sheets formula with range notes and paste checks.',
+    eyebrow: 'Formulr alternative',
+    h1: 'A Formulr alternative for one formula problem.',
+    lede: 'Use Write My Formula when you want to try a focused Excel or Google Sheets formula workbench before choosing a broader formula subscription or browser extension.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=COUNTIFS($B$2:$B$500,"Complete",$C$2:$C$500,">="&DATE(YEAR(TODAY()),MONTH(TODAY()),1))'
+    },
+    intent: 'Help spreadsheet users comparing Formulr-style AI formula tools choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair.',
+    bestFor: [
+      'Trying two formula-sized requests before creating an account.',
+      'Fixing or explaining one Excel or Google Sheets formula with the touched ranges visible.',
+      'Writing lookup, summary, IF, text, date, conditional-formatting, and validation formulas from plain English.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the formula, headers, sample rows, or expected result so the answer has context.',
+      'Review the range notes and paste checks before copying the formula into the sheet.'
+    ],
+    copyChecks: [
+      'Use Formulr or another formula subscription if you want monthly generation, explanation, and debugging quotas across a dedicated formula app or extension.',
+      'Use Write My Formula when the job can be inspected as one formula, one rule, or one repair.',
+      'Test the output on one known row before filling it through an important workbook.'
+    ]
+  },
+  {
     slug: 'excel-formula-cheat-sheet',
     title: 'Excel Formula Cheat Sheet | Write My Formula',
     description: 'A practical Excel formula cheat sheet with common lookup, logic, text, date, percentage, and summary formulas plus examples.',
@@ -3496,6 +3525,20 @@ const pageEnhancements = {
       setup: 'A regional revenue formula totals Amount values for West-region rows dated on or after January 1, 2026, but the team wants to understand it before editing the report.',
       formula: '=SUMIFS($D$2:$D$500,$B$2:$B$500,"West",$C$2:$C$500,">="&DATE(2026,1,1))',
       read: 'The formula totals Amount values in D only when Region in B is West and the date in C is on or after January 1, 2026. The checks tell you to confirm the date column contains real dates and that every SUMIFS range covers the same rows.'
+    }
+  },
+  'formulr-alternative': {
+    gives: [
+      'Two guest tries before you decide whether to create an account.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A clear upgrade path: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing Formulr-style AI formula tools but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
+    notWhen: 'Do not use Write My Formula as a replacement for Formulr when you want monthly generate, explain, and debug quotas in a dedicated formula app or browser extension. It is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A task tracker needs to count completed rows from the current month, but the existing COUNTIFS formula is easy to misread because the date criteria are embedded inside the function.',
+      formula: '=COUNTIFS($B$2:$B$500,"Complete",$C$2:$C$500,">="&DATE(YEAR(TODAY()),MONTH(TODAY()),1))',
+      read: 'The formula counts rows where Status in B is Complete and Date in C is on or after the first day of the current month. The checks tell you to confirm those columns match the real sheet and that the date column contains real dates.'
     }
   },
   'excel-formula-cheat-sheet': {

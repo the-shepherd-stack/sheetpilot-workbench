@@ -205,6 +205,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a broader spreadsheet AI workflow/);
   assert.match(page, /\/numerous-ai-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than in-spreadsheet AI automation/);
+  assert.match(page, /\/formulr-alternative\//);
+  assert.match(page, /Use a focused formula helper when you want two tries before choosing a broader formula app or extension/);
   assert.match(page, /\/index-match-formula-generator\//);
   assert.match(page, /Build flexible lookup formulas for left lookups, two-way lookups, and older Excel files/);
   assert.match(page, /data-checkout/);
@@ -2210,4 +2212,25 @@ test('Numerous.ai alternative page targets focused formula comparison without ov
   assert.match(homepage, /href="\/numerous-ai-alternative\/">Numerous\.ai alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/numerous-ai-alternative\//);
   assert.doesNotMatch(page, /replaces Numerous\.ai|better than Numerous\.ai|official Numerous\.ai|Numerous\.ai partner|affiliated|guarantee|guaranteed|always fixes|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|reads? your document|send data over the Internet/i);
+});
+
+test('Formulr alternative page targets focused formula comparison without overclaiming', () => {
+  const page = read('formulr-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Formulr Alternative for One Formula Problem/);
+  assert.match(page, /A Formulr alternative for one formula problem/);
+  assert.match(page, /Two guest tries before you decide whether to create an account/);
+  assert.match(page, /monthly generation, explanation, and debugging quotas across a dedicated formula app or extension/);
+  assert.match(page, /monthly generate, explain, and debug quotas in a dedicated formula app or browser extension/);
+  assert.match(page, /=COUNTIFS\(\$B\$2:\$B\$500,&quot;Complete&quot;,\$C\$2:\$C\$500,&quot;&gt;=&quot;&amp;DATE\(YEAR\(TODAY\(\)\),MONTH\(TODAY\(\)\),1\)\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/formulr-alternative\/">Formulr alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/formulr-alternative\//);
+  assert.doesNotMatch(page, /replaces Formulr|better than Formulr|official Formulr|Formulr partner|affiliated|guarantee|guaranteed|always fixes|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF/i);
 });
