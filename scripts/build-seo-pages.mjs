@@ -388,6 +388,35 @@ const pages = [
     ]
   },
   {
+    slug: 'numerous-ai-alternative',
+    title: 'Numerous.ai Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused Numerous.ai alternative for writing, explaining, or fixing one Excel or Google Sheets formula without installing an in-spreadsheet AI automation add-in.',
+    eyebrow: 'Numerous.ai alternative',
+    h1: 'A Numerous.ai alternative for one formula problem.',
+    lede: 'Use Write My Formula when the job is one Excel or Google Sheets formula, explanation, or repair, and you do not need in-cell AI functions, bulk text generation, categorization, or spreadsheet automation.',
+    preset: {
+      mode: 'explain',
+      platform: 'excel',
+      formula: '=SUMIFS($D$2:$D$500,$B$2:$B$500,"West",$C$2:$C$500,">="&DATE(2026,1,1))'
+    },
+    intent: 'Help spreadsheet users comparing Numerous.ai-style in-spreadsheet AI add-ins choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair.',
+    bestFor: [
+      'Explaining one inherited formula before changing a shared report.',
+      'Writing or fixing one Excel or Google Sheets formula with visible ranges and paste checks.',
+      'Trying a focused formula helper before installing a broader in-spreadsheet AI automation add-in.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the formula, headers, sample rows, or expected result so the answer has context.',
+      'Review the formula explanation and copy checks before using it in the workbook.'
+    ],
+    copyChecks: [
+      'Use Numerous.ai or another in-spreadsheet AI add-in when you need AI functions in cells, bulk content generation, categorization, formatting, or repetitive task automation.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair.',
+      'Test the output on one known row before filling it through an important workbook.'
+    ]
+  },
+  {
     slug: 'excel-formula-cheat-sheet',
     title: 'Excel Formula Cheat Sheet | Write My Formula',
     description: 'A practical Excel formula cheat sheet with common lookup, logic, text, date, percentage, and summary formulas plus examples.',
@@ -3453,6 +3482,20 @@ const pageEnhancements = {
       setup: 'A Google Sheets report needs paid rows from May 2026 onward, but the existing FILTER formula mixes date and status logic in a way that is hard to review.',
       formula: '=FILTER(A2:D500,D2:D500="Paid",C2:C500>=DATE(2026,5,1))',
       read: 'The formula returns rows from A through D only when Status in column D is Paid and the date in column C is on or after May 1, 2026. The checks tell you to confirm those columns match the real sheet and that the output area is empty before FILTER spills.'
+    }
+  },
+  'numerous-ai-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of an in-spreadsheet AI automation add-in.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and copy checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing Numerous.ai-style spreadsheet AI add-ins but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
+    notWhen: 'Do not use Write My Formula as a replacement for Numerous.ai when you need AI functions inside spreadsheet cells, bulk writing, categorization, formatting, example-based inference, or repetitive task automation. It is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A regional revenue formula totals Amount values for West-region rows dated on or after January 1, 2026, but the team wants to understand it before editing the report.',
+      formula: '=SUMIFS($D$2:$D$500,$B$2:$B$500,"West",$C$2:$C$500,">="&DATE(2026,1,1))',
+      read: 'The formula totals Amount values in D only when Region in B is West and the date in C is on or after January 1, 2026. The checks tell you to confirm the date column contains real dates and that every SUMIFS range covers the same rows.'
     }
   },
   'excel-formula-cheat-sheet': {

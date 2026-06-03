@@ -203,6 +203,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a full AI workspace/);
   assert.match(page, /\/sheetai-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a broader spreadsheet AI workflow/);
+  assert.match(page, /\/numerous-ai-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than in-spreadsheet AI automation/);
   assert.match(page, /\/index-match-formula-generator\//);
   assert.match(page, /Build flexible lookup formulas for left lookups, two-way lookups, and older Excel files/);
   assert.match(page, /data-checkout/);
@@ -2187,4 +2189,25 @@ test('SheetAI alternative page targets focused formula comparison without overcl
   assert.match(homepage, /href="\/sheetai-alternative\/">SheetAI alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/sheetai-alternative\//);
   assert.doesNotMatch(page, /replaces SheetAI|better than SheetAI|official SheetAI|SheetAI partner|affiliated|guarantee|guaranteed|always fixes|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|visualization engine/i);
+});
+
+test('Numerous.ai alternative page targets focused formula comparison without overclaiming', () => {
+  const page = read('numerous-ai-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Numerous\.ai Alternative for One Formula Problem/);
+  assert.match(page, /A Numerous\.ai alternative for one formula problem/);
+  assert.match(page, /in-cell AI functions, bulk text generation, categorization, or spreadsheet automation/);
+  assert.match(page, /write one formula, repair one broken formula, explain one inherited formula/);
+  assert.match(page, /AI functions inside spreadsheet cells, bulk writing, categorization, formatting, example-based inference, or repetitive task automation/);
+  assert.match(page, /=SUMIFS\(\$D\$2:\$D\$500,\$B\$2:\$B\$500,&quot;West&quot;,\$C\$2:\$C\$500,&quot;&gt;=&quot;&amp;DATE\(2026,1,1\)\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/numerous-ai-alternative\/">Numerous\.ai alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/numerous-ai-alternative\//);
+  assert.doesNotMatch(page, /replaces Numerous\.ai|better than Numerous\.ai|official Numerous\.ai|Numerous\.ai partner|affiliated|guarantee|guaranteed|always fixes|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|reads? your document|send data over the Internet/i);
 });
