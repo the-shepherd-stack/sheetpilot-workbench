@@ -1618,6 +1618,7 @@ test('AI Google Sheets formula generator page targets Sheets AI formula intent w
   assert.match(page, /file upload, data chat, charts, dashboards, or workbook-wide analysis/);
   assert.match(page, /spill into empty cells/);
   assert.match(page, /April revenue/);
+  assert.match(page, /https:\/\/www\.someka\.net\/product-category\/google-sheets-templates\//);
   assert.match(page, /=QUERY\(A1:D500,/);
   assert.doesNotMatch(page, /guarantee|guaranteed|always accurate|official Google|affiliated/i);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/ai-google-sheets-formula-generator\//);

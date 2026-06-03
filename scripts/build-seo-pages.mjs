@@ -164,6 +164,12 @@ const pages = [
       'Check whether the formula uses comma or semicolon separators for your locale.',
       'Confirm the output can spill into empty cells before using QUERY, FILTER, or ARRAYFORMULA.',
       'Use a broader spreadsheet AI if you need file upload, data chat, charts, dashboards, or workbook-wide analysis.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Template starting points',
+        html: "Need a workbook structure before you write formulas? Someka's <a href=\"https://www.someka.net/product-category/google-sheets-templates/\">Google Sheets templates</a> cover planning, finance, reporting, and operations layouts you can adapt before adding custom formulas."
+      }
     ]
   },
   {
@@ -4560,6 +4566,12 @@ function renderList(items) {
 }
 
 function detailSection(page) {
+  const extraDetailCards = (page.extraDetailCards ?? []).map((card) => `<article class="detail-card">
+              <h3>${escapeHtml(card.title)}</h3>
+              <p>${card.html}</p>
+            </article>`).join('\n            ');
+  const renderedExtraDetailCards = extraDetailCards ? `\n            ${extraDetailCards}` : '';
+
   return `<section class="section seo-detail" aria-labelledby="${page.slug}-detail-title">
           <div class="section-copy">
             <p class="eyebrow">Use case</p>
@@ -4583,7 +4595,7 @@ function detailSection(page) {
               <p>${escapeHtml(page.example.setup)}</p>
               <pre><code>${escapeHtml(page.example.formula)}</code></pre>
               <p>${escapeHtml(page.example.read)}</p>
-            </article>
+            </article>${renderedExtraDetailCards}
           </div>
           <div class="paste-check">
             <h3>Check before you paste</h3>
