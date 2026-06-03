@@ -195,6 +195,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula workbench when you need a formula, explanation, or fix/);
   assert.match(page, /\/sheetsolver-ai-alternative\//);
   assert.match(page, /Compare a narrow formula helper for writing, explaining, and fixing formulas/);
+  assert.match(page, /\/gptexcel-alternative\//);
+  assert.match(page, /Use a focused formula workbench when the job is one formula, explanation, or repair/);
   assert.match(page, /\/index-match-formula-generator\//);
   assert.match(page, /Build flexible lookup formulas for left lookups, two-way lookups, and older Excel files/);
   assert.match(page, /data-checkout/);
@@ -1652,6 +1654,21 @@ test('SheetSolver AI alternative page targets comparison intent without overclai
   assert.match(page, /=IF\(A2=&quot;&quot;,&quot;&quot;,REGEXEXTRACT\(A2,&quot;@\(\.\+\)\$&quot;\)\)/);
   assert.doesNotMatch(page, /guarantee|guaranteed|official SheetSolver|affiliated/i);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/sheetsolver-ai-alternative\//);
+});
+
+test('GPTExcel alternative page targets comparison intent without overclaiming', () => {
+  const page = read('gptexcel-alternative/index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /GPTExcel Alternative for Excel Formulas/);
+  assert.match(page, /A GPTExcel alternative for focused formula work/);
+  assert.match(page, /broader data-analysis workspace/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /\$9 founding access for 500 runs per month/);
+  assert.match(page, /file upload, dashboards, charts, data chat, or workbook-wide analysis/);
+  assert.match(page, /=SUMIFS\(C2:C500,B2:B500,&quot;Paid&quot;,A2:A500,&quot;&gt;=&quot;&amp;DATE\(2026,6,1\),A2:A500,&quot;&lt;&quot;&amp;DATE\(2026,7,1\)\)/);
+  assert.doesNotMatch(page, /guarantee|guaranteed|official GPTExcel|affiliated|uploads? your workbook/i);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/gptexcel-alternative\//);
 });
 
 test('percentage formula page targets percent calculation intent', () => {

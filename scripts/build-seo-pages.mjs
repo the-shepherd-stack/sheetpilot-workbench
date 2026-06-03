@@ -269,6 +269,35 @@ const pages = [
     ]
   },
   {
+    slug: 'gptexcel-alternative',
+    title: 'GPTExcel Alternative for Excel Formulas | Write My Formula',
+    description: 'A focused GPTExcel alternative for writing, explaining, and fixing Excel and Google Sheets formulas from plain English.',
+    eyebrow: 'GPTExcel alternative',
+    h1: 'A GPTExcel alternative for focused formula work.',
+    lede: 'Use Write My Formula when the job is one Excel or Google Sheets formula, explanation, or repair, and you want the ranges, assumptions, and paste checks visible before copying.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=SUMIFS(C2:C500,A2:A500,">=6/1/2026",A2:A500,"<=6/30/2026",B2:B500,"Paid")'
+    },
+    intent: 'Help spreadsheet users comparing AI Excel tools choose a narrower formula workbench when they need to write, understand, or repair one formula instead of opening a broader data-analysis workspace.',
+    bestFor: [
+      'Fixing one Excel or Google Sheets formula with the relevant ranges and expected result visible.',
+      'Explaining inherited spreadsheet logic before changing a shared report.',
+      'Writing lookup, summary, IF, text, date, conditional-formatting, and validation formulas from plain English.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the exact formula job.',
+      'Paste the broken formula, headers, sample rows, or expected result so the answer has context.',
+      'Review the range notes and compatibility checks before copying the formula into the workbook.'
+    ],
+    copyChecks: [
+      'Use a broader spreadsheet AI if you need file upload, dashboards, charts, data chat, or workbook-wide analysis.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair.',
+      'Test the formula on one known row before replacing formulas across an important workbook.'
+    ]
+  },
+  {
     slug: 'excel-formula-cheat-sheet',
     title: 'Excel Formula Cheat Sheet | Write My Formula',
     description: 'A practical Excel formula cheat sheet with common lookup, logic, text, date, percentage, and summary formulas plus examples.',
@@ -3278,6 +3307,20 @@ const pageEnhancements = {
       setup: 'For email addresses in column A, a Google Sheets formula can extract the domain while leaving blank rows empty.',
       formula: '=IF(A2="","",REGEXEXTRACT(A2,"@(.+)$"))',
       read: 'The formula checks for a blank first, then extracts the text after @ from nonblank email addresses. The checks tell you to test missing @ symbols and blank rows before filling down.'
+    }
+  },
+  'gptexcel-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a broad AI spreadsheet suite.',
+      'Write, Explain, and Fix modes with formula notes, table context, range hints, and copy checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing AI Excel tools and the immediate job is still formula-shaped: fix a SUMIFS date criterion, explain a nested IF, write an XLOOKUP, repair a text formula, or build a custom rule.',
+    notWhen: 'Do not use Write My Formula as a replacement for tools that upload whole files, chat with tables, create charts, build dashboards, or automate a full workbook. It is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A revenue sheet needs June 2026 paid invoice totals, but the existing SUMIFS uses loose text dates that can fail by locale.',
+      formula: '=SUMIFS(C2:C500,B2:B500,"Paid",A2:A500,">="&DATE(2026,6,1),A2:A500,"<"&DATE(2026,7,1))',
+      read: 'The formula totals amounts only for rows marked Paid with invoice dates in June 2026. The checks tell you to confirm the date column contains real Excel dates and that all SUMIFS ranges have the same height.'
     }
   },
   'excel-formula-cheat-sheet': {
