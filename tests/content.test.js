@@ -201,6 +201,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than VBA or data analysis/);
   assert.match(page, /\/ajelix-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a full AI workspace/);
+  assert.match(page, /\/sheetai-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a broader spreadsheet AI workflow/);
   assert.match(page, /\/index-match-formula-generator\//);
   assert.match(page, /Build flexible lookup formulas for left lookups, two-way lookups, and older Excel files/);
   assert.match(page, /data-checkout/);
@@ -2164,4 +2166,25 @@ test('ajelix alternative page targets focused formula comparison without overcla
   assert.match(homepage, /href="\/ajelix-alternative\/">Ajelix alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/ajelix-alternative\//);
   assert.doesNotMatch(page, /replaces Ajelix|better than Ajelix|official Ajelix|Ajelix partner|affiliated|guarantee|guaranteed|always fixes|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause/i);
+});
+
+test('SheetAI alternative page targets focused formula comparison without overclaiming', () => {
+  const page = read('sheetai-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /SheetAI Alternative for One Formula Problem/);
+  assert.match(page, /A SheetAI alternative for one formula problem/);
+  assert.match(page, /spreadsheet generation, cleaning, data analysis, visualization, or automation tools/);
+  assert.match(page, /write one formula, repair one broken formula, explain one inherited formula/);
+  assert.match(page, /spreadsheet generator, cleaner, data analyzer, CSV converter, visualization, or workflow automation/);
+  assert.match(page, /=FILTER\(A2:D500,D2:D500=&quot;Paid&quot;,C2:C500&gt;=DATE\(2026,5,1\)\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/sheetai-alternative\/">SheetAI alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/sheetai-alternative\//);
+  assert.doesNotMatch(page, /replaces SheetAI|better than SheetAI|official SheetAI|SheetAI partner|affiliated|guarantee|guaranteed|always fixes|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|visualization engine/i);
 });

@@ -359,6 +359,35 @@ const pages = [
     ]
   },
   {
+    slug: 'sheetai-alternative',
+    title: 'SheetAI Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused SheetAI alternative for writing, explaining, or fixing one Excel or Google Sheets formula without opening a broader spreadsheet AI workflow.',
+    eyebrow: 'SheetAI alternative',
+    h1: 'A SheetAI alternative for one formula problem.',
+    lede: 'Use Write My Formula when the job is one Excel or Google Sheets formula, explanation, or repair, and you do not need spreadsheet generation, cleaning, data analysis, visualization, or automation tools.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=FILTER(A2:D500,D2:D500="Paid",C2:C500>=DATE(2026,5,1))'
+    },
+    intent: 'Help spreadsheet users comparing SheetAI-style spreadsheet AI platforms choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair.',
+    bestFor: [
+      'Fixing or writing one Excel or Google Sheets formula with the relevant ranges visible.',
+      'Explaining inherited formula logic before changing a shared report.',
+      'Trying a focused formula helper before choosing a broader spreadsheet AI platform.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the formula, headers, sample rows, or expected result so the answer has context.',
+      'Review the formula explanation and paste checks before using it in the sheet.'
+    ],
+    copyChecks: [
+      'Use SheetAI or another broader spreadsheet AI when you need a spreadsheet generator, cleaner, data analyzer, CSV converter, visualization, or workflow automation.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair.',
+      'Test the output on one known row before filling it through an important sheet.'
+    ]
+  },
+  {
     slug: 'excel-formula-cheat-sheet',
     title: 'Excel Formula Cheat Sheet | Write My Formula',
     description: 'A practical Excel formula cheat sheet with common lookup, logic, text, date, percentage, and summary formulas plus examples.',
@@ -3410,6 +3439,20 @@ const pageEnhancements = {
       setup: 'A report needs the average Amount for West-region rows dated on or after January 1, 2025.',
       formula: '=AVERAGEIFS(D:D,B:B,"West",C:C,">="&DATE(2025,1,1))',
       read: 'The formula averages Amount values in column D only where Region in column B is West and the date in column C is on or after January 1, 2025. The DATE wrapper keeps the cutoff date readable as an Excel date instead of loose text.'
+    }
+  },
+  'sheetai-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a broader spreadsheet AI platform.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and copy checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing SheetAI-style spreadsheet AI tools but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
+    notWhen: 'Do not use Write My Formula as a replacement for SheetAI when you need spreadsheet generation, cleaning, data analysis, CSV conversion, visualization, automation, or a broader workflow platform. It is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A Google Sheets report needs paid rows from May 2026 onward, but the existing FILTER formula mixes date and status logic in a way that is hard to review.',
+      formula: '=FILTER(A2:D500,D2:D500="Paid",C2:C500>=DATE(2026,5,1))',
+      read: 'The formula returns rows from A through D only when Status in column D is Paid and the date in column C is on or after May 1, 2026. The checks tell you to confirm those columns match the real sheet and that the output area is empty before FILTER spills.'
     }
   },
   'excel-formula-cheat-sheet': {
