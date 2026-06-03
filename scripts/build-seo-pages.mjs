@@ -327,6 +327,38 @@ const pages = [
     ]
   },
   {
+    slug: 'ajelix-alternative',
+    title: 'Ajelix Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused Ajelix alternative for writing, explaining, or fixing one Excel or Google Sheets formula without setting up a broader AI workspace.',
+    eyebrow: 'Ajelix alternative',
+    h1: 'An Ajelix alternative for one formula problem.',
+    lede: 'Use Write My Formula when the job is one Excel or Google Sheets formula, explanation, or repair, and you do not need a broader agentic workspace, add-in suite, dashboard, or file-analysis flow.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Average column D for West region rows where the date in column C is on or after January 1, 2025.',
+      table: 'Region,Status,Date,Amount\nWest,Closed,2025-01-14,1200\nEast,Closed,2025-02-02,850\nWest,Open,2024-12-20,640',
+      range: 'Region in B:B; date in C:C; amount in D:D; result in G2',
+      hint: 'AVERAGEIFS'
+    },
+    intent: 'Help spreadsheet users comparing Ajelix-style AI spreadsheet platforms choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair.',
+    bestFor: [
+      'Writing, fixing, or explaining one Excel or Google Sheets formula today.',
+      'Trying a focused formula helper before choosing a broader workspace, add-in, or data analyst.',
+      'Formula-bar work such as lookups, summaries, IF logic, text cleanup, dates, conditional formatting, and validation rules.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the headers, sample rows, broken formula, or expected result so the answer has context.',
+      'Review the formula read-through and paste checks before copying it into the sheet.'
+    ],
+    copyChecks: [
+      'Use Ajelix or another broader spreadsheet AI if you need file upload, workspace assets, dashboards, charts, VBA, Apps Script, or Google Workspace add-ons.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair.',
+      'Test the output on one known row before filling it through an important workbook.'
+    ]
+  },
+  {
     slug: 'excel-formula-cheat-sheet',
     title: 'Excel Formula Cheat Sheet | Write My Formula',
     description: 'A practical Excel formula cheat sheet with common lookup, logic, text, date, percentage, and summary formulas plus examples.',
@@ -3364,6 +3396,20 @@ const pageEnhancements = {
       setup: 'A product lookup should return the latest matching price, but the existing XLOOKUP points at mismatched ranges and hides missing matches with a blank.',
       formula: '=XLOOKUP(E2,$A$2:$A$500,$C$2:$C$500,"Not found",0,-1)',
       read: 'The formula searches the product IDs in A, returns the price from C, uses exact match, and searches from the bottom when duplicate IDs exist. The checks tell you to confirm the lookup and return ranges cover the same rows before filling down.'
+    }
+  },
+  'ajelix-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a broader agentic spreadsheet workspace.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and copy checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing Ajelix-style AI spreadsheet platforms but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one rule for conditional formatting or data validation.',
+    notWhen: 'Do not use Write My Formula as a replacement for Ajelix when you need file upload, workspace assets, dashboards, charts, VBA, Apps Script, PowerPoint, Google Workspace add-ons, or a team-wide AI platform. It is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A report needs the average Amount for West-region rows dated on or after January 1, 2025.',
+      formula: '=AVERAGEIFS(D:D,B:B,"West",C:C,">="&DATE(2025,1,1))',
+      read: 'The formula averages Amount values in column D only where Region in column B is West and the date in column C is on or after January 1, 2025. The DATE wrapper keeps the cutoff date readable as an Excel date instead of loose text.'
     }
   },
   'excel-formula-cheat-sheet': {

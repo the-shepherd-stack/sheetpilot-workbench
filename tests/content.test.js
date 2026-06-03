@@ -199,6 +199,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula workbench when the job is one formula, explanation, or repair/);
   assert.match(page, /\/excelbot-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than VBA or data analysis/);
+  assert.match(page, /\/ajelix-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a full AI workspace/);
   assert.match(page, /\/index-match-formula-generator\//);
   assert.match(page, /Build flexible lookup formulas for left lookups, two-way lookups, and older Excel files/);
   assert.match(page, /data-checkout/);
@@ -2141,4 +2143,25 @@ test('excel TAKE DROP not working page targets dynamic array slice repair withou
   assert.match(homepage, /href="\/excel-take-drop-not-working\/">Excel TAKE and DROP repair/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-take-drop-not-working\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause/i);
+});
+
+test('ajelix alternative page targets focused formula comparison without overclaiming', () => {
+  const page = read('ajelix-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Ajelix Alternative for One Formula Problem/);
+  assert.match(page, /An Ajelix alternative for one formula problem/);
+  assert.match(page, /broader agentic workspace, add-in suite, dashboard, or file-analysis flow/);
+  assert.match(page, /write one formula, repair one broken formula, explain one inherited formula/);
+  assert.match(page, /file upload, workspace assets, dashboards, charts, VBA, Apps Script, PowerPoint, Google Workspace add-ons/);
+  assert.match(page, /=AVERAGEIFS\(D:D,B:B,&quot;West&quot;,C:C,&quot;&gt;=&quot;&amp;DATE\(2025,1,1\)\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/ajelix-alternative\/">Ajelix alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/ajelix-alternative\//);
+  assert.doesNotMatch(page, /replaces Ajelix|better than Ajelix|official Ajelix|Ajelix partner|affiliated|guarantee|guaranteed|always fixes|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause/i);
 });
