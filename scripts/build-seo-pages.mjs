@@ -539,6 +539,35 @@ const pages = [
     ]
   },
   {
+    slug: 'sheeter-alternative',
+    title: 'Sheeter Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused Sheeter alternative for writing, explaining, or fixing one Excel or Google Sheets formula without opening an add-on or lifetime-plan workflow.',
+    eyebrow: 'Sheeter alternative',
+    h1: 'A Sheeter alternative for one formula problem.',
+    lede: 'Use Write My Formula when the job is one Excel or Google Sheets formula, explanation, or repair, and you do not need an add-on, saved formula workspace, or lifetime formula-generator plan.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=FILTER(Sheet2!A:A,ISNUMBER(SEARCH("garden",Sheet2!A:A)))'
+    },
+    intent: 'Help spreadsheet users comparing Sheeter-style formula generators choose a narrow formula workbench when the immediate problem is one Excel or Google Sheets formula, one explanation, or one repair.',
+    bestFor: [
+      'Writing or fixing one Excel or Google Sheets formula with the relevant ranges visible.',
+      'Explaining inherited formula logic before editing a shared report.',
+      'Trying a focused formula helper when you do not need an add-on, saved formula library, or long-term formula-generator plan.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the formula, headers, sample rows, or expected result so the answer has context.',
+      'Review the range notes and paste checks before using the formula in the workbook.'
+    ],
+    copyChecks: [
+      'Use Sheeter or another formula generator if you want an add-on, saved formulas, or a lifetime-plan workflow around repeated generation.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair.',
+      'Test the output on one known row before filling it through an important workbook.'
+    ]
+  },
+  {
     slug: 'excel-formula-cheat-sheet',
     title: 'Excel Formula Cheat Sheet | Write My Formula',
     description: 'A practical Excel formula cheat sheet with common lookup, logic, text, date, percentage, and summary formulas plus examples.',
@@ -3674,6 +3703,20 @@ const pageEnhancements = {
       setup: 'A customer report needs the latest paid invoice amount for the customer named in E2, while ignoring open invoice rows.',
       formula: '=XLOOKUP(1,(A2:A500=E2)*(C2:C500="Paid"),D2:D500,"Not found",0,-1)',
       read: 'The formula looks for rows where Customer matches E2 and Status is Paid, returns the Amount from D, and searches from the bottom so the newest matching paid invoice is returned when the data is sorted oldest to newest.'
+    }
+  },
+  'sheeter-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of an add-on or saved formula workspace.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing Sheeter-style formula generators but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
+    notWhen: 'Use Sheeter or a similar formula generator when you want an add-on, a saved formula workspace, top-query examples, or a lifetime-plan path for repeated formula generation. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A team needs to return rows from Sheet2 where column A contains the word garden, but the current FILTER formula should be checked before it is copied into a shared workbook.',
+      formula: '=FILTER(Sheet2!A:A,ISNUMBER(SEARCH("garden",Sheet2!A:A)),"No matches")',
+      read: 'The formula searches Sheet2 column A for the word garden and returns matching cells. The fallback keeps the output readable when there are no matches, and the checks tell you to confirm the output range has room to spill.'
     }
   },
   'excel-formula-cheat-sheet': {

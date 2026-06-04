@@ -213,6 +213,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you want two guest tries before choosing a broader formula library or monthly tool/);
   assert.match(page, /\/excelly-ai-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than file, Slack, VBA, or conversion workflows/);
+  assert.match(page, /\/sheeter-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than an add-on or saved formula workspace/);
   assert.match(page, /\/index-match-formula-generator\//);
   assert.match(page, /Build flexible lookup formulas for left lookups, two-way lookups, and older Excel files/);
   assert.match(page, /data-checkout/);
@@ -341,6 +343,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excelbot-alternative',
     'formulagenius-alternative',
     'excelly-ai-alternative',
+    'sheeter-alternative',
     'excel-formula-cheat-sheet',
     'excel-formula-explainer',
     'excel-formula-fixer',
@@ -496,6 +499,27 @@ test('Excelly-AI alternative page targets focused formula comparison without ove
   assert.match(homepage, /href="\/excelly-ai-alternative\/">Excelly-AI alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excelly-ai-alternative\//);
   assert.doesNotMatch(page, /replaces Excelly-AI|better than Excelly-AI|official Excelly-AI|Excelly-AI partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|privacy superior/i);
+});
+
+test('Sheeter alternative page targets focused formula comparison without overclaiming', () => {
+  const page = read('sheeter-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Sheeter Alternative for One Formula Problem/);
+  assert.match(page, /A Sheeter alternative for one formula problem/);
+  assert.match(page, /add-on, saved formula workspace, or lifetime formula-generator plan/);
+  assert.match(page, /write one formula, repair one broken formula, explain one inherited formula/);
+  assert.match(page, /add-on, a saved formula workspace, top-query examples, or a lifetime-plan path/);
+  assert.match(page, /=FILTER\(Sheet2!A:A,ISNUMBER\(SEARCH\(&quot;garden&quot;,Sheet2!A:A\)\),&quot;No matches&quot;\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/sheeter-alternative\/">Sheeter alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/sheeter-alternative\//);
+  assert.doesNotMatch(page, /replaces Sheeter|better than Sheeter|official Sheeter|Sheeter partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|privacy superior|lifetime deal/i);
 });
 
 test('excel formula help page targets broad help intent without overclaiming', () => {
