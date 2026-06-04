@@ -209,6 +209,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you want two tries before choosing a broader formula app or extension/);
   assert.match(page, /\/formulawiz-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than Airtable or cross-platform variants/);
+  assert.match(page, /\/formulagenius-alternative\//);
+  assert.match(page, /Use a focused formula helper when you want two guest tries before choosing a broader formula library or monthly tool/);
   assert.match(page, /\/index-match-formula-generator\//);
   assert.match(page, /Build flexible lookup formulas for left lookups, two-way lookups, and older Excel files/);
   assert.match(page, /data-checkout/);
@@ -335,6 +337,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'formula-bot-alternative',
     'sheetsolver-ai-alternative',
     'excelbot-alternative',
+    'formulagenius-alternative',
     'excel-formula-cheat-sheet',
     'excel-formula-explainer',
     'excel-formula-fixer',
@@ -451,6 +454,24 @@ test('seo landing pages target high-intent formula searches', () => {
     assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
     assert.match(sitemap, new RegExp(`https://writemyformula\\.com/${slug}/`));
   }
+});
+
+test('FormulaGenius alternative page stays fit-based and bounded', () => {
+  const page = read('formulagenius-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /FormulaGenius Alternative for One Formula Problem/);
+  assert.match(page, /A FormulaGenius alternative for one formula problem/);
+  assert.match(page, /two guest tries with range notes and paste checks/);
+  assert.match(page, /FormulaGenius-style AI formula generators/);
+  assert.match(page, /formula-example catalog, history, favorites, a Chrome extension, or unlimited formula volume/);
+  assert.match(page, /=SUMIFS\(\$D\$2:\$D\$500,\$B\$2:\$B\$500,&quot;West&quot;,\$C\$2:\$C\$500,&quot;&gt;=&quot;&amp;DATE\(2026,6,1\)\)/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/formulagenius-alternative\/">FormulaGenius alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/formulagenius-alternative\//);
+  assert.doesNotMatch(page, /better than|replacement for FormulaGenius|official FormulaGenius|affiliated|guarantee|guaranteed|always accurate|perfect formula|instant|in seconds|upload|whole workbook|workbook audit|human reviewer|privacy superior|data never leaves|same-day|PDF/i);
 });
 
 test('excel formula help page targets broad help intent without overclaiming', () => {

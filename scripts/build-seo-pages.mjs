@@ -478,6 +478,35 @@ const pages = [
     ]
   },
   {
+    slug: 'formulagenius-alternative',
+    title: 'FormulaGenius Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused FormulaGenius alternative for writing, explaining, or fixing one Excel or Google Sheets formula with two guest tries before signup.',
+    eyebrow: 'FormulaGenius alternative',
+    h1: 'A FormulaGenius alternative for one formula problem.',
+    lede: 'Use Write My Formula when you came here with one Excel or Google Sheets formula to write, explain, or fix, and you want two guest tries with range notes and paste checks before choosing a longer-term formula tool.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=SUMIFS($D$2:$D$500,$B$2:$B$500,"West",$C$2:$C$500,">=6/1/2026")'
+    },
+    intent: 'Help spreadsheet users comparing FormulaGenius-style AI formula generators choose a narrow formula workbench when the immediate problem is one Excel or Google Sheets formula, one explanation, or one repair.',
+    bestFor: [
+      'Trying two formula-sized requests before creating an account or choosing a monthly formula tool.',
+      'Fixing, writing, or explaining one Excel or Google Sheets formula with the touched ranges visible.',
+      'Lookup, summary, IF, text, date, conditional-formatting, and data-cleaning formulas where paste checks matter.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the broken formula, headers, sample rows, or expected result so the answer has context.',
+      'Review the range notes and paste checks before using the formula in the sheet.'
+    ],
+    copyChecks: [
+      'Use FormulaGenius or another formula library if you want a broader formula-example catalog, history, favorites, a Chrome extension, or unlimited formula volume.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair.',
+      'Test the output on one known row before filling it through an important workbook.'
+    ]
+  },
+  {
     slug: 'excel-formula-cheat-sheet',
     title: 'Excel Formula Cheat Sheet | Write My Formula',
     description: 'A practical Excel formula cheat sheet with common lookup, logic, text, date, percentage, and summary formulas plus examples.',
@@ -3585,6 +3614,20 @@ const pageEnhancements = {
       setup: 'A task tracker needs to count paid West-region onboarding tasks from the current month, but the team wants the criteria ranges spelled out before filling the formula down.',
       formula: '=COUNTIFS(A2:A500,"West",B2:B500,"Paid",C2:C500,">="&DATE(2026,6,1),C2:C500,"<"&DATE(2026,7,1))',
       read: 'The formula counts rows where Region is West, Status is Paid, and Task Date falls inside June 2026. The checks tell you to confirm each criteria range covers the same rows and that the date column contains real dates.'
+    }
+  },
+  'formulagenius-alternative': {
+    gives: [
+      'Two guest tries for one Excel or Google Sheets formula problem before you decide whether to sign up.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A clear upgrade path: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing FormulaGenius-style AI formula generators but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
+    notWhen: 'Choose FormulaGenius or a similar broader formula tool when you want a formula-example catalog, formula history and favorites, a Chrome extension, priority support, or unlimited formula volume. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A regional revenue formula totals Amount values for West-region rows dated on or after June 1, 2026, but the date criterion is loose text and may behave differently by locale.',
+      formula: '=SUMIFS($D$2:$D$500,$B$2:$B$500,"West",$C$2:$C$500,">="&DATE(2026,6,1))',
+      read: 'The formula totals Amount values in D only when Region in B is West and the date in C is on or after June 1, 2026. The DATE wrapper keeps the cutoff date readable as a real Excel date, and the checks tell you to confirm every SUMIFS range covers the same rows.'
     }
   },
   'excel-formula-cheat-sheet': {
