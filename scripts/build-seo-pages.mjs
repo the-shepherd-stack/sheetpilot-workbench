@@ -270,11 +270,11 @@ const pages = [
   },
   {
     slug: 'sheetsolver-ai-alternative',
-    title: 'SheetSolver AI Alternative for Spreadsheet Formulas | Write My Formula',
-    description: 'A focused SheetSolver AI alternative for writing, explaining, and fixing Excel and Google Sheets formulas without a broader spreadsheet automation workspace.',
+    title: 'SheetSolver AI Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused SheetSolver AI alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing a broader upload, sheet-generation, PDF extraction, or export workflow.',
     eyebrow: 'SheetSolver AI alternative',
-    h1: 'A SheetSolver AI alternative built for one job: the formula.',
-    lede: 'Use Write My Formula when you want a copy-ready Excel or Google Sheets formula, a readable explanation, or a fix for a broken formula without turning the job into a full spreadsheet automation workflow.',
+    h1: 'A SheetSolver AI alternative for one formula problem.',
+    lede: 'Use Write My Formula when the job is one Excel or Google Sheets formula, explanation, or repair. Use SheetSolver AI or a similar broader spreadsheet workspace when you want optional sheet or screenshot upload, prompt-to-sheet generation, PDF or invoice extraction, exports, or a higher-volume formula workflow.',
     preset: {
       mode: 'write',
       platform: 'sheets',
@@ -283,11 +283,11 @@ const pages = [
       range: 'Emails in A2:A500; result in C2',
       hint: 'REGEXEXTRACT'
     },
-    intent: 'Help spreadsheet users comparing AI formula tools choose a narrow formula helper when the job is to write, understand, or repair one formula rather than analyze an uploaded workbook.',
+    intent: 'Help spreadsheet users comparing SheetSolver AI-style spreadsheet tools choose a narrow formula workbench when the immediate job is one Excel or Google Sheets formula, one explanation, or one repair.',
     bestFor: [
-      'Turning a plain-English formula request into a copy-ready Excel or Google Sheets formula.',
+      'Writing one Excel or Google Sheets formula from a plain-English request and pasted context.',
       'Explaining inherited formulas before editing shared workbook logic.',
-      'Fixing lookup, text, date, summary, conditional-formatting, and data-validation formulas with the relevant ranges visible.'
+      'Fixing lookup, text, date, summary, conditional-formatting, and data-validation formulas when the relevant ranges are visible.'
     ],
     steps: [
       'Choose Write, Explain, or Fix based on the formula task.',
@@ -295,7 +295,7 @@ const pages = [
       'Review the explanation and copy checks before filling the formula through a report.'
     ],
     copyChecks: [
-      'Use a broader spreadsheet AI if you need file upload, data chat, dashboards, charts, or workbook-wide analysis.',
+      'Use SheetSolver AI or another broader spreadsheet workspace if you need optional file or screenshot upload, prompt-to-sheet generation, PDF or invoice extraction, Excel or Sheets export, data chat, dashboards, charts, or workbook-wide analysis.',
       'Use Write My Formula when the problem can be described as one formula, one rule, or one repair.',
       'Test the formula on a known row before replacing formulas across an important sheet.'
     ]
@@ -3677,12 +3677,12 @@ const pageEnhancements = {
   },
   'sheetsolver-ai-alternative': {
     gives: [
-      'A focused formula request flow for Excel and Google Sheets instead of a broad spreadsheet automation suite.',
+      'A focused formula request flow for Excel and Google Sheets instead of a broad spreadsheet automation workspace.',
       'Write, Explain, and Fix modes with optional table context, range hints, formula notes, and copy checks.',
       'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
     ],
-    useWhen: 'Use this page when you are comparing AI spreadsheet formula generators and the job in front of you is still formula-shaped: write one formula, explain one inherited formula, fix one broken formula, or create a custom rule for conditional formatting or data validation.',
-    notWhen: 'Do not use Write My Formula as a replacement for tools that upload whole workbooks, chat with data files, build dashboards, generate charts, or automate full spreadsheet workflows. It is intentionally narrower so the formula, explanation, and paste checks stay visible.',
+    useWhen: 'Use this page when you are comparing SheetSolver AI-style spreadsheet tools but the job in front of you is still formula-shaped: write one formula, explain one inherited formula, fix one broken formula, or create one custom rule for conditional formatting or data validation.',
+    notWhen: 'Use SheetSolver AI or another broader spreadsheet workspace when you need optional sheet or screenshot upload, prompt-to-sheet generation, PDF or invoice extraction, Excel or Google Sheets export, data chat, dashboards, charts, or workbook-wide analysis. Write My Formula is intentionally narrower so the formula, explanation, and paste checks stay visible.',
     example: {
       setup: 'For email addresses in column A, a Google Sheets formula can extract the domain while leaving blank rows empty.',
       formula: '=IF(A2="","",REGEXEXTRACT(A2,"@(.+)$"))',

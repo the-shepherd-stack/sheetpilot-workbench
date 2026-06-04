@@ -196,7 +196,7 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /\/ai-formula-generator-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than SQL, file-context, bulk, VBA, or Apps Script workflows/);
   assert.match(page, /\/sheetsolver-ai-alternative\//);
-  assert.match(page, /Compare a narrow formula helper for writing, explaining, and fixing formulas/);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a broader spreadsheet AI workspace/);
   assert.match(page, /\/sheetgpt-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than file, chat, OCR, chart, analysis, or script workflows/);
   assert.match(page, /\/gptexcel-alternative\//);
@@ -1778,14 +1778,14 @@ test('SheetSolver AI alternative page targets comparison intent without overclai
   const page = read('sheetsolver-ai-alternative/index.html');
   const sitemap = read('sitemap.xml');
 
-  assert.match(page, /SheetSolver AI Alternative for Spreadsheet Formulas/);
-  assert.match(page, /A SheetSolver AI alternative built for one job: the formula/);
-  assert.match(page, /broader spreadsheet automation workspace/);
+  assert.match(page, /SheetSolver AI Alternative for One Formula Problem/);
+  assert.match(page, /A SheetSolver AI alternative for one formula problem/);
+  assert.match(page, /optional sheet or screenshot upload, prompt-to-sheet generation, PDF or invoice extraction, exports, or a higher-volume formula workflow/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /\$9 founding access for 500 runs per month/);
-  assert.match(page, /file upload, data chat, dashboards, charts, or workbook-wide analysis/);
+  assert.match(page, /optional file or screenshot upload, prompt-to-sheet generation, PDF or invoice extraction, Excel or Sheets export, data chat, dashboards, charts, or workbook-wide analysis/);
   assert.match(page, /=IF\(A2=&quot;&quot;,&quot;&quot;,REGEXEXTRACT\(A2,&quot;@\(\.\+\)\$&quot;\)\)/);
-  assert.doesNotMatch(page, /guarantee|guaranteed|official SheetSolver|affiliated/i);
+  assert.doesNotMatch(page, /replaces SheetSolver|better than SheetSolver|official SheetSolver|SheetSolver partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook audit|whole spreadsheet audit|exact cause|human reviewer|same-day|privacy superior|99\.5% accuracy|works every time|SheetSolver makes you upload|bloated|cluttered|overbuilt/i);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/sheetsolver-ai-alternative\//);
 });
 
