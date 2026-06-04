@@ -206,11 +206,11 @@ const pages = [
   },
   {
     slug: 'formula-bot-alternative',
-    title: 'Formula Bot Alternative for Excel Formulas | Write My Formula',
-    description: 'A focused Formula Bot alternative for writing, explaining, and fixing Excel and Google Sheets formulas from plain English.',
+    title: 'Formula Bot Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused Formula Bot alternative for writing, explaining, or fixing one Excel or Google Sheets formula without opening a broader upload, chart, dashboard, connector, SQL, VBA, or Apps Script workflow.',
     eyebrow: 'Formula Bot alternative',
-    h1: 'A focused Formula Bot alternative for formula work.',
-    lede: 'Use Write My Formula when you need a quick Excel or Google Sheets formula, explanation, or fix without opening a broader spreadsheet-analysis suite.',
+    h1: 'A Formula Bot alternative for one formula problem.',
+    lede: 'Use Write My Formula when the job is one Excel or Google Sheets formula, explanation, or repair. Use Formula Bot or another broader spreadsheet AI suite when you need file upload, workbook analysis, charts, dashboards, connectors, SQL, VBA, Apps Script, PDF conversion, or data-chat workflows.',
     preset: {
       mode: 'write',
       platform: 'excel',
@@ -219,20 +219,20 @@ const pages = [
       range: 'Dates in A2:A500; status in B2:B500; amount in C2:C500; result in F2',
       hint: 'SUMIFS'
     },
-    intent: 'Help spreadsheet users who are comparing AI Excel formula tools choose a narrow formula workbench for writing, explaining, and fixing formulas.',
+    intent: 'Help spreadsheet users comparing Formula Bot-style AI spreadsheet suites choose a narrow formula workbench when the immediate problem is one Excel or Google Sheets formula, one explanation, or one repair.',
     bestFor: [
-      'Getting one copy-ready formula with the range, criteria, and fallback spelled out.',
-      'Explaining inherited formulas before editing a live workbook.',
-      'Fixing syntax, lookup, conditional-formatting, text, date, and summary formulas without uploading a spreadsheet file.'
+      'Writing or fixing one Excel or Google Sheets formula with the relevant ranges visible.',
+      'Explaining inherited formula logic before editing a shared workbook.',
+      'Trying a focused formula helper when you do not need upload-based analysis, charts, dashboards, connectors, SQL, VBA, Apps Script, regex, or PDF-to-Excel tools.'
     ],
     steps: [
-      'Choose Write, Explain, or Fix for the formula job in front of you.',
-      'Paste the headers, sample rows, or broken formula so the output can use your actual context.',
-      'Copy the formula only after checking the range notes and compatibility warning.'
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the headers, sample rows, formula, or expected result so the answer has context.',
+      'Review the range notes and paste checks before using the formula in the workbook.'
     ],
     copyChecks: [
-      'Use a broader spreadsheet AI if you need file upload, charts, dashboards, or whole-table analysis.',
-      'Use Write My Formula when the job is a formula you can describe, test, and paste.',
+      'Use Formula Bot or another broader spreadsheet AI suite if you need file upload, data chat, charts, dashboards, connectors, PDF conversion, SQL, VBA, Apps Script, or workbook-wide analysis.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair.',
       'Test the output on one known row before filling it through an important workbook.'
     ]
   },
@@ -3649,12 +3649,12 @@ const pageEnhancements = {
   },
   'formula-bot-alternative': {
     gives: [
-      'A focused formula request flow for Excel and Google Sheets rather than a full spreadsheet-analysis workspace.',
-      'Write, Explain, and Fix modes with table context, range hints, formula notes, and a copy button.',
-      'A clear upgrade path: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A focused formula request flow for Excel and Google Sheets instead of a broad data-analysis suite.',
+      'Write, Explain, and Fix modes with optional table context, range hints, formula notes, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
     ],
-    useWhen: 'Use this page when you are comparing AI Excel formula tools and the immediate job is still formula-shaped: write a SUMIFS, fix a lookup, explain nested IF logic, build a conditional-formatting rule, or adapt a formula to the ranges in your sheet.',
-    notWhen: 'Do not use Write My Formula as a replacement for tools that upload whole workbooks, analyze data files, generate dashboards, or build charts. It is intentionally narrower: describe the formula job, paste the relevant context, and test the output before filling it down.',
+    useWhen: 'Use this page when you are comparing Formula Bot-style AI spreadsheet suites but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
+    notWhen: 'Use Formula Bot or a similar broader spreadsheet AI suite when you need Excel, CSV, or PDF file upload, workbook analysis, data chat, charts, dashboards, connectors, SQL, VBA, Apps Script, regex, or automated reporting. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
     example: {
       setup: 'For invoices with dates in A, status in B, and amounts in C, you can ask for a formula that totals paid invoices from the current month and ignores open rows.',
       formula: '=SUMIFS(C2:C500,B2:B500,"Paid",A2:A500,">="&DATE(2026,5,1),A2:A500,"<"&DATE(2026,6,1))',

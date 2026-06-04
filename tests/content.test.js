@@ -192,7 +192,7 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /\/google-sheets-conditional-format-custom-formula\//);
   assert.match(page, /Set up Google Sheets custom formula rules with the right apply-to range/);
   assert.match(page, /\/formula-bot-alternative\//);
-  assert.match(page, /Use a focused formula workbench when you need a formula, explanation, or fix/);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than Formula Bot-style data, chart, dashboard, connector, SQL, code, or automation workflows/);
   assert.match(page, /\/ai-formula-generator-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than SQL, file-context, bulk, VBA, or Apps Script workflows/);
   assert.match(page, /\/sheetsolver-ai-alternative\//);
@@ -1736,16 +1736,20 @@ test('AI Google Sheets formula generator page targets Sheets AI formula intent w
 
 test('formula bot alternative page targets comparison intent without overclaiming', () => {
   const page = read('formula-bot-alternative/index.html');
+  const homepage = read('index.html');
   const sitemap = read('sitemap.xml');
 
-  assert.match(page, /Formula Bot Alternative for Excel Formulas/);
-  assert.match(page, /A focused Formula Bot alternative for formula work/);
-  assert.match(page, /broader spreadsheet-analysis suite/);
+  assert.match(page, /Formula Bot Alternative for One Formula Problem/);
+  assert.match(page, /A Formula Bot alternative for one formula problem/);
+  assert.match(page, /Formula Bot-style AI spreadsheet suites/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /\$9 founding access for 500 runs per month/);
-  assert.match(page, /file upload, charts, dashboards, or whole-table analysis/);
+  assert.match(page, /file upload, workbook analysis, charts, dashboards, connectors, SQL, VBA, Apps Script, PDF conversion, or data-chat workflows/);
+  assert.match(page, /Excel, CSV, or PDF file upload, workbook analysis, data chat, charts, dashboards, connectors, SQL, VBA, Apps Script, regex, or automated reporting/);
   assert.match(page, /=SUMIFS\(C2:C500,B2:B500,&quot;Paid&quot;,A2:A500,&quot;&gt;=&quot;&amp;DATE\(2026,5,1\),A2:A500,&quot;&lt;&quot;&amp;DATE\(2026,6,1\)\)/);
-  assert.doesNotMatch(page, /spreadsheet-analysis workspace.*charts.*dashboards.*upload whole workbooks/s);
+  assert.match(homepage, /href="\/formula-bot-alternative\/">Formula Bot alternative/);
+  assert.match(homepage, /Formula Bot-style data, chart, dashboard, connector, SQL, code, or automation workflows/);
+  assert.doesNotMatch(page, /replaces Formula Bot|better than Formula Bot|beats Formula Bot|official Formula Bot|Formula Bot partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook audit|whole spreadsheet audit|exact cause|human reviewer|same-day|privacy superior|works every time/i);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/formula-bot-alternative\//);
 });
 
