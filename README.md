@@ -29,12 +29,16 @@ IndexNow key file: `8e6a0b9c4d2f41a7b5c3e8d9f0a1b2c6.txt`.
 
 - `https://writemyformula.com/ai-excel-formula-generator/`
 - `https://writemyformula.com/ai-google-sheets-formula-generator/`
+- `https://writemyformula.com/gptexcel-alternative/`
+- `https://writemyformula.com/ajelix-alternative/`
 - `https://writemyformula.com/excel-if-formula-multiple-conditions/`
 - `https://writemyformula.com/excel-formulas-not-working/`
 - `https://writemyformula.com/vlookup-na-error/`
 
 ## Outreach Ledger
 
+- 2026-06-04: Excel Spreadsheet Service first-touch sent to `PDeaton@ExcelSpreadsheetService.com` from `Mara Ellis <mara@theshepherdstack.com>`; delegated Gmail message id/thread id `19e936fefd097472`. Live research validated Excel Spreadsheet Service as an Excel consulting/support-service prospect with public email, free consultation, large/small project positioning, and formula-corruption repair fit. Wait until `2026-06-07 16:20 UTC` before another consulting/support-service prospect unless GetSpreadsheet, Easy Excel Answers, SpreadsheetClass, Excelerate Solutions, or Excel Spreadsheet Service replies.
+- 2026-06-03: Vertex42 first-touch sent to `nex2us@vertex42.com` from `Mara Ellis <mara@theshepherdstack.com>`; delegated Gmail message id/thread id `19e8cffc0e9e699b`. Live research validated Vertex42 as a long-running Excel/Google Sheets template publisher with template-customization fit.
 - 2026-06-03: ExcelSheetsPro first-touch sent to `Info@ExcelSheetsPro.com` from `Mara Ellis <mara@theshepherdstack.com>`; delegated Gmail message id/thread id `19e8c91ae53f65bf`. Live research validated its Excel/Google Sheets template bundle, 5,000+ template claim, business/finance/project/HR/payroll/sales/inventory/CRM categories, editable-template positioning, and public support email.
 - 2026-06-03: Indzara first-touch sent to `support@indzara.com` from `Mara Ellis <mara@theshepherdstack.com>`; delegated Gmail message id/thread id `19e8c244b220a144`. Live research validated Indzara as an Excel/Google Sheets/Power BI template vendor with 150+ templates, 1.5M+ downloads, 13,000+ premium customers, support/tutorials, and feedback email `support@indzara.com`. Wait until `2026-06-06 06:20 UTC` before another marketplace/app-template prospect unless Indzara, Someka, XLworks, or another active marketplace/app-template prospect replies.
 - 2026-06-03: Someka replied with requested reciprocal link target. Added durable Someka Google Sheets templates link generation on `https://writemyformula.com/ai-google-sheets-formula-generator/`, deployed to production via Vercel deployment `dpl_ALzAZYYZCiSmf1buy6KNChQpNLGK`, and verified the live page contains the link. Reply was already sent in thread `19e643b23e96f337`.
