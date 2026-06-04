@@ -507,6 +507,38 @@ const pages = [
     ]
   },
   {
+    slug: 'excelly-ai-alternative',
+    title: 'Excelly-AI Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused Excelly-AI alternative for writing, explaining, or fixing one Excel or Google Sheets formula without opening a team, upload, VBA, or conversion workflow.',
+    eyebrow: 'Excelly-AI alternative',
+    h1: 'An Excelly-AI alternative for one formula problem.',
+    lede: 'Use Write My Formula when the job is one Excel or Google Sheets formula, explanation, or repair, and you do not need spreadsheet upload, Slack team workflows, VBA generation, or formula conversion between platforms.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Write a formula that returns the latest paid invoice amount for the customer in E2.',
+      table: 'Customer,Invoice Date,Status,Amount\nAcme,2026-05-04,Paid,1200\nAcme,2026-06-01,Open,850\nNorthwind,2026-06-03,Paid,640',
+      range: 'Customer in A2:A500; invoice date in B2:B500; status in C2:C500; amount in D2:D500; lookup customer in E2',
+      hint: 'XLOOKUP'
+    },
+    intent: 'Help spreadsheet users comparing Excelly-AI-style formula tools choose a narrow formula workbench when the immediate problem is one Excel or Google Sheets formula, one explanation, or one repair.',
+    bestFor: [
+      'Writing or fixing one Excel or Google Sheets formula with the relevant ranges visible.',
+      'Explaining inherited formula logic before editing a shared report.',
+      'Trying a focused formula helper when you do not need uploaded workbook context, Slack access, VBA, or cross-platform formula conversion.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the headers, sample rows, formula, or expected result so the answer has context.',
+      'Review the range notes and paste checks before using the formula in the workbook.'
+    ],
+    copyChecks: [
+      'Use Excelly-AI or another broader spreadsheet formula tool when you need .xlsx upload, Slack or team workflows, VBA generation, or formula conversion between Excel and Google Sheets.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair.',
+      'Test the output on one known row before filling it through an important workbook.'
+    ]
+  },
+  {
     slug: 'excel-formula-cheat-sheet',
     title: 'Excel Formula Cheat Sheet | Write My Formula',
     description: 'A practical Excel formula cheat sheet with common lookup, logic, text, date, percentage, and summary formulas plus examples.',
@@ -3628,6 +3660,20 @@ const pageEnhancements = {
       setup: 'A regional revenue formula totals Amount values for West-region rows dated on or after June 1, 2026, but the date criterion is loose text and may behave differently by locale.',
       formula: '=SUMIFS($D$2:$D$500,$B$2:$B$500,"West",$C$2:$C$500,">="&DATE(2026,6,1))',
       read: 'The formula totals Amount values in D only when Region in B is West and the date in C is on or after June 1, 2026. The DATE wrapper keeps the cutoff date readable as a real Excel date, and the checks tell you to confirm every SUMIFS range covers the same rows.'
+    }
+  },
+  'excelly-ai-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a broader upload, Slack, VBA, or conversion workflow.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing Excelly-AI-style formula tools but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
+    notWhen: 'Use Excelly-AI or a similar broader formula tool when you need .xlsx upload, Slack team workflows, VBA generation, or conversion between Excel and Google Sheets formula syntax. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A customer report needs the latest paid invoice amount for the customer named in E2, while ignoring open invoice rows.',
+      formula: '=XLOOKUP(1,(A2:A500=E2)*(C2:C500="Paid"),D2:D500,"Not found",0,-1)',
+      read: 'The formula looks for rows where Customer matches E2 and Status is Paid, returns the Amount from D, and searches from the bottom so the newest matching paid invoice is returned when the data is sorted oldest to newest.'
     }
   },
   'excel-formula-cheat-sheet': {

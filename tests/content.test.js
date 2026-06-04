@@ -211,6 +211,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than Airtable or cross-platform variants/);
   assert.match(page, /\/formulagenius-alternative\//);
   assert.match(page, /Use a focused formula helper when you want two guest tries before choosing a broader formula library or monthly tool/);
+  assert.match(page, /\/excelly-ai-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than file, Slack, VBA, or conversion workflows/);
   assert.match(page, /\/index-match-formula-generator\//);
   assert.match(page, /Build flexible lookup formulas for left lookups, two-way lookups, and older Excel files/);
   assert.match(page, /data-checkout/);
@@ -338,6 +340,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'sheetsolver-ai-alternative',
     'excelbot-alternative',
     'formulagenius-alternative',
+    'excelly-ai-alternative',
     'excel-formula-cheat-sheet',
     'excel-formula-explainer',
     'excel-formula-fixer',
@@ -472,6 +475,27 @@ test('FormulaGenius alternative page stays fit-based and bounded', () => {
   assert.match(homepage, /href="\/formulagenius-alternative\/">FormulaGenius alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/formulagenius-alternative\//);
   assert.doesNotMatch(page, /better than|replacement for FormulaGenius|official FormulaGenius|affiliated|guarantee|guaranteed|always accurate|perfect formula|instant|in seconds|upload|whole workbook|workbook audit|human reviewer|privacy superior|data never leaves|same-day|PDF/i);
+});
+
+test('Excelly-AI alternative page targets focused formula comparison without overclaiming', () => {
+  const page = read('excelly-ai-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excelly-AI Alternative for One Formula Problem/);
+  assert.match(page, /An Excelly-AI alternative for one formula problem/);
+  assert.match(page, /spreadsheet upload, Slack team workflows, VBA generation, or formula conversion/);
+  assert.match(page, /write one formula, repair one broken formula, explain one inherited formula/);
+  assert.match(page, /\.xlsx upload, Slack team workflows, VBA generation, or conversion between Excel and Google Sheets formula syntax/);
+  assert.match(page, /=XLOOKUP\(1,\(A2:A500=E2\)\*\(C2:C500=&quot;Paid&quot;\),D2:D500,&quot;Not found&quot;,0,-1\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excelly-ai-alternative\/">Excelly-AI alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excelly-ai-alternative\//);
+  assert.doesNotMatch(page, /replaces Excelly-AI|better than Excelly-AI|official Excelly-AI|Excelly-AI partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|privacy superior/i);
 });
 
 test('excel formula help page targets broad help intent without overclaiming', () => {
