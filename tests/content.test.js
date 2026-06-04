@@ -193,6 +193,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Set up Google Sheets custom formula rules with the right apply-to range/);
   assert.match(page, /\/formula-bot-alternative\//);
   assert.match(page, /Use a focused formula workbench when you need a formula, explanation, or fix/);
+  assert.match(page, /\/ai-formula-generator-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than SQL, file-context, bulk, VBA, or Apps Script workflows/);
   assert.match(page, /\/sheetsolver-ai-alternative\//);
   assert.match(page, /Compare a narrow formula helper for writing, explaining, and fixing formulas/);
   assert.match(page, /\/gptexcel-alternative\//);
@@ -1721,6 +1723,27 @@ test('formula bot alternative page targets comparison intent without overclaimin
   assert.match(page, /=SUMIFS\(C2:C500,B2:B500,&quot;Paid&quot;,A2:A500,&quot;&gt;=&quot;&amp;DATE\(2026,5,1\),A2:A500,&quot;&lt;&quot;&amp;DATE\(2026,6,1\)\)/);
   assert.doesNotMatch(page, /spreadsheet-analysis workspace.*charts.*dashboards.*upload whole workbooks/s);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/formula-bot-alternative\//);
+});
+
+test('AI Formula Generator alternative page targets focused formula comparison without overclaiming', () => {
+  const page = read('ai-formula-generator-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /AI Formula Generator Alternative for One Formula Problem/);
+  assert.match(page, /An AI Formula Generator alternative for one formula problem/);
+  assert.match(page, /SQL generation, file-context work, bulk generation, VBA, Apps Script/);
+  assert.match(page, /write one formula, repair one broken formula, explain one inherited formula/);
+  assert.match(page, /SQL queries, CSV or Excel file context, formula templates, bulk generation, VBA, Apps Script/);
+  assert.match(page, /=SUMIFS\(D2:D500,A2:A500,&quot;Product A&quot;,C2:C500,&quot;Paid&quot;,B2:B500,&quot;&gt;=&quot;&amp;DATE\(2026,6,1\),B2:B500,&quot;&lt;&quot;&amp;DATE\(2026,7,1\)\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/ai-formula-generator-alternative\/">AI Formula Generator alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/ai-formula-generator-alternative\//);
+  assert.doesNotMatch(page, /replaces AI Formula Generator|better than AI Formula Generator|official AI Formula Generator|AI Formula Generator partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|privacy superior|99\.5% accuracy|works every time|10 seconds/i);
 });
 
 test('SheetSolver AI alternative page targets comparison intent without overclaiming', () => {

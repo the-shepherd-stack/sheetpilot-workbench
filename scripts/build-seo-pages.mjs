@@ -237,6 +237,38 @@ const pages = [
     ]
   },
   {
+    slug: 'ai-formula-generator-alternative',
+    title: 'AI Formula Generator Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused AI Formula Generator alternative for writing, explaining, or fixing one Excel or Google Sheets formula without opening a broader SQL, file-context, bulk, VBA, or Apps Script workflow.',
+    eyebrow: 'AI Formula Generator alternative',
+    h1: 'An AI Formula Generator alternative for one formula problem.',
+    lede: 'Use Write My Formula when the job is one Excel or Google Sheets formula, explanation, or repair, and you do not need SQL generation, file-context work, bulk generation, VBA, Apps Script, or a broader formula platform.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Write a formula that totals paid invoices for Product A in June 2026.',
+      table: 'Product,Invoice Date,Status,Amount\nProduct A,2026-06-04,Paid,1200\nProduct B,2026-06-09,Paid,850\nProduct A,2026-06-15,Open,640',
+      range: 'Product in A2:A500; invoice date in B2:B500; status in C2:C500; amount in D2:D500; result in G2',
+      hint: 'SUMIFS'
+    },
+    intent: 'Help spreadsheet users comparing AI Formula Generator-style tools choose a narrow formula workbench when the immediate problem is one Excel or Google Sheets formula, one explanation, or one repair.',
+    bestFor: [
+      'Writing or fixing one Excel or Google Sheets formula with the relevant ranges visible.',
+      'Explaining inherited formula logic before changing a shared report.',
+      'Trying a focused formula helper when you do not need SQL, CSV or Excel file context, bulk generation, VBA, or Apps Script.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the headers, sample rows, formula, or expected result so the answer has context.',
+      'Review the range notes and paste checks before using the formula in the workbook.'
+    ],
+    copyChecks: [
+      'Use AI Formula Generator or another broader formula platform when you need SQL queries, CSV or Excel file context, bulk generation, VBA, Apps Script, templates, or conversational refinement.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair.',
+      'Test the output on one known row before filling it through an important workbook.'
+    ]
+  },
+  {
     slug: 'sheetsolver-ai-alternative',
     title: 'SheetSolver AI Alternative for Spreadsheet Formulas | Write My Formula',
     description: 'A focused SheetSolver AI alternative for writing, explaining, and fixing Excel and Google Sheets formulas without a broader spreadsheet automation workspace.',
@@ -3563,6 +3595,20 @@ const pageEnhancements = {
       setup: 'For invoices with dates in A, status in B, and amounts in C, you can ask for a formula that totals paid invoices from the current month and ignores open rows.',
       formula: '=SUMIFS(C2:C500,B2:B500,"Paid",A2:A500,">="&DATE(2026,5,1),A2:A500,"<"&DATE(2026,6,1))',
       read: 'The formula totals only rows marked Paid where the invoice date falls inside May 2026. The checks tell you to confirm date cells are real dates and that each SUMIFS range has the same height.'
+    }
+  },
+  'ai-formula-generator-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets formulas instead of a broad formula, SQL, automation, and file-context toolkit.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing AI Formula Generator-style tools but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
+    notWhen: 'Use AI Formula Generator or a similar broader formula platform when you need SQL queries, CSV or Excel file context, formula templates, bulk generation, VBA, Apps Script, or a conversational formula workflow. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A report needs June 2026 paid invoice totals for Product A, but the criteria should be readable before the formula is filled through the workbook.',
+      formula: '=SUMIFS(D2:D500,A2:A500,"Product A",C2:C500,"Paid",B2:B500,">="&DATE(2026,6,1),B2:B500,"<"&DATE(2026,7,1))',
+      read: 'The formula totals Amount values only when Product is Product A, Status is Paid, and Invoice Date falls inside June 2026. The checks tell you to confirm each SUMIFS range covers the same rows and the date column contains real dates.'
     }
   },
   'sheetsolver-ai-alternative': {
