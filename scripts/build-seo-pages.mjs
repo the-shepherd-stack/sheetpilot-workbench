@@ -301,6 +301,38 @@ const pages = [
     ]
   },
   {
+    slug: 'sheetgpt-alternative',
+    title: 'SheetGPT Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused SheetGPT alternative for writing, explaining, or fixing one Excel or Google Sheets formula without opening a broader file, chat, OCR, chart, analysis, or script workflow.',
+    eyebrow: 'SheetGPT alternative',
+    h1: 'A SheetGPT alternative for one formula problem.',
+    lede: 'Use Write My Formula when the job is one Excel or Google Sheets formula, explanation, or repair. Use a broader SheetGPT-style workspace when you need file upload, spreadsheet chat, image-to-table conversion, charts, analysis, scripts, or saved formula history.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Write a formula that returns the latest paid invoice amount for each customer.',
+      table: 'Customer,Invoice Date,Status,Amount\nAcme,2026-05-04,Paid,1200\nAcme,2026-06-01,Open,850\nNorthwind,2026-06-03,Paid,640',
+      range: 'Customer in A2:A500; invoice date in B2:B500; status in C2:C500; amount in D2:D500; lookup customer in F2',
+      hint: 'XLOOKUP'
+    },
+    intent: 'Help spreadsheet users comparing SheetGPT-style AI spreadsheet assistants choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair.',
+    bestFor: [
+      'Writing one Excel or Google Sheets formula from plain English.',
+      'Explaining an inherited formula before editing a shared workbook.',
+      'Fixing one broken formula with the relevant ranges, expected result, and paste checks visible.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the formula, headers, sample rows, or expected result so the answer has context.',
+      'Review the range notes and paste checks before using the formula in the workbook.'
+    ],
+    copyChecks: [
+      'Use SheetGPT or another broader spreadsheet AI workspace if you need Excel or CSV file context, data chat, OCR from an image, charts, written analysis, scripts, or formula history across sessions.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair.',
+      'Test the output on one known row before filling it through an important workbook.'
+    ]
+  },
+  {
     slug: 'gptexcel-alternative',
     title: 'GPTExcel Alternative for Excel Formulas | Write My Formula',
     description: 'A focused GPTExcel alternative for writing, explaining, and fixing Excel and Google Sheets formulas from plain English.',
@@ -3655,6 +3687,20 @@ const pageEnhancements = {
       setup: 'For email addresses in column A, a Google Sheets formula can extract the domain while leaving blank rows empty.',
       formula: '=IF(A2="","",REGEXEXTRACT(A2,"@(.+)$"))',
       read: 'The formula checks for a blank first, then extracts the text after @ from nonblank email addresses. The checks tell you to test missing @ symbols and blank rows before filling down.'
+    }
+  },
+  'sheetgpt-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a broad spreadsheet assistant workspace.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing SheetGPT-style spreadsheet AI assistants but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
+    notWhen: 'Use SheetGPT or a similar broader spreadsheet AI workspace when you need Excel or CSV file upload, data-level chat, image-to-table conversion, charts, written spreadsheet analysis, scripts, or formula history across sessions. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A customer report needs the latest paid invoice amount for the customer named in F2, while ignoring open invoice rows.',
+      formula: '=XLOOKUP(1,(A2:A500=F2)*(C2:C500="Paid"),D2:D500,"Not found",0,-1)',
+      read: 'The formula looks for rows where Customer matches F2 and Status is Paid, returns the Amount from D, and searches from the bottom so the newest matching paid invoice is returned when the data is sorted oldest to newest.'
     }
   },
   'gptexcel-alternative': {

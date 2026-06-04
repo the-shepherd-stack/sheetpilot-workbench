@@ -197,6 +197,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than SQL, file-context, bulk, VBA, or Apps Script workflows/);
   assert.match(page, /\/sheetsolver-ai-alternative\//);
   assert.match(page, /Compare a narrow formula helper for writing, explaining, and fixing formulas/);
+  assert.match(page, /\/sheetgpt-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than file, chat, OCR, chart, analysis, or script workflows/);
   assert.match(page, /\/gptexcel-alternative\//);
   assert.match(page, /Use a focused formula workbench when the job is one formula, explanation, or repair/);
   assert.match(page, /\/excelbot-alternative\//);
@@ -342,6 +344,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'ai-google-sheets-formula-generator',
     'formula-bot-alternative',
     'sheetsolver-ai-alternative',
+    'sheetgpt-alternative',
     'excelbot-alternative',
     'formulagenius-alternative',
     'excelly-ai-alternative',
@@ -1780,6 +1783,27 @@ test('SheetSolver AI alternative page targets comparison intent without overclai
   assert.match(page, /=IF\(A2=&quot;&quot;,&quot;&quot;,REGEXEXTRACT\(A2,&quot;@\(\.\+\)\$&quot;\)\)/);
   assert.doesNotMatch(page, /guarantee|guaranteed|official SheetSolver|affiliated/i);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/sheetsolver-ai-alternative\//);
+});
+
+test('SheetGPT alternative page targets focused formula comparison without overclaiming', () => {
+  const page = read('sheetgpt-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /SheetGPT Alternative for One Formula Problem/);
+  assert.match(page, /A SheetGPT alternative for one formula problem/);
+  assert.match(page, /file upload, spreadsheet chat, image-to-table conversion, charts, analysis, scripts, or saved formula history/);
+  assert.match(page, /write one formula, repair one broken formula, explain one inherited formula/);
+  assert.match(page, /Excel or CSV file upload, data-level chat, image-to-table conversion, charts, written spreadsheet analysis, scripts, or formula history across sessions/);
+  assert.match(page, /=XLOOKUP\(1,\(A2:A500=F2\)\*\(C2:C500=&quot;Paid&quot;\),D2:D500,&quot;Not found&quot;,0,-1\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month in this browser/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/sheetgpt-alternative\/">SheetGPT alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/sheetgpt-alternative\//);
+  assert.doesNotMatch(page, /replaces SheetGPT|better than SheetGPT|official SheetGPT|SheetGPT partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook audit|whole spreadsheet audit|exact cause|human reviewer|same-day|PDF|privacy superior|99\.5% accuracy|works every time/i);
 });
 
 test('GPTExcel alternative page targets comparison intent without overclaiming', () => {
