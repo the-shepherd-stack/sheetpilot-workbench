@@ -539,6 +539,38 @@ const pages = [
     ]
   },
   {
+    slug: 'formulaza-alternative',
+    title: 'FormulaZa Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused FormulaZa alternative for writing, explaining, or fixing one Excel or Google Sheets formula without choosing a broader learning, history, translator, or chat workflow.',
+    eyebrow: 'FormulaZa alternative',
+    h1: 'A FormulaZa alternative for one formula problem.',
+    lede: 'Use Write My Formula when the job is one Excel or Google Sheets formula, explanation, or repair, and you do not need a formula library, daily quiz, saved history, Excel-to-Sheets translator, AI chat, or a broader learning resource.',
+    preset: {
+      mode: 'write',
+      platform: 'sheets',
+      task: 'Write a formula that extracts the email domain and leaves blank rows blank.',
+      table: 'Email,Status\nmara@example.com,Active\n,Pending\nsam@northwind.co,Active',
+      range: 'Email in A2:A500; result in C2',
+      hint: 'REGEXEXTRACT'
+    },
+    intent: 'Help spreadsheet users comparing FormulaZa-style formula tools choose a narrow formula workbench when the immediate problem is one Excel or Google Sheets formula, one explanation, or one repair.',
+    bestFor: [
+      'Writing or fixing one Excel or Google Sheets formula with the relevant ranges visible.',
+      'Explaining inherited formula logic before editing a shared report.',
+      'Trying a focused formula helper when you do not need multi-language learning resources, saved formula history, an Excel-to-Sheets translator, or chat.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the formula, headers, sample rows, or expected result so the answer has context.',
+      'Review the range notes and paste checks before using the formula in the workbook.'
+    ],
+    copyChecks: [
+      'Use FormulaZa or another broader learning tool if you want 50 free formulas per day, formula history, a formula library, daily quiz, translator, chat, or course/resource browsing.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair.',
+      'Test the output on one known row before filling it through an important workbook.'
+    ]
+  },
+  {
     slug: 'excelly-ai-alternative',
     title: 'Excelly-AI Alternative for One Formula Problem | Write My Formula',
     description: 'A focused Excelly-AI alternative for writing, explaining, or fixing one Excel or Google Sheets formula without opening a team, upload, VBA, or conversion workflow.',
@@ -3735,6 +3767,20 @@ const pageEnhancements = {
       setup: 'A regional revenue formula totals Amount values for West-region rows dated on or after June 1, 2026, but the date criterion is loose text and may behave differently by locale.',
       formula: '=SUMIFS($D$2:$D$500,$B$2:$B$500,"West",$C$2:$C$500,">="&DATE(2026,6,1))',
       read: 'The formula totals Amount values in D only when Region in B is West and the date in C is on or after June 1, 2026. The DATE wrapper keeps the cutoff date readable as a real Excel date, and the checks tell you to confirm every SUMIFS range covers the same rows.'
+    }
+  },
+  'formulaza-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a broader formula-learning and history workspace.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing FormulaZa-style formula tools but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
+    notWhen: 'Use FormulaZa or a similar broader formula resource when you want 50 free formulas per day, 16-language support, formula history, a formula library, a daily quiz, an Excel-to-Sheets translator, AI Excel chat, saved formulas, or course/resource browsing. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A Google Sheets report needs to extract the domain from each email address while leaving blank rows blank.',
+      formula: '=IF(A2="","",REGEXEXTRACT(A2,"@(.+)$"))',
+      read: 'The formula checks for a blank email first, then extracts the text after @ from nonblank email addresses. The checks tell you to test blank rows and malformed email values before filling down.'
     }
   },
   'excelly-ai-alternative': {

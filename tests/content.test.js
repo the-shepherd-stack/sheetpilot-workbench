@@ -503,6 +503,27 @@ test('Excelly-AI alternative page targets focused formula comparison without ove
   assert.doesNotMatch(page, /replaces Excelly-AI|better than Excelly-AI|official Excelly-AI|Excelly-AI partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|privacy superior/i);
 });
 
+test('FormulaZa alternative page stays fit-based and bounded', () => {
+  const page = read('formulaza-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /FormulaZa Alternative for One Formula Problem/);
+  assert.match(page, /A FormulaZa alternative for one formula problem/);
+  assert.match(page, /formula library, daily quiz, saved history, Excel-to-Sheets translator, AI chat/);
+  assert.match(page, /FormulaZa-style formula tools/);
+  assert.match(page, /50 free formulas per day, 16-language support, formula history, a formula library, a daily quiz, an Excel-to-Sheets translator/);
+  assert.match(page, /=IF\(A2=&quot;&quot;,&quot;&quot;,REGEXEXTRACT\(A2,&quot;@\(\.\+\)\$&quot;\)\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/formulaza-alternative\/">FormulaZa alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/formulaza-alternative\//);
+  assert.doesNotMatch(page, /replaces FormulaZa|better than FormulaZa|official FormulaZa|FormulaZa partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|privacy superior/i);
+});
+
 test('Sheeter alternative page targets focused formula comparison without overclaiming', () => {
   const page = read('sheeter-alternative/index.html');
   const homepage = read('index.html');
