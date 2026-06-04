@@ -207,6 +207,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than in-spreadsheet AI automation/);
   assert.match(page, /\/formulr-alternative\//);
   assert.match(page, /Use a focused formula helper when you want two tries before choosing a broader formula app or extension/);
+  assert.match(page, /\/formulawiz-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than Airtable or cross-platform variants/);
   assert.match(page, /\/index-match-formula-generator\//);
   assert.match(page, /Build flexible lookup formulas for left lookups, two-way lookups, and older Excel files/);
   assert.match(page, /data-checkout/);
@@ -2233,4 +2235,25 @@ test('Formulr alternative page targets focused formula comparison without overcl
   assert.match(homepage, /href="\/formulr-alternative\/">Formulr alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/formulr-alternative\//);
   assert.doesNotMatch(page, /replaces Formulr|better than Formulr|official Formulr|Formulr partner|affiliated|guarantee|guaranteed|always fixes|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF/i);
+});
+
+test('FormulaWiz alternative page targets focused formula comparison without overclaiming', () => {
+  const page = read('formulawiz-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /FormulaWiz Alternative for One Formula Problem/);
+  assert.match(page, /A FormulaWiz alternative for one formula problem/);
+  assert.match(page, /Airtable formula conversion or simultaneous multi-platform formula output/);
+  assert.match(page, /write one formula, repair one broken formula, explain one inherited formula/);
+  assert.match(page, /Airtable formulas, simultaneous cross-platform variants, or a monthly formula subscription/);
+  assert.match(page, /=COUNTIFS\(A2:A500,&quot;West&quot;,B2:B500,&quot;Paid&quot;,C2:C500,&quot;&gt;=&quot;&amp;DATE\(2026,6,1\),C2:C500,&quot;&lt;&quot;&amp;DATE\(2026,7,1\)\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/formulawiz-alternative\/">FormulaWiz alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/formulawiz-alternative\//);
+  assert.doesNotMatch(page, /replaces FormulaWiz|better than FormulaWiz|official FormulaWiz|FormulaWiz partner|affiliated|guarantee|guaranteed|always fixes|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|validates against actual spreadsheet APIs|95%\+ accuracy/i);
 });

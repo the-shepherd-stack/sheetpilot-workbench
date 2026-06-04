@@ -446,6 +446,38 @@ const pages = [
     ]
   },
   {
+    slug: 'formulawiz-alternative',
+    title: 'FormulaWiz Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused FormulaWiz alternative for writing, explaining, or fixing one Excel or Google Sheets formula without choosing a multi-platform formula subscription.',
+    eyebrow: 'FormulaWiz alternative',
+    h1: 'A FormulaWiz alternative for one formula problem.',
+    lede: 'Use Write My Formula when the job is one Excel or Google Sheets formula, explanation, or repair, and you do not need Airtable formula conversion or simultaneous multi-platform formula output.',
+    preset: {
+      mode: 'write',
+      platform: 'sheets',
+      task: 'Write a formula that counts paid onboarding tasks for West region customers this month.',
+      table: 'Region,Status,Task Date\nWest,Paid,2026-06-03\nEast,Paid,2026-06-04\nWest,Open,2026-06-05',
+      range: 'Region in A2:A500; status in B2:B500; task date in C2:C500; result in F2',
+      hint: 'COUNTIFS'
+    },
+    intent: 'Help spreadsheet users comparing FormulaWiz-style formula tools choose a narrow formula workbench when the immediate problem is one Excel or Google Sheets formula, one explanation, or one repair.',
+    bestFor: [
+      'Writing or fixing one Excel or Google Sheets formula with the relevant ranges visible.',
+      'Explaining inherited formula logic before editing a shared report.',
+      'Trying a focused formula helper when you do not need Airtable formula variants or simultaneous output across spreadsheet platforms.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the formula, headers, sample rows, or expected result so the answer has context.',
+      'Review the range notes and paste checks before using the formula in the sheet.'
+    ],
+    copyChecks: [
+      'Use FormulaWiz or another multi-platform formula tool if you need Airtable formulas alongside Excel and Google Sheets variants.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair.',
+      'Test the output on one known row before filling it through an important workbook.'
+    ]
+  },
+  {
     slug: 'excel-formula-cheat-sheet',
     title: 'Excel Formula Cheat Sheet | Write My Formula',
     description: 'A practical Excel formula cheat sheet with common lookup, logic, text, date, percentage, and summary formulas plus examples.',
@@ -3539,6 +3571,20 @@ const pageEnhancements = {
       setup: 'A task tracker needs to count completed rows from the current month, but the existing COUNTIFS formula is easy to misread because the date criteria are embedded inside the function.',
       formula: '=COUNTIFS($B$2:$B$500,"Complete",$C$2:$C$500,">="&DATE(YEAR(TODAY()),MONTH(TODAY()),1))',
       read: 'The formula counts rows where Status in B is Complete and Date in C is on or after the first day of the current month. The checks tell you to confirm those columns match the real sheet and that the date column contains real dates.'
+    }
+  },
+  'formulawiz-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a simultaneous Excel, Sheets, and Airtable formula converter.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing FormulaWiz-style formula generators but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
+    notWhen: 'Do not use Write My Formula as a replacement for FormulaWiz when you need Airtable formulas, simultaneous cross-platform variants, or a monthly formula subscription across several spreadsheet dialects. It is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A task tracker needs to count paid West-region onboarding tasks from the current month, but the team wants the criteria ranges spelled out before filling the formula down.',
+      formula: '=COUNTIFS(A2:A500,"West",B2:B500,"Paid",C2:C500,">="&DATE(2026,6,1),C2:C500,"<"&DATE(2026,7,1))',
+      read: 'The formula counts rows where Region is West, Status is Paid, and Task Date falls inside June 2026. The checks tell you to confirm each criteria range covers the same rows and that the date column contains real dates.'
     }
   },
   'excel-formula-cheat-sheet': {
