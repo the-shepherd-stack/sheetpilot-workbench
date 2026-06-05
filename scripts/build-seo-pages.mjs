@@ -528,6 +528,45 @@ const pages = [
     ]
   },
   {
+    slug: 'rows-alternative',
+    title: 'Rows Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused Rows alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing a full AI spreadsheet platform.',
+    eyebrow: 'Rows alternative',
+    h1: 'You probably do not need another spreadsheet app. You need one formula.',
+    lede: 'Write My Formula writes, explains, and repairs one Excel or Google Sheets formula in your browser. Paste the result back into the sheet you already use.',
+    preset: {
+      mode: 'write',
+      platform: 'sheets',
+      task: 'Write a formula that adds a margin column from revenue and cost.',
+      table: 'Customer,Revenue,Cost\nAcme,1200,740\nNorthwind,850,610\nContoso,640,280',
+      range: 'Revenue in B2:B500; cost in C2:C500; result in D2',
+      hint: 'IF'
+    },
+    intent: 'Help spreadsheet users comparing Rows-style AI spreadsheet platforms choose a narrow formula workbench when the immediate problem is one Excel or Google Sheets formula, one explanation, or one repair.',
+    bestFor: [
+      'Writing one formula at a time from plain English with range notes before you paste.',
+      'Explaining inherited Excel or Google Sheets logic before changing a shared report.',
+      'Trying a focused formula helper when you do not need a new AI spreadsheet platform, live imports, cross-table analysis, Python, or workbook-wide table transformations.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the headers, sample rows, formula, or expected result so the answer has context.',
+      'Review the cell references, explanation, and paste checks before using the formula in the workbook.'
+    ],
+    copyChecks: [
+      'Use Rows or another full AI spreadsheet platform if you want imported data, AI Analyst-style table work, cross-table actions, Python, or broader data analysis.',
+      'Use Write My Formula when the job can be inspected as one formula, one rule, or one repair.',
+      'Check the cell references, sheet names, and regional separators before filling the result through an important workbook.',
+      'Test the output on a few known rows before relying on it for money, dates, or decisions.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where Rows fits',
+        html: 'Rows is a full AI spreadsheet platform. Its current docs describe AI Analyst as a spreadsheet copilot for data analysis, adding columns, table transformations, cross-table references, and checkpoints; Rows also presents AI formula columns, built-in Python for analysis, and imports from tools such as Google Analytics, Facebook Ads, HubSpot, Salesforce, BigQuery, and PostgreSQL. Use Rows when the job is the spreadsheet. Use Write My Formula when the job is one formula.'
+      }
+    ]
+  },
+  {
     slug: 'gptexcel-alternative',
     title: 'GPTExcel Alternative for Excel Formulas | Write My Formula',
     description: 'A focused GPTExcel alternative for writing, explaining, and fixing Excel and Google Sheets formulas from plain English.',
@@ -3980,6 +4019,20 @@ const pageEnhancements = {
       setup: 'A revenue report needs paid West-region totals from June 2026, but the inherited SUMIFS uses a loose text date and should be checked before filling down.',
       formula: '=SUMIFS($D$2:$D$500,$A$2:$A$500,"West",$B$2:$B$500,"Paid",$C$2:$C$500,">="&DATE(2026,6,1))',
       read: 'The formula totals Amount values only when Region is West, Status is Paid, and the Date is on or after June 1, 2026. The checks tell you to confirm every SUMIFS range covers the same rows and the date column contains real dates.'
+    }
+  },
+  'rows-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a full AI spreadsheet platform.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing Rows-style AI spreadsheet tools but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
+    notWhen: 'Use Rows or another full AI spreadsheet platform when you need imported data, AI Analyst-style table work, cross-table actions, Python, formula columns, checkpoints, or broader data analysis. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A report needs a margin formula in D that uses Revenue in B and Cost in C, while avoiding a divide-by-zero error when revenue is blank or zero.',
+      formula: '=IF(B2=0,"",(B2-C2)/B2)',
+      read: 'The formula returns a blank when Revenue is zero, then calculates margin as Revenue minus Cost divided by Revenue. The checks tell you to confirm whether blanks should stay blank or become 0 before filling the formula through the report.'
     }
   },
   'gptexcel-alternative': {

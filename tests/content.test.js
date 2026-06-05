@@ -211,6 +211,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than connected data, refresh, alert, export, or in-sheet AI workflows/);
   assert.match(page, /\/excelgpt-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a full Excel assistant suite/);
+  assert.match(page, /\/rows-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a full AI spreadsheet platform/);
   assert.match(page, /\/gptexcel-alternative\//);
   assert.match(page, /Use a focused formula workbench when the job is one formula, explanation, or repair/);
   assert.match(page, /\/excelbot-alternative\//);
@@ -408,6 +410,29 @@ test('ExcelGPT alternative page keeps the comparison bounded', () => {
   assert.doesNotMatch(page, /replaces ExcelGPT|better than ExcelGPT|official ExcelGPT|ExcelGPT partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook audit by Write My Formula|whole spreadsheet audit by Write My Formula|exact cause|human reviewer|same-day|PDF|privacy superior|works every time|bloated|overpriced/i);
 });
 
+test('Rows alternative page keeps the comparison bounded', () => {
+  const page = read('rows-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Rows Alternative for One Formula Problem/);
+  assert.match(page, /You probably do not need another spreadsheet app/);
+  assert.match(page, /AI Analyst as a spreadsheet copilot/);
+  assert.match(page, /cross-table references/);
+  assert.match(page, /built-in Python for analysis/);
+  assert.match(page, /Google Analytics, Facebook Ads, HubSpot, Salesforce, BigQuery, and PostgreSQL/);
+  assert.match(page, /Use Rows when the job is the spreadsheet/);
+  assert.match(page, /=IF\(B2=0,&quot;&quot;,\(B2-C2\)\/B2\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month in this browser/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/rows-alternative\/">Rows alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/rows-alternative\//);
+  assert.doesNotMatch(page, /replaces Rows|better than Rows|official Rows|Rows partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook audit by Write My Formula|whole spreadsheet audit by Write My Formula|exact cause|human reviewer|same-day|PDF|privacy superior|works every time|upload|uploaded workbook/i);
+});
+
 test('config exposes checkout and account usage limits', () => {
   const config = read('app/config.js');
 
@@ -504,6 +529,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'formulaberry-alternative',
     'formuladesk-alternative',
     'promptloop-alternative',
+    'rows-alternative',
     'excelgpt-alternative',
     'sheetsolver-ai-alternative',
     'sheetgpt-alternative',
