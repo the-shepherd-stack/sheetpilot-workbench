@@ -199,6 +199,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a broader spreadsheet AI workspace/);
   assert.match(page, /\/sheetgpt-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than file, chat, OCR, chart, analysis, or script workflows/);
+  assert.match(page, /\/sheetxai-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than in-sheet chat, app connections, extraction, analysis, or automation/);
   assert.match(page, /\/gptexcel-alternative\//);
   assert.match(page, /Use a focused formula workbench when the job is one formula, explanation, or repair/);
   assert.match(page, /\/excelbot-alternative\//);
@@ -248,6 +250,29 @@ test('thanks page tracks paid completion and unlocks founding access', () => {
   assert.match(page, /navigator\.sendBeacon/);
   assert.match(page, /id="continue-workbench"/);
   assert.match(page, /href="\/\?paid=1"/);
+});
+
+test('SheetXAI alternative page keeps the comparison bounded', () => {
+  const page = read('sheetxai-alternative/index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /SheetXAI Alternative for One Formula Problem/);
+  assert.match(page, /A SheetXAI alternative for one formula problem/);
+  assert.match(page, /sidebar chat/);
+  assert.match(page, /PDF or image extraction/);
+  assert.match(page, /app connections/);
+  assert.match(page, /workflow automation/);
+  assert.match(page, /one Excel or Google Sheets formula, explanation, or repair/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 formula runs per month in this browser for \$9/);
+  assert.match(page, /https:\/\/writemyformula\.com\/sheetxai-alternative\//);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/sheetxai-alternative\//);
+  assert.doesNotMatch(page, /official SheetXAI/i);
+  assert.doesNotMatch(page, /partner/i);
+  assert.doesNotMatch(page, /better than SheetXAI/i);
+  assert.doesNotMatch(page, /replace SheetXAI/i);
+  assert.doesNotMatch(page, /perfect formula/i);
+  assert.doesNotMatch(page, /human review/i);
 });
 
 test('config exposes checkout and account usage limits', () => {

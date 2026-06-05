@@ -333,6 +333,38 @@ const pages = [
     ]
   },
   {
+    slug: 'sheetxai-alternative',
+    title: 'SheetXAI Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused SheetXAI alternative for writing, explaining, or fixing one Excel or Google Sheets formula without opening a broader in-sheet chat, extraction, app-connection, analysis, or automation workflow.',
+    eyebrow: 'SheetXAI alternative',
+    h1: 'A SheetXAI alternative for one formula problem.',
+    lede: 'Use Write My Formula when the job is one Excel or Google Sheets formula, explanation, or repair. Use SheetXAI or a similar in-spreadsheet AI workspace when you want sidebar chat, PDF or image extraction, app connections, analysis, content generation, or automation inside Excel or Google Sheets.',
+    preset: {
+      mode: 'write',
+      platform: 'sheets',
+      task: 'Write a formula that flags paid West-region invoices from the current month.',
+      table: 'Region,Status,Invoice Date,Amount\nWest,Paid,2026-06-04,1200\nEast,Paid,2026-06-09,850\nWest,Open,2026-06-15,640',
+      range: 'Region in A2:A500; status in B2:B500; invoice date in C2:C500; result in E2',
+      hint: 'IF'
+    },
+    intent: 'Help spreadsheet users comparing SheetXAI-style spreadsheet AI workspaces choose a narrow formula workbench when the immediate problem is one Excel or Google Sheets formula, one explanation, or one repair.',
+    bestFor: [
+      'Writing or fixing one Excel or Google Sheets formula with the relevant ranges visible.',
+      'Explaining inherited formula logic before editing a shared report.',
+      'Trying a focused formula helper when you do not need in-sheet chat, document extraction, connected apps, analysis, content generation, or workflow automation.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the formula, headers, sample rows, or expected result so the answer has context.',
+      'Review the range notes and paste checks before using the formula in the workbook.'
+    ],
+    copyChecks: [
+      'Use SheetXAI or another in-spreadsheet AI workspace if you need sidebar chat, PDF or image extraction, thousands of app connections, bulk data movement, analysis, content generation, or workflow automation inside Excel or Google Sheets.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair.',
+      'Test the output on one known row before filling it through an important workbook.'
+    ]
+  },
+  {
     slug: 'gptexcel-alternative',
     title: 'GPTExcel Alternative for Excel Formulas | Write My Formula',
     description: 'A focused GPTExcel alternative for writing, explaining, and fixing Excel and Google Sheets formulas from plain English.',
@@ -3701,6 +3733,20 @@ const pageEnhancements = {
       setup: 'A customer report needs the latest paid invoice amount for the customer named in F2, while ignoring open invoice rows.',
       formula: '=XLOOKUP(1,(A2:A500=F2)*(C2:C500="Paid"),D2:D500,"Not found",0,-1)',
       read: 'The formula looks for rows where Customer matches F2 and Status is Paid, returns the Amount from D, and searches from the bottom so the newest matching paid invoice is returned when the data is sorted oldest to newest.'
+    }
+  },
+  'sheetxai-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a broader in-spreadsheet AI automation workspace.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing SheetXAI-style spreadsheet AI tools but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
+    notWhen: 'Use SheetXAI or a similar in-spreadsheet AI workspace when you need sidebar chat inside Excel or Google Sheets, PDF or image extraction, connected business apps, bulk data movement, analysis, content generation, or workflow automation. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A Google Sheets report needs to flag paid West-region invoices from the current month before the formula is filled down.',
+      formula: '=IF(AND(A2="West",B2="Paid",C2>=DATE(2026,6,1),C2<DATE(2026,7,1)),"Review","")',
+      read: 'The formula checks Region, Status, and the June 2026 date window before returning Review. The checks tell you to confirm the date column contains real dates and that the relative row references should move when the formula is filled down.'
     }
   },
   'gptexcel-alternative': {
