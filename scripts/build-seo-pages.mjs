@@ -455,6 +455,43 @@ const pages = [
     ]
   },
   {
+    slug: 'coefficient-alternative',
+    title: 'Coefficient Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused Coefficient alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing connected-data, refresh, alert, export, or in-sheet AI workflows.',
+    eyebrow: 'Coefficient alternative',
+    h1: 'A Coefficient alternative for one formula problem.',
+    lede: 'Coefficient is built for live data in spreadsheets, GPT Copilot inside Google Sheets, refresh schedules, alerts, exports, chart and pivot builders, and connected business systems. Use Write My Formula when the job is narrower: one Excel or Google Sheets formula, explanation, or repair in a browser tab.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=IFERROR(INDEX($D:$D,MATCH(1,($A:$A=A2)*($B:$B=B2),0)),"")'
+    },
+    intent: 'Help spreadsheet users comparing Coefficient-style connected spreadsheet platforms choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair.',
+    bestFor: [
+      'Writing one Excel or Google Sheets formula from a plain-English description.',
+      'Explaining a coworker-written formula before editing a shared sheet.',
+      'Repairing a formula that returns an error, a blank, or the wrong number.',
+      'Trying a focused formula helper without installing a spreadsheet extension first.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized job.',
+      'Paste the formula, headers, sample rows, or expected result so the answer has context.',
+      'Review the formula read-through and paste checks before using it in the sheet.'
+    ],
+    copyChecks: [
+      'Use Coefficient or another connected spreadsheet platform if you need live data from Salesforce, HubSpot, Stripe, Shopify, MySQL, Snowflake, Google Analytics, Looker, Tableau, or similar systems.',
+      'Use Coefficient-style tools if you need scheduled refreshes, exports back to business systems, row-change alerts, shared team connections, SQL builders, chart builders, or pivot builders.',
+      'Use Coefficient GPT Copilot if you want AI functions inside Google Sheets for cleaning, formatting, querying, enriching, analyzing, or running GPT work across sheet data.',
+      'Coefficient details verified June 5, 2026; test the output on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where Coefficient fits',
+        html: 'Coefficient runs as a spreadsheet extension for teams that want connected data in sheets. Its current pricing page lists a Free tier with 3 data sources, 5,000-row imports, 50 import refreshes per month, manual refresh, 30 alerts per month, on-sheet AI functions, and 10K lifetime OpenAI API calls; Starter is listed at $49/month with daily auto-refresh, exports, data snapshots, SQL, chart, and pivot builders; Pro is listed at $99/user/month with higher limits, hourly refresh, dynamic recipients, and shared team connections.'
+      }
+    ]
+  },
+  {
     slug: 'gptexcel-alternative',
     title: 'GPTExcel Alternative for Excel Formulas | Write My Formula',
     description: 'A focused GPTExcel alternative for writing, explaining, and fixing Excel and Google Sheets formulas from plain English.',
@@ -3879,6 +3916,20 @@ const pageEnhancements = {
       setup: 'A Google Sheets report should return the latest paid invoice amount for the customer in F2, but the current VLOOKUP always returns the first matching row.',
       formula: '=XLOOKUP(1,(A2:A500=F2)*(C2:C500="Paid"),D2:D500,"Not found",0,-1)',
       read: 'The formula finds rows where Customer matches F2 and Status is Paid, returns the Amount from D, and searches from the bottom so the latest matching paid row is returned when the data is sorted oldest to newest.'
+    }
+  },
+  'coefficient-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a connected-data spreadsheet platform.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing Coefficient-style spreadsheet AI and connected-data tools but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
+    notWhen: 'Use Coefficient or a similar connected spreadsheet platform when you need live data imports, scheduled refreshes, exports, alerts, shared team connections, SQL builders, chart builders, pivot builders, or GPT functions that live inside Google Sheets. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A Google Sheets report is returning blanks from an inherited INDEX/MATCH formula, and you need to understand the two-condition match before replacing it.',
+      formula: '=IFERROR(INDEX($D:$D,MATCH(1,($A:$A=A2)*($B:$B=B2),0)),"")',
+      read: 'The formula looks for the first row where both A and B match the current row, then returns the matching value from D. The checks tell you to confirm whether a blank means no match, an empty returned cell, or a mismatch caused by stored text, spaces, or full-column array behavior.'
     }
   },
   'gptexcel-alternative': {

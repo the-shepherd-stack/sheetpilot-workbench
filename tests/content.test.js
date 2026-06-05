@@ -207,6 +207,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than installed Excel formula inspection tools/);
   assert.match(page, /\/promptloop-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than in-sheet AI, research, scraping, or enrichment workflows/);
+  assert.match(page, /\/coefficient-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than connected data, refresh, alert, export, or in-sheet AI workflows/);
   assert.match(page, /\/gptexcel-alternative\//);
   assert.match(page, /Use a focused formula workbench when the job is one formula, explanation, or repair/);
   assert.match(page, /\/excelbot-alternative\//);
@@ -349,6 +351,33 @@ test('PromptLoop alternative page keeps the comparison bounded', () => {
   assert.match(homepage, /href="\/promptloop-alternative\/">PromptLoop alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/promptloop-alternative\//);
   assert.doesNotMatch(page, /replaces PromptLoop|better than PromptLoop|official PromptLoop|PromptLoop partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook audit by Write My Formula|whole spreadsheet audit by Write My Formula|exact cause|human reviewer|same-day|PDF|privacy superior|works every time|bloated|overpriced/i);
+});
+
+test('Coefficient alternative page keeps the comparison bounded', () => {
+  const page = read('coefficient-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Coefficient Alternative for One Formula Problem/);
+  assert.match(page, /A Coefficient alternative for one formula problem/);
+  assert.match(page, /live data in spreadsheets/);
+  assert.match(page, /GPT Copilot inside Google Sheets/);
+  assert.match(page, /scheduled refreshes/);
+  assert.match(page, /exports back to business systems/);
+  assert.match(page, /row-change alerts/);
+  assert.match(page, /SQL builders, chart builders, or pivot builders/);
+  assert.match(page, /Starter is listed at \$49\/month/);
+  assert.match(page, /Pro is listed at \$99\/user\/month/);
+  assert.match(page, /Coefficient details verified June 5, 2026/);
+  assert.match(page, /=IFERROR\(INDEX\(\$D:\$D,MATCH\(1,\(\$A:\$A=A2\)\*\(\$B:\$B=B2\),0\)\),&quot;&quot;\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month in this browser/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/coefficient-alternative\/">Coefficient alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/coefficient-alternative\//);
+  assert.doesNotMatch(page, /replaces Coefficient|better than Coefficient|official Coefficient|Coefficient partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook audit by Write My Formula|whole spreadsheet audit by Write My Formula|exact cause|human reviewer|same-day|PDF|privacy superior|works every time|bloated|overpriced/i);
 });
 
 test('config exposes checkout and account usage limits', () => {
