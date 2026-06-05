@@ -1977,6 +1977,32 @@ test('SheetSolver AI alternative page targets comparison intent without overclai
   assert.match(sitemap, /https:\/\/writemyformula\.com\/sheetsolver-ai-alternative\//);
 });
 
+test('ExpressSheet alternative page keeps the comparison bounded', () => {
+  const page = read('expresssheet-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /ExpressSheet Alternative for One Formula Problem/);
+  assert.match(page, /An ExpressSheet alternative for one formula problem/);
+  assert.match(page, /AI spreadsheet analyst/);
+  assert.match(page, /uploaded Excel or CSV analysis/);
+  assert.match(page, /natural-language data chat/);
+  assert.match(page, /charts, PDF export/);
+  assert.match(page, /Free plan with 10 credits per day/);
+  assert.match(page, /Pro at \$11\.99\/month with 500 credits per day/);
+  assert.match(page, /API access, collaboration, SSO, and advanced security/);
+  assert.match(page, /ExpressSheet details verified June 5, 2026/);
+  assert.match(page, /=INDEX\(\$D\$2:\$D\$500,MATCH\(1,\(\$A\$2:\$A\$500=G2\)\*\(\$B\$2:\$B\$500=&quot;Paid&quot;\),0\)\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month in this browser/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/expresssheet-alternative\/">ExpressSheet alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/expresssheet-alternative\//);
+  assert.doesNotMatch(page, /replaces ExpressSheet|better than ExpressSheet|official ExpressSheet|ExpressSheet partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook audit by Write My Formula|whole spreadsheet audit by Write My Formula|exact cause|human reviewer|same-day|privacy superior|works every time|bloated|overkill|overpriced/i);
+});
+
 test('SheetGPT alternative page targets focused formula comparison without overclaiming', () => {
   const page = read('sheetgpt-alternative/index.html');
   const homepage = read('index.html');

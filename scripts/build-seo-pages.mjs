@@ -269,6 +269,42 @@ const pages = [
     ]
   },
   {
+    slug: 'expresssheet-alternative',
+    title: 'ExpressSheet Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused ExpressSheet alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing a broader spreadsheet analyst workflow.',
+    eyebrow: 'ExpressSheet alternative',
+    h1: 'An ExpressSheet alternative for one formula problem.',
+    lede: 'ExpressSheet is built as an AI spreadsheet analyst for formula generation, uploaded Excel or CSV analysis, natural-language data chat, insights, charts, PDF export, and broader team workflows. Use Write My Formula when the job is narrower: one Excel or Google Sheets formula, explanation, or repair in a browser tab.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=INDEX($D$2:$D$500,MATCH(1,($A$2:$A$500=G2)*($B$2:$B$500="Paid"),0))'
+    },
+    intent: 'Help spreadsheet users comparing ExpressSheet-style AI spreadsheet analyst tools choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair.',
+    bestFor: [
+      'Writing one Excel or Google Sheets formula from a plain-English task.',
+      'Explaining inherited formula logic before editing a shared workbook.',
+      'Repairing one lookup, summary, IF, text, date, conditional-formatting, or data-validation formula.',
+      'Trying a focused formula helper before choosing an uploaded-file analysis or spreadsheet-chat platform.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized job.',
+      'Paste the formula, headers, sample rows, or expected result so the answer has context.',
+      'Review the formula read-through and paste checks before using it in the sheet.'
+    ],
+    copyChecks: [
+      'Use ExpressSheet or another broader spreadsheet analyst if you need Excel or CSV upload, data chat, trends, anomalies, data-quality checks, recommendations, charts, PDF export, enhanced spreadsheet downloads, batch processing, API access, file sharing, collaboration, SSO, or team controls.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair.',
+      'ExpressSheet details verified June 5, 2026; test the output on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where ExpressSheet fits',
+        html: 'ExpressSheet currently presents itself as an AI-powered spreadsheet analyst. Its public page describes plain-English Excel formula generation, Excel or CSV upload for analysis, natural-language conversations with spreadsheet data, insights, trends, anomalies, data-quality checks, actionable recommendations, chart and graph requests, PDF export, enhanced spreadsheet downloads, and sharing. Its pricing section lists a Free plan with 10 credits per day, Pro at $11.99/month with 500 credits per day, PDF export, advanced charts, batch processing, and priority support, plus custom Enterprise options with API access, collaboration, SSO, and advanced security.'
+      }
+    ]
+  },
+  {
     slug: 'sheetsolver-ai-alternative',
     title: 'SheetSolver AI Alternative for One Formula Problem | Write My Formula',
     description: 'A focused SheetSolver AI alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing a broader upload, sheet-generation, PDF extraction, or export workflow.',
@@ -3921,6 +3957,20 @@ const pageEnhancements = {
       setup: 'For email addresses in column A, a Google Sheets formula can extract the domain while leaving blank rows empty.',
       formula: '=IF(A2="","",REGEXEXTRACT(A2,"@(.+)$"))',
       read: 'The formula checks for a blank first, then extracts the text after @ from nonblank email addresses. The checks tell you to test missing @ symbols and blank rows before filling down.'
+    }
+  },
+  'expresssheet-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a broad spreadsheet analyst workflow.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing ExpressSheet-style AI spreadsheet analyst tools but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
+    notWhen: 'Use ExpressSheet or a similar broader spreadsheet analyst when you need Excel or CSV upload, data chat, trends, anomalies, recommendations, charts, PDF export, enhanced spreadsheet downloads, batch processing, API access, collaboration, SSO, or team controls. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A report needs the matching paid invoice amount for the customer in G2, but the inherited INDEX/MATCH formula is returning a blank or the wrong row.',
+      formula: '=INDEX($D$2:$D$500,MATCH(1,($A$2:$A$500=G2)*($B$2:$B$500="Paid"),0))',
+      read: 'The formula looks for the first row where Customer matches G2 and Status is Paid, then returns the Amount from D. The checks tell you to confirm whether the source data has duplicate paid invoices, hidden spaces, or text-number mismatches before filling down.'
     }
   },
   'sheetgpt-alternative': {
