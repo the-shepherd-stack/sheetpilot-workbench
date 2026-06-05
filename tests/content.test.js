@@ -235,6 +235,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than an add-on or saved formula workspace/);
   assert.match(page, /\/sheetsmart-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a Google Sheets extension workflow/);
+  assert.match(page, /\/sourcetable-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a full AI spreadsheet workspace/);
   assert.match(page, /\/index-match-formula-generator\//);
   assert.match(page, /Build flexible lookup formulas for left lookups, two-way lookups, and older Excel files/);
   assert.match(page, /data-checkout/);
@@ -540,6 +542,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excelly-ai-alternative',
     'sheeter-alternative',
     'sheetsmart-alternative',
+    'sourcetable-alternative',
     'excel-formula-cheat-sheet',
     'excel-formula-explainer',
     'excel-formula-fixer',
@@ -758,6 +761,31 @@ test('SheetSmart alternative page targets extension workflow comparison without 
   assert.match(homepage, /href="\/sheetsmart-alternative\/">SheetSmart alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/sheetsmart-alternative\//);
   assert.doesNotMatch(page, /replaces SheetSmart|better than SheetSmart|official SheetSmart|SheetSmart partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|privacy superior|reads your sheet|knows your column headers|inserts formulas directly/i);
+});
+
+test('Sourcetable alternative page targets AI spreadsheet comparison without overclaiming', () => {
+  const page = read('sourcetable-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Sourcetable Alternative for One Formula Problem/);
+  assert.match(page, /A Sourcetable alternative for one formula problem/);
+  assert.match(page, /uploads, data chat, pivots, charts, SQL, Python, connectors, or workbook-level analysis/);
+  assert.match(page, /file upload, spreadsheet chat, AI analysis, pivots, charts, visualizations, data cleaning, AI research, SQL, Python/);
+  assert.match(page, /Regular plan with limited daily credits/);
+  assert.match(page, /Pro is listed at \$29\/user\/month/);
+  assert.match(page, /Max is listed at \$100\/user\/month/);
+  assert.match(page, /\.xls, \.xlsx, \.csv, \.tsv, PDF, JSON, and database data/);
+  assert.match(page, /Sourcetable details verified June 5, 2026/);
+  assert.match(page, /=IFNA\(XLOOKUP\(F2,\$A\$2:\$A\$500,\$D\$2:\$D\$500,&quot;Not found&quot;,0\),&quot;Not found&quot;\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/sourcetable-alternative\/">Sourcetable alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/sourcetable-alternative\//);
+  assert.doesNotMatch(page, /replaces Sourcetable|better than Sourcetable|official Sourcetable|Sourcetable partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook support|whole spreadsheet audit|exact cause|uploads? your workbook|human reviewer|same-day|PDF delivery|privacy superior|bloated|overpriced|credit anxiety/i);
 });
 
 test('excel formula help page targets broad help intent without overclaiming', () => {

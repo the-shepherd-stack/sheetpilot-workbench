@@ -966,6 +966,41 @@ const pages = [
     ]
   },
   {
+    slug: 'sourcetable-alternative',
+    title: 'Sourcetable Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused Sourcetable alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing a broader AI spreadsheet, upload, SQL, Python, connector, chart, or data-analysis workspace.',
+    eyebrow: 'Sourcetable alternative',
+    h1: 'A Sourcetable alternative for one formula problem.',
+    lede: 'Use Write My Formula when the job is one Excel or Google Sheets formula, explanation, or repair in the sheet you already use. Use Sourcetable or another AI spreadsheet workspace when you need uploads, data chat, pivots, charts, SQL, Python, connectors, or workbook-level analysis.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=IFERROR(XLOOKUP(F2,$A$2:$A$500,$D$2:$D$500),"")'
+    },
+    intent: 'Help spreadsheet users comparing Sourcetable-style AI spreadsheet platforms choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair.',
+    bestFor: [
+      'Writing or fixing one Excel or Google Sheets formula with the touched ranges visible.',
+      'Explaining inherited formula logic before editing a shared report.',
+      'Trying a focused formula helper when you do not need file upload, data chat, pivots, charts, SQL, Python, connectors, or workbook-level analysis.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the formula, headers, sample rows, or expected result so the answer has context.',
+      'Review the range notes and paste checks before using the formula in the workbook.'
+    ],
+    copyChecks: [
+      'Use Sourcetable or another AI spreadsheet workspace if you need to upload files, chat with data, generate charts, clean data, use SQL or Python, connect databases or apps, or analyze a workbook across tabs.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair.',
+      'Sourcetable details verified June 5, 2026; test the output on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where Sourcetable fits',
+        html: 'Sourcetable currently presents itself as an AI spreadsheet for data analysis. Its pricing page lists a free Regular plan with limited daily credits and AI spreadsheet assistant features, smart formulas, pivots, charts, visualizations, magic autofill, AI research, template generation, data cleaning, and transforms. Pro is listed at $29/user/month with premium AI, Python and data science tools, SQL editor and query builder, and up to 3 data connectors; Max is listed at $100/user/month with advanced agent capabilities and unlimited data connectors subject to guardrails. Its FAQ describes spreadsheet upload and chat, support for .xls, .xlsx, .csv, .tsv, PDF, JSON, and database data, multiple-tab analysis, visualizations, Python, SQL, and A1 formula-style references.'
+      }
+    ]
+  },
+  {
     slug: 'excel-formula-cheat-sheet',
     title: 'Excel Formula Cheat Sheet | Write My Formula',
     description: 'A practical Excel formula cheat sheet with common lookup, logic, text, date, percentage, and summary formulas plus examples.',
@@ -4283,6 +4318,20 @@ const pageEnhancements = {
       setup: 'A Google Sheets report needs to total January sales from rows where the Month label is January.',
       formula: '=SUMIF(A2:A500,"January",B2:B500)',
       read: 'The formula checks Month values in A and totals the matching Sales values in B. The checks tell you to confirm the month labels are stored consistently and that the sum range covers the same rows as the criteria range.'
+    }
+  },
+  'sourcetable-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a full AI spreadsheet workspace.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing Sourcetable-style AI spreadsheet platforms but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule while staying in the workbook you already use.',
+    notWhen: 'Use Sourcetable or another AI spreadsheet workspace when you need file upload, spreadsheet chat, AI analysis, pivots, charts, visualizations, data cleaning, AI research, SQL, Python, database or app connectors, or analysis across workbook tabs. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A lookup formula should return the amount for the customer in F2, but the inherited formula hides missing matches with a blank and makes it hard to tell what is being searched.',
+      formula: '=IFNA(XLOOKUP(F2,$A$2:$A$500,$D$2:$D$500,"Not found",0),"Not found")',
+      read: 'The formula searches Customer values in A, returns Amount from D, and gives a readable fallback when no exact match exists. The checks tell you to confirm the lookup and return ranges cover the same rows before filling it through the report.'
     }
   },
   'excel-formula-cheat-sheet': {
