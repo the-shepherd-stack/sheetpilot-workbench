@@ -233,6 +233,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than file, Slack, VBA, or conversion workflows/);
   assert.match(page, /\/sheeter-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than an add-on or saved formula workspace/);
+  assert.match(page, /\/sheetsmart-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a Google Sheets extension workflow/);
   assert.match(page, /\/index-match-formula-generator\//);
   assert.match(page, /Build flexible lookup formulas for left lookups, two-way lookups, and older Excel files/);
   assert.match(page, /data-checkout/);
@@ -537,6 +539,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'formulagenius-alternative',
     'excelly-ai-alternative',
     'sheeter-alternative',
+    'sheetsmart-alternative',
     'excel-formula-cheat-sheet',
     'excel-formula-explainer',
     'excel-formula-fixer',
@@ -734,6 +737,27 @@ test('Sheeter alternative page targets focused formula comparison without overcl
   assert.match(homepage, /href="\/sheeter-alternative\/">Sheeter alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/sheeter-alternative\//);
   assert.doesNotMatch(page, /replaces Sheeter|better than Sheeter|official Sheeter|Sheeter partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|privacy superior|lifetime deal/i);
+});
+
+test('SheetSmart alternative page targets extension workflow comparison without overclaiming', () => {
+  const page = read('sheetsmart-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /SheetSmart Alternative for One Formula Problem/);
+  assert.match(page, /SheetSmart lives in Google Sheets\. Write My Formula lives in your browser/);
+  assert.match(page, /browser-based workbench instead of a Chrome extension/);
+  assert.match(page, /formula help inside the sheet, column-header context reading, direct insertion, history, favorites/);
+  assert.match(page, /automatic column-header or cell-context reading, direct formula insertion, formula history, favorites/);
+  assert.match(page, /=SUMIF\(A2:A500,&quot;January&quot;,B2:B500\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/sheetsmart-alternative\/">SheetSmart alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/sheetsmart-alternative\//);
+  assert.doesNotMatch(page, /replaces SheetSmart|better than SheetSmart|official SheetSmart|SheetSmart partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|privacy superior|reads your sheet|knows your column headers|inserts formulas directly/i);
 });
 
 test('excel formula help page targets broad help intent without overclaiming', () => {

@@ -934,6 +934,38 @@ const pages = [
     ]
   },
   {
+    slug: 'sheetsmart-alternative',
+    title: 'SheetSmart Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused SheetSmart alternative for writing, explaining, or fixing one Excel or Google Sheets formula from a browser tab instead of a Google Sheets extension workflow.',
+    eyebrow: 'SheetSmart alternative',
+    h1: 'SheetSmart lives in Google Sheets. Write My Formula lives in your browser.',
+    lede: 'Use Write My Formula when the job is one Excel or Google Sheets formula, explanation, or repair, and you want a browser-based workbench instead of a Chrome extension that works inside Google Sheets.',
+    preset: {
+      mode: 'write',
+      platform: 'sheets',
+      task: 'Write a formula that totals January sales in column B where the month label in column A is January.',
+      table: 'Month,Sales\nJanuary,1200\nFebruary,850\nJanuary,640',
+      range: 'Month in A2:A500; sales in B2:B500; result in E2',
+      hint: 'SUMIF'
+    },
+    intent: 'Help spreadsheet users comparing SheetSmart-style Google Sheets formula assistants choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair.',
+    bestFor: [
+      'Writing or fixing one formula from a browser tab when you are not working only inside Google Sheets.',
+      'Explaining inherited Excel or Google Sheets formulas before editing a shared report.',
+      'Trying a focused formula helper when you do not need an installed Sheets extension, direct formula insertion, header/context reading, formula history, or favorites.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the headers, sample rows, formula, or expected result so the answer has context.',
+      'Review the range notes and paste checks, then copy the formula into the workbook yourself.'
+    ],
+    copyChecks: [
+      'Use SheetSmart or another Google Sheets extension if you want formula help inside the sheet, column-header context reading, direct insertion, history, favorites, or a higher-volume Sheets-only workflow.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair in a browser tab.',
+      'Test the output on one known row before filling it through an important workbook.'
+    ]
+  },
+  {
     slug: 'excel-formula-cheat-sheet',
     title: 'Excel Formula Cheat Sheet | Write My Formula',
     description: 'A practical Excel formula cheat sheet with common lookup, logic, text, date, percentage, and summary formulas plus examples.',
@@ -4237,6 +4269,20 @@ const pageEnhancements = {
       setup: 'A team needs to return rows from Sheet2 where column A contains the word garden, but the current FILTER formula should be checked before it is copied into a shared workbook.',
       formula: '=FILTER(Sheet2!A:A,ISNUMBER(SEARCH("garden",Sheet2!A:A)),"No matches")',
       read: 'The formula searches Sheet2 column A for the word garden and returns matching cells. The fallback keeps the output readable when there are no matches, and the checks tell you to confirm the output range has room to spill.'
+    }
+  },
+  'sheetsmart-alternative': {
+    gives: [
+      'A browser-based formula request flow for Excel and Google Sheets instead of a Google Sheets extension workflow.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing SheetSmart-style Google Sheets formula assistants but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule outside an installed extension flow.',
+    notWhen: 'Use SheetSmart or a similar Google Sheets extension when you want formula help inside the sheet, automatic column-header or cell-context reading, direct formula insertion, formula history, favorites, or heavy Sheets-only usage. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A Google Sheets report needs to total January sales from rows where the Month label is January.',
+      formula: '=SUMIF(A2:A500,"January",B2:B500)',
+      read: 'The formula checks Month values in A and totals the matching Sales values in B. The checks tell you to confirm the month labels are stored consistently and that the sum range covers the same rows as the criteria range.'
     }
   },
   'excel-formula-cheat-sheet': {
