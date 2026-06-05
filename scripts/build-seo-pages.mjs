@@ -397,6 +397,35 @@ const pages = [
     ]
   },
   {
+    slug: 'formuladesk-alternative',
+    title: 'FormulaDesk Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused FormulaDesk alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing installed Excel add-ins for workbook inspection.',
+    eyebrow: 'FormulaDesk alternative',
+    h1: 'A FormulaDesk alternative for one formula problem.',
+    lede: 'Use Write My Formula when the job is one Excel or Google Sheets formula, explanation, or repair in a browser. Use FormulaDesk or a similar Excel add-in suite when the workbook itself needs installed formula inspection, precedent tracing, formula editing tools, workbook issue checks, equation display, or navigation help inside Excel desktop.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=IF(B2="Paid",IF(MONTH(C2)=8,"August paid","Other month"),"Open")'
+    },
+    intent: 'Help spreadsheet users comparing FormulaDesk-style Excel add-ins choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair.',
+    bestFor: [
+      'Writing or fixing one Excel or Google Sheets formula without installing an Excel add-in first.',
+      'Explaining inherited formula logic before editing a shared report.',
+      'Trying a focused formula helper when you do not need installed Excel formula tracing, workbook detective tools, equation plotting, LAMBDA creation, or sheet-navigation add-ins.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the formula, headers, sample rows, or expected result so the answer has context.',
+      'Review the range notes and paste checks before using the formula in the workbook.'
+    ],
+    copyChecks: [
+      'Use FormulaDesk or another Excel add-in suite if you need to step through a long formula inside Excel, trace precedents, inspect workbook issues, format formulas in an editor, create LAMBDA functions, plot formulas, document calculations, or navigate a large workbook.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair.',
+      'FormulaDesk details verified June 5, 2026; test the output on one known row before filling it through an important workbook.'
+    ]
+  },
+  {
     slug: 'gptexcel-alternative',
     title: 'GPTExcel Alternative for Excel Formulas | Write My Formula',
     description: 'A focused GPTExcel alternative for writing, explaining, and fixing Excel and Google Sheets formulas from plain English.',
@@ -3793,6 +3822,20 @@ const pageEnhancements = {
       setup: 'A customer sheet needs the total order amount for the customer ID entered in G2, while the source table stores Customer ID in A and Amount in D.',
       formula: '=SUMIF(A2:A500,G2,D2:D500)',
       read: 'The formula adds every value in Amount where the matching Customer ID equals G2. The checks tell you to confirm the customer IDs are stored the same way in both places before filling the formula through the report.'
+    }
+  },
+  'formuladesk-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of an installed Excel add-in suite.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing FormulaDesk-style Excel add-ins but the immediate job is still small: write one formula, explain one inherited formula, repair one broken formula, or create one custom rule for conditional formatting or data validation.',
+    notWhen: 'Use FormulaDesk or a similar Excel add-in suite when you need installed workbook inspection, step-by-step formula tracing inside Excel, precedent drilldown, workbook issue checks, formula formatting/editing, LAMBDA creation, equation display, formula plotting, Word documentation, or large-workbook navigation. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A status formula should mark paid August rows, but the inherited nested IF is returning the wrong label for some dates.',
+      formula: '=IF(B2="Paid",IF(AND(C2>=DATE(2026,8,1),C2<DATE(2026,9,1)),"August paid","Other month"),"Open")',
+      read: 'The formula first checks whether the row is Paid, then checks whether the date falls inside August 2026 before returning the label. The checks tell you to confirm C contains real dates and that the formula should move row by row when filled down.'
     }
   },
   'gptexcel-alternative': {

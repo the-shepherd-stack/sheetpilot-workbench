@@ -203,6 +203,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than in-sheet chat, app connections, extraction, analysis, or automation/);
   assert.match(page, /\/formulaberry-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than multilingual, finance, or small-business spreadsheet bot workflows/);
+  assert.match(page, /\/formuladesk-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than installed Excel formula inspection tools/);
   assert.match(page, /\/gptexcel-alternative\//);
   assert.match(page, /Use a focused formula workbench when the job is one formula, explanation, or repair/);
   assert.match(page, /\/excelbot-alternative\//);
@@ -297,6 +299,29 @@ test('FormulaBerry alternative page keeps the comparison bounded', () => {
   assert.doesNotMatch(page, /replace FormulaBerry/i);
   assert.doesNotMatch(page, /perfect formula/i);
   assert.doesNotMatch(page, /human review/i);
+});
+
+test('FormulaDesk alternative page keeps the comparison bounded', () => {
+  const page = read('formuladesk-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /FormulaDesk Alternative for One Formula Problem/);
+  assert.match(page, /A FormulaDesk alternative for one formula problem/);
+  assert.match(page, /installed Excel add-in suite/);
+  assert.match(page, /step-by-step formula tracing inside Excel/);
+  assert.match(page, /precedent drilldown/);
+  assert.match(page, /LAMBDA creation/);
+  assert.match(page, /FormulaDesk details verified June 5, 2026/);
+  assert.match(page, /=IF\(B2=&quot;Paid&quot;,IF\(AND\(C2&gt;=DATE\(2026,8,1\),C2&lt;DATE\(2026,9,1\)\),&quot;August paid&quot;,&quot;Other month&quot;\),&quot;Open&quot;\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month in this browser/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/formuladesk-alternative\/">FormulaDesk alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/formuladesk-alternative\//);
+  assert.doesNotMatch(page, /replaces FormulaDesk|better than FormulaDesk|official FormulaDesk|FormulaDesk partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook audit by Write My Formula|whole spreadsheet audit by Write My Formula|exact cause|human reviewer|same-day|PDF|privacy superior|works every time/i);
 });
 
 test('config exposes checkout and account usage limits', () => {
