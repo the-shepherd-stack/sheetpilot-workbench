@@ -201,6 +201,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than file, chat, OCR, chart, analysis, or script workflows/);
   assert.match(page, /\/sheetxai-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than in-sheet chat, app connections, extraction, analysis, or automation/);
+  assert.match(page, /\/formulaberry-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than multilingual, finance, or small-business spreadsheet bot workflows/);
   assert.match(page, /\/gptexcel-alternative\//);
   assert.match(page, /Use a focused formula workbench when the job is one formula, explanation, or repair/);
   assert.match(page, /\/excelbot-alternative\//);
@@ -271,6 +273,28 @@ test('SheetXAI alternative page keeps the comparison bounded', () => {
   assert.doesNotMatch(page, /partner/i);
   assert.doesNotMatch(page, /better than SheetXAI/i);
   assert.doesNotMatch(page, /replace SheetXAI/i);
+  assert.doesNotMatch(page, /perfect formula/i);
+  assert.doesNotMatch(page, /human review/i);
+});
+
+test('FormulaBerry alternative page keeps the comparison bounded', () => {
+  const page = read('formulaberry-alternative/index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /FormulaBerry Alternative for One Formula Problem/);
+  assert.match(page, /A FormulaBerry alternative for one formula problem/);
+  assert.match(page, /multilingual explanation settings/);
+  assert.match(page, /finance-specific workflows/);
+  assert.match(page, /small-business spreadsheet guidance/);
+  assert.match(page, /one Excel or Google Sheets formula, explanation, or repair/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 formula runs per month in this browser for \$9/);
+  assert.match(page, /https:\/\/writemyformula\.com\/formulaberry-alternative\//);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/formulaberry-alternative\//);
+  assert.doesNotMatch(page, /official FormulaBerry/i);
+  assert.doesNotMatch(page, /partner/i);
+  assert.doesNotMatch(page, /better than FormulaBerry/i);
+  assert.doesNotMatch(page, /replace FormulaBerry/i);
   assert.doesNotMatch(page, /perfect formula/i);
   assert.doesNotMatch(page, /human review/i);
 });
@@ -368,6 +392,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'ai-excel-formula-generator',
     'ai-google-sheets-formula-generator',
     'formula-bot-alternative',
+    'formulaberry-alternative',
     'sheetsolver-ai-alternative',
     'sheetgpt-alternative',
     'excelbot-alternative',

@@ -365,6 +365,38 @@ const pages = [
     ]
   },
   {
+    slug: 'formulaberry-alternative',
+    title: 'FormulaBerry Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused FormulaBerry alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing a broader spreadsheet bot or monthly formula plan.',
+    eyebrow: 'FormulaBerry alternative',
+    h1: 'A FormulaBerry alternative for one formula problem.',
+    lede: 'Use Write My Formula when the job is one Excel or Google Sheets formula, explanation, or repair. Use FormulaBerry or a similar spreadsheet bot when you want multilingual explanation settings, finance-focused formula workflows, small-business guidance, or a monthly plan for repeated formula work.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Write a formula that totals order amounts for the customer ID in A2.',
+      table: 'Customer ID,Order Date,Status,Amount\nC-104,2026-06-01,Paid,420\nC-219,2026-06-02,Paid,180\nC-104,2026-06-03,Open,95',
+      range: 'Customer IDs in A2:A500; amounts in D2:D500; lookup customer in G2',
+      hint: 'SUMIF'
+    },
+    intent: 'Help spreadsheet users comparing FormulaBerry-style Excel and Google Sheets bots choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair.',
+    bestFor: [
+      'Writing or fixing one Excel or Google Sheets formula with the relevant ranges visible.',
+      'Explaining inherited formula logic before editing a shared report.',
+      'Trying a focused formula helper when you do not need multilingual explanation settings, small-business spreadsheet guidance, finance-specific workflows, or a monthly unlimited-credit plan.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the task, formula, headers, range, or one sample row so the answer has context.',
+      'Review the formula read-through and paste checks before using it in the sheet.'
+    ],
+    copyChecks: [
+      'Use FormulaBerry or another broader spreadsheet bot if you want multilingual explanations, finance-specific workflows, small-business spreadsheet guidance, all-device access, or a monthly unlimited-credit plan.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair.',
+      'Test the output on one known row before filling it through an important workbook.'
+    ]
+  },
+  {
     slug: 'gptexcel-alternative',
     title: 'GPTExcel Alternative for Excel Formulas | Write My Formula',
     description: 'A focused GPTExcel alternative for writing, explaining, and fixing Excel and Google Sheets formulas from plain English.',
@@ -3747,6 +3779,20 @@ const pageEnhancements = {
       setup: 'A Google Sheets report needs to flag paid West-region invoices from the current month before the formula is filled down.',
       formula: '=IF(AND(A2="West",B2="Paid",C2>=DATE(2026,6,1),C2<DATE(2026,7,1)),"Review","")',
       read: 'The formula checks Region, Status, and the June 2026 date window before returning Review. The checks tell you to confirm the date column contains real dates and that the relative row references should move when the formula is filled down.'
+    }
+  },
+  'formulaberry-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a broader spreadsheet bot.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing FormulaBerry-style spreadsheet bots but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
+    notWhen: 'Use FormulaBerry or another broader spreadsheet bot when you want multilingual explanation settings, finance-specific formula workflows, small-business spreadsheet guidance, all-device access, or a monthly unlimited-credit plan. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A customer sheet needs the total order amount for the customer ID entered in G2, while the source table stores Customer ID in A and Amount in D.',
+      formula: '=SUMIF(A2:A500,G2,D2:D500)',
+      read: 'The formula adds every value in Amount where the matching Customer ID equals G2. The checks tell you to confirm the customer IDs are stored the same way in both places before filling the formula through the report.'
     }
   },
   'gptexcel-alternative': {
