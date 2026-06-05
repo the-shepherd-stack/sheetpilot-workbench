@@ -492,6 +492,42 @@ const pages = [
     ]
   },
   {
+    slug: 'excelgpt-alternative',
+    title: 'ExcelGPT Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused ExcelGPT alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing a broader upload, analysis, chart, automation, SQL, regex, or script workflow.',
+    eyebrow: 'ExcelGPT alternative',
+    h1: 'An ExcelGPT alternative for one formula problem.',
+    lede: 'ExcelGPT is built as a broader Excel assistant for formula generation, uploaded-file analysis, charts, automation, file conversion, connected sources, SQL, regex, and script workflows. Use Write My Formula when the job is narrower: one Excel or Google Sheets formula, explanation, or repair in a browser tab.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=SUMIFS($D$2:$D$500,$A$2:$A$500,"West",$B$2:$B$500,"Paid",$C$2:$C$500,">=6/1/2026")'
+    },
+    intent: 'Help spreadsheet users comparing ExcelGPT-style AI Excel assistants choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair.',
+    bestFor: [
+      'Writing one Excel or Google Sheets formula from a plain-English task.',
+      'Explaining inherited formula logic before editing a shared workbook.',
+      'Repairing a formula that returns an error, a blank, or the wrong result.',
+      'Trying a focused formula helper before choosing an uploaded-file or automation suite.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized job.',
+      'Paste the formula, headers, sample rows, or expected result so the answer has context.',
+      'Review the formula read-through and paste checks before using it in the sheet.'
+    ],
+    copyChecks: [
+      'Use ExcelGPT or another broader Excel assistant if you need uploaded-file analysis, data cleaning, charts, dashboards, automation, file conversion, connected data sources, SQL, regex, VBA, scripts, or workbook-wide insights.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair.',
+      'ExcelGPT details verified June 5, 2026; test the output on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where ExcelGPT fits',
+        html: 'ExcelGPT currently presents itself as an AI Excel assistant and Formula Generator &amp; Automation Suite for Excel users. Its public page describes formula generation, uploaded-file analysis, chart building, automation, auto Excel processing, file conversion, multi data source workflows, AI insights, Power Query or VBA-style help, SQL, regex, and script automation; its pricing section lists Free, Pro at $19.90/month, and Lifetime at $299 one-time.'
+      }
+    ]
+  },
+  {
     slug: 'gptexcel-alternative',
     title: 'GPTExcel Alternative for Excel Formulas | Write My Formula',
     description: 'A focused GPTExcel alternative for writing, explaining, and fixing Excel and Google Sheets formulas from plain English.',
@@ -3930,6 +3966,20 @@ const pageEnhancements = {
       setup: 'A Google Sheets report is returning blanks from an inherited INDEX/MATCH formula, and you need to understand the two-condition match before replacing it.',
       formula: '=IFERROR(INDEX($D:$D,MATCH(1,($A:$A=A2)*($B:$B=B2),0)),"")',
       read: 'The formula looks for the first row where both A and B match the current row, then returns the matching value from D. The checks tell you to confirm whether a blank means no match, an empty returned cell, or a mismatch caused by stored text, spaces, or full-column array behavior.'
+    }
+  },
+  'excelgpt-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a broad Excel assistant suite.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing ExcelGPT-style AI Excel assistants but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
+    notWhen: 'Use ExcelGPT or a similar broader Excel assistant when you need uploaded-file analysis, data cleaning, charts, dashboards, automation, file conversion, connected data sources, SQL, regex, VBA, scripts, or workbook-wide insights. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A revenue report needs paid West-region totals from June 2026, but the inherited SUMIFS uses a loose text date and should be checked before filling down.',
+      formula: '=SUMIFS($D$2:$D$500,$A$2:$A$500,"West",$B$2:$B$500,"Paid",$C$2:$C$500,">="&DATE(2026,6,1))',
+      read: 'The formula totals Amount values only when Region is West, Status is Paid, and the Date is on or after June 1, 2026. The checks tell you to confirm every SUMIFS range covers the same rows and the date column contains real dates.'
     }
   },
   'gptexcel-alternative': {

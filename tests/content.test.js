@@ -209,6 +209,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than in-sheet AI, research, scraping, or enrichment workflows/);
   assert.match(page, /\/coefficient-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than connected data, refresh, alert, export, or in-sheet AI workflows/);
+  assert.match(page, /\/excelgpt-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a full Excel assistant suite/);
   assert.match(page, /\/gptexcel-alternative\//);
   assert.match(page, /Use a focused formula workbench when the job is one formula, explanation, or repair/);
   assert.match(page, /\/excelbot-alternative\//);
@@ -380,6 +382,32 @@ test('Coefficient alternative page keeps the comparison bounded', () => {
   assert.doesNotMatch(page, /replaces Coefficient|better than Coefficient|official Coefficient|Coefficient partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook audit by Write My Formula|whole spreadsheet audit by Write My Formula|exact cause|human reviewer|same-day|PDF|privacy superior|works every time|bloated|overpriced/i);
 });
 
+test('ExcelGPT alternative page keeps the comparison bounded', () => {
+  const page = read('excelgpt-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /ExcelGPT Alternative for One Formula Problem/);
+  assert.match(page, /An ExcelGPT alternative for one formula problem/);
+  assert.match(page, /uploaded-file analysis/);
+  assert.match(page, /chart building/);
+  assert.match(page, /automation/);
+  assert.match(page, /multi data source workflows/);
+  assert.match(page, /SQL, regex, and script automation/);
+  assert.match(page, /Pro at \$19\.90\/month/);
+  assert.match(page, /Lifetime at \$299 one-time/);
+  assert.match(page, /ExcelGPT details verified June 5, 2026/);
+  assert.match(page, /=SUMIFS\(\$D\$2:\$D\$500,\$A\$2:\$A\$500,&quot;West&quot;,\$B\$2:\$B\$500,&quot;Paid&quot;,\$C\$2:\$C\$500,&quot;&gt;=&quot;&amp;DATE\(2026,6,1\)\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month in this browser/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excelgpt-alternative\/">ExcelGPT alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excelgpt-alternative\//);
+  assert.doesNotMatch(page, /replaces ExcelGPT|better than ExcelGPT|official ExcelGPT|ExcelGPT partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook audit by Write My Formula|whole spreadsheet audit by Write My Formula|exact cause|human reviewer|same-day|PDF|privacy superior|works every time|bloated|overpriced/i);
+});
+
 test('config exposes checkout and account usage limits', () => {
   const config = read('app/config.js');
 
@@ -476,6 +504,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'formulaberry-alternative',
     'formuladesk-alternative',
     'promptloop-alternative',
+    'excelgpt-alternative',
     'sheetsolver-ai-alternative',
     'sheetgpt-alternative',
     'excelbot-alternative',
