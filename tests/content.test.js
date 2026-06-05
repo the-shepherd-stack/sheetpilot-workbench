@@ -205,6 +205,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than multilingual, finance, or small-business spreadsheet bot workflows/);
   assert.match(page, /\/formuladesk-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than installed Excel formula inspection tools/);
+  assert.match(page, /\/promptloop-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than in-sheet AI, research, scraping, or enrichment workflows/);
   assert.match(page, /\/gptexcel-alternative\//);
   assert.match(page, /Use a focused formula workbench when the job is one formula, explanation, or repair/);
   assert.match(page, /\/excelbot-alternative\//);
@@ -324,6 +326,31 @@ test('FormulaDesk alternative page keeps the comparison bounded', () => {
   assert.doesNotMatch(page, /replaces FormulaDesk|better than FormulaDesk|official FormulaDesk|FormulaDesk partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook audit by Write My Formula|whole spreadsheet audit by Write My Formula|exact cause|human reviewer|same-day|PDF|privacy superior|works every time/i);
 });
 
+test('PromptLoop alternative page keeps the comparison bounded', () => {
+  const page = read('promptloop-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /PromptLoop Alternative for One Formula Problem/);
+  assert.match(page, /A PromptLoop alternative for one formula problem/);
+  assert.match(page, /in-sheet AI functions/);
+  assert.match(page, /GTM or sales enrichment/);
+  assert.match(page, /web browsing/);
+  assert.match(page, /list scraping/);
+  assert.match(page, /dynamic data extraction/);
+  assert.match(page, /research pages/);
+  assert.match(page, /PromptLoop details verified June 5, 2026/);
+  assert.match(page, /=XLOOKUP\(1,\(A2:A500=F2\)\*\(C2:C500=&quot;Paid&quot;\),D2:D500,&quot;Not found&quot;,0,-1\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month in this browser/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/promptloop-alternative\/">PromptLoop alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/promptloop-alternative\//);
+  assert.doesNotMatch(page, /replaces PromptLoop|better than PromptLoop|official PromptLoop|PromptLoop partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook audit by Write My Formula|whole spreadsheet audit by Write My Formula|exact cause|human reviewer|same-day|PDF|privacy superior|works every time|bloated|overpriced/i);
+});
+
 test('config exposes checkout and account usage limits', () => {
   const config = read('app/config.js');
 
@@ -418,6 +445,8 @@ test('seo landing pages target high-intent formula searches', () => {
     'ai-google-sheets-formula-generator',
     'formula-bot-alternative',
     'formulaberry-alternative',
+    'formuladesk-alternative',
+    'promptloop-alternative',
     'sheetsolver-ai-alternative',
     'sheetgpt-alternative',
     'excelbot-alternative',

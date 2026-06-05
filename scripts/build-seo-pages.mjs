@@ -426,6 +426,35 @@ const pages = [
     ]
   },
   {
+    slug: 'promptloop-alternative',
+    title: 'PromptLoop Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused PromptLoop alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing broader AI spreadsheet enrichment, scraping, or automation workflows.',
+    eyebrow: 'PromptLoop alternative',
+    h1: 'A PromptLoop alternative for one formula problem.',
+    lede: 'These tools sound similar, but the jobs are different. Use Write My Formula when you need one Excel or Google Sheets formula, explanation, or repair in a browser tab. Use PromptLoop or a similar AI spreadsheet platform when you need in-sheet functions, data enrichment, web research, file processing, or AI tasks that run across many rows.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=VLOOKUP(F2,A2:D500,4,FALSE)'
+    },
+    intent: 'Help spreadsheet users comparing PromptLoop-style AI spreadsheet automation choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair.',
+    bestFor: [
+      'Writing or fixing one Excel or Google Sheets formula without installing an add-on first.',
+      'Explaining inherited formula logic before changing a shared sheet.',
+      'Trying a focused formula helper when you do not need AI functions running across hundreds of rows, GTM enrichment, scraping, research workflows, or scheduled dataset tasks.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the formula, headers, sample rows, or expected result so the answer has context.',
+      'Review the formula read-through and paste checks before using it in the sheet.'
+    ],
+    copyChecks: [
+      'Use PromptLoop or another AI spreadsheet automation platform if you need in-sheet AI functions, custom tasks, web browsing, list scraping, dynamic data extraction, research pages, file processing, or CRM and GTM enrichment.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair.',
+      'PromptLoop details verified June 5, 2026; test the output on one known row before filling it through an important workbook.'
+    ]
+  },
+  {
     slug: 'gptexcel-alternative',
     title: 'GPTExcel Alternative for Excel Formulas | Write My Formula',
     description: 'A focused GPTExcel alternative for writing, explaining, and fixing Excel and Google Sheets formulas from plain English.',
@@ -3836,6 +3865,20 @@ const pageEnhancements = {
       setup: 'A status formula should mark paid August rows, but the inherited nested IF is returning the wrong label for some dates.',
       formula: '=IF(B2="Paid",IF(AND(C2>=DATE(2026,8,1),C2<DATE(2026,9,1)),"August paid","Other month"),"Open")',
       read: 'The formula first checks whether the row is Paid, then checks whether the date falls inside August 2026 before returning the label. The checks tell you to confirm C contains real dates and that the formula should move row by row when filled down.'
+    }
+  },
+  'promptloop-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a broader AI spreadsheet automation platform.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing PromptLoop-style spreadsheet AI but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
+    notWhen: 'Use PromptLoop or another AI spreadsheet automation platform when you need in-sheet AI functions, AI tasks across many rows, GTM or sales enrichment, web browsing, list scraping, dynamic data extraction, research pages, file processing, scheduled tasks, or CRM-connected data work. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A Google Sheets report should return the latest paid invoice amount for the customer in F2, but the current VLOOKUP always returns the first matching row.',
+      formula: '=XLOOKUP(1,(A2:A500=F2)*(C2:C500="Paid"),D2:D500,"Not found",0,-1)',
+      read: 'The formula finds rows where Customer matches F2 and Status is Paid, returns the Amount from D, and searches from the bottom so the latest matching paid row is returned when the data is sorted oldest to newest.'
     }
   },
   'gptexcel-alternative': {
