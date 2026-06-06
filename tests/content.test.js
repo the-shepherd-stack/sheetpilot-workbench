@@ -235,6 +235,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than an add-on or saved formula workspace/);
   assert.match(page, /\/sheetsmart-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a Google Sheets extension workflow/);
+  assert.match(page, /\/smart-excel-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a login-based daily-credit formula bot/);
   assert.match(page, /\/sourcetable-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a full AI spreadsheet workspace/);
   assert.match(page, /\/index-match-formula-generator\//);
@@ -542,6 +544,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excelly-ai-alternative',
     'sheeter-alternative',
     'sheetsmart-alternative',
+    'smart-excel-alternative',
     'sourcetable-alternative',
     'excel-formula-cheat-sheet',
     'excel-formula-explainer',
@@ -786,6 +789,30 @@ test('Sourcetable alternative page targets AI spreadsheet comparison without ove
   assert.match(homepage, /href="\/sourcetable-alternative\/">Sourcetable alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/sourcetable-alternative\//);
   assert.doesNotMatch(page, /replaces Sourcetable|better than Sourcetable|official Sourcetable|Sourcetable partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook support|whole spreadsheet audit|exact cause|uploads? your workbook|human reviewer|same-day|PDF delivery|privacy superior|bloated|overpriced|credit anxiety/i);
+});
+
+test('Smart Excel alternative page targets focused formula comparison without overclaiming', () => {
+  const page = read('smart-excel-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Smart Excel Alternative for One Formula Problem/);
+  assert.match(page, /Looking at Smart Excel\? If you just need one formula right now, try this first/);
+  assert.match(page, /AI formula generator behind a login and a daily credit count/);
+  assert.match(page, /No account for the first two tries/);
+  assert.match(page, /daily free credits, optional credit purchases, or a one-time credit pack/);
+  assert.match(page, /Free plan with 10 free credits per day/);
+  assert.match(page, /Premium at \$4\.99\/month/);
+  assert.match(page, /\$0\.99 one-time pack with 100 credits valid for 7 days/);
+  assert.match(page, /=SUMIFS\(D2:D500,B2:B500,&quot;West&quot;,C2:C500,&quot;Paid&quot;,A2:A500,&quot;&gt;=&quot;&amp;DATE\(2026,6,1\),A2:A500,&quot;&lt;&quot;&amp;DATE\(2026,7,1\)\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/smart-excel-alternative\/">Smart Excel alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/smart-excel-alternative\//);
+  assert.doesNotMatch(page, /replaces Smart Excel|better than Smart Excel|official Smart Excel|Smart Excel partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|privacy superior/i);
 });
 
 test('excel formula help page targets broad help intent without overclaiming', () => {

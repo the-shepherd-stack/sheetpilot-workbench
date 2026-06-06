@@ -966,6 +966,44 @@ const pages = [
     ]
   },
   {
+    slug: 'smart-excel-alternative',
+    title: 'Smart Excel Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused Smart Excel alternative for writing, explaining, or fixing one Excel or Google Sheets formula from a browser tab before choosing a login-based formula bot with daily credits.',
+    eyebrow: 'Smart Excel alternative',
+    h1: 'Looking at Smart Excel? If you just need one formula right now, try this first.',
+    lede: 'Smart Excel is an AI formula generator behind a login and a daily credit count. Write My Formula is a browser workbench for one formula at a time: describe what you need, get a formula and a plain-English explanation, then paste it into your sheet yourself. No account for the first two tries.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Write a formula that totals paid invoices from June 2026 for the West region.',
+      table: 'Invoice Date,Region,Status,Amount\n2026-06-04,West,Paid,1200\n2026-06-09,East,Paid,850\n2026-06-15,West,Open,640',
+      range: 'Dates in A2:A500; region in B2:B500; status in C2:C500; amount in D2:D500; result in G2',
+      hint: 'SUMIFS'
+    },
+    intent: 'Help spreadsheet users comparing Smart Excel-style formula bots choose a narrow formula workbench when the immediate problem is one Excel or Google Sheets formula, one explanation, or one repair.',
+    bestFor: [
+      'Writing or fixing one formula when you want the formula, explanation, and paste checks visible before using it.',
+      'Trying two formula requests from a browser tab before creating an account.',
+      'Explaining inherited Excel or Google Sheets formula logic before editing a shared report.'
+    ],
+    steps: [
+      'Describe the formula result you need, such as total paid West invoices from June.',
+      'Paste the relevant headers, sample rows, target range, or broken formula.',
+      'Review the explanation and checks, then copy the formula into Excel or Google Sheets yourself.'
+    ],
+    copyChecks: [
+      'Use Smart Excel or another daily-credit formula bot if you want a login-based Excel formula workflow, language selection, daily credits, or one-time credit packs.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair in a browser tab.',
+      'Smart Excel details verified June 6, 2026; test the output on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where Smart Excel fits',
+        html: 'Smart Excel currently presents itself as an AI Excel formula bot. Its public page asks users to describe the Excel formula they want, includes language selection, and shows output available after logging in. Its upgrade section lists a Free plan with 10 free credits per day and optional credit purchases, Premium at $4.99/month with up to 500 credits per day and early access, and a $0.99 one-time pack with 100 credits valid for 7 days.'
+      }
+    ]
+  },
+  {
     slug: 'sourcetable-alternative',
     title: 'Sourcetable Alternative for One Formula Problem | Write My Formula',
     description: 'A focused Sourcetable alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing a broader AI spreadsheet, upload, SQL, Python, connector, chart, or data-analysis workspace.',
@@ -4318,6 +4356,20 @@ const pageEnhancements = {
       setup: 'A Google Sheets report needs to total January sales from rows where the Month label is January.',
       formula: '=SUMIF(A2:A500,"January",B2:B500)',
       read: 'The formula checks Month values in A and totals the matching Sales values in B. The checks tell you to confirm the month labels are stored consistently and that the sum range covers the same rows as the criteria range.'
+    }
+  },
+  'smart-excel-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a login-based daily-credit formula bot.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing Smart Excel-style formula bots but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule from a browser tab.',
+    notWhen: 'Use Smart Excel or a similar formula bot when you want a login-based Excel formula generator, language selection, daily free credits, optional credit purchases, or a one-time credit pack. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'An invoice report needs the total paid West-region amount from June 2026 before the formula is filled through a shared workbook.',
+      formula: '=SUMIFS(D2:D500,B2:B500,"West",C2:C500,"Paid",A2:A500,">="&DATE(2026,6,1),A2:A500,"<"&DATE(2026,7,1))',
+      read: 'The formula totals Amount values only when Region is West, Status is Paid, and Invoice Date falls inside June 2026. The checks tell you to confirm every criteria range covers the same rows and that the date column contains real dates.'
     }
   },
   'sourcetable-alternative': {
