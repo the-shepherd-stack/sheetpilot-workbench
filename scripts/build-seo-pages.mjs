@@ -1216,6 +1216,42 @@ const pages = [
     ]
   },
   {
+    slug: 'aiexcelformula-alternative',
+    title: 'AI Excel Formula Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused AI Excel Formula alternative for writing, explaining, or fixing one Excel or Google Sheets formula after a free no-signup generator is not enough context.',
+    eyebrow: 'AI Excel Formula alternative',
+    h1: 'When the free formula generator gives you a formula that still needs checking.',
+    lede: 'AI Excel Formula is useful for quick no-signup formula drafts, examples, and one-click copy. Use Write My Formula when the job needs a little more context: one Excel or Google Sheets formula, one explanation, or one repair with the ranges and paste checks visible before you use it.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=VLOOKUP(F2,A2:D500,4,FALSE)'
+    },
+    intent: 'Help spreadsheet users comparing AI Excel Formula-style free formula generators choose a narrow formula workbench when the immediate problem is one Excel or Google Sheets formula, one explanation, or one repair that needs more context than a quick draft.',
+    bestFor: [
+      'Trying a formula-sized task with two guest tries before creating an account.',
+      'Fixing a formula you already have, including one a free generator produced, with the relevant ranges and expected result visible.',
+      'Explaining inherited Excel or Google Sheets logic before editing a shared workbook.',
+      'Using a browser tab when you need a formula read-through and paste checks rather than just another quick generated formula.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the headers, sample rows, target range, broken formula, or expected result.',
+      'Review the explanation and checks, then copy the formula into Excel or Google Sheets yourself.'
+    ],
+    copyChecks: [
+      'Use AI Excel Formula or another free no-signup generator when you only need a quick plain-English formula draft, example library, or one-click copy flow.',
+      'Use Write My Formula when the immediate job is one formula, one rule, or one repair you can read and test.',
+      'AI Excel Formula details verified June 6, 2026; test any generated formula on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where AI Excel Formula fits',
+        html: 'AI Excel Formula currently presents itself as a free no-signup Excel and Google Sheets formula generator. Its homepage describes plain-English input, Excel formulas and Google Sheets scripts, no-login use, quick examples for VLOOKUP, IF statements, and email extraction, examples for SUM, VLOOKUP, IF, AVERAGE, COUNTIF, and QUERY, one-click copy, and ZhipuAI-powered generation. Use that kind of tool when you want a quick first draft. Use Write My Formula when the next step is explaining, fixing, or checking one formula with your actual ranges.'
+      }
+    ]
+  },
+  {
     slug: 'excelformula-pro-alternative',
     title: 'ExcelFormula Pro Alternative for One Formula Problem | Write My Formula',
     description: 'A focused ExcelFormula Pro alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing an account-based formula generator with history and a monthly plan.',
@@ -4783,6 +4819,20 @@ const pageEnhancements = {
       setup: 'A regional invoice report needs the paid West total since June 1, 2026 before the formula is filled through a shared workbook.',
       formula: '=SUMIFS(E2:E500,B2:B500,"West",C2:C500,"Paid",D2:D500,">="&DATE(2026,6,1))',
       read: 'The formula totals Amount values only when Region is West, Status is Paid, and Date is on or after June 1, 2026. The checks tell you to confirm every SUMIFS range covers the same rows before filling it through the report.'
+    }
+  },
+  'aiexcelformula-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets after a quick free generator draft is not enough.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing AI Excel Formula-style no-signup formula generators but the immediate job needs more context: write one formula, repair one broken formula, explain one inherited formula, or check a quick generated formula before using it.',
+    notWhen: 'Use AI Excel Formula or another quick free generator when you only need a first-pass formula draft, example browsing, or one-click copy. Write My Formula is intentionally narrower around one formula-sized answer you can inspect, explain, and test.',
+    example: {
+      setup: 'A generated VLOOKUP is returning the wrong price because the lookup table and return column need to be checked before the formula is filled down.',
+      formula: '=XLOOKUP(F2,A2:A500,D2:D500,"Not found",0)',
+      read: 'The formula searches the lookup value in F2 against the first column of the source table and returns the matching value from D. The checks tell you to confirm that the lookup IDs use the same type and that the return range covers the intended price column.'
     }
   },
   'manyexcel-alternative': {

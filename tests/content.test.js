@@ -245,6 +245,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a full AI spreadsheet workspace/);
   assert.match(page, /\/bricks-ai-spreadsheet-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a full AI spreadsheet, dashboard, chart, report, or collaboration workspace/);
+  assert.match(page, /\/aiexcelformula-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than just another quick generated formula/);
   assert.match(page, /\/manyexcel-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than regex, script, chart, or file workflows/);
   assert.match(page, /\/index-match-formula-generator\//);
@@ -557,6 +559,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'arcwise-alternative',
     'excelformula-pro-alternative',
     'excelformula-co-alternative',
+    'aiexcelformula-alternative',
     'manyexcel-alternative',
     'excelmatic-alternative',
     'excel-formula-cheat-sheet',
@@ -950,6 +953,31 @@ test('ManyExcel alternative page targets broader spreadsheet AI comparison witho
   assert.match(homepage, /href="\/manyexcel-alternative\/">ManyExcel alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/manyexcel-alternative\//);
   assert.doesNotMatch(page, /replaces ManyExcel|better than ManyExcel|official ManyExcel|ManyExcel partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|privacy superior|faster|cheaper|beats ManyExcel|price superior/i);
+});
+
+test('AI Excel Formula alternative page targets free generator comparison without overclaiming', () => {
+  const page = read('aiexcelformula-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /AI Excel Formula Alternative for One Formula Problem/);
+  assert.match(page, /When the free formula generator gives you a formula that still needs checking/);
+  assert.match(page, /quick no-signup formula drafts, examples, and one-click copy/);
+  assert.match(page, /after a free no-signup generator is not enough context/);
+  assert.match(page, /after a quick free generator draft is not enough/);
+  assert.match(page, /plain-English input, Excel formulas and Google Sheets scripts/);
+  assert.match(page, /quick examples for VLOOKUP, IF statements, and email extraction/);
+  assert.match(page, /examples for SUM, VLOOKUP, IF, AVERAGE, COUNTIF, and QUERY/);
+  assert.match(page, /ZhipuAI-powered generation/);
+  assert.match(page, /=XLOOKUP\(F2,A2:A500,D2:D500,&quot;Not found&quot;,0\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/aiexcelformula-alternative\/">AI Excel Formula alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/aiexcelformula-alternative\//);
+  assert.doesNotMatch(page, /replaces AI Excel Formula|better than AI Excel Formula|official AI Excel Formula|AI Excel Formula partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|privacy superior|faster|cheaper|beats AI Excel Formula|99\.9%|10,000\+|5,000\+/i);
 });
 
 test('Excelmatic alternative page targets RowSpeak file-analysis comparison without overclaiming', () => {
