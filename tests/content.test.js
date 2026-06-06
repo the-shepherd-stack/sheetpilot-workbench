@@ -227,6 +227,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you want two tries before choosing a broader formula app or extension/);
   assert.match(page, /\/formulawiz-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than Airtable or cross-platform variants/);
+  assert.match(page, /\/formularizer-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than SQL, regex, VBA, or Apps Script assistants/);
   assert.match(page, /\/formulapilot-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a full formula library, checker, or reference hub/);
   assert.match(page, /\/formulagenius-alternative\//);
@@ -2799,6 +2801,28 @@ test('FormulaWiz alternative page targets focused formula comparison without ove
   assert.match(homepage, /href="\/formulawiz-alternative\/">FormulaWiz alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/formulawiz-alternative\//);
   assert.doesNotMatch(page, /replaces FormulaWiz|better than FormulaWiz|official FormulaWiz|FormulaWiz partner|affiliated|guarantee|guaranteed|always fixes|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|validates against actual spreadsheet APIs|95%\+ accuracy/i);
+});
+
+test('Formularizer alternative page targets focused formula comparison without overclaiming', () => {
+  const page = read('formularizer-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Formularizer Alternative for One Formula at a Time/);
+  assert.match(page, /A Formularizer alternative for one formula at a time/);
+  assert.match(page, /SQL, regex, VBA, or Google Apps Script/);
+  assert.match(page, /formula, SQL, regex, and script workspace/);
+  assert.match(page, /SQL query generation, regex generation, Excel VBA scripts, Google Apps Script/);
+  assert.match(page, /separate assistants for formulas, SQL queries, regex, and scripts/);
+  assert.match(page, /=IF\(COUNTIF\(\$A\$2:A2,A2\)&gt;1,&quot;Duplicate&quot;,&quot;&quot;\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/formularizer-alternative\/">Formularizer alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/formularizer-alternative\//);
+  assert.doesNotMatch(page, /replaces Formularizer|better than Formularizer|official Formularizer|Formularizer partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|privacy superior|more accurate|faster/i);
 });
 
 test('FormulaPilot alternative page targets focused formula comparison without overclaiming', () => {

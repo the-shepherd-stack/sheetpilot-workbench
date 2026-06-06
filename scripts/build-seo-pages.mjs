@@ -812,6 +812,38 @@ const pages = [
     ]
   },
   {
+    slug: 'formularizer-alternative',
+    title: 'Formularizer Alternative for One Formula at a Time | Write My Formula',
+    description: 'A focused Formularizer alternative for writing, explaining, or fixing one Excel or Google Sheets formula without opening SQL, regex, VBA, or Apps Script assistant workflows.',
+    eyebrow: 'Formularizer alternative',
+    h1: 'A Formularizer alternative for one formula at a time.',
+    lede: 'Use Write My Formula when the job is one Excel or Google Sheets formula, explanation, or repair, and you do not need a larger assistant suite for SQL, regex, VBA, or Google Apps Script.',
+    preset: {
+      mode: 'write',
+      platform: 'sheets',
+      task: 'Write a formula that flags duplicate invoice IDs only after the first occurrence.',
+      table: 'Invoice ID,Customer,Amount\nINV-1001,Acme,1200\nINV-1002,Northwind,850\nINV-1001,Acme,1200',
+      range: 'Invoice IDs in A2:A500; result in D2',
+      hint: 'COUNTIF'
+    },
+    intent: 'Help spreadsheet users comparing Formularizer-style assistant suites choose a narrow formula workbench when the immediate problem is one Excel or Google Sheets formula, one explanation, or one repair.',
+    bestFor: [
+      'Writing or fixing one Excel or Google Sheets formula with the relevant ranges visible.',
+      'Explaining inherited formula logic before editing a shared report.',
+      'Trying a focused formula helper when you do not need SQL, regex, VBA, Apps Script, or a broader credit-based assistant suite.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the formula, headers, sample rows, or expected result so the answer has context.',
+      'Review the range notes and paste checks before using the formula in the workbook.'
+    ],
+    copyChecks: [
+      'Use Formularizer or another assistant suite if you need SQL queries, regex patterns, Excel VBA scripts, Google Apps Script, or a broader credit-based workspace.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair.',
+      'Test the output on one known row before filling it through an important workbook.'
+    ]
+  },
+  {
     slug: 'formulapilot-alternative',
     title: 'FormulaPilot Alternative for One Formula Problem | Write My Formula',
     description: 'A focused FormulaPilot alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing a free generator, checker, reference, and formula-library hub.',
@@ -4498,6 +4530,26 @@ const pageEnhancements = {
       formula: '=COUNTIFS(A2:A500,"West",B2:B500,"Paid",C2:C500,">="&DATE(2026,6,1),C2:C500,"<"&DATE(2026,7,1))',
       read: 'The formula counts rows where Region is West, Status is Paid, and Task Date falls inside June 2026. The checks tell you to confirm each criteria range covers the same rows and that the date column contains real dates.'
     }
+  },
+  'formularizer-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a four-assistant formula, SQL, regex, and script workspace.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing Formularizer-style assistant suites but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
+    notWhen: 'Use Formularizer or a similar suite when you need SQL query generation, regex generation, Excel VBA scripts, Google Apps Script, sample-data credit workflows, or one account across several assistant types. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'An invoice tracker needs to flag duplicate invoice IDs only after the first occurrence, so the first row stays clean and later repeats are marked.',
+      formula: '=IF(COUNTIF($A$2:A2,A2)>1,"Duplicate","")',
+      read: 'The formula counts each invoice ID from the first data row through the current row. The first time an ID appears, the count is 1 and the result stays blank. Later repeats return Duplicate.'
+    },
+    extraDetailCards: [
+      {
+        title: 'Where Formularizer fits',
+        html: 'Formularizer currently presents separate assistants for formulas, SQL queries, regex, and scripts. Its formula assistant covers Excel and Google Sheets generation and explanation, and its script assistant covers Excel VBA and Google Apps Script. Use that kind of suite when your work spans formulas plus code, queries, or patterns. Use Write My Formula when the job is one formula-sized answer you can read and test.'
+      }
+    ]
   },
   'formulapilot-alternative': {
     gives: [
