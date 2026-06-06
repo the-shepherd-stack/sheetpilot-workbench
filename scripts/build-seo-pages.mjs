@@ -1254,6 +1254,46 @@ const pages = [
     ]
   },
   {
+    slug: 'manyexcel-alternative',
+    title: 'ManyExcel Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused ManyExcel alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing a broader formula, regex, script, chart, or Excel-file workflow.',
+    eyebrow: 'ManyExcel alternative',
+    h1: 'A ManyExcel alternative for one formula problem.',
+    lede: 'ManyExcel is useful when your spreadsheet work also needs regex patterns, VBA, Apps Script, charts, or Excel-file interaction. Use Write My Formula when the job is smaller: one Excel or Google Sheets formula, one explanation, or one repair you can inspect from a browser tab.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Write a formula that totals paid Product A invoices from June 2026.',
+      table: 'Invoice Date,Product,Status,Amount\n2026-06-04,Product A,Paid,1200\n2026-06-11,Product B,Paid,850\n2026-06-18,Product A,Open,640',
+      range: 'Dates in A2:A500; product in B2:B500; status in C2:C500; amount in D2:D500; result in F2',
+      hint: 'SUMIFS'
+    },
+    intent: 'Help spreadsheet users comparing ManyExcel-style formula, regex, script, chart, and file tools choose a narrow formula workbench when the immediate problem is one Excel or Google Sheets formula, one explanation, or one repair.',
+    bestFor: [
+      'Trying a formula-sized task with two guest tries before creating an account.',
+      'Writing or fixing one Excel or Google Sheets formula with the relevant columns, sample rows, and expected result visible.',
+      'Explaining inherited formula logic before editing a shared workbook.',
+      'Keeping the answer focused on formula syntax, range notes, and paste checks rather than broader spreadsheet automation.',
+      'Using a browser tab when you do not need regex generation, VBA, Apps Script, charts, or Excel-file interaction.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the headers, sample rows, target range, broken formula, or expected result.',
+      'Review the explanation and checks, then copy the formula into Excel or Google Sheets yourself.'
+    ],
+    copyChecks: [
+      'Use ManyExcel or another broader spreadsheet AI tool if you need regex patterns, VBA scripts, Google Apps Script, charts, Excel-file interaction, or a low-cost unlimited-generation subscription.',
+      'Use Write My Formula when the immediate job is one formula, one rule, or one repair you can read and test.',
+      'ManyExcel details verified June 6, 2026; test any generated formula on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where ManyExcel fits',
+        html: 'ManyExcel currently presents itself as an AI tool for generating Excel and Google Sheets formulas, regex patterns, VBA and Apps Script, charts, and interactions with Excel files. Its pricing section lists a Free plan at $0/month with 5 formula generations, 5 regex generations, 5 script generations, and unlimited explanations. Its Pro plan is listed at $2.50/month with unlimited formula, regex, and script generation and explanations, plus priority support. Use that broader workflow when you need more than formula work. Use Write My Formula when the immediate task is one formula-sized answer you can inspect.'
+      }
+    ]
+  },
+  {
     slug: 'excel-formula-cheat-sheet',
     title: 'Excel Formula Cheat Sheet | Write My Formula',
     description: 'A practical Excel formula cheat sheet with common lookup, logic, text, date, percentage, and summary formulas plus examples.',
@@ -4689,6 +4729,20 @@ const pageEnhancements = {
       setup: 'A regional invoice report needs the total paid West amount before the formula is filled through a shared workbook.',
       formula: '=SUMIFS(D2:D500,B2:B500,"West",C2:C500,"Paid")',
       read: 'The formula totals Amount values only when Region is West and Status is Paid. The checks tell you to confirm every SUMIFS range covers the same rows before filling it through the report.'
+    }
+  },
+  'manyexcel-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a broader formula, regex, script, chart, and file workflow.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing ManyExcel-style spreadsheet AI tools but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule from a browser tab.',
+    notWhen: 'Use ManyExcel or another broader spreadsheet AI tool when you need regex patterns, VBA scripts, Google Apps Script, charts, Excel-file interaction, or low-cost unlimited formula, regex, and script generation. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'An invoice report needs the paid Product A total for June 2026 before the formula is filled through a shared workbook.',
+      formula: '=SUMIFS(D2:D500,B2:B500,"Product A",C2:C500,"Paid",A2:A500,">="&DATE(2026,6,1),A2:A500,"<"&DATE(2026,7,1))',
+      read: 'The formula totals Amount values only when Product is Product A, Status is Paid, and the invoice date is in June 2026. The checks tell you to confirm every SUMIFS range covers the same rows before filling it through the report.'
     }
   },
   'excel-formula-cheat-sheet': {
