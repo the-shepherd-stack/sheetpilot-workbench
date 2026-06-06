@@ -558,6 +558,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excelformula-pro-alternative',
     'excelformula-co-alternative',
     'manyexcel-alternative',
+    'excelmatic-alternative',
     'excel-formula-cheat-sheet',
     'excel-formula-explainer',
     'excel-formula-fixer',
@@ -949,6 +950,36 @@ test('ManyExcel alternative page targets broader spreadsheet AI comparison witho
   assert.match(homepage, /href="\/manyexcel-alternative\/">ManyExcel alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/manyexcel-alternative\//);
   assert.doesNotMatch(page, /replaces ManyExcel|better than ManyExcel|official ManyExcel|ManyExcel partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|privacy superior|faster|cheaper|beats ManyExcel|price superior/i);
+});
+
+test('Excelmatic alternative page targets RowSpeak file-analysis comparison without overclaiming', () => {
+  const page = read('excelmatic-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excelmatic Alternative for One Formula Problem/);
+  assert.match(page, /An Excelmatic alternative for one formula problem/);
+  assert.match(page, /RowSpeak, formerly Excelmatic/);
+  assert.match(page, /turning spreadsheet-heavy files into answers, dashboards, reports, and business-ready analysis/);
+  assert.match(page, /upload Excel, CSV, PDF, or image-based tables/);
+  assert.match(page, /dashboards, charts, summaries, recurring reports, forecasts, scenarios, or broader business analysis/);
+  assert.match(page, /Excelmatic currently redirects to RowSpeak/);
+  assert.match(page, /uploading Excel, CSV, PDF, or image-based tables/);
+  assert.match(page, /weekly KPI packs, monthly business reports, forecasts, scenarios, dashboard workflows/);
+  assert.match(page, /Essential plan at \$9\.9 monthly or \$99\/year/);
+  assert.match(page, /Professional is listed at \$29\.9 monthly or \$299\/year/);
+  assert.match(page, /Premium is listed at \$59\.9 monthly or \$599\/year/);
+  assert.match(page, /10 AI conversations per month/);
+  assert.match(page, /20 image-to-Excel conversions/);
+  assert.match(page, /=SUMIFS\(E2:E500,B2:B500,&quot;West&quot;,C2:C500,&quot;Paid&quot;,D2:D500,&quot;&gt;=&quot;&amp;DATE\(2026,6,1\)\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excelmatic-alternative\/">Excelmatic alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excelmatic-alternative\//);
+  assert.doesNotMatch(page, /replaces Excelmatic|replaces RowSpeak|better than Excelmatic|better than RowSpeak|official Excelmatic|official RowSpeak|Excelmatic partner|RowSpeak partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook support|whole spreadsheet audit|exact cause|uploads? your workbook|human reviewer|same-day|PDF delivery|privacy superior|bloated|overpriced|cheaper|faster|bait-and-switch/i);
 });
 
 test('excel formula help page targets broad help intent without overclaiming', () => {

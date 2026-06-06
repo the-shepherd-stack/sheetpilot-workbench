@@ -1176,6 +1176,46 @@ const pages = [
     ]
   },
   {
+    slug: 'excelmatic-alternative',
+    title: 'Excelmatic Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused Excelmatic alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing a broader RowSpeak file-analysis, dashboard, report, chart, PDF, image, or BI workflow.',
+    eyebrow: 'Excelmatic alternative',
+    h1: 'An Excelmatic alternative for one formula problem.',
+    lede: 'RowSpeak, formerly Excelmatic, is built for turning spreadsheet-heavy files into answers, dashboards, reports, and business-ready analysis. Use Write My Formula when the job is smaller: one Excel or Google Sheets formula, one explanation, or one repair you can inspect in a browser tab before copying it back into your sheet.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=SUMIFS(E2:E500,B2:B500,"West",C2:C500,"Paid",D2:D500,">="&DATE(2026,6,1))'
+    },
+    intent: 'Help spreadsheet users comparing Excelmatic or RowSpeak-style AI spreadsheet platforms choose a narrow formula workbench when the immediate problem is one Excel or Google Sheets formula, one explanation, or one repair rather than a broader file-analysis or reporting workflow.',
+    bestFor: [
+      'Trying a formula-sized task with two guest tries before creating an account.',
+      'Writing or fixing one Excel or Google Sheets formula with the relevant columns, sample rows, and expected result visible.',
+      'Explaining inherited formula logic before editing a shared workbook.',
+      'Using a browser tab when you do not need file uploads, dashboards, charts, image-to-Excel, PDF-to-Excel, recurring reports, or BI-style analysis.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the headers, sample rows, target range, broken formula, or expected result.',
+      'Review the explanation and checks, then copy the formula into Excel or Google Sheets yourself.'
+    ],
+    copyChecks: [
+      'Use RowSpeak when you want to upload Excel, CSV, PDF, or image-based tables and turn them into answers, dashboards, charts, reports, or recurring business analysis.',
+      'Use Write My Formula when the immediate job is one formula, one rule, or one repair you can read and test.',
+      'RowSpeak / Excelmatic details verified June 6, 2026; test any generated formula on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where RowSpeak fits',
+        html: 'Excelmatic currently redirects to RowSpeak, and RowSpeak describes the product as an AI business agent for turning raw data into professional deliverables. Its public Excel AI page describes uploading Excel, CSV, PDF, or image-based tables, asking in plain English, cleaning messy files, analyzing changes, and creating charts, dashboards, summaries, and management reports. Its quick-start docs say the AI activates after file upload and point users toward weekly KPI packs, monthly business reports, forecasts, scenarios, dashboard workflows, data cleaning, data transformations, visualization, charts, and image/PDF to Excel workflows.'
+      },
+      {
+        title: 'Current RowSpeak pricing context',
+        html: 'RowSpeak pricing currently lists an Essential plan at $9.9 monthly or $99/year with 150 chat messages per month, 5 uploaded files per chat, 150 image-to-Excel conversions per month, 10 Excel-to-dashboard generations per month, template generation, Excel downloads, chart downloads, and email support. Professional is listed at $29.9 monthly or $299/year with unlimited chat messages and higher upload/dashboard limits; Premium is listed at $59.9 monthly or $599/year. The free plan FAQ lists 10 AI conversations per month, up to 2 file uploads per chat with a 5MB maximum each, 20 image-to-Excel conversions, and 3 dashboard generations.'
+      }
+    ]
+  },
+  {
     slug: 'excelformula-pro-alternative',
     title: 'ExcelFormula Pro Alternative for One Formula Problem | Write My Formula',
     description: 'A focused ExcelFormula Pro alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing an account-based formula generator with history and a monthly plan.',
@@ -4729,6 +4769,20 @@ const pageEnhancements = {
       setup: 'A regional invoice report needs the total paid West amount before the formula is filled through a shared workbook.',
       formula: '=SUMIFS(D2:D500,B2:B500,"West",C2:C500,"Paid")',
       read: 'The formula totals Amount values only when Region is West and Status is Paid. The checks tell you to confirm every SUMIFS range covers the same rows before filling it through the report.'
+    }
+  },
+  'excelmatic-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a broader RowSpeak file-analysis and dashboard workflow.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing Excelmatic or RowSpeak-style spreadsheet AI platforms but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule from a browser tab.',
+    notWhen: 'Use RowSpeak when you want to upload Excel, CSV, PDF, or image-based tables and produce dashboards, charts, summaries, recurring reports, forecasts, scenarios, or broader business analysis. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A regional invoice report needs the paid West total since June 1, 2026 before the formula is filled through a shared workbook.',
+      formula: '=SUMIFS(E2:E500,B2:B500,"West",C2:C500,"Paid",D2:D500,">="&DATE(2026,6,1))',
+      read: 'The formula totals Amount values only when Region is West, Status is Paid, and Date is on or after June 1, 2026. The checks tell you to confirm every SUMIFS range covers the same rows before filling it through the report.'
     }
   },
   'manyexcel-alternative': {
