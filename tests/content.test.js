@@ -239,6 +239,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a login-based daily-credit formula bot/);
   assert.match(page, /\/sourcetable-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a full AI spreadsheet workspace/);
+  assert.match(page, /\/bricks-ai-spreadsheet-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a full AI spreadsheet, dashboard, chart, report, or collaboration workspace/);
   assert.match(page, /\/index-match-formula-generator\//);
   assert.match(page, /Build flexible lookup formulas for left lookups, two-way lookups, and older Excel files/);
   assert.match(page, /data-checkout/);
@@ -842,6 +844,30 @@ test('Arcwise alternative page targets in-Sheets AI analyst comparison without o
   assert.match(homepage, /href="\/arcwise-alternative\/">Arcwise alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/arcwise-alternative\//);
   assert.doesNotMatch(page, /replaces Arcwise|better than Arcwise|official Arcwise|Arcwise partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF delivery|privacy superior|bloated|overpriced/i);
+});
+
+test('Bricks AI spreadsheet alternative page targets whole-workspace comparison without overclaiming', () => {
+  const page = read('bricks-ai-spreadsheet-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Bricks AI Spreadsheet Alternative for One Formula Problem/);
+  assert.match(page, /A Bricks alternative for one formula problem/);
+  assert.match(page, /AI spreadsheet work across data, dashboards, charts, reports, and collaboration/);
+  assert.match(page, /file import, data cleaning, row analysis, dashboards, charts, reports, slides, templates, real-time collaboration/);
+  assert.match(page, /full AI spreadsheet, dashboard, chart, report, upload, or collaboration workspace/);
+  assert.match(page, /traditional formulas and functions/);
+  assert.match(page, /Excel-style formula generation from natural-language prompts/);
+  assert.match(page, /Bricks details verified June 6, 2026/);
+  assert.match(page, /=SUMIFS\(D2:D500,B2:B500,&quot;West&quot;,C2:C500,&quot;Paid&quot;\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/bricks-ai-spreadsheet-alternative\/">Bricks AI spreadsheet alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/bricks-ai-spreadsheet-alternative\//);
+  assert.doesNotMatch(page, /replaces Bricks|better than Bricks|official Bricks|Bricks partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook support|whole spreadsheet audit|exact cause|uploads? your workbook|human reviewer|same-day|PDF delivery|privacy superior|bloated|overpriced/i);
 });
 
 test('Smart Excel alternative page targets focused formula comparison without overclaiming', () => {

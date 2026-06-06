@@ -1074,6 +1074,41 @@ const pages = [
     ]
   },
   {
+    slug: 'bricks-ai-spreadsheet-alternative',
+    title: 'Bricks AI Spreadsheet Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused Bricks AI spreadsheet alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing a full AI spreadsheet, dashboard, chart, report, upload, or collaboration workspace.',
+    eyebrow: 'Bricks AI spreadsheet alternative',
+    h1: 'A Bricks alternative for one formula problem.',
+    lede: 'Bricks is built for AI spreadsheet work across data, dashboards, charts, reports, and collaboration. Use Write My Formula when the job is smaller: one Excel or Google Sheets formula, explanation, or repair in a browser tab, with range notes and paste checks visible before you copy anything back into the sheet.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=SUMIFS(D2:D500,B2:B500,"West",C2:C500,"Paid")'
+    },
+    intent: 'Help spreadsheet users comparing Bricks-style AI spreadsheet workspaces choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair rather than a whole-sheet AI workspace.',
+    bestFor: [
+      'Writing or fixing one Excel or Google Sheets formula without importing a file first.',
+      'Explaining inherited formula logic before editing a shared workbook.',
+      'Trying a focused formula helper when you do not need dashboards, charts, report generation, data cleaning, upload, templates, slides, or real-time collaboration.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the formula, headers, sample rows, expected result, or target range.',
+      'Review the explanation and checks, then copy the formula into Excel or Google Sheets yourself.'
+    ],
+    copyChecks: [
+      'Use Bricks or another AI spreadsheet workspace when you want file import, data cleaning, row analysis, dashboards, charts, reports, slides, templates, real-time collaboration, or AI changes inside a spreadsheet grid.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair in a browser tab.',
+      'Bricks details verified June 6, 2026; test the output on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where Bricks fits',
+        html: 'Bricks currently presents itself as an AI spreadsheet and AI data analyst for organizing data, creating dashboards, reports, charts, and presentations, and collaborating in one workspace. Its public AI spreadsheet page describes analyzing data, performing calculations, formatting and cleaning data, automating lookups, creating charts and dashboards, importing Excel or CSV files, exporting data, using traditional formulas and functions, templates, mobile/web access, and real-time collaboration. Its docs describe AI Chat for Grid and Board work, including row analysis, data cleaning, formatting, formulas, conditional formatting, sorting, filtering, duplicate removal, structured-data reports, and Excel-style formula generation from natural-language prompts.'
+      }
+    ]
+  },
+  {
     slug: 'excelformula-pro-alternative',
     title: 'ExcelFormula Pro Alternative for One Formula Problem | Write My Formula',
     description: 'A focused ExcelFormula Pro alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing an account-based formula generator with history and a monthly plan.',
@@ -4539,6 +4574,20 @@ const pageEnhancements = {
       setup: 'A Google Sheets report needs prices filled from a lookup table, but the inherited ARRAYFORMULA is returning #N/A for blanks and missing products.',
       formula: '=ARRAYFORMULA(IF(A2:A="","",IFNA(VLOOKUP(A2:A,Prices!A:B,2,FALSE),"Not found")))',
       read: 'The formula leaves blank product rows blank, looks up nonblank products in the Prices table, and returns a readable fallback when no exact match exists. The checks tell you to confirm the lookup range covers the product and price columns before filling it through the report.'
+    }
+  },
+  'bricks-ai-spreadsheet-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a full AI spreadsheet workspace.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing Bricks-style AI spreadsheet workspaces but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule from a browser tab.',
+    notWhen: 'Use Bricks or another AI spreadsheet workspace when you need file import, data cleaning, row analysis, dashboards, charts, reports, slides, templates, real-time collaboration, or AI changes inside a spreadsheet grid. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A regional invoice report needs the total paid West amount before the formula is filled through a shared workbook.',
+      formula: '=SUMIFS(D2:D500,B2:B500,"West",C2:C500,"Paid")',
+      read: 'The formula totals Amount values only when Region is West and Status is Paid. The checks tell you to confirm every SUMIFS range covers the same rows before filling it through the report.'
     }
   },
   'excel-formula-cheat-sheet': {
