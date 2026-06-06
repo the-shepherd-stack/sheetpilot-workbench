@@ -1039,6 +1039,44 @@ const pages = [
     ]
   },
   {
+    slug: 'excelformula-pro-alternative',
+    title: 'ExcelFormula Pro Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused ExcelFormula Pro alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing an account-based formula generator with history and a monthly plan.',
+    eyebrow: 'ExcelFormula Pro alternative',
+    h1: 'An ExcelFormula Pro alternative for one formula at a time.',
+    lede: 'ExcelFormula Pro and Write My Formula both sit in the AI spreadsheet-formula category. Use Write My Formula when the job is one Excel or Google Sheets formula, explanation, or repair from a browser tab. Use ExcelFormula Pro or another account-based formula generator when you want formula history, LibreOffice Calc support, a recurring plan, or a higher-volume formula workflow.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Write a formula that totals paid invoices for the West region in July 2026.',
+      table: 'Invoice Date,Region,Status,Amount\n2026-07-04,West,Paid,1200\n2026-07-09,East,Paid,850\n2026-07-15,West,Open,640',
+      range: 'Dates in A2:A500; region in B2:B500; status in C2:C500; amount in D2:D500; result in G2',
+      hint: 'SUMIFS'
+    },
+    intent: 'Help spreadsheet users comparing ExcelFormula Pro-style AI formula generators choose a narrow formula workbench when the immediate problem is one Excel or Google Sheets formula, one explanation, or one repair.',
+    bestFor: [
+      'Writing or fixing one formula with the relevant rows, columns, ranges, and expected result visible.',
+      'Trying two formula requests from a browser tab before adding email access or upgrading.',
+      'Explaining inherited Excel or Google Sheets formula logic before editing a shared report.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the headers, sample rows, target range, broken formula, or expected result.',
+      'Review the explanation and checks, then copy the formula into Excel or Google Sheets yourself.'
+    ],
+    copyChecks: [
+      'Use ExcelFormula Pro or another account-based generator if you want LibreOffice Calc support, formula history, priority support, no ads, yearly billing, or a higher-volume monthly formula plan.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair in a browser tab.',
+      'ExcelFormula Pro details verified June 6, 2026; test the output on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where ExcelFormula Pro fits',
+        html: 'ExcelFormula Pro currently presents itself as an AI-powered formula generator for Excel, LibreOffice Calc, and Google Sheets. Its public homepage highlights detailed explanations, copy-to-clipboard usage, mobile-friendly access, 10K+ formulas generated, 2 free trial formulas, and a $15/month Pro plan. Its pricing page lists a Free plan with 2 free formulas total, Basic AI model, copy to clipboard, formula history, and priority support; Pro Monthly at $15/month with unlimited formulas, an advanced AI model, full formula history, priority support, and no ads; and Pro Yearly at $79/year.'
+      }
+    ]
+  },
+  {
     slug: 'excel-formula-cheat-sheet',
     title: 'Excel Formula Cheat Sheet | Write My Formula',
     description: 'A practical Excel formula cheat sheet with common lookup, logic, text, date, percentage, and summary formulas plus examples.',
@@ -4188,6 +4226,20 @@ const pageEnhancements = {
       setup: 'A report needs a margin formula in D that uses Revenue in B and Cost in C, while avoiding a divide-by-zero error when revenue is blank or zero.',
       formula: '=IF(B2=0,"",(B2-C2)/B2)',
       read: 'The formula returns a blank when Revenue is zero, then calculates margin as Revenue minus Cost divided by Revenue. The checks tell you to confirm whether blanks should stay blank or become 0 before filling the formula through the report.'
+    }
+  },
+  'excelformula-pro-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of an account-based formula generator.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing ExcelFormula Pro-style AI formula generators but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
+    notWhen: 'Use ExcelFormula Pro or a similar account-based formula generator when you want LibreOffice Calc support, formula history, priority support, no ads, yearly billing, or a higher-volume monthly formula plan. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A report needs paid West-region invoice totals from July 2026, but the criteria should be readable before the formula is filled through the workbook.',
+      formula: '=SUMIFS($D$2:$D$500,$B$2:$B$500,"West",$C$2:$C$500,"Paid",$A$2:$A$500,">="&DATE(2026,7,1),$A$2:$A$500,"<"&DATE(2026,8,1))',
+      read: 'The formula totals Amount values only when Region is West, Status is Paid, and Invoice Date falls inside July 2026. The checks tell you to confirm every SUMIFS range covers the same rows and the date column contains real dates.'
     }
   },
   'gptexcel-alternative': {

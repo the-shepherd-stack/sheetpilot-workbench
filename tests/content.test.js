@@ -546,6 +546,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'sheetsmart-alternative',
     'smart-excel-alternative',
     'sourcetable-alternative',
+    'excelformula-pro-alternative',
     'excel-formula-cheat-sheet',
     'excel-formula-explainer',
     'excel-formula-fixer',
@@ -813,6 +814,34 @@ test('Smart Excel alternative page targets focused formula comparison without ov
   assert.match(homepage, /href="\/smart-excel-alternative\/">Smart Excel alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/smart-excel-alternative\//);
   assert.doesNotMatch(page, /replaces Smart Excel|better than Smart Excel|official Smart Excel|Smart Excel partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|privacy superior/i);
+});
+
+test('ExcelFormula Pro alternative page targets account-based formula generator comparison without overclaiming', () => {
+  const page = read('excelformula-pro-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /ExcelFormula Pro Alternative for One Formula Problem/);
+  assert.match(page, /An ExcelFormula Pro alternative for one formula at a time/);
+  assert.match(page, /AI spreadsheet-formula category/);
+  assert.match(page, /LibreOffice Calc support, formula history, priority support, no ads, yearly billing/);
+  assert.match(page, /ExcelFormula Pro details verified June 6, 2026/);
+  assert.match(page, /Excel, LibreOffice Calc, and Google Sheets/);
+  assert.match(page, /10K\+ formulas generated/);
+  assert.match(page, /2 free trial formulas/);
+  assert.match(page, /\$15\/month Pro plan/);
+  assert.match(page, /Free plan with 2 free formulas total/);
+  assert.match(page, /Pro Monthly at \$15\/month/);
+  assert.match(page, /Pro Yearly at \$79\/year/);
+  assert.match(page, /=SUMIFS\(\$D\$2:\$D\$500,\$B\$2:\$B\$500,&quot;West&quot;,\$C\$2:\$C\$500,&quot;Paid&quot;,\$A\$2:\$A\$500,&quot;&gt;=&quot;&amp;DATE\(2026,7,1\),\$A\$2:\$A\$500,&quot;&lt;&quot;&amp;DATE\(2026,8,1\)\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excelformula-pro-alternative\/">ExcelFormula Pro alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excelformula-pro-alternative\//);
+  assert.doesNotMatch(page, /replaces ExcelFormula Pro|better than ExcelFormula Pro|official ExcelFormula Pro|ExcelFormula Pro partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|privacy superior|bloated|overpriced/i);
 });
 
 test('excel formula help page targets broad help intent without overclaiming', () => {
