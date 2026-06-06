@@ -546,6 +546,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'sheetsmart-alternative',
     'smart-excel-alternative',
     'sourcetable-alternative',
+    'arcwise-alternative',
     'excelformula-pro-alternative',
     'excelformula-co-alternative',
     'excel-formula-cheat-sheet',
@@ -815,6 +816,32 @@ test('Sourcetable alternative page targets AI spreadsheet comparison without ove
   assert.match(homepage, /href="\/sourcetable-alternative\/">Sourcetable alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/sourcetable-alternative\//);
   assert.doesNotMatch(page, /replaces Sourcetable|better than Sourcetable|official Sourcetable|Sourcetable partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook support|whole spreadsheet audit|exact cause|uploads? your workbook|human reviewer|same-day|PDF delivery|privacy superior|bloated|overpriced|credit anxiety/i);
+});
+
+test('Arcwise alternative page targets in-Sheets AI analyst comparison without overclaiming', () => {
+  const page = read('arcwise-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Arcwise Alternative for One Formula Problem/);
+  assert.match(page, /An Arcwise alternative for one formula problem/);
+  assert.match(page, /AI analysis and reporting inside Google Sheets/);
+  assert.match(page, /connected warehouse data, large-data formulas, pivots, graphs, reports, PDF table extraction, ARCQUERY, GPT formulas, or custom AI functions in sheet cells/);
+  assert.match(page, /large-data formulas, pivots, graphs, auto-generated insights, PDF ingestion, ARCQUERY, GPT formulas/);
+  assert.match(page, /Arcwise details verified June 6, 2026/);
+  assert.match(page, /10,000 users/);
+  assert.match(page, /4\.5 rating across 23 ratings/);
+  assert.match(page, /version 2\.3\.1 updated September 14, 2024/);
+  assert.match(page, /AI\.TRANSFORM, AI\.CLASSIFY, and AI\.EXTRACT/);
+  assert.match(page, /=ARRAYFORMULA\(IF\(A2:A=&quot;&quot;,&quot;&quot;,IFNA\(VLOOKUP\(A2:A,Prices!A:B,2,FALSE\),&quot;Not found&quot;\)\)\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/arcwise-alternative\/">Arcwise alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/arcwise-alternative\//);
+  assert.doesNotMatch(page, /replaces Arcwise|better than Arcwise|official Arcwise|Arcwise partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF delivery|privacy superior|bloated|overpriced/i);
 });
 
 test('Smart Excel alternative page targets focused formula comparison without overclaiming', () => {

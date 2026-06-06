@@ -1039,6 +1039,41 @@ const pages = [
     ]
   },
   {
+    slug: 'arcwise-alternative',
+    title: 'Arcwise Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused Arcwise alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing an in-Sheets AI analyst, connected-data, PDF-ingestion, ARCQUERY, or GPT-function workflow.',
+    eyebrow: 'Arcwise alternative',
+    h1: 'An Arcwise alternative for one formula problem.',
+    lede: 'Arcwise and AI Copilot for Sheets are built for AI analysis and reporting inside Google Sheets. Use Write My Formula when the job is smaller: one Excel or Google Sheets formula, explanation, or repair in a browser tab, with the range notes and paste checks visible before you copy anything back into the sheet.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=ARRAYFORMULA(IF(A2:A="","",VLOOKUP(A2:A,Prices!A:B,2,FALSE)))'
+    },
+    intent: 'Help spreadsheet users comparing Arcwise-style AI spreadsheet assistants choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair rather than an in-Sheets AI analyst or connected-data workflow.',
+    bestFor: [
+      'Writing or fixing one Excel or Google Sheets formula without installing a Chrome extension first.',
+      'Explaining inherited formula logic before editing a shared report.',
+      'Trying a focused formula helper when you do not need connected data, PDF table extraction, pivots, graphs, reports, ARCQUERY, or AI functions inside sheet cells.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the formula, headers, sample rows, expected result, or target range.',
+      'Review the explanation and checks, then copy the formula into Excel or Google Sheets yourself.'
+    ],
+    copyChecks: [
+      'Use Arcwise or another in-Sheets AI analyst when you want connected data, large-data formulas, pivots, graphs, auto-generated insights, PDF ingestion, ARCQUERY, GPT formulas, or AI functions that live inside Google Sheets.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair in a browser tab.',
+      'Arcwise details verified June 6, 2026; test the output on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where Arcwise fits',
+        html: 'Arcwise currently describes itself as an AI-first data analysis and reporting platform deeply integrated with Google Sheets. Its docs describe connecting data from data warehouses and other tools, working with large data, using AI Analyst in Sheets, formulas that can execute on full connected datasets in the database, manual refresh behavior for Arcwise formula cells, GPT formulas that require the Chrome extension and sheet permissions, and ARCQUERY for inline SQL. The Chrome Web Store listing for AI Copilot for Sheets by Arcwise shows 10,000 users, a 4.5 rating across 23 ratings, version 2.3.1 updated September 14, 2024, and features such as pivots, graphs, auto-generated insights, PDF table extraction, and AI.TRANSFORM, AI.CLASSIFY, and AI.EXTRACT functions.'
+      }
+    ]
+  },
+  {
     slug: 'excelformula-pro-alternative',
     title: 'ExcelFormula Pro Alternative for One Formula Problem | Write My Formula',
     description: 'A focused ExcelFormula Pro alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing an account-based formula generator with history and a monthly plan.',
@@ -4490,6 +4525,20 @@ const pageEnhancements = {
       setup: 'A lookup formula should return the amount for the customer in F2, but the inherited formula hides missing matches with a blank and makes it hard to tell what is being searched.',
       formula: '=IFNA(XLOOKUP(F2,$A$2:$A$500,$D$2:$D$500,"Not found",0),"Not found")',
       read: 'The formula searches Customer values in A, returns Amount from D, and gives a readable fallback when no exact match exists. The checks tell you to confirm the lookup and return ranges cover the same rows before filling it through the report.'
+    }
+  },
+  'arcwise-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of an in-Sheets AI analyst workflow.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing Arcwise-style spreadsheet AI but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule from a browser tab.',
+    notWhen: 'Use Arcwise or another in-Sheets AI analyst when you need AI analysis inside Google Sheets, connected warehouse data, large-data formulas, pivots, graphs, reports, PDF table extraction, ARCQUERY, GPT formulas, or custom AI functions in sheet cells. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A Google Sheets report needs prices filled from a lookup table, but the inherited ARRAYFORMULA is returning #N/A for blanks and missing products.',
+      formula: '=ARRAYFORMULA(IF(A2:A="","",IFNA(VLOOKUP(A2:A,Prices!A:B,2,FALSE),"Not found")))',
+      read: 'The formula leaves blank product rows blank, looks up nonblank products in the Prices table, and returns a readable fallback when no exact match exists. The checks tell you to confirm the lookup range covers the product and price columns before filling it through the report.'
     }
   },
   'excel-formula-cheat-sheet': {
