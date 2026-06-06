@@ -157,6 +157,7 @@ h1 {
   font-size: clamp(46px, 6.2vw, 82px);
   line-height: 0.98;
   text-wrap: balance;
+  overflow-wrap: anywhere;
 }
 
 h2 {
@@ -861,6 +862,13 @@ code {
   background: #15151d;
   color: #f7f4ff;
   padding: 12px;
+}
+
+.detail-card pre code {
+  display: block;
+  max-width: 100%;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 .detail-card li + li {

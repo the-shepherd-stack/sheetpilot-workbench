@@ -547,6 +547,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'smart-excel-alternative',
     'sourcetable-alternative',
     'excelformula-pro-alternative',
+    'excelformula-co-alternative',
     'excel-formula-cheat-sheet',
     'excel-formula-explainer',
     'excel-formula-fixer',
@@ -663,6 +664,30 @@ test('seo landing pages target high-intent formula searches', () => {
     assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
     assert.match(sitemap, new RegExp(`https://writemyformula\\.com/${slug}/`));
   }
+});
+
+test('ExcelFormula.co alternative page keeps the comparison bounded', () => {
+  const page = read('excelformula-co-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /ExcelFormula\.co Alternative for One Formula Problem/);
+  assert.match(page, /An ExcelFormula\.co alternative for one formula session/);
+  assert.match(page, /free daily formula allowance/);
+  assert.match(page, /5 free formulas per day/);
+  assert.match(page, /formula history/);
+  assert.match(page, /saved favorite formulas/);
+  assert.match(page, /Excel 2016, 2019, 2021, Excel 365, and Google Sheets/);
+  assert.match(page, /ExcelFormula\.co details verified June 6, 2026/);
+  assert.match(page, /=IF\(AND\(B2=&quot;Product A&quot;,C2=&quot;Paid&quot;,A2&gt;=DATE\(2026,8,1\),A2&lt;DATE\(2026,9,1\)\),&quot;August paid Product A&quot;,&quot;Other&quot;\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month in this browser/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excelformula-co-alternative\/">ExcelFormula\.co alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excelformula-co-alternative\//);
+  assert.doesNotMatch(page, /replaces ExcelFormula\.co|better than ExcelFormula\.co|official ExcelFormula\.co|ExcelFormula\.co partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook audit by Write My Formula|whole spreadsheet audit by Write My Formula|exact cause|human reviewer|same-day|PDF|privacy superior|works every time|bloated|overpriced/i);
 });
 
 test('FormulaGenius alternative page stays fit-based and bounded', () => {

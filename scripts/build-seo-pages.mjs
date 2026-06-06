@@ -1077,6 +1077,46 @@ const pages = [
     ]
   },
   {
+    slug: 'excelformula-co-alternative',
+    title: 'ExcelFormula.co Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused ExcelFormula.co alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing a daily-cap Excel formula generator with saved-history features.',
+    eyebrow: 'ExcelFormula.co alternative',
+    h1: 'An ExcelFormula.co alternative for one formula session.',
+    lede: 'ExcelFormula.co is an AI-powered Excel formula generator with a free daily formula allowance and a $5/month Pro plan. Use Write My Formula when the job is one Excel or Google Sheets formula, explanation, or repair from a browser tab, especially when you want two no-account tries before choosing email access or founding access.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Write a formula that labels invoices paid in August 2026 for Product A.',
+      table: 'Invoice Date,Product,Status,Amount\n2026-08-04,Product A,Paid,1200\n2026-08-09,Product B,Paid,850\n2026-08-15,Product A,Open,640',
+      range: 'Dates in A2:A500; product in B2:B500; status in C2:C500; result in E2',
+      hint: 'IF'
+    },
+    intent: 'Help spreadsheet users comparing ExcelFormula.co-style AI formula generators choose a narrow formula workbench when the immediate problem is one Excel or Google Sheets formula, one explanation, or one repair.',
+    bestFor: [
+      'Working through a cluster of formula questions in one sitting rather than spreading every request across a daily free allowance.',
+      'Writing or fixing one formula with the relevant columns, sample rows, and expected result visible.',
+      'Trying two formula requests from a browser tab before adding email access or upgrading.',
+      'Explaining inherited Excel or Google Sheets formula logic before editing a shared report.',
+      'Choosing a defined founding-access monthly run limit when a project needs more than a few formula attempts.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the headers, sample rows, target range, broken formula, or expected result.',
+      'Review the explanation and checks, then copy the formula into Excel or Google Sheets yourself.'
+    ],
+    copyChecks: [
+      'Use ExcelFormula.co or another Excel formula generator if you want 5 free formulas per day, formula history, priority support, saved favorites, or a $5/month unlimited-formula plan.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair in a browser tab.',
+      'ExcelFormula.co details verified June 6, 2026; test the output on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where ExcelFormula.co fits',
+        html: 'ExcelFormula.co currently presents itself as an AI-powered Excel formula generator. Its public page says users can describe an Excel problem in plain English, get a generated formula with an explanation, and use popular formula patterns such as VLOOKUP, SUMIF, INDEX MATCH, IF, COUNTIF, and XLOOKUP. Its pricing section lists a Free plan with 5 formulas per day, formula explanations, and no signup required, plus a Pro plan at $5/month with unlimited formulas, formula history, priority support, and saved favorite formulas. Its FAQ says it supports modern Excel versions including Excel 2016, 2019, 2021, Excel 365, and Google Sheets.'
+      }
+    ]
+  },
+  {
     slug: 'excel-formula-cheat-sheet',
     title: 'Excel Formula Cheat Sheet | Write My Formula',
     description: 'A practical Excel formula cheat sheet with common lookup, logic, text, date, percentage, and summary formulas plus examples.',
@@ -4240,6 +4280,20 @@ const pageEnhancements = {
       setup: 'A report needs paid West-region invoice totals from July 2026, but the criteria should be readable before the formula is filled through the workbook.',
       formula: '=SUMIFS($D$2:$D$500,$B$2:$B$500,"West",$C$2:$C$500,"Paid",$A$2:$A$500,">="&DATE(2026,7,1),$A$2:$A$500,"<"&DATE(2026,8,1))',
       read: 'The formula totals Amount values only when Region is West, Status is Paid, and Invoice Date falls inside July 2026. The checks tell you to confirm every SUMIFS range covers the same rows and the date column contains real dates.'
+    }
+  },
+  'excelformula-co-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a daily-cap formula generator.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing ExcelFormula.co-style AI formula generators but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
+    notWhen: 'Use ExcelFormula.co or a similar Excel formula generator when you want a 5-formulas-per-day free allowance, formula history, priority support, saved favorite formulas, or a low monthly unlimited-formula plan. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A report needs a label for paid Product A invoices from August 2026, but the conditions should be readable before the formula is filled down.',
+      formula: '=IF(AND(B2="Product A",C2="Paid",A2>=DATE(2026,8,1),A2<DATE(2026,9,1)),"August paid Product A","Other")',
+      read: 'The formula returns the label only when Product, Status, and Invoice Date all match the requested conditions. The checks tell you to confirm that the date column contains real Excel dates and that the fallback label is acceptable before filling it through the report.'
     }
   },
   'gptexcel-alternative': {
