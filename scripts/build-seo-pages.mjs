@@ -812,6 +812,41 @@ const pages = [
     ]
   },
   {
+    slug: 'formulapilot-alternative',
+    title: 'FormulaPilot Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused FormulaPilot alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing a free generator, checker, reference, and formula-library hub.',
+    eyebrow: 'FormulaPilot alternative',
+    h1: 'A FormulaPilot alternative for the formula you are stuck on right now.',
+    lede: 'Use Write My Formula when the job is one Excel or Google Sheets formula, explanation, or repair, and you want to try the answer in this tab before deciding whether you need a larger formula library, checker, or reference hub.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=VLOOKUP(A2,Customers!A:D,4,FALSE)'
+    },
+    intent: 'Help spreadsheet users comparing FormulaPilot-style formula generators choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair.',
+    bestFor: [
+      'Fixing one lookup, summary, IF, text, date, conditional-formatting, or validation formula with the relevant ranges visible.',
+      'Trying two formula-sized requests before deciding whether to keep using a formula tool.',
+      'Explaining inherited Excel or Google Sheets formulas before editing a shared report.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the formula, headers, sample rows, or expected result so the answer has context.',
+      'Review the formula read-through and paste checks before copying it into the sheet.'
+    ],
+    copyChecks: [
+      'Use FormulaPilot or another formula hub if you want a free no-signup generator, formula checker, Google Sheets generator, function references, error references, learning pages, and browsable category libraries.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair.',
+      'FormulaPilot details verified June 6, 2026; test the output on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where FormulaPilot fits',
+        html: 'FormulaPilot currently presents a free no-signup AI Excel and Google Sheets formula generator, a formula checker, a Google Sheets generator, function references, an error reference, learning pages, and a formula library organized by categories such as Date & Time, Math & Statistics, Financial, Array Formulas, Data Cleaning, Text Manipulation, Conditional Logic, and Lookup & Reference. Use that kind of hub when you want to browse and learn around the formula. Use Write My Formula when the immediate task is one formula you can paste, read, and test.'
+      }
+    ]
+  },
+  {
     slug: 'formulagenius-alternative',
     title: 'FormulaGenius Alternative for One Formula Problem | Write My Formula',
     description: 'A focused FormulaGenius alternative for writing, explaining, or fixing one Excel or Google Sheets formula with two guest tries before signup.',
@@ -4462,6 +4497,20 @@ const pageEnhancements = {
       setup: 'A task tracker needs to count paid West-region onboarding tasks from the current month, but the team wants the criteria ranges spelled out before filling the formula down.',
       formula: '=COUNTIFS(A2:A500,"West",B2:B500,"Paid",C2:C500,">="&DATE(2026,6,1),C2:C500,"<"&DATE(2026,7,1))',
       read: 'The formula counts rows where Region is West, Status is Paid, and Task Date falls inside June 2026. The checks tell you to confirm each criteria range covers the same rows and that the date column contains real dates.'
+    }
+  },
+  'formulapilot-alternative': {
+    gives: [
+      'Two guest tries for one real formula problem before you decide whether to keep going.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A clear path after the guest tries: free email access at 3 runs per week or $9 founding access for 500 formula runs per month in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing FormulaPilot-style formula generators but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
+    notWhen: 'Use FormulaPilot or a similar formula hub when you want a free no-signup generator, a formula checker, a Google Sheets generator, function references, error references, learning pages, or browsable formula libraries. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A Google Sheets lookup across a Customers tab returns #N/A for IDs that appear to exist, and the team wants to understand the lookup before copying a replacement through the sheet.',
+      formula: '=VLOOKUP(A2,Customers!A:D,4,FALSE)',
+      read: 'The formula looks for the value in A2 in the first column of Customers!A:D, then returns the fourth column from the matching row. The checks tell you to confirm the lookup ID is in the first column, compare text numbers and hidden spaces, and decide whether a readable fallback should replace raw #N/A.'
     }
   },
   'formulagenius-alternative': {

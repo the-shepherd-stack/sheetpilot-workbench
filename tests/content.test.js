@@ -227,6 +227,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you want two tries before choosing a broader formula app or extension/);
   assert.match(page, /\/formulawiz-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than Airtable or cross-platform variants/);
+  assert.match(page, /\/formulapilot-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a full formula library, checker, or reference hub/);
   assert.match(page, /\/formulagenius-alternative\//);
   assert.match(page, /Use a focused formula helper when you want two guest tries before choosing a broader formula library or monthly tool/);
   assert.match(page, /\/excelly-ai-alternative\//);
@@ -2797,4 +2799,26 @@ test('FormulaWiz alternative page targets focused formula comparison without ove
   assert.match(homepage, /href="\/formulawiz-alternative\/">FormulaWiz alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/formulawiz-alternative\//);
   assert.doesNotMatch(page, /replaces FormulaWiz|better than FormulaWiz|official FormulaWiz|FormulaWiz partner|affiliated|guarantee|guaranteed|always fixes|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|validates against actual spreadsheet APIs|95%\+ accuracy/i);
+});
+
+test('FormulaPilot alternative page targets focused formula comparison without overclaiming', () => {
+  const page = read('formulapilot-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /FormulaPilot Alternative for One Formula Problem/);
+  assert.match(page, /A FormulaPilot alternative for the formula you are stuck on right now/);
+  assert.match(page, /larger formula library, checker, or reference hub/);
+  assert.match(page, /write one formula, repair one broken formula, explain one inherited formula/);
+  assert.match(page, /free no-signup generator, a formula checker, a Google Sheets generator, function references, error references, learning pages, or browsable formula libraries/);
+  assert.match(page, /Date & Time, Math & Statistics, Financial, Array Formulas, Data Cleaning, Text Manipulation, Conditional Logic, and Lookup & Reference/);
+  assert.match(page, /=VLOOKUP\(A2,Customers!A:D,4,FALSE\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 formula runs per month/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/formulapilot-alternative\/">FormulaPilot alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/formulapilot-alternative\//);
+  assert.doesNotMatch(page, /replaces FormulaPilot|better than FormulaPilot|official FormulaPilot|FormulaPilot partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|privacy superior|validates against actual spreadsheet APIs|95%\+ accuracy/i);
 });
