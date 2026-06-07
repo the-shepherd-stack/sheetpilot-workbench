@@ -1176,6 +1176,49 @@ const pages = [
     ]
   },
   {
+    slug: 'sheetseek-alternative',
+    title: 'SheetSeek Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused SheetSeek alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing a broader AI spreadsheet builder, chart, data chat, cleanup, export, or file-upload workflow.',
+    eyebrow: 'SheetSeek alternative',
+    h1: 'A SheetSeek alternative for one formula problem.',
+    lede: 'SheetSeek describes itself as an AI spreadsheet builder for generating spreadsheets, charts, and exports from a description. Use Write My Formula when the job is smaller: one Excel or Google Sheets formula, explanation, or repair in a browser tab, with range notes and paste checks visible before you copy anything back into the sheet.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Write a formula that flags paid West invoices above 5000 for follow-up.',
+      table: 'Region,Status,Amount\nWest,Paid,7200\nEast,Paid,4100\nWest,Open,1800',
+      range: 'A2:C500; result in D2',
+      hint: 'IF'
+    },
+    intent: 'Help spreadsheet users comparing SheetSeek-style AI spreadsheet builders choose a narrow formula workbench when the immediate problem is one Excel or Google Sheets formula, one explanation, or one repair rather than a full spreadsheet build or analysis workflow.',
+    bestFor: [
+      'Trying a formula-sized task with two guest tries before creating an account.',
+      'Writing or fixing one Excel or Google Sheets formula with the relevant columns, sample rows, and expected result visible.',
+      'Explaining inherited formula logic before editing a shared workbook.',
+      'Using a browser tab when you do not need file upload, chart creation, data chat, data cleanup, spreadsheet generation, exports, or a broader AI builder.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the headers, sample rows, target range, broken formula, or expected result.',
+      'Review the explanation and checks, then copy the formula into Excel or Google Sheets yourself.'
+    ],
+    copyChecks: [
+      'Use SheetSeek or another AI spreadsheet builder when you want to generate a whole spreadsheet, upload files, create charts, clean messy data, chat with data, or export Excel, CSV, or PDF files.',
+      'Use Write My Formula when the immediate job is one formula, one rule, or one repair you can read and test.',
+      'SheetSeek details verified June 7, 2026; test any generated formula on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where SheetSeek fits',
+        html: 'SheetSeek currently positions itself as an AI spreadsheet builder and data-analysis tool. Its public page describes building custom spreadsheets from a description, generating charts, generating Excel formulas, cleaning messy data, chatting with data, and exporting to Excel, CSV, or PDF. It also presents small-business, analyst, freelancer, and general Excel-overwhelm use cases, a free plan, and paid monthly plans for higher message limits and features.'
+      },
+      {
+        title: 'Current SheetSeek pricing context',
+        html: 'SheetSeek pricing currently lists a Free plan at £0/month with 10 messages per day, 10MB file uploads, basic charts, and community support. Starter is listed at £9.99/month with 250 messages per month, Excel formula generation, chart creation, email support, and a 7-day free trial. Pro is listed at £24.99/month with 5,000 messages per month, priority support, advanced analytics, and custom reports, while Max is listed at £79.99/month with 20,000 messages per month, dedicated support, team features, and API access.'
+      }
+    ]
+  },
+  {
     slug: 'excelmatic-alternative',
     title: 'Excelmatic Alternative for One Formula Problem | Write My Formula',
     description: 'A focused Excelmatic alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing a broader RowSpeak file-analysis, dashboard, report, chart, PDF, image, or BI workflow.',
@@ -4357,7 +4400,7 @@ const pageEnhancements = {
     gives: [
       'A focused formula request flow for Excel and Google Sheets instead of a broad data-analysis suite.',
       'Write, Explain, and Fix modes with optional table context, range hints, formula notes, and paste checks.',
-      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing Formula Bot-style AI spreadsheet suites but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
     notWhen: 'Use Formula Bot or a similar broader spreadsheet AI suite when you need Excel, CSV, or PDF file upload, workbook analysis, data chat, charts, dashboards, connectors, SQL, VBA, Apps Script, regex, or automated reporting. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
@@ -4371,7 +4414,7 @@ const pageEnhancements = {
     gives: [
       'A focused formula request flow for Excel and Google Sheets formulas instead of a broad formula, SQL, automation, and file-context toolkit.',
       'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
-      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing AI Formula Generator-style tools but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
     notWhen: 'Use AI Formula Generator or a similar broader formula platform when you need SQL queries, CSV or Excel file context, formula templates, bulk generation, VBA, Apps Script, or a conversational formula workflow. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
@@ -4385,7 +4428,7 @@ const pageEnhancements = {
     gives: [
       'A focused formula request flow for Excel and Google Sheets instead of a broad spreadsheet automation workspace.',
       'Write, Explain, and Fix modes with optional table context, range hints, formula notes, and copy checks.',
-      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing SheetSolver AI-style spreadsheet tools but the job in front of you is still formula-shaped: write one formula, explain one inherited formula, fix one broken formula, or create one custom rule for conditional formatting or data validation.',
     notWhen: 'Use SheetSolver AI or another broader spreadsheet workspace when you need optional sheet or screenshot upload, prompt-to-sheet generation, PDF or invoice extraction, Excel or Google Sheets export, data chat, dashboards, charts, or workbook-wide analysis. Write My Formula is intentionally narrower so the formula, explanation, and paste checks stay visible.',
@@ -4399,7 +4442,7 @@ const pageEnhancements = {
     gives: [
       'A focused formula request flow for Excel and Google Sheets instead of a broad spreadsheet analyst workflow.',
       'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
-      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing ExpressSheet-style AI spreadsheet analyst tools but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
     notWhen: 'Use ExpressSheet or a similar broader spreadsheet analyst when you need Excel or CSV upload, data chat, trends, anomalies, recommendations, charts, PDF export, enhanced spreadsheet downloads, batch processing, API access, collaboration, SSO, or team controls. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
@@ -4413,7 +4456,7 @@ const pageEnhancements = {
     gives: [
       'A focused formula request flow for Excel and Google Sheets instead of a broad spreadsheet assistant workspace.',
       'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
-      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing SheetGPT-style spreadsheet AI assistants but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
     notWhen: 'Use SheetGPT or a similar broader spreadsheet AI workspace when you need Excel or CSV file upload, data-level chat, image-to-table conversion, charts, written spreadsheet analysis, scripts, or formula history across sessions. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
@@ -4427,7 +4470,7 @@ const pageEnhancements = {
     gives: [
       'A focused formula request flow for Excel and Google Sheets instead of a broader in-spreadsheet AI automation workspace.',
       'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
-      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing SheetXAI-style spreadsheet AI tools but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
     notWhen: 'Use SheetXAI or a similar in-spreadsheet AI workspace when you need sidebar chat inside Excel or Google Sheets, PDF or image extraction, connected business apps, bulk data movement, analysis, content generation, or workflow automation. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
@@ -4441,7 +4484,7 @@ const pageEnhancements = {
     gives: [
       'A focused formula request flow for Excel and Google Sheets instead of a broader spreadsheet bot.',
       'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
-      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing FormulaBerry-style spreadsheet bots but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
     notWhen: 'Use FormulaBerry or another broader spreadsheet bot when you want multilingual explanation settings, finance-specific formula workflows, small-business spreadsheet guidance, all-device access, or a monthly unlimited-credit plan. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
@@ -4455,7 +4498,7 @@ const pageEnhancements = {
     gives: [
       'A focused formula request flow for Excel and Google Sheets instead of an installed Excel add-in suite.',
       'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
-      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing FormulaDesk-style Excel add-ins but the immediate job is still small: write one formula, explain one inherited formula, repair one broken formula, or create one custom rule for conditional formatting or data validation.',
     notWhen: 'Use FormulaDesk or a similar Excel add-in suite when you need installed workbook inspection, step-by-step formula tracing inside Excel, precedent drilldown, workbook issue checks, formula formatting/editing, LAMBDA creation, equation display, formula plotting, Word documentation, or large-workbook navigation. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
@@ -4469,7 +4512,7 @@ const pageEnhancements = {
     gives: [
       'A focused formula request flow for Excel and Google Sheets instead of a broader AI spreadsheet automation platform.',
       'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
-      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing PromptLoop-style spreadsheet AI but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
     notWhen: 'Use PromptLoop or another AI spreadsheet automation platform when you need in-sheet AI functions, AI tasks across many rows, GTM or sales enrichment, web browsing, list scraping, dynamic data extraction, research pages, file processing, scheduled tasks, or CRM-connected data work. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
@@ -4483,7 +4526,7 @@ const pageEnhancements = {
     gives: [
       'A focused formula request flow for Excel and Google Sheets instead of a connected-data spreadsheet platform.',
       'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
-      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing Coefficient-style spreadsheet AI and connected-data tools but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
     notWhen: 'Use Coefficient or a similar connected spreadsheet platform when you need live data imports, scheduled refreshes, exports, alerts, shared team connections, SQL builders, chart builders, pivot builders, or GPT functions that live inside Google Sheets. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
@@ -4497,7 +4540,7 @@ const pageEnhancements = {
     gives: [
       'A focused formula request flow for Excel and Google Sheets instead of a broad Excel assistant suite.',
       'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
-      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing ExcelGPT-style AI Excel assistants but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
     notWhen: 'Use ExcelGPT or a similar broader Excel assistant when you need uploaded-file analysis, data cleaning, charts, dashboards, automation, file conversion, connected data sources, SQL, regex, VBA, scripts, or workbook-wide insights. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
@@ -4511,7 +4554,7 @@ const pageEnhancements = {
     gives: [
       'A focused formula request flow for Excel and Google Sheets instead of a full AI spreadsheet platform.',
       'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
-      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing Rows-style AI spreadsheet tools but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
     notWhen: 'Use Rows or another full AI spreadsheet platform when you need imported data, AI Analyst-style table work, cross-table actions, Python, formula columns, checkpoints, or broader data analysis. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
@@ -4525,7 +4568,7 @@ const pageEnhancements = {
     gives: [
       'A focused formula request flow for Excel and Google Sheets instead of an account-based formula generator.',
       'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
-      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing ExcelFormula Pro-style AI formula generators but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
     notWhen: 'Use ExcelFormula Pro or a similar account-based formula generator when you want LibreOffice Calc support, formula history, priority support, no ads, yearly billing, or a higher-volume monthly formula plan. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
@@ -4539,7 +4582,7 @@ const pageEnhancements = {
     gives: [
       'A focused formula request flow for Excel and Google Sheets instead of a daily-cap formula generator.',
       'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
-      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing ExcelFormula.co-style AI formula generators but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
     notWhen: 'Use ExcelFormula.co or a similar Excel formula generator when you want a 5-formulas-per-day free allowance, formula history, priority support, saved favorite formulas, or a low monthly unlimited-formula plan. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
@@ -4553,7 +4596,7 @@ const pageEnhancements = {
     gives: [
       'A focused formula request flow for Excel and Google Sheets instead of a broad AI spreadsheet suite.',
       'Write, Explain, and Fix modes with formula notes, table context, range hints, and copy checks.',
-      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing AI Excel tools and the immediate job is still formula-shaped: fix a SUMIFS date criterion, explain a nested IF, write an XLOOKUP, repair a text formula, or build a custom rule.',
     notWhen: 'Do not use Write My Formula as a replacement for tools that upload whole files, chat with tables, create charts, build dashboards, or automate a full workbook. It is intentionally narrower so the formula and checks stay easy to inspect.',
@@ -4567,7 +4610,7 @@ const pageEnhancements = {
     gives: [
       'A focused formula request flow for Excel and Google Sheets instead of a VBA, macro, or uploaded-data workspace.',
       'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and copy checks.',
-      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing AI Excel tools and the immediate job is still formula-shaped: repair an XLOOKUP, explain an inherited IF, write a SUMIFS, build a custom rule, or adapt one formula to the ranges in your sheet.',
     notWhen: 'Do not use Write My Formula as a replacement for tools that generate VBA, analyze uploaded data files, create dashboards, build charts, or automate a full workbook. It is intentionally narrower so the formula and checks stay easy to inspect.',
@@ -4581,7 +4624,7 @@ const pageEnhancements = {
     gives: [
       'A focused formula request flow for Excel and Google Sheets instead of a broader agentic spreadsheet workspace.',
       'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and copy checks.',
-      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing Ajelix-style AI spreadsheet platforms but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one rule for conditional formatting or data validation.',
     notWhen: 'Do not use Write My Formula as a replacement for Ajelix when you need file upload, workspace assets, dashboards, charts, VBA, Apps Script, PowerPoint, Google Workspace add-ons, or a team-wide AI platform. It is intentionally narrower so the formula and checks stay easy to inspect.',
@@ -4595,7 +4638,7 @@ const pageEnhancements = {
     gives: [
       'A focused formula request flow for Excel and Google Sheets instead of a broader spreadsheet AI platform.',
       'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and copy checks.',
-      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing SheetAI-style spreadsheet AI tools but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
     notWhen: 'Do not use Write My Formula as a replacement for SheetAI when you need spreadsheet generation, cleaning, data analysis, CSV conversion, visualization, automation, or a broader workflow platform. It is intentionally narrower so the formula and checks stay easy to inspect.',
@@ -4609,7 +4652,7 @@ const pageEnhancements = {
     gives: [
       'A focused formula request flow for Excel and Google Sheets instead of an in-spreadsheet AI automation add-in.',
       'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and copy checks.',
-      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing Numerous.ai-style spreadsheet AI add-ins but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
     notWhen: 'Do not use Write My Formula as a replacement for Numerous.ai when you need AI functions inside spreadsheet cells, bulk writing, categorization, formatting, example-based inference, or repetitive task automation. It is intentionally narrower so the formula and checks stay easy to inspect.',
@@ -4623,7 +4666,7 @@ const pageEnhancements = {
     gives: [
       'Two guest tries before you decide whether to create an account.',
       'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
-      'A clear upgrade path: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A clear upgrade path: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing Formulr-style AI formula tools but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
     notWhen: 'Do not use Write My Formula as a replacement for Formulr when you want monthly generate, explain, and debug quotas in a dedicated formula app or browser extension. It is intentionally narrower so the formula and checks stay easy to inspect.',
@@ -4637,7 +4680,7 @@ const pageEnhancements = {
     gives: [
       'A focused formula request flow for Excel and Google Sheets instead of a simultaneous Excel, Sheets, and Airtable formula converter.',
       'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
-      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing FormulaWiz-style formula generators but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
     notWhen: 'Do not use Write My Formula as a replacement for FormulaWiz when you need Airtable formulas, simultaneous cross-platform variants, or a monthly formula subscription across several spreadsheet dialects. It is intentionally narrower so the formula and checks stay easy to inspect.',
@@ -4651,7 +4694,7 @@ const pageEnhancements = {
     gives: [
       'A focused formula request flow for Excel and Google Sheets instead of a four-assistant formula, SQL, regex, and script workspace.',
       'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
-      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing Formularizer-style assistant suites but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
     notWhen: 'Use Formularizer or a similar suite when you need SQL query generation, regex generation, Excel VBA scripts, Google Apps Script, sample-data credit workflows, or one account across several assistant types. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
@@ -4671,7 +4714,7 @@ const pageEnhancements = {
     gives: [
       'Two guest tries for one real formula problem before you decide whether to keep going.',
       'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
-      'A clear path after the guest tries: free email access at 3 runs per week or $9 founding access for 500 formula runs per month in this browser.'
+      'A clear path after the guest tries: free email access at 3 runs per week or $9 founding access for 500 formula runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing FormulaPilot-style formula generators but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
     notWhen: 'Use FormulaPilot or a similar formula hub when you want a free no-signup generator, a formula checker, a Google Sheets generator, function references, error references, learning pages, or browsable formula libraries. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
@@ -4685,7 +4728,7 @@ const pageEnhancements = {
     gives: [
       'Two guest tries for one Excel or Google Sheets formula problem before you decide whether to sign up.',
       'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
-      'A clear upgrade path: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A clear upgrade path: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing FormulaGenius-style AI formula generators but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
     notWhen: 'Choose FormulaGenius or a similar broader formula tool when you want a formula-example catalog, formula history and favorites, a Chrome extension, priority support, or unlimited formula volume. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
@@ -4699,7 +4742,7 @@ const pageEnhancements = {
     gives: [
       'A focused formula request flow for Excel and Google Sheets instead of a broader formula-learning and history workspace.',
       'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
-      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing FormulaZa-style formula tools but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
     notWhen: 'Use FormulaZa or a similar broader formula resource when you want 50 free formulas per day, 16-language support, formula history, a formula library, a daily quiz, an Excel-to-Sheets translator, AI Excel chat, saved formulas, or course/resource browsing. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
@@ -4713,7 +4756,7 @@ const pageEnhancements = {
     gives: [
       'A focused formula request flow for Excel and Google Sheets instead of a broader upload, Slack, VBA, or conversion workflow.',
       'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
-      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing Excelly-AI-style formula tools but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
     notWhen: 'Use Excelly-AI or a similar broader formula tool when you need .xlsx upload, Slack team workflows, VBA generation, or conversion between Excel and Google Sheets formula syntax. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
@@ -4727,7 +4770,7 @@ const pageEnhancements = {
     gives: [
       'A focused formula request flow for Excel and Google Sheets instead of an add-on or saved formula workspace.',
       'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
-      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing Sheeter-style formula generators but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
     notWhen: 'Use Sheeter or a similar formula generator when you want an add-on, a saved formula workspace, top-query examples, or a lifetime-plan path for repeated formula generation. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
@@ -4741,7 +4784,7 @@ const pageEnhancements = {
     gives: [
       'A browser-based formula request flow for Excel and Google Sheets instead of a Google Sheets extension workflow.',
       'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
-      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing SheetSmart-style Google Sheets formula assistants but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule outside an installed extension flow.',
     notWhen: 'Use SheetSmart or a similar Google Sheets extension when you want formula help inside the sheet, automatic column-header or cell-context reading, direct formula insertion, formula history, favorites, or heavy Sheets-only usage. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
@@ -4755,7 +4798,7 @@ const pageEnhancements = {
     gives: [
       'A focused formula request flow for Excel and Google Sheets instead of a login-based daily-credit formula bot.',
       'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
-      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing Smart Excel-style formula bots but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule from a browser tab.',
     notWhen: 'Use Smart Excel or a similar formula bot when you want a login-based Excel formula generator, language selection, daily free credits, optional credit purchases, or a one-time credit pack. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
@@ -4769,7 +4812,7 @@ const pageEnhancements = {
     gives: [
       'A focused formula request flow for Excel and Google Sheets instead of a full AI spreadsheet workspace.',
       'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
-      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing Sourcetable-style AI spreadsheet platforms but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule while staying in the workbook you already use.',
     notWhen: 'Use Sourcetable or another AI spreadsheet workspace when you need file upload, spreadsheet chat, AI analysis, pivots, charts, visualizations, data cleaning, AI research, SQL, Python, database or app connectors, or analysis across workbook tabs. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
@@ -4783,7 +4826,7 @@ const pageEnhancements = {
     gives: [
       'A focused formula request flow for Excel and Google Sheets instead of an in-Sheets AI analyst workflow.',
       'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
-      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing Arcwise-style spreadsheet AI but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule from a browser tab.',
     notWhen: 'Use Arcwise or another in-Sheets AI analyst when you need AI analysis inside Google Sheets, connected warehouse data, large-data formulas, pivots, graphs, reports, PDF table extraction, ARCQUERY, GPT formulas, or custom AI functions in sheet cells. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
@@ -4797,7 +4840,7 @@ const pageEnhancements = {
     gives: [
       'A focused formula request flow for Excel and Google Sheets instead of a full AI spreadsheet workspace.',
       'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
-      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing Bricks-style AI spreadsheet workspaces but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule from a browser tab.',
     notWhen: 'Use Bricks or another AI spreadsheet workspace when you need file import, data cleaning, row analysis, dashboards, charts, reports, slides, templates, real-time collaboration, or AI changes inside a spreadsheet grid. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
@@ -4807,11 +4850,25 @@ const pageEnhancements = {
       read: 'The formula totals Amount values only when Region is West and Status is Paid. The checks tell you to confirm every SUMIFS range covers the same rows before filling it through the report.'
     }
   },
+  'sheetseek-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a full AI spreadsheet builder.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing SheetSeek-style AI spreadsheet builders but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule from a browser tab.',
+    notWhen: 'Use SheetSeek or another AI spreadsheet builder when you need file upload, chart creation, data chat, data cleanup, spreadsheet generation, exports, team features, API access, or broader analysis. Write My Formula is intentionally narrower: one formula, one output panel, one copy button.',
+    example: {
+      setup: 'An invoice tracker needs a helper flag for paid West-region invoices above 5000 before the formula is filled through the report.',
+      formula: '=IF(AND(A2="West",B2="Paid",C2>5000),"Follow up","")',
+      read: 'The formula checks the current row for Region, Status, and Amount, then returns a follow-up label only when all three conditions are true. The checks tell you to confirm the columns match your workbook before filling it down.'
+    }
+  },
   'excelmatic-alternative': {
     gives: [
       'A focused formula request flow for Excel and Google Sheets instead of a broader RowSpeak file-analysis and dashboard workflow.',
       'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
-      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing Excelmatic or RowSpeak-style spreadsheet AI platforms but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule from a browser tab.',
     notWhen: 'Use RowSpeak when you want to upload Excel, CSV, PDF, or image-based tables and produce dashboards, charts, summaries, recurring reports, forecasts, scenarios, or broader business analysis. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
@@ -4825,7 +4882,7 @@ const pageEnhancements = {
     gives: [
       'A focused formula request flow for Excel and Google Sheets after a quick free generator draft is not enough.',
       'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
-      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing AI Excel Formula-style no-signup formula generators but the immediate job needs more context: write one formula, repair one broken formula, explain one inherited formula, or check a quick generated formula before using it.',
     notWhen: 'Use AI Excel Formula or another quick free generator when you only need a first-pass formula draft, example browsing, or one-click copy. Write My Formula is intentionally narrower around one formula-sized answer you can inspect, explain, and test.',
@@ -4839,7 +4896,7 @@ const pageEnhancements = {
     gives: [
       'A focused formula request flow for Excel and Google Sheets instead of a broader formula, regex, script, chart, and file workflow.',
       'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
-      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month in this browser.'
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
     ],
     useWhen: 'Use this page when you are comparing ManyExcel-style spreadsheet AI tools but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule from a browser tab.',
     notWhen: 'Use ManyExcel or another broader spreadsheet AI tool when you need regex patterns, VBA scripts, Google Apps Script, charts, Excel-file interaction, or low-cost unlimited formula, regex, and script generation. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
