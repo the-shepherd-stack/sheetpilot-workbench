@@ -223,6 +223,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a broader spreadsheet AI workflow/);
   assert.match(page, /\/numerous-ai-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than in-spreadsheet AI automation/);
+  assert.match(page, /\/sheetgod-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than an add-on, macro, regex, or Apps Script workflow/);
   assert.match(page, /\/formulr-alternative\//);
   assert.match(page, /Use a focused formula helper when you want two tries before choosing a broader formula app or extension/);
   assert.match(page, /\/formulawiz-alternative\//);
@@ -2891,6 +2893,28 @@ test('Numerous.ai alternative page targets focused formula comparison without ov
   assert.match(homepage, /href="\/numerous-ai-alternative\/">Numerous\.ai alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/numerous-ai-alternative\//);
   assert.doesNotMatch(page, /replaces Numerous\.ai|better than Numerous\.ai|official Numerous\.ai|Numerous\.ai partner|affiliated|guarantee|guaranteed|always fixes|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|reads? your document|send data over the Internet/i);
+});
+
+test('SheetGod alternative page targets focused formula comparison without overclaiming', () => {
+  const page = read('sheetgod-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /SheetGod Alternative for One Formula Problem/);
+  assert.match(page, /A SheetGod alternative for one formula problem/);
+  assert.match(page, /Google Sheets add-on, pivot-table guidance, regex help, VBA macros, or Apps Script code/);
+  assert.match(page, /write one formula, repair one broken formula, explain one inherited formula/);
+  assert.match(page, /pivot-table steps, regex expressions, VBA code, macros, Google Apps Script snippets/);
+  assert.match(page, /permission surface for spreadsheet access, third-party content, external-service connection, email address, and personal info/);
+  assert.match(page, /=IFNA\(INDEX\(Products!C:C,MATCH\(A2,Products!A:A,0\)\),&quot;Check SKU&quot;\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/sheetgod-alternative\/">SheetGod alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/sheetgod-alternative\//);
+  assert.doesNotMatch(page, /replaces SheetGod|better than SheetGod|official SheetGod|SheetGod partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|reads? your document|human reviewer|same-day|PDF|cheaper than SheetGod|more accurate|faster/i);
 });
 
 test('Formulr alternative page targets focused formula comparison without overclaiming', () => {

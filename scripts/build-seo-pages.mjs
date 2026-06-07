@@ -780,6 +780,35 @@ const pages = [
     ]
   },
   {
+    slug: 'sheetgod-alternative',
+    title: 'SheetGod Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused SheetGod alternative for writing, explaining, or fixing one Excel or Google Sheets formula without installing a Google Sheets add-on or opening macro, regex, or Apps Script workflows.',
+    eyebrow: 'SheetGod alternative',
+    h1: 'A SheetGod alternative for one formula problem.',
+    lede: 'Use Write My Formula when the job is one Excel or Google Sheets formula, explanation, or repair, and you do not need a Google Sheets add-on, pivot-table guidance, regex help, VBA macros, or Apps Script code.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=IFERROR(INDEX(Products!C:C,MATCH(A2,Products!A:A,0)),"")'
+    },
+    intent: 'Help spreadsheet users comparing SheetGod-style formula add-ons choose a narrow browser workbench when the immediate problem is one formula, one explanation, or one repair.',
+    bestFor: [
+      'Fixing or writing one Excel or Google Sheets formula without installing an add-on first.',
+      'Explaining inherited formula logic before changing a shared spreadsheet.',
+      'Trying a focused formula helper before choosing a broader assistant for regex, macros, Apps Script, or Google Sheets task guidance.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the formula, headers, sample rows, or expected result so the answer has context.',
+      'Review the formula explanation and paste checks before using it in the sheet.'
+    ],
+    copyChecks: [
+      'Use SheetGod or another add-on when you want the assistant inside Google Sheets or need pivot-table steps, regex expressions, VBA macros, or Apps Script snippets.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair.',
+      'Test the output on one known row before filling it through an important sheet.'
+    ]
+  },
+  {
     slug: 'formulr-alternative',
     title: 'Formulr Alternative for One Formula Problem | Write My Formula',
     description: 'A focused Formulr alternative for writing, explaining, or fixing one Excel or Google Sheets formula with range notes and paste checks.',
@@ -4710,6 +4739,26 @@ const pageEnhancements = {
       formula: '=SUMIFS($D$2:$D$500,$B$2:$B$500,"West",$C$2:$C$500,">="&DATE(2026,1,1))',
       read: 'The formula totals Amount values in D only when Region in B is West and the date in C is on or after January 1, 2026. The checks tell you to confirm the date column contains real dates and that every SUMIFS range covers the same rows.'
     }
+  },
+  'sheetgod-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a Google Sheets add-on workflow.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and copy checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing SheetGod-style spreadsheet assistants but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
+    notWhen: 'Do not use Write My Formula as a replacement for SheetGod when you need an add-on inside Google Sheets, pivot-table steps, regex expressions, VBA code, macros, Google Apps Script snippets, or broad spreadsheet task guidance. It is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A Google Sheets report needs the product category for each SKU, but the current lookup hides missing IDs and is hard to review.',
+      formula: '=IFNA(INDEX(Products!C:C,MATCH(A2,Products!A:A,0)),"Check SKU")',
+      read: 'The formula matches the SKU in A2 against the Products sheet, returns the category from column C, and shows a clear fallback when the SKU is missing. The checks tell you to confirm the lookup column, return column, and fallback text before filling it down.'
+    },
+    extraDetailCards: [
+      {
+        title: 'Where SheetGod fits',
+        html: 'BoloForms SheetGod is listed in Google Workspace Marketplace as an add-on that turns text instructions into Google Sheets formulas, provides formula explanations, and gives detailed steps for Google Sheets tasks such as pivot tables, regex expressions, VBA code, and macros. The same listing shows a permission surface for spreadsheet access, third-party content, external-service connection, email address, and personal info. Use that kind of tool when you want an installed Sheets assistant; use Write My Formula when the task is only one formula, explanation, or repair.'
+      }
+    ]
   },
   'formulr-alternative': {
     gives: [
