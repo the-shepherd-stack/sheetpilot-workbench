@@ -809,6 +809,48 @@ const pages = [
     ]
   },
   {
+    slug: 'geniesheet-alternative',
+    title: 'GenieSheet Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused GenieSheet alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing a daily-prompt formula generator.',
+    eyebrow: 'GenieSheet alternative',
+    h1: 'A GenieSheet alternative for one formula problem.',
+    lede: 'GenieSheet is built for turning plain-English prompts into Excel and Google Sheets formulas with explanations. Use Write My Formula when the job is narrower: one Excel or Google Sheets formula, explanation, or repair, with the range notes and paste checks visible before you copy anything back into the sheet.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Write a formula that sums product revenue where quantity is above 100.',
+      table: 'Product,Quantity,Revenue\nWidget,120,2400\nGadget,80,1600\nWidget Pro,150,4500',
+      range: 'Quantities in B2:B500; revenue in C2:C500; result in F2',
+      hint: 'SUMIF'
+    },
+    intent: 'Help spreadsheet users comparing GenieSheet-style AI formula generators choose a narrow formula workbench when the immediate problem is one Excel or Google Sheets formula, one explanation, or one repair.',
+    bestFor: [
+      'Writing or fixing one Excel or Google Sheets formula with the touched ranges visible.',
+      'Explaining inherited formula logic before editing a shared spreadsheet.',
+      'Trying a focused formula helper before choosing a daily-prompt generator, formula-example library, or broader formula app.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the headers, sample rows, formula, expected result, or target range.',
+      'Review the explanation and checks, then copy the formula into Excel or Google Sheets yourself.'
+    ],
+    copyChecks: [
+      'Use GenieSheet or another formula generator when you want a plain-English prompt flow, formula examples, daily prompt limits, or a formula-history workflow.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair.',
+      'GenieSheet details verified June 7, 2026; test the output on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where GenieSheet fits',
+        html: 'GenieSheet currently presents itself as an AI-powered formula generator built for Excel and Google Sheets. Its public page describes plain-English prompts, formula explanations, copy-and-use workflow, 1,265+ formula examples, no credit card requirement, a free plan, and 3 free prompts daily. The page also includes claims about speed, accuracy, privacy, and refunds; use those claims to evaluate GenieSheet directly, not as promises about Write My Formula.'
+      },
+      {
+        title: 'Broader formula-generator context',
+        html: 'Current formula-generator tools keep splitting by workflow. FormulaWiz presents Excel, Google Sheets, and Airtable formula generation plus explain/debug modes and a formula library. Formulr presents Excel and Google Sheets generate, explain, and debug modes with free monthly quotas and a paid plan. Use Write My Formula when you want the same decision kept to one visible formula, one explanation, or one repair.'
+      }
+    ]
+  },
+  {
     slug: 'formulr-alternative',
     title: 'Formulr Alternative for One Formula Problem | Write My Formula',
     description: 'A focused Formulr alternative for writing, explaining, or fixing one Excel or Google Sheets formula with range notes and paste checks.',
@@ -4757,6 +4799,30 @@ const pageEnhancements = {
       {
         title: 'Where SheetGod fits',
         html: 'BoloForms SheetGod is listed in Google Workspace Marketplace as an add-on that turns text instructions into Google Sheets formulas, provides formula explanations, and gives detailed steps for Google Sheets tasks such as pivot tables, regex expressions, VBA code, and macros. The same listing shows a permission surface for spreadsheet access, third-party content, external-service connection, email address, and personal info. Use that kind of tool when you want an installed Sheets assistant; use Write My Formula when the task is only one formula, explanation, or repair.'
+      }
+    ]
+  },
+  'geniesheet-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a daily-prompt formula generator.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and copy checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing GenieSheet-style AI formula generators but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
+    notWhen: 'Do not use Write My Formula as a replacement for GenieSheet when you want a daily-prompt formula generator, formula examples, formula history, or GenieSheet-specific pricing and support. It is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A product report needs total revenue for items where Quantity is above 100, but the team wants the formula and its assumptions visible before filling it down.',
+      formula: '=SUMIF(B2:B500,">100",C2:C500)',
+      read: 'The formula sums Revenue values in C only for rows where Quantity in B is greater than 100. The checks tell you to confirm the quantity and revenue columns, then test one known row before using the total in a report.'
+    },
+    extraDetailCards: [
+      {
+        title: 'Where GenieSheet fits',
+        html: 'GenieSheet currently presents itself as an AI-powered formula generator built for Excel and Google Sheets. Its public page describes plain-English prompts, formula explanations, copy-and-use workflow, 1,265+ formula examples, no credit card requirement, a free plan, and 3 free prompts daily. The page also includes claims about speed, accuracy, privacy, and refunds; use those claims to evaluate GenieSheet directly, not as promises about Write My Formula.'
+      },
+      {
+        title: 'Broader formula-generator context',
+        html: 'Current formula-generator tools keep splitting by workflow. FormulaWiz presents Excel, Google Sheets, and Airtable formula generation plus explain/debug modes and a formula library. Formulr presents Excel and Google Sheets generate, explain, and debug modes with free monthly quotas and a paid plan. Use Write My Formula when you want the same decision kept to one visible formula, one explanation, or one repair.'
       }
     ]
   },

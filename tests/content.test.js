@@ -225,6 +225,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than in-spreadsheet AI automation/);
   assert.match(page, /\/sheetgod-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than an add-on, macro, regex, or Apps Script workflow/);
+  assert.match(page, /\/geniesheet-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a daily-prompt formula generator/);
   assert.match(page, /\/formulr-alternative\//);
   assert.match(page, /Use a focused formula helper when you want two tries before choosing a broader formula app or extension/);
   assert.match(page, /\/formulawiz-alternative\//);
@@ -2915,6 +2917,31 @@ test('SheetGod alternative page targets focused formula comparison without overc
   assert.match(homepage, /href="\/sheetgod-alternative\/">SheetGod alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/sheetgod-alternative\//);
   assert.doesNotMatch(page, /replaces SheetGod|better than SheetGod|official SheetGod|SheetGod partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|reads? your document|human reviewer|same-day|PDF|cheaper than SheetGod|more accurate|faster/i);
+});
+
+test('GenieSheet alternative page targets focused formula comparison without overclaiming', () => {
+  const page = read('geniesheet-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /GenieSheet Alternative for One Formula Problem/);
+  assert.match(page, /A GenieSheet alternative for one formula problem/);
+  assert.match(page, /turning plain-English prompts into Excel and Google Sheets formulas with explanations/);
+  assert.match(page, /daily-prompt formula generator/);
+  assert.match(page, /daily-prompt formula generator, formula examples, formula history/);
+  assert.match(page, /1,265\+ formula examples/);
+  assert.match(page, /3 free prompts daily/);
+  assert.match(page, /FormulaWiz presents Excel, Google Sheets, and Airtable formula generation/);
+  assert.match(page, /Formulr presents Excel and Google Sheets generate, explain, and debug modes/);
+  assert.match(page, /=SUMIF\(B2:B500,&quot;&gt;100&quot;,C2:C500\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/geniesheet-alternative\/">GenieSheet alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/geniesheet-alternative\//);
+  assert.doesNotMatch(page, /replaces GenieSheet|better than GenieSheet|official GenieSheet|GenieSheet partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|reads? your document|human reviewer|same-day|PDF|privacy superior|cheaper than GenieSheet|more accurate|faster|99\.9% accuracy|7-day guarantee/i);
 });
 
 test('Formulr alternative page targets focused formula comparison without overclaiming', () => {
