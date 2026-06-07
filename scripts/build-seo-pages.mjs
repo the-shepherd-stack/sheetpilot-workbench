@@ -1553,6 +1553,49 @@ const pages = [
     ]
   },
   {
+    slug: 'gpt-workspace-alternative',
+    title: 'GPT Workspace Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused GPT Workspace alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing an in-Sheets AI sidebar, GPT formulas, direct insertion, or chat-with-sheet workflow.',
+    eyebrow: 'GPT Workspace alternative',
+    h1: 'A GPT Workspace alternative for one formula problem.',
+    lede: 'GPT Workspace is built for AI work inside Google Sheets and Google Workspace. Use Write My Formula when the job is smaller: one Excel or Google Sheets formula, explanation, or repair in a browser tab, with range notes and paste checks visible before you copy anything back into the sheet.',
+    preset: {
+      mode: 'write',
+      platform: 'sheets',
+      task: 'Write a formula that totals paid West invoices from June 2026.',
+      table: 'Invoice Date,Region,Status,Amount\n2026-06-04,West,Paid,1200\n2026-06-09,East,Paid,850\n2026-06-15,West,Open,640',
+      range: 'Dates in A2:A500; region in B2:B500; status in C2:C500; amount in D2:D500; result in G2',
+      hint: 'SUMIFS'
+    },
+    intent: 'Help spreadsheet users comparing GPT Workspace or GPT for Sheets-style add-ons choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair rather than an installed Google Sheets AI workflow.',
+    bestFor: [
+      'Trying a formula-sized task with two guest tries before choosing an installed Sheets add-on.',
+      'Writing or fixing one Excel or Google Sheets formula with the relevant columns, sample rows, and expected result visible.',
+      'Explaining inherited formula logic before editing a shared workbook.',
+      'Using a browser tab when you do not need an AI sidebar, direct formula insertion, chat with the sheet, or GPT formulas inside cells.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the headers, sample rows, target range, broken formula, or expected result.',
+      'Review the explanation and checks, then copy the formula into Excel or Google Sheets yourself.'
+    ],
+    copyChecks: [
+      'Use GPT Workspace or another in-Sheets assistant when you want AI inside Google Sheets, sidebar chat, direct formula insertion, GPT formulas in cells, or broader Google Workspace help.',
+      'Use Write My Formula when the immediate job is one formula, one rule, or one repair you can read and test.',
+      'GPT Workspace details verified June 7, 2026; test any generated formula on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where GPT Workspace fits',
+        html: 'GPT Workspace currently presents formula help as part of a Google Workspace AI sidebar and add-on workflow. Its public Google Sheets formula pages describe plain-language formula creation, formula explanations, debugging and fixing formula errors, direct insertion into Google Sheets, and examples such as nested IF, XLOOKUP, QUERY, IMPORTRANGE, ARRAYFORMULA, and custom Apps Script functions. Its support docs describe GPT for Sheets, chat with Sheets, and GPT formulas that can run inside sheet cells.'
+      },
+      {
+        title: 'Current GPT Workspace context',
+        html: 'GPT Workspace currently says users can join 7M+ professionals using the product. Use that kind of installed workflow when the work should stay inside Google Sheets or across Google Workspace. Use Write My Formula when the next step is one formula-sized answer you can inspect, explain, and test before copying it back into Excel or Google Sheets.'
+      }
+    ]
+  },
+  {
     slug: 'excel-formula-cheat-sheet',
     title: 'Excel Formula Cheat Sheet | Write My Formula',
     description: 'A practical Excel formula cheat sheet with common lookup, logic, text, date, percentage, and summary formulas plus examples.',
@@ -5124,6 +5167,20 @@ const pageEnhancements = {
       read: 'The formula totals Amount values only when Region is West, Status is Paid, and Invoice Date is on or after June 1, 2026. The checks tell you to confirm every SUMIFS range covers the same rows before filling it through the report.'
     }
   },
+  'gpt-workspace-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of an installed Google Sheets AI sidebar.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing GPT Workspace or GPT for Sheets-style add-ons but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule from a browser tab.',
+    notWhen: 'Use GPT Workspace or another in-Sheets assistant when you need AI inside Google Sheets, sidebar chat, direct formula insertion, GPT formulas in cells, chat with the sheet, or broader Google Workspace help. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A Google Sheets report needs the paid West total for June 2026 before the formula is filled through a shared workbook.',
+      formula: '=SUMIFS(D2:D500,B2:B500,"West",C2:C500,"Paid",A2:A500,">="&DATE(2026,6,1),A2:A500,"<"&DATE(2026,7,1))',
+      read: 'The formula totals Amount values only when Region is West, Status is Paid, and Invoice Date falls inside June 2026. The checks tell you to confirm every SUMIFS range covers the same rows and that the date column contains real dates.'
+    }
+  },
   'excel-formula-cheat-sheet': {
     gives: [
       'A compact reference for common Excel formula jobs and the function patterns that fit them.',
@@ -6524,9 +6581,9 @@ function pageHtml(page) {
   html = replaceOnce(html, '<meta property="og:title" content="Write My Formula">', `<meta property="og:title" content="${escapeHtml(page.title.replace(' | Write My Formula', ''))}">`);
   html = replaceOnce(html, '<meta property="og:description" content="A focused spreadsheet workbench for formula generation, explanation, and fixing.">', `<meta property="og:description" content="${escapeHtml(page.description)}">`);
   html = replaceOnce(html, '<meta property="og:url" content="https://writemyformula.com/">', `<meta property="og:url" content="${canonical}">`);
-  html = replaceOnce(html, '<p class="eyebrow">Excel and Google Sheets formula helper</p>', `<p class="eyebrow">${escapeHtml(page.eyebrow)}</p>`);
-  html = replaceOnce(html, '<h1 id="hero-title">Write formulas without wrestling with syntax.</h1>', `<h1 id="hero-title">${escapeHtml(page.h1)}</h1>`);
-  html = replaceOnce(html, '<p class="lede">Describe the spreadsheet job, add the cells you are working with, and get a clean formula with notes you can actually use.</p>', `<p class="lede">${escapeHtml(page.lede)}</p>`);
+  html = replaceOnce(html, '<p class="eyebrow">Excel and Google Sheets formulas</p>', `<p class="eyebrow">${escapeHtml(page.eyebrow)}</p>`);
+  html = replaceOnce(html, '<h1 id="hero-title">Stuck on a formula? Paste it here.</h1>', `<h1 id="hero-title">${escapeHtml(page.h1)}</h1>`);
+  html = replaceOnce(html, '<p class="lede">Write a new one, explain one you inherited, or fix one that\'s throwing #N/A. Pick a mode and start typing.</p>', `<p class="lede">${escapeHtml(page.lede)}</p>`);
   html = replaceOnce(html, '<section class="section pricing" id="pricing" aria-labelledby="pricing-title">', `${detailSection(page)}\n\n        <section class="section pricing" id="pricing" aria-labelledby="pricing-title">`);
   html = replaceOnce(html, '<link rel="stylesheet" href="/styles.css">', `<link rel="stylesheet" href="/styles.css">\n    ${schemaScript(page, canonical)}`);
   html = replaceOnce(html, '<script type="module" src="/app/app.js"></script>', `<script>window.WMF_PAGE_PRESET = ${JSON.stringify(page.preset)};</script>\n    <script type="module" src="/app/app.js"></script>`);

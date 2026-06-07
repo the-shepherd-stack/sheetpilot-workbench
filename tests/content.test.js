@@ -262,6 +262,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than regex, script, chart, or file workflows/);
   assert.match(page, /\/formulahelper-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than saved libraries, optimization, collaboration, add-ons, or API workflows/);
+  assert.match(page, /\/gpt-workspace-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than an in-Sheets AI sidebar, GPT formulas, or chat-with-sheet workflow/);
   assert.match(page, /\/index-match-formula-generator\//);
   assert.match(page, /Build flexible lookup formulas for left lookups, two-way lookups, and older Excel files/);
   assert.match(page, /data-checkout/);
@@ -304,7 +306,7 @@ test('SheetXAI alternative page keeps the comparison bounded', () => {
   assert.match(page, /app connections/);
   assert.match(page, /workflow automation/);
   assert.match(page, /one Excel or Google Sheets formula, explanation, or repair/);
-  assert.match(page, /2 guest tries/);
+  assert.match(page, /Two guest tries|2 guest tries/);
   assert.match(page, /500 formula runs per month, stored in this browser for \$9/);
   assert.match(page, /https:\/\/writemyformula\.com\/sheetxai-alternative\//);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/sheetxai-alternative\//);
@@ -326,7 +328,7 @@ test('FormulaBerry alternative page keeps the comparison bounded', () => {
   assert.match(page, /finance-specific workflows/);
   assert.match(page, /small-business spreadsheet guidance/);
   assert.match(page, /one Excel or Google Sheets formula, explanation, or repair/);
-  assert.match(page, /2 guest tries/);
+  assert.match(page, /Two guest tries|2 guest tries/);
   assert.match(page, /500 formula runs per month, stored in this browser for \$9/);
   assert.match(page, /https:\/\/writemyformula\.com\/formulaberry-alternative\//);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/formulaberry-alternative\//);
@@ -353,7 +355,7 @@ test('FormulaDesk alternative page keeps the comparison bounded', () => {
   assert.match(page, /=IF\(B2=&quot;Paid&quot;,IF\(AND\(C2&gt;=DATE\(2026,8,1\),C2&lt;DATE\(2026,9,1\)\),&quot;August paid&quot;,&quot;Other month&quot;\),&quot;Open&quot;\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month, stored in this browser/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/formuladesk-alternative\/">FormulaDesk alternative/);
@@ -378,7 +380,7 @@ test('PromptLoop alternative page keeps the comparison bounded', () => {
   assert.match(page, /=XLOOKUP\(1,\(A2:A500=F2\)\*\(C2:C500=&quot;Paid&quot;\),D2:D500,&quot;Not found&quot;,0,-1\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month, stored in this browser/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/promptloop-alternative\/">PromptLoop alternative/);
@@ -405,7 +407,7 @@ test('Coefficient alternative page keeps the comparison bounded', () => {
   assert.match(page, /=IFERROR\(INDEX\(\$D:\$D,MATCH\(1,\(\$A:\$A=A2\)\*\(\$B:\$B=B2\),0\)\),&quot;&quot;\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month, stored in this browser/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/coefficient-alternative\/">Coefficient alternative/);
@@ -431,7 +433,7 @@ test('ExcelGPT alternative page keeps the comparison bounded', () => {
   assert.match(page, /=SUMIFS\(\$D\$2:\$D\$500,\$A\$2:\$A\$500,&quot;West&quot;,\$B\$2:\$B\$500,&quot;Paid&quot;,\$C\$2:\$C\$500,&quot;&gt;=&quot;&amp;DATE\(2026,6,1\)\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month, stored in this browser/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/excelgpt-alternative\/">ExcelGPT alternative/);
@@ -454,7 +456,7 @@ test('Rows alternative page keeps the comparison bounded', () => {
   assert.match(page, /=IF\(B2=0,&quot;&quot;,\(B2-C2\)\/B2\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month, stored in this browser/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/rows-alternative\/">Rows alternative/);
@@ -574,6 +576,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excelformula-co-alternative',
     'aiexcelformula-alternative',
     'manyexcel-alternative',
+    'gpt-workspace-alternative',
     'excelmatic-alternative',
     'excel-formula-cheat-sheet',
     'excel-formula-explainer',
@@ -679,7 +682,7 @@ test('seo landing pages target high-intent formula searches', () => {
     assert.match(page, /Worked example/);
     assert.match(page, /<pre><code>/);
     assert.match(page, /Check before you paste/);
-    assert.match(page, /Formula request/);
+    assert.match(page, /What should the formula do\?|Paste the formula/);
     assert.match(page, /Use it past the guest limit/);
     assert.match(page, /Copied\. Need more formulas this month/);
     assert.match(page, /Upgrade \$9/);
@@ -709,7 +712,7 @@ test('ExcelFormula.co alternative page keeps the comparison bounded', () => {
   assert.match(page, /=IF\(AND\(B2=&quot;Product A&quot;,C2=&quot;Paid&quot;,A2&gt;=DATE\(2026,8,1\),A2&lt;DATE\(2026,9,1\)\),&quot;August paid Product A&quot;,&quot;Other&quot;\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month, stored in this browser/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/excelformula-co-alternative\/">ExcelFormula\.co alternative/);
@@ -748,7 +751,7 @@ test('Excelly-AI alternative page targets focused formula comparison without ove
   assert.match(page, /=XLOOKUP\(1,\(A2:A500=E2\)\*\(C2:C500=&quot;Paid&quot;\),D2:D500,&quot;Not found&quot;,0,-1\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/excelly-ai-alternative\/">Excelly-AI alternative/);
@@ -769,7 +772,7 @@ test('FormulaZa alternative page stays fit-based and bounded', () => {
   assert.match(page, /=IF\(A2=&quot;&quot;,&quot;&quot;,REGEXEXTRACT\(A2,&quot;@\(\.\+\)\$&quot;\)\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/formulaza-alternative\/">FormulaZa alternative/);
@@ -790,7 +793,7 @@ test('Sheeter alternative page targets focused formula comparison without overcl
   assert.match(page, /=FILTER\(Sheet2!A:A,ISNUMBER\(SEARCH\(&quot;garden&quot;,Sheet2!A:A\)\),&quot;No matches&quot;\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/sheeter-alternative\/">Sheeter alternative/);
@@ -811,7 +814,7 @@ test('SheetSmart alternative page targets extension workflow comparison without 
   assert.match(page, /=SUMIF\(A2:A500,&quot;January&quot;,B2:B500\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/sheetsmart-alternative\/">SheetSmart alternative/);
@@ -836,7 +839,7 @@ test('Sourcetable alternative page targets AI spreadsheet comparison without ove
   assert.match(page, /=IFNA\(XLOOKUP\(F2,\$A\$2:\$A\$500,\$D\$2:\$D\$500,&quot;Not found&quot;,0\),&quot;Not found&quot;\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/sourcetable-alternative\/">Sourcetable alternative/);
@@ -862,7 +865,7 @@ test('Arcwise alternative page targets in-Sheets AI analyst comparison without o
   assert.match(page, /=ARRAYFORMULA\(IF\(A2:A=&quot;&quot;,&quot;&quot;,IFNA\(VLOOKUP\(A2:A,Prices!A:B,2,FALSE\),&quot;Not found&quot;\)\)\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/arcwise-alternative\/">Arcwise alternative/);
@@ -886,7 +889,7 @@ test('Bricks AI spreadsheet alternative page targets whole-workspace comparison 
   assert.match(page, /=SUMIFS\(D2:D500,B2:B500,&quot;West&quot;,C2:C500,&quot;Paid&quot;\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/bricks-ai-spreadsheet-alternative\/">Bricks AI spreadsheet alternative/);
@@ -913,7 +916,7 @@ test('SheetSeek alternative page targets AI spreadsheet-builder comparison witho
   assert.match(page, /=IF\(AND\(A2=&quot;West&quot;,B2=&quot;Paid&quot;,C2&gt;5000\),&quot;Follow up&quot;,&quot;&quot;\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/sheetseek-alternative\/">SheetSeek alternative/);
@@ -937,7 +940,7 @@ test('Smart Excel alternative page targets focused formula comparison without ov
   assert.match(page, /=SUMIFS\(D2:D500,B2:B500,&quot;West&quot;,C2:C500,&quot;Paid&quot;,A2:A500,&quot;&gt;=&quot;&amp;DATE\(2026,6,1\),A2:A500,&quot;&lt;&quot;&amp;DATE\(2026,7,1\)\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/smart-excel-alternative\/">Smart Excel alternative/);
@@ -965,7 +968,7 @@ test('ExcelFormula Pro alternative page targets account-based formula generator 
   assert.match(page, /=SUMIFS\(\$D\$2:\$D\$500,\$B\$2:\$B\$500,&quot;West&quot;,\$C\$2:\$C\$500,&quot;Paid&quot;,\$A\$2:\$A\$500,&quot;&gt;=&quot;&amp;DATE\(2026,7,1\),\$A\$2:\$A\$500,&quot;&lt;&quot;&amp;DATE\(2026,8,1\)\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/excelformula-pro-alternative\/">ExcelFormula Pro alternative/);
@@ -987,7 +990,7 @@ test('ManyExcel alternative page targets broader spreadsheet AI comparison witho
   assert.match(page, /=SUMIFS\(D2:D500,B2:B500,&quot;Product A&quot;,C2:C500,&quot;Paid&quot;,A2:A500,&quot;&gt;=&quot;&amp;DATE\(2026,6,1\),A2:A500,&quot;&lt;&quot;&amp;DATE\(2026,7,1\)\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/manyexcel-alternative\/">ManyExcel alternative/);
@@ -1011,12 +1014,37 @@ test('FormulaHelper alternative page targets formula-workbench comparison withou
   assert.match(page, /=SUMIFS\(D2:D500,A2:A500,&quot;West&quot;,B2:B500,&quot;Paid&quot;,C2:C500,&quot;&gt;=&quot;&amp;DATE\(2026,6,1\)\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/formulahelper-alternative\/">FormulaHelper alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/formulahelper-alternative\//);
   assert.doesNotMatch(page, /replaces FormulaHelper|better than FormulaHelper|more powerful than FormulaHelper|official FormulaHelper|FormulaHelper partner|affiliated|built for teams|unlimited formulas|no limits|save your formula library|free forever|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|privacy superior|faster|cheaper|beats FormulaHelper|price superior/i);
+});
+
+test('GPT Workspace alternative page targets in-Sheets AI comparison without overclaiming', () => {
+  const page = read('gpt-workspace-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /GPT Workspace Alternative for One Formula Problem/);
+  assert.match(page, /A GPT Workspace alternative for one formula problem/);
+  assert.match(page, /AI work inside Google Sheets and Google Workspace/);
+  assert.match(page, /in-Sheets AI sidebar, GPT formulas, direct insertion, or chat-with-sheet workflow/);
+  assert.match(page, /direct formula insertion, GPT formulas in cells, chat with the sheet/);
+  assert.match(page, /nested IF, XLOOKUP, QUERY, IMPORTRANGE, ARRAYFORMULA, and custom Apps Script functions/);
+  assert.match(page, /chat with Sheets, and GPT formulas that can run inside sheet cells/);
+  assert.match(page, /join 7M\+ professionals/);
+  assert.match(page, /GPT Workspace details verified June 7, 2026/);
+  assert.match(page, /=SUMIFS\(D2:D500,B2:B500,&quot;West&quot;,C2:C500,&quot;Paid&quot;,A2:A500,&quot;&gt;=&quot;&amp;DATE\(2026,6,1\),A2:A500,&quot;&lt;&quot;&amp;DATE\(2026,7,1\)\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/gpt-workspace-alternative\/">GPT Workspace alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/gpt-workspace-alternative\//);
+  assert.doesNotMatch(page, /replaces GPT Workspace|better than GPT Workspace|official GPT Workspace|GPT Workspace partner|affiliated|more accurate|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|privacy superior|instant|in seconds|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|faster|cheaper|beats GPT Workspace|price superior|reads your sheet|inserts formulas directly from Write My Formula/i);
 });
 
 test('AI Excel Formula alternative page targets free generator comparison without overclaiming', () => {
@@ -1036,7 +1064,7 @@ test('AI Excel Formula alternative page targets free generator comparison withou
   assert.match(page, /=XLOOKUP\(F2,A2:A500,D2:D500,&quot;Not found&quot;,0\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/aiexcelformula-alternative\/">AI Excel Formula alternative/);
@@ -1066,7 +1094,7 @@ test('Excelmatic alternative page targets RowSpeak file-analysis comparison with
   assert.match(page, /=SUMIFS\(E2:E500,B2:B500,&quot;West&quot;,C2:C500,&quot;Paid&quot;,D2:D500,&quot;&gt;=&quot;&amp;DATE\(2026,6,1\)\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/excelmatic-alternative\/">Excelmatic alternative/);
@@ -1084,7 +1112,7 @@ test('excel formula help page targets broad help intent without overclaiming', (
   assert.match(page, /IF, SUMIFS, XLOOKUP, FILTER/);
   assert.match(page, /version support, range alignment, fill-down behavior/);
   assert.match(page, /=IF\(AND\(B2&lt;TODAY\(\),C2&lt;&gt;&quot;Done&quot;\),&quot;Overdue&quot;,&quot;OK&quot;\)/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.doesNotMatch(page, /guarantee|guaranteed|always accurate|perfect formula|official Microsoft|official Google|affiliated|file upload|dashboard builder/i);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-formula-help\//);
@@ -1119,7 +1147,7 @@ test('google sheets formulas not working page targets broad Sheets repair intent
   assert.match(page, /commas or semicolons/);
   assert.match(page, /numbers, dates, and lookup IDs are stored as the type/);
   assert.match(page, /=SUMPRODUCT\(\(B:B=&quot;West&quot;\)\*IFERROR\(VALUE\(D:D\),0\)\)/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Use it past the guest limit/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/google-sheets-formulas-not-working\/">Google Sheets formulas not working/);
@@ -1716,7 +1744,7 @@ test('google sheets formula parse error page targets Sheets repair intent withou
   assert.match(page, /=QUERY\(A1:D500,&quot;select A, B where C = 'Open'&quot;,1\)/);
   assert.match(page, /commas or semicolons/);
   assert.match(page, /text criteria in single quotes/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-formula-parse-error\//);
@@ -1817,7 +1845,7 @@ test('google sheets circular dependency page targets loop repair intent without 
   assert.match(page, /=SUM\(D3:D20\)/);
   assert.match(page, /The repaired formula starts below D2/);
   assert.match(page, /Use iterative calculation only when the circular model is intentional/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/google-sheets-circular-dependency\/">Google Sheets circular dependency/);
@@ -2104,7 +2132,7 @@ test('google sheets MATCH not working page targets match-position repair intent 
   assert.match(page, /Keep the searched range one-dimensional/);
   assert.match(page, /Test MATCH by itself before feeding the position into INDEX/);
   assert.match(page, /=IFNA\(MATCH\(TRIM\(E2\),\$A\$2:\$A\$500,0\),&quot;Not found&quot;\)/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/google-sheets-match-not-working\/">Google Sheets MATCH not working/);
@@ -2184,7 +2212,7 @@ test('excel circular reference page targets circular-reference repair intent wit
   assert.match(page, /Excel says a formula refers to its own cell directly or indirectly/);
   assert.match(page, /=SUM\(D2:D9\)/);
   assert.match(page, /Turn on iterative calculation only when the circular calculation is intentional/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-circular-reference\//);
@@ -2292,7 +2320,7 @@ test('AI Formula Generator alternative page targets focused formula comparison w
   assert.match(page, /=SUMIFS\(D2:D500,A2:A500,&quot;Product A&quot;,C2:C500,&quot;Paid&quot;,B2:B500,&quot;&gt;=&quot;&amp;DATE\(2026,6,1\),B2:B500,&quot;&lt;&quot;&amp;DATE\(2026,7,1\)\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/ai-formula-generator-alternative\/">AI Formula Generator alternative/);
@@ -2333,7 +2361,7 @@ test('ExpressSheet alternative page keeps the comparison bounded', () => {
   assert.match(page, /=INDEX\(\$D\$2:\$D\$500,MATCH\(1,\(\$A\$2:\$A\$500=G2\)\*\(\$B\$2:\$B\$500=&quot;Paid&quot;\),0\)\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month, stored in this browser/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/expresssheet-alternative\/">ExpressSheet alternative/);
@@ -2354,7 +2382,7 @@ test('SheetGPT alternative page targets focused formula comparison without overc
   assert.match(page, /=XLOOKUP\(1,\(A2:A500=F2\)\*\(C2:C500=&quot;Paid&quot;\),D2:D500,&quot;Not found&quot;,0,-1\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month, stored in this browser/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/sheetgpt-alternative\/">SheetGPT alternative/);
@@ -2426,7 +2454,7 @@ test('excel formula not showing result page targets live fix intent', () => {
   assert.match(page, /calculation mode/);
   assert.match(page, /text-formatted cells/);
   assert.match(page, /=IF\(VALUE\(B2\)&gt;1000,&quot;Review&quot;,&quot;OK&quot;\)/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-formula-not-showing-result\//);
 });
@@ -2441,7 +2469,7 @@ test('VLOOKUP NA error page targets lookup repair intent without overclaiming', 
   assert.match(page, /text-number mismatches/);
   assert.match(page, /table range starts with the column being searched/);
   assert.match(page, /=IFERROR\(VLOOKUP\(E2,\$A\$2:\$C\$500,2,FALSE\),&quot;Not found&quot;\)/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.doesNotMatch(page, /guarantee|guaranteed|always fixes|official Microsoft|official Google|affiliated/i);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/vlookup-na-error\//);
@@ -2458,7 +2486,7 @@ test('XLOOKUP NA error page targets modern lookup repair intent without overclai
   assert.match(page, /text-number mismatches/);
   assert.match(page, /lookup array and return array cover the same rows/);
   assert.match(page, /=XLOOKUP\(E2,\$A\$2:\$A\$500,\$B\$2:\$B\$500,&quot;Not found&quot;,0\)/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.doesNotMatch(page, /guarantee|guaranteed|always fixes|official Microsoft|official Google|affiliated|human reviewer|upload/i);
   assert.match(homepage, /href="\/xlookup-na-error\/">XLOOKUP #N\/A error/);
@@ -2477,7 +2505,7 @@ test('excel XLOOKUP not working page targets broader modern lookup repair intent
   assert.match(page, /Use binary search modes only when the lookup array is sorted as required/);
   assert.match(page, /blank if_not_found value/);
   assert.match(page, /=XLOOKUP\(E2,\$A\$2:\$A\$500,\$C\$2:\$C\$500,&quot;Not found&quot;,0\)/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/excel-xlookup-not-working\/">Excel XLOOKUP not working/);
@@ -2497,7 +2525,7 @@ test('excel INDEX MATCH not working page targets lookup repair intent without ov
   assert.match(page, /lookup array and return array cover the same row positions/);
   assert.match(page, /row MATCH feeds the row_num argument and the column MATCH feeds the column_num argument/);
   assert.match(page, /=IFNA\(INDEX\(\$C\$2:\$C\$500,MATCH\(E2,\$A\$2:\$A\$500,0\)\),&quot;Not found&quot;\)/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/excel-index-match-not-working\/">Excel INDEX MATCH not working/);
@@ -2519,7 +2547,7 @@ test('excel MATCH not working page targets match position repair intent without 
   assert.match(page, /Use -1 only when the lookup array is sorted descending/);
   assert.match(page, /Test MATCH by itself before feeding the position into INDEX/);
   assert.match(page, /=IFNA\(MATCH\(TRIM\(E2\),\$A\$2:\$A\$500,0\),&quot;Not found&quot;\)/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/excel-match-not-working\/">Excel MATCH not working/);
@@ -2540,7 +2568,7 @@ test('excel XMATCH not working page targets modern lookup-position repair intent
   assert.match(page, /Use binary search modes only when the lookup array is sorted ascending for 2 or descending for -2/);
   assert.match(page, /Check Excel version support when XMATCH appears as #NAME\? or _xlfn.XMATCH/);
   assert.match(page, /=INDEX\(\$C\$2:\$C\$500,XMATCH\(TRIM\(E2\),\$A\$2:\$A\$500,0,1\)\)/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/excel-xmatch-not-working\/">Excel XMATCH not working/);
@@ -2563,7 +2591,7 @@ test('excel SORT not working page targets dynamic-array sort repair intent witho
   assert.match(page, /Use sort_order -1 deliberately for descending order/);
   assert.match(page, /Check Excel version support when SORT appears as #NAME\? or _xlfn.SORT/);
   assert.match(page, /=SORT\(A2:D500,3,-1\)/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/excel-sort-not-working\/">Excel SORT not working/);
@@ -2583,7 +2611,7 @@ test('excel VSTACK and HSTACK not working page targets stack repair intent witho
   assert.match(page, /same width for VSTACK or the same height for HSTACK/);
   assert.match(page, /Use IFERROR or IFNA for expected padding/);
   assert.match(page, /=IFNA\(VSTACK\(A2:C20,F2:H20\),&quot;&quot;\)/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/excel-vstack-hstack-not-working\/">Excel VSTACK or HSTACK not working/);
@@ -2605,7 +2633,7 @@ test('excel CHOOSECOLS and CHOOSEROWS not working page targets row and column se
   assert.match(page, /Use numeric positions such as 1, 3, or -1/);
   assert.match(page, /Count positions from the array argument/);
   assert.match(page, /Microsoft 365, Excel for the web, or Excel 2024/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/excel-choosecols-chooserows-not-working\/">Excel CHOOSECOLS or CHOOSEROWS not working/);
@@ -2641,7 +2669,7 @@ test('excel IF formula not working page targets IF repair intent without overcla
   assert.match(page, /removes the extra closing parenthesis/);
   assert.match(page, /Check whether your Excel locale expects commas or semicolons between IF arguments/);
   assert.match(page, /Use IFS, SWITCH, or a lookup table when a long nested IF is really an ordered decision list/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/excel-if-formula-not-working\/">Excel IF formula not working/);
@@ -2739,7 +2767,7 @@ test('excel data validation formula page targets custom validation intent withou
   assert.match(page, /first cell in the range where the rule will be applied/);
   assert.match(page, /=AND\(LEFT\(A2,3\)=&quot;ID-&quot;,COUNTIF\(\$A\$2:\$A\$500,A2\)=1\)/);
   assert.match(page, /Use dollar signs only where the reference must stay fixed/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-data-validation-formula\//);
@@ -2759,7 +2787,7 @@ test('excel data validation formula not working page targets validation repair i
   assert.match(page, /Write the formula as if it starts in the first cell of the applied validation range/);
   assert.match(page, /Decide whether Ignore Blank should allow empty cells/);
   assert.match(page, /data validation may not flag every existing value automatically/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/excel-data-validation-formula-not-working\/">Excel data validation formula not working/);
@@ -2817,7 +2845,7 @@ test('excel pivot table calculated field not working page targets pivot repair i
   assert.match(page, /calculated fields operate on summarized field totals/);
   assert.match(page, /Move row-level multiplication, division, or IF logic into a helper column/);
   assert.match(page, /=\('Revenue'-'Cost'\)\/'Revenue'/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/excel-pivot-table-calculated-field-not-working\/">Excel PivotTable calculated field repair/);
@@ -2838,7 +2866,7 @@ test('excel TAKE DROP not working page targets dynamic array slice repair withou
   assert.match(page, /Microsoft 365, Excel for the web, or Excel 2024/);
   assert.match(page, /=TAKE\(SORT\(FILTER\(A2:D500,C2:C500=&quot;Open&quot;\),4,-1\),10\)/);
   assert.match(page, /Check the nested FILTER, SORT, VSTACK, HSTACK, CHOOSECOLS, or CHOOSEROWS result/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/excel-take-drop-not-working\/">Excel TAKE and DROP repair/);
@@ -2859,7 +2887,7 @@ test('ajelix alternative page targets focused formula comparison without overcla
   assert.match(page, /=AVERAGEIFS\(D:D,B:B,&quot;West&quot;,C:C,&quot;&gt;=&quot;&amp;DATE\(2025,1,1\)\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/ajelix-alternative\/">Ajelix alternative/);
@@ -2880,7 +2908,7 @@ test('SheetAI alternative page targets focused formula comparison without overcl
   assert.match(page, /=FILTER\(A2:D500,D2:D500=&quot;Paid&quot;,C2:C500&gt;=DATE\(2026,5,1\)\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/sheetai-alternative\/">SheetAI alternative/);
@@ -2901,7 +2929,7 @@ test('mysheetAI alternative page targets focused formula comparison without over
   assert.match(page, /=ARRAYFORMULA\(IF\(A2:A=&quot;&quot;,&quot;&quot;,IFNA\(VLOOKUP\(A2:A,Products!A:C,3,FALSE\),&quot;Check product ID&quot;\)\)\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/mysheetai-alternative\/">mysheetAI alternative/);
@@ -2922,7 +2950,7 @@ test('Numerous.ai alternative page targets focused formula comparison without ov
   assert.match(page, /=SUMIFS\(\$D\$2:\$D\$500,\$B\$2:\$B\$500,&quot;West&quot;,\$C\$2:\$C\$500,&quot;&gt;=&quot;&amp;DATE\(2026,1,1\)\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/numerous-ai-alternative\/">Numerous\.ai alternative/);
@@ -2944,7 +2972,7 @@ test('SheetGod alternative page targets focused formula comparison without overc
   assert.match(page, /=IFNA\(INDEX\(Products!C:C,MATCH\(A2,Products!A:A,0\)\),&quot;Check SKU&quot;\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/sheetgod-alternative\/">SheetGod alternative/);
@@ -2969,7 +2997,7 @@ test('GenieSheet alternative page targets focused formula comparison without ove
   assert.match(page, /=SUMIF\(B2:B500,&quot;&gt;100&quot;,C2:C500\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/geniesheet-alternative\/">GenieSheet alternative/);
@@ -2990,7 +3018,7 @@ test('Formulr alternative page targets focused formula comparison without overcl
   assert.match(page, /=COUNTIFS\(\$B\$2:\$B\$500,&quot;Complete&quot;,\$C\$2:\$C\$500,&quot;&gt;=&quot;&amp;DATE\(YEAR\(TODAY\(\)\),MONTH\(TODAY\(\)\),1\)\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/formulr-alternative\/">Formulr alternative/);
@@ -3011,7 +3039,7 @@ test('FormulaWiz alternative page targets focused formula comparison without ove
   assert.match(page, /=COUNTIFS\(A2:A500,&quot;West&quot;,B2:B500,&quot;Paid&quot;,C2:C500,&quot;&gt;=&quot;&amp;DATE\(2026,6,1\),C2:C500,&quot;&lt;&quot;&amp;DATE\(2026,7,1\)\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/formulawiz-alternative\/">FormulaWiz alternative/);
@@ -3033,7 +3061,7 @@ test('Formularizer alternative page targets focused formula comparison without o
   assert.match(page, /=IF\(COUNTIF\(\$A\$2:A2,A2\)&gt;1,&quot;Duplicate&quot;,&quot;&quot;\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/formularizer-alternative\/">Formularizer alternative/);
@@ -3048,14 +3076,14 @@ test('FormulaPilot alternative page targets focused formula comparison without o
 
   assert.match(page, /FormulaPilot Alternative for One Formula Problem/);
   assert.match(page, /A FormulaPilot alternative for the formula you are stuck on right now/);
-  assert.match(page, /larger formula library, checker, or reference hub/);
+  assert.match(page, /formula library, checker, or reference hub/);
   assert.match(page, /write one formula, repair one broken formula, explain one inherited formula/);
   assert.match(page, /free no-signup generator, a formula checker, a Google Sheets generator, function references, error references, learning pages, or browsable formula libraries/);
   assert.match(page, /Date & Time, Math & Statistics, Financial, Array Formulas, Data Cleaning, Text Manipulation, Conditional Logic, and Lookup & Reference/);
   assert.match(page, /=VLOOKUP\(A2,Customers!A:D,4,FALSE\)/);
-  assert.match(page, /2 guest tries/);
+  assert.match(page, /Two guest tries|2 guest tries/);
   assert.match(page, /500 formula runs per month/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/formulapilot-alternative\/">FormulaPilot alternative/);

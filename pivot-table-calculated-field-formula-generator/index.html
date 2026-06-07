@@ -43,16 +43,8 @@
 
           <section class="workbench" aria-label="Spreadsheet formula workbench">
             <div class="panel input-panel">
-              <div class="panel-head">
-                <div>
-                  <p class="kicker">Request</p>
-                  <h2>Formula request</h2>
-                </div>
-                <span class="usage" id="usage">2 guest tries left</span>
-              </div>
-
               <form class="tool-form" id="tool-form">
-                <fieldset class="control-group">
+                <fieldset class="control-group mode-group">
                   <legend>Mode</legend>
                   <div class="segmented" aria-label="Tool mode">
                     <button type="button" data-mode="write">Write</button>
@@ -70,32 +62,37 @@
                 </fieldset>
 
                 <div class="write-input">
-                  <label for="task">Job to do</label>
+                  <label for="task">What should the formula do?</label>
                   <textarea id="task" rows="4">Look up each customer's plan and return the matching monthly price.</textarea>
 
-                  <label for="table">Pasted headers or sample rows</label>
-                  <textarea id="table" rows="4">Customer,Plan,Price
+                  <details class="optional-context">
+                    <summary>Add your data (optional)</summary>
+
+                    <label for="table">Your headers or a few sample rows</label>
+                    <textarea id="table" rows="4">Customer,Plan,Price
 Acme,Pro,29
 Northwind,Team,79</textarea>
 
-                  <div class="field-grid">
-                    <div>
-                      <label for="range">Range or target cell <span>optional</span></label>
-                      <input id="range" type="text" value="A2:C100; result in D2" placeholder="A2:C100; result in D2">
+                    <div class="field-grid">
+                      <div>
+                        <label for="range">Which cells <span>e.g. A2:C100, result in D2</span></label>
+                        <input id="range" type="text" value="A2:C100; result in D2" placeholder="A2:C100; result in D2">
+                      </div>
+                      <div>
+                        <label for="hint">Force a specific function <span>e.g. XLOOKUP</span></label>
+                        <input id="hint" type="text" value="XLOOKUP" placeholder="XLOOKUP, SUMIFS, FILTER">
+                      </div>
                     </div>
-                    <div>
-                      <label for="hint">Function hint <span>optional</span></label>
-                      <input id="hint" type="text" value="XLOOKUP" placeholder="XLOOKUP, SUMIFS, FILTER">
-                    </div>
-                  </div>
+                  </details>
                 </div>
 
                 <div class="formula-input">
-                  <label for="formula">Formula to explain or fix</label>
+                  <label for="formula" id="formula-label">Paste the formula</label>
                   <textarea id="formula" rows="5" placeholder='=IFERROR(XLOOKUP(A2,Customers!A:A,Customers!C:C),"Not found")'></textarea>
                 </div>
 
                 <div class="examples" id="examples" aria-label="Example prompts">
+                  <span>Try:</span>
                   <button type="button" data-example="lookup">Look up price by customer</button>
                   <button type="button" data-example="sumifs">Sum paid invoices this month</button>
                   <button type="button" data-example="domain">Extract domain from email</button>
@@ -104,8 +101,9 @@ Northwind,Team,79</textarea>
                 </div>
 
                 <div class="run-row">
-                  <button class="button primary" id="run" type="submit">Write my formula</button>
-                  <a class="button ghost run-upgrade" data-checkout href="https://buy.stripe.com/5kQ5kw94pfXy3ziajM4F208">Upgrade $9</a>
+                  <button class="button primary" id="run" type="submit">Write the formula</button>
+                  <span class="usage" id="usage">2 free tries left on this browser</span>
+                  <a class="button ghost run-upgrade" data-checkout href="https://buy.stripe.com/5kQ5kw94pfXy3ziajM4F208">Upgrade - $9 for 500 runs/month</a>
                 </div>
               </form>
 
@@ -410,6 +408,10 @@ Northwind,Team,79</textarea>
             <article class="mini">
               <h3><a href="/formulahelper-alternative/">FormulaHelper alternative</a></h3>
               <p>Use a focused formula helper when you need one formula, explanation, or repair rather than saved libraries, optimization, collaboration, add-ons, or API workflows.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/gpt-workspace-alternative/">GPT Workspace alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than an in-Sheets AI sidebar, GPT formulas, or chat-with-sheet workflow.</p>
             </article>
             <article class="mini">
               <h3><a href="/percentage-formula-generator/">Percentage formulas</a></h3>
