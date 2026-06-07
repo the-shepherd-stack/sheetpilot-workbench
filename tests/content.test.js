@@ -20,10 +20,17 @@ test('homepage presents the tool and revenue path', () => {
   const page = read('index.html');
 
   assert.match(page, /Write My Formula/);
-  assert.match(page, /Write formulas without wrestling with syntax/);
-  assert.match(page, /Formula request/);
+  assert.match(page, /Stuck on a formula\? Paste it here/);
+  assert.match(page, /Pick a mode and start typing/);
+  assert.doesNotMatch(page, /Formula request/);
   assert.match(page, /Look up price by customer/);
-  assert.match(page, /Function hint/);
+  assert.match(page, /What should the formula do\?/);
+  assert.match(page, /Add your data \(optional\)/);
+  assert.match(page, /Your headers or a few sample rows/);
+  assert.match(page, /Force a specific function/);
+  assert.match(page, /Paste the formula/);
+  assert.match(page, /2 free tries left on this browser/);
+  assert.match(page, /Upgrade - \$9 for 500 runs\/month/);
   assert.match(page, /Formula bar/);
   assert.match(page, /Formula preview/);
   assert.match(page, /Compatibility/);
@@ -266,7 +273,7 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Founding access is \$9 for 500 runs per month, stored in this browser/);
   assert.match(page, /class="paywall-offer"/);
   assert.match(page, /https:\/\/writemyformula\.com\//);
-  assert.match(page, /2 guest tries/);
+  assert.match(page, /2 free tries left on this browser/);
   assert.match(page, /3 runs per week/);
   assert.match(page, /Email for free account access/);
   assert.match(page, /monthly product email/);

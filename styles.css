@@ -244,7 +244,7 @@ h3 {
 
 .tool-form,
 .paywall {
-  padding: 18px;
+  padding: 20px;
 }
 
 .control-group {
@@ -258,6 +258,15 @@ h3 {
   color: var(--faint);
   font-size: 12px;
   font-weight: 760;
+}
+
+.mode-group legend {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
 
 .segmented {
@@ -320,6 +329,11 @@ input:focus-visible {
   color: var(--muted);
 }
 
+.mode-group .segmented button {
+  min-height: 44px;
+  font-size: 15px;
+}
+
 button[aria-pressed="true"] {
   border-color: var(--line);
   background: #fff;
@@ -354,6 +368,8 @@ label {
 }
 
 label span {
+  display: block;
+  margin-top: 2px;
   color: var(--faint);
   font-weight: 650;
 }
@@ -385,6 +401,68 @@ textarea {
   resize: vertical;
 }
 
+.write-input > textarea,
+.formula-input > textarea {
+  min-height: 176px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.optional-context {
+  margin-top: 13px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-muted);
+}
+
+.optional-context summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  padding: 0 13px;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 760;
+  cursor: pointer;
+}
+
+.optional-context summary::-webkit-details-marker {
+  display: none;
+}
+
+.optional-context summary::after {
+  content: "+";
+  margin-left: auto;
+  color: var(--accent);
+  font-size: 18px;
+  line-height: 1;
+}
+
+.optional-context[open] summary {
+  border-bottom: 1px solid var(--line);
+  background: #fff;
+}
+
+.optional-context[open] summary::after {
+  content: "-";
+}
+
+.optional-context textarea,
+.optional-context input {
+  background: #fff;
+}
+
+.optional-context > label,
+.optional-context > textarea,
+.optional-context > .field-grid {
+  margin-left: 13px;
+  margin-right: 13px;
+}
+
+.optional-context > .field-grid {
+  margin-bottom: 13px;
+}
+
 .field-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -408,8 +486,15 @@ body[data-mode="fix"] .write-input {
 .examples {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 8px;
   margin-top: 15px;
+}
+
+.examples span {
+  color: var(--faint);
+  font-size: 13px;
+  font-weight: 760;
 }
 
 .examples button {
@@ -428,7 +513,8 @@ body[data-mode="fix"] .write-input {
 }
 
 .run-row {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(170px, auto) minmax(0, 1fr) auto;
   gap: 12px;
   align-items: center;
   margin-top: 17px;
@@ -445,7 +531,10 @@ body[data-mode="fix"] .write-input {
 
 .run-row .run-upgrade {
   min-height: 42px;
+  max-width: 260px;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .paywall {
@@ -1050,10 +1139,19 @@ code {
   }
 
   .panel-head,
-  .run-row,
   .footer {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .run-row {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+
+  .run-row .run-upgrade {
+    max-width: none;
+    white-space: normal;
   }
 
   .usage,

@@ -56,6 +56,7 @@ const els = {
   range: document.querySelector('#range'),
   hint: document.querySelector('#hint'),
   formula: document.querySelector('#formula'),
+  formulaLabel: document.querySelector('#formula-label'),
   run: document.querySelector('#run'),
   outputFormula: document.querySelector('#output-formula'),
   outputSteps: document.querySelector('#output-steps'),
@@ -146,7 +147,7 @@ function renderUsage() {
   const triesLeft = Math.max(ANONYMOUS_TRIAL_LIMIT - used, 0);
   els.usage.textContent = isPro()
     ? `Founding access: up to ${PRO_MONTHLY_LIMIT} runs/month`
-    : `${triesLeft} guest ${triesLeft === 1 ? 'try' : 'tries'} left`;
+    : `${triesLeft} free ${triesLeft === 1 ? 'try' : 'tries'} left on this browser`;
 }
 
 function selectMode(mode) {
@@ -154,7 +155,10 @@ function selectMode(mode) {
   state.mode = mode;
   els.modeButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.mode === mode)));
   document.body.dataset.mode = mode;
-  els.run.textContent = mode === 'write' ? 'Write my formula' : mode === 'explain' ? 'Explain formula' : 'Fix formula';
+  els.run.textContent = mode === 'write' ? 'Write the formula' : mode === 'explain' ? 'Explain this formula' : 'Fix this formula';
+  if (els.formulaLabel) {
+    els.formulaLabel.textContent = mode === 'fix' ? "Paste the formula that isn't working" : 'Paste the formula';
+  }
   if (previousMode !== mode) trackEvent('mode_select', { mode });
 }
 
