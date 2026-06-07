@@ -722,6 +722,35 @@ const pages = [
     ]
   },
   {
+    slug: 'mysheetai-alternative',
+    title: 'mysheetAI Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused mysheetAI alternative for writing, explaining, or fixing one Excel or Google Sheets formula without opening a broader formula, instruction, VBA, or Apps Script assistant.',
+    eyebrow: 'mysheetAI alternative',
+    h1: 'A mysheetAI alternative for one formula problem.',
+    lede: 'Use Write My Formula when the job is one Excel or Google Sheets formula, explanation, or repair, and you do not need step-by-step spreadsheet instructions, VBA code, Apps Script code, or an ongoing spreadsheet assistant.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=ARRAYFORMULA(IF(A2:A="","",VLOOKUP(A2:A,Products!A:C,3,FALSE)))'
+    },
+    intent: 'Help spreadsheet users comparing mysheetAI-style formula bots choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair.',
+    bestFor: [
+      'Fixing or writing one Excel or Google Sheets formula with the touched ranges visible.',
+      'Explaining inherited formula logic before changing a shared spreadsheet.',
+      'Trying a focused formula helper before choosing a broader assistant for formulas, instructions, VBA, or Apps Script.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the formula, headers, sample rows, or expected result so the answer has context.',
+      'Review the formula explanation and paste checks before using it in the sheet.'
+    ],
+    copyChecks: [
+      'Use mysheetAI or another broader spreadsheet assistant when you need step-by-step spreadsheet instructions, VBA, App Scripts, adaptive assistant workflows, or a formula library.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair.',
+      'Test the output on one known row before filling it through an important sheet.'
+    ]
+  },
+  {
     slug: 'numerous-ai-alternative',
     title: 'Numerous.ai Alternative for One Formula Problem | Write My Formula',
     description: 'A focused Numerous.ai alternative for writing, explaining, or fixing one Excel or Google Sheets formula without installing an in-spreadsheet AI automation add-in.',
@@ -4647,6 +4676,26 @@ const pageEnhancements = {
       formula: '=FILTER(A2:D500,D2:D500="Paid",C2:C500>=DATE(2026,5,1))',
       read: 'The formula returns rows from A through D only when Status in column D is Paid and the date in column C is on or after May 1, 2026. The checks tell you to confirm those columns match the real sheet and that the output area is empty before FILTER spills.'
     }
+  },
+  'mysheetai-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a broader AI formula bot.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and copy checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing mysheetAI-style spreadsheet assistants but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
+    notWhen: 'Do not use Write My Formula as a replacement for mysheetAI when you need step-by-step spreadsheet instructions, VBA code, Apps Script code, adaptive assistant workflows, or a broader formula library. It is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A Google Sheets report needs product prices filled next to a list of product IDs, but the current array formula hides missing IDs as errors and is hard to review.',
+      formula: '=ARRAYFORMULA(IF(A2:A="","",IFNA(VLOOKUP(A2:A,Products!A:C,3,FALSE),"Check product ID")))',
+      read: 'The formula leaves blank rows blank, looks up each product ID in the Products table, and returns a clear fallback when a product ID is missing. The checks tell you to confirm the lookup table columns and leave enough empty cells for the array output.'
+    },
+    extraDetailCards: [
+      {
+        title: 'Where mysheetAI fits',
+        html: 'mysheetAI currently positions itself as an AI formula bot for Excel and Google Sheets with a free formula generator, formula explanations, step-by-step spreadsheet instructions, VBA and App Scripts automation code, and public usage claims of 15,000 formulas generated and 5,000 unique users. Use that broader assistant when you want those adjacent workflows; use Write My Formula when the task is only one formula, explanation, or repair.'
+      }
+    ]
   },
   'numerous-ai-alternative': {
     gives: [

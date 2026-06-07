@@ -2851,6 +2851,27 @@ test('SheetAI alternative page targets focused formula comparison without overcl
   assert.doesNotMatch(page, /replaces SheetAI|better than SheetAI|official SheetAI|SheetAI partner|affiliated|guarantee|guaranteed|always fixes|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|visualization engine/i);
 });
 
+test('mysheetAI alternative page targets focused formula comparison without overclaiming', () => {
+  const page = read('mysheetai-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /mysheetAI Alternative for One Formula Problem/);
+  assert.match(page, /A mysheetAI alternative for one formula problem/);
+  assert.match(page, /step-by-step spreadsheet instructions, VBA code, Apps Script code, or an ongoing spreadsheet assistant/);
+  assert.match(page, /write one formula, repair one broken formula, explain one inherited formula/);
+  assert.match(page, /formula explanations, step-by-step spreadsheet instructions, VBA and App Scripts automation code/);
+  assert.match(page, /=ARRAYFORMULA\(IF\(A2:A=&quot;&quot;,&quot;&quot;,IFNA\(VLOOKUP\(A2:A,Products!A:C,3,FALSE\),&quot;Check product ID&quot;\)\)\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/mysheetai-alternative\/">mysheetAI alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/mysheetai-alternative\//);
+  assert.doesNotMatch(page, /replaces mysheetAI|better than mysheetAI|official mysheetAI|mysheetAI partner|affiliated|guarantee|guaranteed|always fixes|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|best|fastest|most accurate/i);
+});
+
 test('Numerous.ai alternative page targets focused formula comparison without overclaiming', () => {
   const page = read('numerous-ai-alternative/index.html');
   const homepage = read('index.html');
