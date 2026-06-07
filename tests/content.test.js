@@ -253,6 +253,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than just another quick generated formula/);
   assert.match(page, /\/manyexcel-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than regex, script, chart, or file workflows/);
+  assert.match(page, /\/formulahelper-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than saved libraries, optimization, collaboration, add-ons, or API workflows/);
   assert.match(page, /\/index-match-formula-generator\//);
   assert.match(page, /Build flexible lookup formulas for left lookups, two-way lookups, and older Excel files/);
   assert.match(page, /data-checkout/);
@@ -984,6 +986,30 @@ test('ManyExcel alternative page targets broader spreadsheet AI comparison witho
   assert.match(homepage, /href="\/manyexcel-alternative\/">ManyExcel alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/manyexcel-alternative\//);
   assert.doesNotMatch(page, /replaces ManyExcel|better than ManyExcel|official ManyExcel|ManyExcel partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|privacy superior|faster|cheaper|beats ManyExcel|price superior/i);
+});
+
+test('FormulaHelper alternative page targets formula-workbench comparison without overclaiming', () => {
+  const page = read('formulahelper-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /FormulaHelper Alternative for One Formula Problem/);
+  assert.match(page, /A FormulaHelper alternative for one formula problem/);
+  assert.match(page, /generation, explanations, error detection, optimization, saved formulas, team collaboration, add-ons, and paid tiers/);
+  assert.match(page, /broader formula workbench with generation, explanations, error detection, optimization, saved formulas, team collaboration, add-ons, and paid tiers/);
+  assert.match(page, /50 formula generations\/month, 100 saved formulas, and 50 AI explanations\/month/);
+  assert.match(page, /Pro at \$19\/month with 1,000 formula generations\/month/);
+  assert.match(page, /Team at \$99\/month with team collaboration/);
+  assert.match(page, /Google Sheets add-on, team libraries, permissions, version control, API, webhooks, and third-party integrations/);
+  assert.match(page, /=SUMIFS\(D2:D500,A2:A500,&quot;West&quot;,B2:B500,&quot;Paid&quot;,C2:C500,&quot;&gt;=&quot;&amp;DATE\(2026,6,1\)\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /Formula request/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/formulahelper-alternative\/">FormulaHelper alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/formulahelper-alternative\//);
+  assert.doesNotMatch(page, /replaces FormulaHelper|better than FormulaHelper|more powerful than FormulaHelper|official FormulaHelper|FormulaHelper partner|affiliated|built for teams|unlimited formulas|no limits|save your formula library|free forever|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|privacy superior|faster|cheaper|beats FormulaHelper|price superior/i);
 });
 
 test('AI Excel Formula alternative page targets free generator comparison without overclaiming', () => {

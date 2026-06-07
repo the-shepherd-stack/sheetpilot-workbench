@@ -1513,6 +1513,46 @@ const pages = [
     ]
   },
   {
+    slug: 'formulahelper-alternative',
+    title: 'FormulaHelper Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused FormulaHelper alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing a full formula workbench with saved libraries, optimization, collaboration, add-ons, or API workflows.',
+    eyebrow: 'FormulaHelper alternative',
+    h1: 'A FormulaHelper alternative for one formula problem.',
+    lede: 'FormulaHelper is a broader formula workbench with generation, explanations, error detection, optimization, saved formulas, team collaboration, add-ons, and paid tiers. Use Write My Formula when the immediate job is smaller: one Excel or Google Sheets formula, one explanation, or one repair from a browser tab.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      task: 'Fix this formula so it totals paid West invoices after June 1, 2026.',
+      table: 'Region,Status,Invoice Date,Amount\nWest,Paid,2026-06-04,1200\nEast,Paid,2026-06-09,850\nWest,Open,2026-06-18,640',
+      range: 'Region in A2:A500; status in B2:B500; dates in C2:C500; amount in D2:D500; result in F2',
+      hint: 'SUMIFS'
+    },
+    intent: 'Help spreadsheet users comparing FormulaHelper-style formula workbenches choose a narrow formula helper when the immediate problem is one Excel or Google Sheets formula, one explanation, or one repair.',
+    bestFor: [
+      'Trying a formula-sized task with two guest tries before creating an account.',
+      'Writing, explaining, or fixing one formula with the relevant columns, sample rows, and expected result visible.',
+      'Keeping the answer focused on formula syntax, range notes, and paste checks instead of a saved formula library.',
+      'Choosing a lightweight browser tab when you do not need team collaboration, add-ons, API access, or custom integrations.',
+      'Using a defined $9 founding-access monthly run limit when a project needs more than a few formula attempts.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the headers, sample rows, target range, broken formula, or expected result.',
+      'Review the explanation and checks, then copy the formula into Excel or Google Sheets yourself.'
+    ],
+    copyChecks: [
+      'Use FormulaHelper or another full workbench if you need saved formula libraries, formula optimization, real-time collaboration, Google Sheets add-ons, API integrations, team permissions, or custom integrations.',
+      'Use Write My Formula when the immediate job is one formula, one rule, or one repair you can read and test.',
+      'FormulaHelper details verified June 7, 2026; test any generated formula on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where FormulaHelper fits',
+        html: 'FormulaHelper currently presents itself as an AI-powered formula assistant for Excel and Google Sheets. Its public page lists an AI Formula Generator, Formula Explainer, Error Detection, Formula Optimizer, multi-language support, and real-time collaboration. Its pricing lists Free at $0/month with 50 formula generations/month, 100 saved formulas, and 50 AI explanations/month; Pro at $19/month with 1,000 formula generations/month, unlimited saved formulas, 500 AI explanations/month, priority email support, formula optimization tips, and export to Excel/Sheets; and Team at $99/month with team collaboration, custom integrations, and a dedicated account manager. Its documentation also references a Google Sheets add-on, team libraries, permissions, version control, API, webhooks, and third-party integrations.'
+      }
+    ]
+  },
+  {
     slug: 'excel-formula-cheat-sheet',
     title: 'Excel Formula Cheat Sheet | Write My Formula',
     description: 'A practical Excel formula cheat sheet with common lookup, logic, text, date, percentage, and summary formulas plus examples.',
@@ -5068,6 +5108,20 @@ const pageEnhancements = {
       setup: 'An invoice report needs the paid Product A total for June 2026 before the formula is filled through a shared workbook.',
       formula: '=SUMIFS(D2:D500,B2:B500,"Product A",C2:C500,"Paid",A2:A500,">="&DATE(2026,6,1),A2:A500,"<"&DATE(2026,7,1))',
       read: 'The formula totals Amount values only when Product is Product A, Status is Paid, and the invoice date is in June 2026. The checks tell you to confirm every SUMIFS range covers the same rows before filling it through the report.'
+    }
+  },
+  'formulahelper-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a broader formula workbench.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing FormulaHelper-style formula assistance but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule from a browser tab.',
+    notWhen: 'Use FormulaHelper or another full formula workbench when you need saved formulas, formula optimization, real-time collaboration, team libraries, Google Sheets add-ons, API access, webhooks, or custom integrations. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A regional invoice report needs the paid West total since June 1, 2026 before the formula is filled through a shared workbook.',
+      formula: '=SUMIFS(D2:D500,A2:A500,"West",B2:B500,"Paid",C2:C500,">="&DATE(2026,6,1))',
+      read: 'The formula totals Amount values only when Region is West, Status is Paid, and Invoice Date is on or after June 1, 2026. The checks tell you to confirm every SUMIFS range covers the same rows before filling it through the report.'
     }
   },
   'excel-formula-cheat-sheet': {
