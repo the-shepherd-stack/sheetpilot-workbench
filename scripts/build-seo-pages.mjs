@@ -237,6 +237,48 @@ const pages = [
     ]
   },
   {
+    slug: 'julius-ai-alternative',
+    title: 'Julius AI Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused Julius AI alternative for writing, explaining, or fixing one Excel or Google Sheets formula without opening a broader data-agent, file-analysis, chart, or connector workflow.',
+    eyebrow: 'Julius AI alternative',
+    h1: 'A Julius AI alternative for one formula problem.',
+    lede: 'Use Write My Formula when the job is one Excel or Google Sheets formula, explanation, or repair. Use Julius AI or another data-agent workspace when you need spreadsheet or PDF analysis, charts, exports, live data connectors, scheduled reports, or broader exploratory data work.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Write a formula that flags paid invoices above 1000 from the West region.',
+      table: 'Region,Status,Amount\nWest,Paid,1250\nEast,Paid,900\nWest,Open,1400',
+      range: 'Region in A2:A500; status in B2:B500; amount in C2:C500; result in D2',
+      hint: 'IF'
+    },
+    intent: 'Help spreadsheet users comparing Julius AI-style data-agent workflows choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair.',
+    bestFor: [
+      'Writing or fixing one Excel or Google Sheets formula with the relevant ranges visible.',
+      'Explaining inherited formula logic before changing a shared workbook.',
+      'Trying a focused formula helper before choosing a broader data agent for file analysis, charts, dashboards, connectors, or reports.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the headers, sample rows, formula, or expected result so the answer has context.',
+      'Review the range notes and paste checks before using the formula in the workbook.'
+    ],
+    copyChecks: [
+      'Use Julius AI or another data-agent workspace when you need workbook, CSV, PDF, or database analysis; visualizations; exports; scheduled reports; or team data connectors.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair.',
+      'Test the output on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where Julius AI fits',
+        html: 'Julius AI currently positions itself around AI-powered data agents for Excel, Google Sheets, data files, charts, reports, and connected data workflows. Its public pages describe formula helper tasks alongside data visualization, PDF table extraction, Google Drive, file storage formats, exports, and higher-tier data connectors such as Postgres, BigQuery, and Snowflake.'
+      },
+      {
+        title: 'How this page stays narrower',
+        html: 'Write My Formula does not upload workbooks, analyze whole files, create charts, extract PDFs, connect databases, or produce scheduled reports. It keeps the job to one formula-sized request with visible formula text, explanation, and paste checks.'
+      }
+    ]
+  },
+  {
     slug: 'ai-formula-generator-alternative',
     title: 'AI Formula Generator Alternative for One Formula Problem | Write My Formula',
     description: 'A focused AI Formula Generator alternative for writing, explaining, or fixing one Excel or Google Sheets formula without opening a broader SQL, file-context, bulk, VBA, or Apps Script workflow.',
@@ -4702,6 +4744,20 @@ const pageEnhancements = {
       setup: 'For invoices with dates in A, status in B, and amounts in C, you can ask for a formula that totals paid invoices from the current month and ignores open rows.',
       formula: '=SUMIFS(C2:C500,B2:B500,"Paid",A2:A500,">="&DATE(2026,5,1),A2:A500,"<"&DATE(2026,6,1))',
       read: 'The formula totals only rows marked Paid where the invoice date falls inside May 2026. The checks tell you to confirm date cells are real dates and that each SUMIFS range has the same height.'
+    }
+  },
+  'julius-ai-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a broad AI data-agent workspace.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing Julius AI-style data agents but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
+    notWhen: 'Use Julius AI or another data-agent workspace when you need to analyze uploaded workbooks, CSVs, PDFs, or databases; generate charts or slides; export artifacts; connect Google Drive, Postgres, BigQuery, or Snowflake; schedule reports; or run broader exploratory data analysis. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A report needs to flag paid West-region invoices above 1000, but the logic should be visible before the formula is filled through the workbook.',
+      formula: '=IF(AND(A2="West",B2="Paid",C2>1000),"Review","")',
+      read: 'The formula checks Region, Status, and Amount on the current row. It returns Review only when all three conditions are true, and leaves other rows blank.'
     }
   },
   'ai-formula-generator-alternative': {

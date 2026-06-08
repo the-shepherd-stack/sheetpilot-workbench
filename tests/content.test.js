@@ -2410,6 +2410,29 @@ test('AI Formula Generator alternative page targets focused formula comparison w
   assert.doesNotMatch(page, /replaces AI Formula Generator|better than AI Formula Generator|official AI Formula Generator|AI Formula Generator partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|privacy superior|99\.5% accuracy|works every time|10 seconds/i);
 });
 
+test('Julius AI alternative page targets data-agent comparison without overclaiming', () => {
+  const page = read('julius-ai-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Julius AI Alternative for One Formula Problem/);
+  assert.match(page, /A Julius AI alternative for one formula problem/);
+  assert.match(page, /data-agent workspace/);
+  assert.match(page, /spreadsheet or PDF analysis, charts, exports, live data connectors, scheduled reports/);
+  assert.match(page, /Postgres, BigQuery, and Snowflake/);
+  assert.match(page, /does not upload workbooks, analyze whole files, create charts, extract PDFs, connect databases, or produce scheduled reports/);
+  assert.match(page, /=IF\(AND\(A2=&quot;West&quot;,B2=&quot;Paid&quot;,C2&gt;1000\),&quot;Review&quot;,&quot;&quot;\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month, stored in this browser/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/julius-ai-alternative\/">Julius AI alternative/);
+  assert.match(homepage, /data-agent workspace for files, charts, connectors, exports, or scheduled reports/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/julius-ai-alternative\//);
+  assert.doesNotMatch(page, /replaces Julius|better than Julius|beats Julius|official Julius|Julius partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|more private|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook audit by Write My Formula|whole spreadsheet audit by Write My Formula|exact cause|human reviewer|same-day|privacy superior|cheaper than Julius|overbuilt|bloated/i);
+});
+
 test('SheetSolver AI alternative page targets comparison intent without overclaiming', () => {
   const page = read('sheetsolver-ai-alternative/index.html');
   const sitemap = read('sitemap.xml');
