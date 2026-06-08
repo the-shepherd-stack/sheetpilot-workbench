@@ -564,6 +564,43 @@ const pages = [
     ]
   },
   {
+    slug: 'chatexcel-alternative',
+    title: 'ChatExcel Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused ChatExcel alternative for writing, explaining, or fixing one Excel or Google Sheets formula without uploading a workbook or opening a spreadsheet chat workflow.',
+    eyebrow: 'ChatExcel alternative',
+    h1: 'A ChatExcel alternative for one formula problem.',
+    lede: 'ChatExcel is built for chatting with uploaded spreadsheets, asking questions about data, extracting tables, and generating insights. Use Write My Formula when the job is smaller: one Excel or Google Sheets formula, explanation, or repair in a browser tab.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=XLOOKUP(F2,$A$2:$A$500,$D$2:$D$500,"",0)'
+    },
+    intent: 'Help spreadsheet users comparing ChatExcel-style spreadsheet chat tools choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair.',
+    bestFor: [
+      'Writing one Excel or Google Sheets formula without uploading the whole workbook.',
+      'Explaining inherited formula logic before changing a shared report.',
+      'Repairing a formula that returns an error, blank, or wrong lookup result.',
+      'Trying a focused formula helper when you do not need data chat, table extraction, file analysis, or API access.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized job.',
+      'Paste the formula, headers, sample rows, or expected result so the answer has context.',
+      'Review the formula read-through and paste checks before using it in the sheet.'
+    ],
+    copyChecks: [
+      'Use ChatExcel or another spreadsheet chat tool if you need to upload or connect an Excel, CSV, or Google Sheets file and ask questions about the data inside it.',
+      'Use ChatExcel-style tools when you need table extraction, dataset insights, natural-language analysis, larger file limits, API access, or unlimited spreadsheet queries.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair.',
+      'ChatExcel details verified June 8, 2026; test the output on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where ChatExcel fits',
+        html: 'ChatExcel currently presents itself as an AI Excel assistant for chatting with spreadsheets. Its public pages describe natural-language queries over uploaded data, formula generation, table extraction, data insights, support for Excel files, CSV files, and Google Sheets, plus pricing that lists a Free plan with 30 queries per day and a 5 MB file size limit, and Pro at $6/month with unlimited queries, a 100 MB file size limit, priority support, and API access.'
+      }
+    ]
+  },
+  {
     slug: 'rows-alternative',
     title: 'Rows Alternative for One Formula Problem | Write My Formula',
     description: 'A focused Rows alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing a full AI spreadsheet platform.',
@@ -4731,6 +4768,20 @@ const pageEnhancements = {
       setup: 'A revenue report needs paid West-region totals from June 2026, but the inherited SUMIFS uses a loose text date and should be checked before filling down.',
       formula: '=SUMIFS($D$2:$D$500,$A$2:$A$500,"West",$B$2:$B$500,"Paid",$C$2:$C$500,">="&DATE(2026,6,1))',
       read: 'The formula totals Amount values only when Region is West, Status is Paid, and the Date is on or after June 1, 2026. The checks tell you to confirm every SUMIFS range covers the same rows and the date column contains real dates.'
+    }
+  },
+  'chatexcel-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a spreadsheet chat and upload workflow.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing ChatExcel-style spreadsheet chat tools but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
+    notWhen: 'Use ChatExcel or a similar spreadsheet chat tool when you need uploaded or connected spreadsheet files, natural-language questions over a dataset, table extraction, data insights, larger file limits, API access, or unlimited spreadsheet queries. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A lookup formula should return the latest paid invoice amount for the customer in F2, but the inherited XLOOKUP is returning a blank when the customer appears more than once.',
+      formula: '=XLOOKUP(1,($A$2:$A$500=F2)*($C$2:$C$500="Paid"),$D$2:$D$500,"Not found",0,-1)',
+      read: 'The formula finds rows where Customer matches F2 and Status is Paid, returns the Amount from D, and searches from the bottom so the latest matching paid invoice is returned when the data is sorted oldest to newest.'
     }
   },
   'rows-alternative': {

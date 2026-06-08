@@ -218,6 +218,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than connected data, refresh, alert, export, or in-sheet AI workflows/);
   assert.match(page, /\/excelgpt-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a full Excel assistant suite/);
+  assert.match(page, /\/chatexcel-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than spreadsheet chat, table extraction, file analysis, or API access/);
   assert.match(page, /\/rows-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a full AI spreadsheet platform/);
   assert.match(page, /\/gptexcel-alternative\//);
@@ -441,6 +443,31 @@ test('ExcelGPT alternative page keeps the comparison bounded', () => {
   assert.doesNotMatch(page, /replaces ExcelGPT|better than ExcelGPT|official ExcelGPT|ExcelGPT partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook audit by Write My Formula|whole spreadsheet audit by Write My Formula|exact cause|human reviewer|same-day|PDF|privacy superior|works every time|bloated|overpriced/i);
 });
 
+test('ChatExcel alternative page keeps the comparison bounded', () => {
+  const page = read('chatexcel-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /ChatExcel Alternative for One Formula Problem/);
+  assert.match(page, /A ChatExcel alternative for one formula problem/);
+  assert.match(page, /chatting with uploaded spreadsheets/);
+  assert.match(page, /table extraction/);
+  assert.match(page, /support for Excel files, CSV files, and Google Sheets/);
+  assert.match(page, /Free plan with 30 queries per day and a 5 MB file size limit/);
+  assert.match(page, /Pro at \$6\/month/);
+  assert.match(page, /API access/);
+  assert.match(page, /ChatExcel details verified June 8, 2026/);
+  assert.match(page, /=XLOOKUP\(1,\(\$A\$2:\$A\$500=F2\)\*\(\$C\$2:\$C\$500=&quot;Paid&quot;\),\$D\$2:\$D\$500,&quot;Not found&quot;,0,-1\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month, stored in this browser/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/chatexcel-alternative\/">ChatExcel alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/chatexcel-alternative\//);
+  assert.doesNotMatch(page, /replaces ChatExcel|better than ChatExcel|official ChatExcel|ChatExcel partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook audit by Write My Formula|whole spreadsheet audit by Write My Formula|exact cause|human reviewer|same-day|PDF|privacy superior|works every time|bloated|overpriced|uploads? your workbook|reads? your document|analyzes? your whole file/i);
+});
+
 test('Rows alternative page keeps the comparison bounded', () => {
   const page = read('rows-alternative/index.html');
   const homepage = read('index.html');
@@ -562,6 +589,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'promptloop-alternative',
     'rows-alternative',
     'excelgpt-alternative',
+    'chatexcel-alternative',
     'sheetsolver-ai-alternative',
     'sheetgpt-alternative',
     'excelbot-alternative',
