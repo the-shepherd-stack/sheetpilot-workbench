@@ -1788,6 +1788,45 @@ const pages = [
     ]
   },
   {
+    slug: 'gemini-sheets-alternative',
+    title: 'Gemini in Sheets Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused Gemini in Sheets alternative for writing, explaining, or fixing one Excel or Google Sheets formula in a browser tab before choosing broader Google Workspace AI.',
+    eyebrow: 'Gemini in Sheets alternative',
+    h1: 'A Gemini in Sheets alternative for one formula problem.',
+    lede: 'Gemini in Google Sheets is built for broader Workspace AI: formulas, tables, charts, analysis, formatting, pivots, filters, and sheet actions inside Google Sheets. Use Write My Formula when the job is smaller: one Excel or Google Sheets formula, explanation, or repair in a browser tab, with range notes and paste checks visible before you copy anything back.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=IFERROR(VLOOKUP(A2,Customers!A:D,4,FALSE),"")'
+    },
+    intent: 'Help spreadsheet users comparing Gemini-in-Sheets workflows choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair rather than broader Google Workspace AI.',
+    bestFor: [
+      'Writing or fixing one Excel or Google Sheets formula without starting from an in-Sheets AI side panel.',
+      'Explaining inherited formula logic before editing a shared workbook.',
+      'Trying a focused formula helper when you do not need Gemini to create tables, charts, pivots, filters, formatting, or broader sheet edits.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the formula, headers, sample rows, expected result, or target range.',
+      'Review the explanation and checks, then copy the formula into Excel or Google Sheets yourself.'
+    ],
+    copyChecks: [
+      'Use Gemini in Sheets or another Workspace AI workflow when you want AI assistance inside Google Sheets for tables, charts, formatting, pivots, filters, row or column operations, Drive/Gmail context, or broader spreadsheet edits.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair in a browser tab.',
+      'Gemini in Sheets details verified June 8, 2026; test any generated formula on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where Gemini in Sheets fits',
+        html: 'Google describes Gemini in Sheets as part of the Google Sheets side-panel workflow for creating formulas, tables, charts, data analysis, and sheet actions such as conditional formatting, pivot tables, dropdowns, sorting, filters, find-and-replace, number formats, row and column operations, fill ranges, and table formatting. Google also describes newer Gemini in Sheets beta features for creating, organizing, and editing entire sheets from natural-language instructions.'
+      },
+      {
+        title: 'How this page stays narrower',
+        html: 'Write My Formula does not work inside Google Sheets, read your sheet automatically, summarize Drive or Gmail, apply formatting, create charts, create pivot tables, insert formulas directly, or edit a spreadsheet for you. It keeps the decision to one visible formula, explanation, or repair that you can review before pasting.'
+      }
+    ]
+  },
+  {
     slug: 'excel-formula-cheat-sheet',
     title: 'Excel Formula Cheat Sheet | Write My Formula',
     description: 'A practical Excel formula cheat sheet with common lookup, logic, text, date, percentage, and summary formulas plus examples.',
@@ -5441,6 +5480,20 @@ const pageEnhancements = {
       setup: 'A Google Sheets report needs the paid West total for June 2026 before the formula is filled through a shared workbook.',
       formula: '=SUMIFS(D2:D500,B2:B500,"West",C2:C500,"Paid",A2:A500,">="&DATE(2026,6,1),A2:A500,"<"&DATE(2026,7,1))',
       read: 'The formula totals Amount values only when Region is West, Status is Paid, and Invoice Date falls inside June 2026. The checks tell you to confirm every SUMIFS range covers the same rows and that the date column contains real dates.'
+    }
+  },
+  'gemini-sheets-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a broader Google Sheets AI side-panel workflow.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing Gemini in Sheets but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule from a browser tab.',
+    notWhen: 'Use Gemini in Sheets or another Workspace AI workflow when you need AI inside Google Sheets for tables, charts, formatting, pivots, filters, row or column operations, Drive or Gmail context, whole-sheet organization, or broader spreadsheet edits. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A Google Sheets report hides missing customer matches behind a blank fallback, and the team wants the lookup repaired before copying it down a shared sheet.',
+      formula: '=IFNA(VLOOKUP(A2,Customers!A:D,4,FALSE),"Check customer ID")',
+      read: 'The formula looks for the customer ID in A2 inside the first column of Customers!A:D, returns the fourth column from the matching row, and shows Check customer ID when no exact match exists. The checks tell you to confirm the lookup column, return column, and fallback text before filling it down.'
     }
   },
   'excel-formula-cheat-sheet': {
