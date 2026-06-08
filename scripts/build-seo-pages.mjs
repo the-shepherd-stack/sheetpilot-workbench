@@ -1398,6 +1398,41 @@ const pages = [
     ]
   },
   {
+    slug: 'equals-alternative',
+    title: 'Equals Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused Equals alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing a BI spreadsheet, AI analytics, connector, dashboard, warehouse, or CRM writeback workflow.',
+    eyebrow: 'Equals alternative',
+    h1: 'An Equals alternative for one formula problem.',
+    lede: 'Use Write My Formula when the job is one Excel or Google Sheets formula, explanation, or repair in the workbook you already use. Use Equals when you need a BI spreadsheet connected to company data, dashboards, AI analytics, warehouse-backed reporting, CRM writeback, or a managed analytics workflow.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=IFERROR(INDEX($D$2:$D$500,MATCH(F2,$A$2:$A$500,0)),"")'
+    },
+    intent: 'Help spreadsheet users comparing Equals-style connected spreadsheet and AI analytics platforms choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair.',
+    bestFor: [
+      'Writing or fixing one Excel or Google Sheets formula without connecting company systems first.',
+      'Explaining inherited formula logic before editing a shared report.',
+      'Trying a focused formula helper when you do not need dashboards, Slack pushes, wiki embeds, warehouse sync, connectors, CRM writeback, or an AI analytics agent.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the formula, headers, sample rows, expected result, or target range.',
+      'Review the explanation and checks, then copy the formula into Excel or Google Sheets yourself.'
+    ],
+    copyChecks: [
+      'Use Equals or another BI spreadsheet when you need a spreadsheet connected directly to company data, dashboards backed by spreadsheet logic, AI analytics, Slack or wiki publishing, CRM writeback, warehouse sync, or live data connectors.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair in a browser tab.',
+      'Equals details verified June 8, 2026; test the output on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where Equals fits',
+        html: 'Equals currently presents itself as trusted AI analytics. Its public pages describe a BI spreadsheet connected directly to data, dashboards backed by spreadsheet logic, push-to-Slack workflows, live embeds in Notion, Coda, or wikis, an AI agent that builds reports and answers questions, GTM data synced and cleaned in a managed Snowflake warehouse, CRM writeback, and connectors including Stripe, HubSpot, Salesforce, Postgres, BigQuery, and Snowflake. Its pricing page lists Essential at $24k/year, Business at $36k/year, and Enterprise at $60k/year, each with included monthly AI spend. Equals docs for connecting Google Sheets say only raw values carry over, not formulas or formats.'
+      }
+    ]
+  },
+  {
     slug: 'arcwise-alternative',
     title: 'Arcwise Alternative for One Formula Problem | Write My Formula',
     description: 'A focused Arcwise alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing an in-Sheets AI analyst, connected-data, PDF-ingestion, ARCQUERY, or GPT-function workflow.',
@@ -5368,6 +5403,20 @@ const pageEnhancements = {
       setup: 'A lookup formula should return the amount for the customer in F2, but the inherited formula hides missing matches with a blank and makes it hard to tell what is being searched.',
       formula: '=IFNA(XLOOKUP(F2,$A$2:$A$500,$D$2:$D$500,"Not found",0),"Not found")',
       read: 'The formula searches Customer values in A, returns Amount from D, and gives a readable fallback when no exact match exists. The checks tell you to confirm the lookup and return ranges cover the same rows before filling it through the report.'
+    }
+  },
+  'equals-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a connected BI spreadsheet.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing Equals-style AI analytics but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule from a browser tab.',
+    notWhen: 'Use Equals or another BI spreadsheet when you need connected company data, dashboards, AI analytics, Slack pushes, wiki embeds, warehouse sync, live app or database connectors, CRM writeback, or managed analytics implementation. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A legacy report should return the plan amount for the customer in F2, but the inherited INDEX/MATCH formula hides failed matches with a blank.',
+      formula: '=IFNA(INDEX($D$2:$D$500,MATCH(F2,$A$2:$A$500,0)),"Not found")',
+      read: 'The formula searches Customer values in A, returns Amount from D, and shows a readable fallback when no exact match exists. The checks tell you to confirm the lookup and return ranges cover the same rows before filling it through the report.'
     }
   },
   'arcwise-alternative': {

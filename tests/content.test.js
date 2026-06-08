@@ -603,6 +603,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'sheetsmart-alternative',
     'smart-excel-alternative',
     'sourcetable-alternative',
+    'equals-alternative',
     'arcwise-alternative',
     'excelformula-pro-alternative',
     'excelformula-co-alternative',
@@ -904,6 +905,32 @@ test('Arcwise alternative page targets in-Sheets AI analyst comparison without o
   assert.match(homepage, /href="\/arcwise-alternative\/">Arcwise alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/arcwise-alternative\//);
   assert.doesNotMatch(page, /replaces Arcwise|better than Arcwise|official Arcwise|Arcwise partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF delivery|privacy superior|bloated|overpriced/i);
+});
+
+test('Equals alternative page targets BI spreadsheet comparison without overclaiming', () => {
+  const page = read('equals-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Equals Alternative for One Formula Problem/);
+  assert.match(page, /An Equals alternative for one formula problem/);
+  assert.match(page, /BI spreadsheet connected to company data/);
+  assert.match(page, /dashboards, AI analytics, warehouse-backed reporting, CRM writeback/);
+  assert.match(page, /Slack pushes, wiki embeds, warehouse sync, live app or database connectors, CRM writeback/);
+  assert.match(page, /Essential at \$24k\/year/);
+  assert.match(page, /Business at \$36k\/year/);
+  assert.match(page, /Enterprise at \$60k\/year/);
+  assert.match(page, /only raw values carry over, not formulas or formats/);
+  assert.match(page, /Equals details verified June 8, 2026/);
+  assert.match(page, /=IFNA\(INDEX\(\$D\$2:\$D\$500,MATCH\(F2,\$A\$2:\$A\$500,0\)\),&quot;Not found&quot;\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/equals-alternative\/">Equals alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/equals-alternative\//);
+  assert.doesNotMatch(page, /replaces Equals|better than Equals|official Equals|Equals partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook support|whole spreadsheet audit|exact cause|uploads? your workbook|human reviewer|same-day|PDF delivery|privacy superior|overkill|bloated|overpriced|save thousands/i);
 });
 
 test('Bricks AI spreadsheet alternative page targets whole-workspace comparison without overclaiming', () => {
