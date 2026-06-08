@@ -477,13 +477,17 @@ test('Rows alternative page keeps the comparison bounded', () => {
   const homepage = read('index.html');
   const sitemap = read('sitemap.xml');
 
-  assert.match(page, /Rows Alternative for One Formula Problem/);
-  assert.match(page, /You probably do not need another spreadsheet app/);
-  assert.match(page, /AI Analyst as a spreadsheet copilot/);
-  assert.match(page, /cross-table references/);
-  assert.match(page, /built-in Python for analysis/);
-  assert.match(page, /Google Analytics, Facebook Ads, HubSpot, Salesforce, BigQuery, and PostgreSQL/);
-  assert.match(page, /Use Rows when the job is the spreadsheet/);
+  assert.match(page, /Rows shut down\. Need one formula written/);
+  assert.match(page, /Rows\.com passed its announced May 31, 2026 wind-down date/);
+  assert.match(page, /not a Rows replacement/);
+  assert.match(page, /Rows\.com was scheduled to fully wind down on May 31, 2026/);
+  assert.match(page, /Superhuman announced the acquisition on February 22, 2026/);
+  assert.match(page, /more than 2\.2 million users/);
+  assert.match(page, /17 billion spreadsheet functions/);
+  assert.match(page, /8\.3 billion business-tool imports/);
+  assert.match(page, /800,000 AI Analyst prompts/);
+  assert.match(page, /does not migrate Rows workspaces, connect data sources, build dashboards, run Python, or recreate AI Analyst/);
+  assert.match(page, /one formula at a time/);
   assert.match(page, /=IF\(B2=0,&quot;&quot;,\(B2-C2\)\/B2\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month, stored in this browser/);
@@ -492,7 +496,7 @@ test('Rows alternative page keeps the comparison bounded', () => {
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/rows-alternative\/">Rows alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/rows-alternative\//);
-  assert.doesNotMatch(page, /replaces Rows|better than Rows|official Rows|Rows partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook audit by Write My Formula|whole spreadsheet audit by Write My Formula|exact cause|human reviewer|same-day|PDF|privacy superior|works every time|upload|uploaded workbook/i);
+  assert.doesNotMatch(page, /replaces Rows|better than Rows|official Rows|Rows partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook audit by Write My Formula|whole spreadsheet audit by Write My Formula|exact cause|human reviewer|same-day|PDF|privacy superior|works every time|upload|uploaded workbook|migration support/i);
 });
 
 test('config exposes checkout and account usage limits', () => {

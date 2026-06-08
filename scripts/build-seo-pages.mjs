@@ -798,11 +798,11 @@ const pages = [
   },
   {
     slug: 'rows-alternative',
-    title: 'Rows Alternative for One Formula Problem | Write My Formula',
-    description: 'A focused Rows alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing a full AI spreadsheet platform.',
+    title: 'Rows shut down. Need one formula written? | Write My Formula',
+    description: 'Rows.com passed its announced May 31, 2026 wind-down date. If you just need one Excel or Google Sheets formula written, explained, or fixed, this is a narrow tool for that job, not a Rows replacement.',
     eyebrow: 'Rows alternative',
-    h1: 'You probably do not need another spreadsheet app. You need one formula.',
-    lede: 'Write My Formula writes, explains, and repairs one Excel or Google Sheets formula in your browser. Paste the result back into the sheet you already use.',
+    h1: 'Rows passed its wind-down date. If today\'s problem is one formula, start here.',
+    lede: 'Rows.com was scheduled to fully wind down on May 31, 2026, and you may still have a sheet to finish somewhere else. Write My Formula writes, explains, or fixes one Excel or Google Sheets formula in a browser tab. Paste the result back into the workbook you already use. It does not replace what Rows did.',
     preset: {
       mode: 'write',
       platform: 'sheets',
@@ -811,27 +811,27 @@ const pages = [
       range: 'Revenue in B2:B500; cost in C2:C500; result in D2',
       hint: 'IF'
     },
-    intent: 'Help spreadsheet users comparing Rows-style AI spreadsheet platforms choose a narrow formula workbench when the immediate problem is one Excel or Google Sheets formula, one explanation, or one repair.',
+    intent: 'Help former Rows users land in the right place fast: a narrow formula workbench if today\'s job is one formula, or somewhere else entirely if the job is a whole spreadsheet platform.',
     bestFor: [
-      'Writing one formula at a time from plain English with range notes before you paste.',
-      'Explaining inherited Excel or Google Sheets logic before changing a shared report.',
-      'Trying a focused formula helper when you do not need a new AI spreadsheet platform, live imports, cross-table analysis, Python, or workbook-wide table transformations.'
+      'Writing one formula from plain English, with the cell references and range notes laid out before you paste.',
+      'Reading an inherited Excel or Google Sheets formula you did not write, before you change a report other people depend on.',
+      'Fixing one formula that broke, when you can describe what it should return on a few known rows.'
     ],
     steps: [
-      'Choose Write, Explain, or Fix for the formula-sized task.',
-      'Paste the headers, sample rows, formula, or expected result so the answer has context.',
-      'Review the cell references, explanation, and paste checks before using the formula in the workbook.'
+      'Pick Write, Explain, or Fix depending on whether the formula needs to be built, read, or repaired.',
+      'Paste your headers, a few sample rows, and the existing formula or the result you expect, so the answer is built against your actual sheet.',
+      'Read the cell references, the plain-English explanation, and the paste checks before the formula goes into the workbook.'
     ],
     copyChecks: [
-      'Use Rows or another full AI spreadsheet platform if you want imported data, AI Analyst-style table work, cross-table actions, Python, or broader data analysis.',
-      'Use Write My Formula when the job can be inspected as one formula, one rule, or one repair.',
-      'Check the cell references, sheet names, and regional separators before filling the result through an important workbook.',
-      'Test the output on a few known rows before relying on it for money, dates, or decisions.'
+      'If you need imported data, dashboards, cross-table analysis, or anything that touches more than one formula, this is not the tool. Look for a full AI spreadsheet platform.',
+      'Use Write My Formula when the job can be written down as one formula, one rule, or one repair.',
+      'Before you fill the result down a column, check the cell references, sheet names, and the comma-or-semicolon separator your locale uses.',
+      'Test the output on a few rows where you already know the right answer, especially for money, dates, and anything a decision rides on.'
     ],
     extraDetailCards: [
       {
-        title: 'Where Rows fits',
-        html: 'Rows is a full AI spreadsheet platform. Its current docs describe AI Analyst as a spreadsheet copilot for data analysis, adding columns, table transformations, cross-table references, and checkpoints; Rows also presents AI formula columns, built-in Python for analysis, and imports from tools such as Google Analytics, Facebook Ads, HubSpot, Salesforce, BigQuery, and PostgreSQL. Use Rows when the job is the spreadsheet. Use Write My Formula when the job is one formula.'
+        title: 'What Rows did, and what is gone',
+        html: 'Rows was an AI spreadsheet platform. Superhuman announced the acquisition on February 22, 2026, and said Rows.com would fully wind down on May 31, 2026 after serving more than 2.2 million users. Rows also reported more than 17 billion spreadsheet functions, 8.3 billion business-tool imports, and 800,000 AI Analyst prompts across the product. Write My Formula does not migrate Rows workspaces, connect data sources, build dashboards, run Python, or recreate AI Analyst. It writes, explains, or fixes one formula at a time.'
       }
     ]
   },
@@ -5126,16 +5126,16 @@ const pageEnhancements = {
   },
   'rows-alternative': {
     gives: [
-      'A focused formula request flow for Excel and Google Sheets instead of a full AI spreadsheet platform.',
-      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
-      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
+      'A single-purpose request flow for Excel and Google Sheets: one formula in, one explained formula out.',
+      'Three modes - Write, Explain, Fix - with the cell references called out and paste checks attached.',
+      'A low-commitment way to try it: 2 guest tries without an account, a free email tier at 3 runs per week, or $9 a month for 500 runs stored in this browser.'
     ],
-    useWhen: 'Use this page when you are comparing Rows-style AI spreadsheet tools but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
-    notWhen: 'Use Rows or another full AI spreadsheet platform when you need imported data, AI Analyst-style table work, cross-table actions, Python, formula columns, checkpoints, or broader data analysis. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    useWhen: 'Use this page if Rows shutting down sent you looking, but the thing actually blocking you right now is one formula: write it, fix it, explain it, or turn it into a conditional formatting or data validation rule.',
+    notWhen: 'Skip this page if you need imported data, AI Analyst-style table work, cross-table actions, Python, formula columns, or anything that operates on the workbook as a whole. Write My Formula stays narrow on purpose, so a single formula and its checks are easy to read before you trust them.',
     example: {
-      setup: 'A report needs a margin formula in D that uses Revenue in B and Cost in C, while avoiding a divide-by-zero error when revenue is blank or zero.',
+      setup: 'A report needs a margin formula in column D using Revenue in B and Cost in C, and it has to stop throwing a divide-by-zero error when Revenue is blank or zero.',
       formula: '=IF(B2=0,"",(B2-C2)/B2)',
-      read: 'The formula returns a blank when Revenue is zero, then calculates margin as Revenue minus Cost divided by Revenue. The checks tell you to confirm whether blanks should stay blank or become 0 before filling the formula through the report.'
+      read: 'When Revenue is zero or blank, the cell stays blank. Otherwise margin is Revenue minus Cost, divided by Revenue. Before you fill it down, decide whether blank rows should read as empty or as 0; the answer changes how downstream sums and averages behave.'
     }
   },
   'excelformula-pro-alternative': {
