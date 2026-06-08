@@ -638,6 +638,43 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-formulas-ai-alternative',
+    title: 'Excel Formulas AI Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused Excel Formulas AI alternative for writing, explaining, or fixing one Excel or Google Sheets formula when a free formula generator is not the whole job.',
+    eyebrow: 'Excel Formulas AI alternative',
+    h1: 'An Excel Formulas AI alternative for one formula problem.',
+    lede: 'Excel Formulas AI is built as a free, no-registration Excel formula generator with examples for common formulas. Use Write My Formula when the job is still one formula, but you want the same tab to write, explain, or fix it with your range notes visible before you paste.',
+    preset: {
+      mode: 'explain',
+      platform: 'excel',
+      formula: '=INDEX($C$2:$C$500,MATCH(F2,$A$2:$A$500,0))'
+    },
+    intent: 'Help spreadsheet users comparing Excel Formulas AI-style free generators choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair.',
+    bestFor: [
+      'Writing one Excel or Google Sheets formula from a plain-English task.',
+      'Explaining inherited formula logic before changing a shared workbook.',
+      'Repairing a formula that returns an error, blank, or wrong lookup result.',
+      'Trying a focused Write, Explain, or Fix workbench when a formula-example library is not enough context.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized job.',
+      'Paste the formula, headers, sample rows, or expected result so the answer has context.',
+      'Review the formula read-through and paste checks before using it in the sheet.'
+    ],
+    copyChecks: [
+      'Use Excel Formulas AI or another free generator if you constantly need generated Excel formulas and do not need repair or explanation as the main workflow.',
+      'Use Excel Formulas AI-style examples when you want quick reference formulas such as SUM, AVERAGE, VLOOKUP, IF, COUNTIF, SUMIF, CONCATENATE, INDEX/MATCH, or TODAY.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair.',
+      'Excel Formulas AI details verified June 8, 2026; test the output on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where Excel Formulas AI fits',
+        html: 'Excel Formulas AI currently presents itself as a free Excel formula generator that converts descriptions into Excel formulas. Its public homepage says it is trusted by 500K+ users, shows 500K+ conversions and a 4.9/5 rating, includes examples for SUM, AVERAGE, VLOOKUP, IF, COUNTIF, SUMIF, CONCATENATE, INDEX/MATCH, and TODAY, and describes 100% free, no-registration, unlimited formula generation.'
+      }
+    ]
+  },
+  {
     slug: 'rows-alternative',
     title: 'Rows Alternative for One Formula Problem | Write My Formula',
     description: 'A focused Rows alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing a full AI spreadsheet platform.',
@@ -4833,6 +4870,20 @@ const pageEnhancements = {
       setup: 'A lookup formula should return the matching plan from C for the key in E2, but the current VLOOKUP hides every miss as a blank and makes real lookup problems hard to see.',
       formula: '=IFNA(VLOOKUP(E2,A2:C500,3,FALSE),"Check lookup key")',
       read: 'The formula keeps the exact-match VLOOKUP, returns the third column from A:C, and uses IFNA so expected missing matches show a specific message instead of hiding every possible formula problem.'
+    }
+  },
+  'excel-formulas-ai-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a free Excel formula generator and example library.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing Excel Formulas AI-style free formula generators but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
+    notWhen: 'Use Excel Formulas AI or a similar free formula generator when you constantly need generated Excel formulas and a formula-example library is enough for the job. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'An inherited INDEX/MATCH should return the matching plan from C for the key in F2, but you need to understand the lookup before changing the workbook.',
+      formula: '=INDEX($C$2:$C$500,MATCH(F2,$A$2:$A$500,0))',
+      read: 'The formula finds the row where F2 appears in A2:A500, then returns the value from the same row in C2:C500. The checks tell you to confirm that F2 and the lookup column use the same stored type and that the first match is the one you want.'
     }
   },
   'rows-alternative': {

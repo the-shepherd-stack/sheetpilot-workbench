@@ -260,6 +260,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a full AI spreadsheet, dashboard, chart, report, or collaboration workspace/);
   assert.match(page, /\/aiexcelformula-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than just another quick generated formula/);
+  assert.match(page, /\/excel-formulas-ai-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a free Excel formula generator and example library/);
   assert.match(page, /\/manyexcel-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than regex, script, chart, or file workflows/);
   assert.match(page, /\/formulahelper-alternative\//);
@@ -1124,6 +1126,32 @@ test('FormulaGPT alternative page targets focused formula comparison without ove
   assert.match(homepage, /href="\/formulagpt-alternative\/">FormulaGPT alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/formulagpt-alternative\//);
   assert.doesNotMatch(page, /replaces FormulaGPT|better than FormulaGPT|official FormulaGPT|FormulaGPT partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|privacy superior|instant|in seconds|automatically fixes|pay before answer|whole workbook support|whole spreadsheet audit|exact cause|uploads? your workbook|human reviewer|same-day|PDF|faster|cheaper|beats FormulaGPT|no signup required for FormulaGPT|free tier requires signup/i);
+});
+
+test('Excel Formulas AI alternative page targets focused formula comparison without overclaiming', () => {
+  const page = read('excel-formulas-ai-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel Formulas AI Alternative for One Formula Problem/);
+  assert.match(page, /An Excel Formulas AI alternative for one formula problem/);
+  assert.match(page, /free, no-registration Excel formula generator/);
+  assert.match(page, /write, explain, or fix it with your range notes visible/);
+  assert.match(page, /free Excel formula generator and example library/);
+  assert.match(page, /quick reference formulas such as SUM, AVERAGE, VLOOKUP, IF, COUNTIF, SUMIF, CONCATENATE, INDEX\/MATCH, or TODAY/);
+  assert.match(page, /trusted by 500K\+ users/);
+  assert.match(page, /500K\+ conversions and a 4\.9\/5 rating/);
+  assert.match(page, /100% free, no-registration, unlimited formula generation/);
+  assert.match(page, /Excel Formulas AI details verified June 8, 2026/);
+  assert.match(page, /=INDEX\(\$C\$2:\$C\$500,MATCH\(F2,\$A\$2:\$A\$500,0\)\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-formulas-ai-alternative\/">Excel Formulas AI alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-formulas-ai-alternative\//);
+  assert.doesNotMatch(page, /replaces Excel Formulas AI|better than Excel Formulas AI|official Excel Formulas AI|Excel Formulas AI partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|privacy superior|instant|in seconds|automatically fixes|pay before answer|whole workbook support|whole spreadsheet audit|exact cause|uploads? your workbook|human reviewer|same-day|PDF|faster|cheaper|beats Excel Formulas AI|more accurate|smarter|more powerful/i);
 });
 
 test('Excelmatic alternative page targets RowSpeak file-analysis comparison without overclaiming', () => {
