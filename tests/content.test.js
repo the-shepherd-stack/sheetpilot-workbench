@@ -1100,6 +1100,32 @@ test('AI Excel Formula alternative page targets free generator comparison withou
   assert.doesNotMatch(page, /replaces AI Excel Formula|better than AI Excel Formula|official AI Excel Formula|AI Excel Formula partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|privacy superior|faster|cheaper|beats AI Excel Formula|99\.9%|10,000\+|5,000\+/i);
 });
 
+test('FormulaGPT alternative page targets focused formula comparison without overclaiming', () => {
+  const page = read('formulagpt-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /FormulaGPT Alternative for One Formula Problem/);
+  assert.match(page, /A FormulaGPT alternative for one formula problem/);
+  assert.match(page, /turning plain English into spreadsheet formulas/);
+  assert.match(page, /account-based monthly generations and Pro spreadsheet uploads/);
+  assert.match(page, /paste one formula problem, choose Write, Explain, or Fix/);
+  assert.match(page, /monthly formula quotas, priority support, or spreadsheet upload on a Pro plan/);
+  assert.match(page, /free 10 generations per month or Pro 500 generations per month/);
+  assert.match(page, /trusted by 10,000\+ spreadsheet users/);
+  assert.match(page, /Free plan at \$0\/month with 10 formula generations per month/);
+  assert.match(page, /Pro plan at \$5\/month with 500 formula generations per month/);
+  assert.match(page, /=IFNA\(VLOOKUP\(E2,A2:C500,3,FALSE\),&quot;Check lookup key&quot;\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/formulagpt-alternative\/">FormulaGPT alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/formulagpt-alternative\//);
+  assert.doesNotMatch(page, /replaces FormulaGPT|better than FormulaGPT|official FormulaGPT|FormulaGPT partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|privacy superior|instant|in seconds|automatically fixes|pay before answer|whole workbook support|whole spreadsheet audit|exact cause|uploads? your workbook|human reviewer|same-day|PDF|faster|cheaper|beats FormulaGPT|no signup required for FormulaGPT|free tier requires signup/i);
+});
+
 test('Excelmatic alternative page targets RowSpeak file-analysis comparison without overclaiming', () => {
   const page = read('excelmatic-alternative/index.html');
   const homepage = read('index.html');

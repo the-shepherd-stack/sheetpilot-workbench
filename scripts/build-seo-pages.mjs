@@ -601,6 +601,43 @@ const pages = [
     ]
   },
   {
+    slug: 'formulagpt-alternative',
+    title: 'FormulaGPT Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused FormulaGPT alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing an account-based formula generator with spreadsheet upload.',
+    eyebrow: 'FormulaGPT alternative',
+    h1: 'A FormulaGPT alternative for one formula problem.',
+    lede: 'FormulaGPT is built for turning plain English into spreadsheet formulas, including account-based monthly generations and Pro spreadsheet uploads. Use Write My Formula when the job is smaller: paste one formula problem, choose Write, Explain, or Fix, and decide after two guest tries.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=IFERROR(VLOOKUP(E2,A2:C500,3,FALSE),"")'
+    },
+    intent: 'Help spreadsheet users comparing FormulaGPT-style formula generators choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair.',
+    bestFor: [
+      'Writing one Excel or Google Sheets formula without setting up an upload workflow.',
+      'Explaining inherited formula logic before changing a shared workbook.',
+      'Repairing a formula that returns an error, blank, or wrong lookup result.',
+      'Trying a focused Write, Explain, or Fix workbench before choosing an account-based formula generator.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized job.',
+      'Paste the formula, headers, sample rows, or expected result so the answer has context.',
+      'Review the formula read-through and paste checks before using it in the sheet.'
+    ],
+    copyChecks: [
+      'Use FormulaGPT or another account-based formula generator if you want monthly formula quotas, priority support, or spreadsheet upload on a Pro plan.',
+      'Use FormulaGPT-style tools when you want natural-language generation as the main workflow and the free 10 generations per month or Pro 500 generations per month plan fits your usage.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair.',
+      'FormulaGPT details verified June 8, 2026; test the output on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where FormulaGPT fits',
+        html: 'FormulaGPT currently presents itself as a formula generator that transforms simple English into spreadsheet formulas. Its public homepage says it is trusted by 10,000+ spreadsheet users and describes natural-language input, spreadsheet-upload support for tailoring formulas to your data structure, immediate results, detailed explanations, and formula verification. Its upgrade page lists a Free plan at $0/month with 10 formula generations per month and basic support, plus a Pro plan at $5/month with 500 formula generations per month, priority support, and spreadsheet upload.'
+      }
+    ]
+  },
+  {
     slug: 'rows-alternative',
     title: 'Rows Alternative for One Formula Problem | Write My Formula',
     description: 'A focused Rows alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing a full AI spreadsheet platform.',
@@ -4782,6 +4819,20 @@ const pageEnhancements = {
       setup: 'A lookup formula should return the latest paid invoice amount for the customer in F2, but the inherited XLOOKUP is returning a blank when the customer appears more than once.',
       formula: '=XLOOKUP(1,($A$2:$A$500=F2)*($C$2:$C$500="Paid"),$D$2:$D$500,"Not found",0,-1)',
       read: 'The formula finds rows where Customer matches F2 and Status is Paid, returns the Amount from D, and searches from the bottom so the latest matching paid invoice is returned when the data is sorted oldest to newest.'
+    }
+  },
+  'formulagpt-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of an account-based formula generator and upload workflow.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing FormulaGPT-style formula generators but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
+    notWhen: 'Use FormulaGPT or a similar account-based formula generator when you want monthly formula quotas, priority support, spreadsheet upload, or a natural-language generation workflow built around an account. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A lookup formula should return the matching plan from C for the key in E2, but the current VLOOKUP hides every miss as a blank and makes real lookup problems hard to see.',
+      formula: '=IFNA(VLOOKUP(E2,A2:C500,3,FALSE),"Check lookup key")',
+      read: 'The formula keeps the exact-match VLOOKUP, returns the third column from A:C, and uses IFNA so expected missing matches show a specific message instead of hiding every possible formula problem.'
     }
   },
   'rows-alternative': {
