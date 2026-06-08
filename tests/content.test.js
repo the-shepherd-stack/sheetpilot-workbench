@@ -2389,6 +2389,28 @@ test('formula bot alternative page targets comparison intent without overclaimin
   assert.match(sitemap, /https:\/\/writemyformula\.com\/formula-bot-alternative\//);
 });
 
+test('Excel Formula GPT alternative page targets no-signup formula-generator comparison without overclaiming', () => {
+  const page = read('excel-formula-gpt-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel Formula GPT Alternative for One Formula Problem/);
+  assert.match(page, /An Excel Formula GPT alternative for one formula problem/);
+  assert.match(page, /free daily formula allowance, optional Excel file context, account-based history/);
+  assert.match(page, /three free formulas per day/);
+  assert.match(page, /optional Excel file context, local-file-processing claims, account-based formula history/);
+  assert.match(page, /Write My Formula does not claim to replace Excel Formula GPT, upload Excel files, store account history, promise accuracy/);
+  assert.match(page, /=IFERROR\(VLOOKUP\(A2,Products!A:B,2,FALSE\),&quot;&quot;\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month, stored in this browser/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-formula-gpt-alternative\/">Excel Formula GPT alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-formula-gpt-alternative\//);
+  assert.doesNotMatch(page, /replaces Excel Formula GPT|better than Excel Formula GPT|beats Excel Formula GPT|official Excel Formula GPT|Excel Formula GPT partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook audit|whole spreadsheet audit|exact cause|human reviewer|same-day|privacy superior|works every time|more accurate|faster/i);
+});
+
 test('AI Formula Generator alternative page targets focused formula comparison without overclaiming', () => {
   const page = read('ai-formula-generator-alternative/index.html');
   const homepage = read('index.html');

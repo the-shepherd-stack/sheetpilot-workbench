@@ -279,6 +279,45 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-formula-gpt-alternative',
+    title: 'Excel Formula GPT Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused Excel Formula GPT alternative for writing, explaining, or fixing one Excel or Google Sheets formula without choosing a daily-limit, account, file-context, history, or upgrade workflow.',
+    eyebrow: 'Excel Formula GPT alternative',
+    h1: 'An Excel Formula GPT alternative for one formula problem.',
+    lede: 'Use Write My Formula when the job is one Excel or Google Sheets formula, explanation, or repair in a browser tab. Use Excel Formula GPT or a similar no-signup generator when you want a free daily formula allowance, optional Excel file context, account-based history, or a longer formula-generator workflow.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=IFERROR(VLOOKUP(A2,Products!A:B,2,FALSE),"")'
+    },
+    intent: 'Help spreadsheet users comparing Excel Formula GPT-style free formula generators choose a narrow formula workbench when the immediate problem is one Excel or Google Sheets formula, one explanation, or one repair.',
+    bestFor: [
+      'Writing or fixing one Excel or Google Sheets formula with the relevant ranges visible.',
+      'Explaining inherited formula logic before editing a shared workbook.',
+      'Trying a focused formula helper when you do not need a daily free formula quota, optional Excel file context, saved history, or account-based upgrade path.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the headers, sample rows, formula, or expected result so the answer has context.',
+      'Review the range notes and paste checks before using the formula in the workbook.'
+    ],
+    copyChecks: [
+      'Use Excel Formula GPT or another no-signup formula generator when you want three free formulas per day, optional Excel file context, local-file-processing claims, account history, or more daily formulas after signup.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair across Excel or Google Sheets.',
+      'Test the output on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where Excel Formula GPT fits',
+        html: 'Excel Formula GPT currently presents itself as a free AI Excel formula generator where users describe a formula in words. Its public no-signup article describes 3 free formulas per day without account creation or a credit card, natural-language input, optional Excel file context support, local file processing, all basic formula types, formula history for accounts, and more daily formulas after creating an account.'
+      },
+      {
+        title: 'How this page stays narrower',
+        html: 'Write My Formula does not claim to replace Excel Formula GPT, upload Excel files, store account history, promise accuracy, or process workbook files locally. It keeps the job to one visible formula, explanation, or repair with paste checks before you copy it back to Excel or Google Sheets.'
+      }
+    ]
+  },
+  {
     slug: 'ai-formula-generator-alternative',
     title: 'AI Formula Generator Alternative for One Formula Problem | Write My Formula',
     description: 'A focused AI Formula Generator alternative for writing, explaining, or fixing one Excel or Google Sheets formula without opening a broader SQL, file-context, bulk, VBA, or Apps Script workflow.',
@@ -4758,6 +4797,20 @@ const pageEnhancements = {
       setup: 'A report needs to flag paid West-region invoices above 1000, but the logic should be visible before the formula is filled through the workbook.',
       formula: '=IF(AND(A2="West",B2="Paid",C2>1000),"Review","")',
       read: 'The formula checks Region, Status, and Amount on the current row. It returns Review only when all three conditions are true, and leaves other rows blank.'
+    }
+  },
+  'excel-formula-gpt-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a daily-limit formula-generator workflow.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing Excel Formula GPT-style no-signup formula generators but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule from a browser tab.',
+    notWhen: 'Use Excel Formula GPT or another no-signup generator when you want three free formulas per day, optional Excel file context, local-file-processing claims, account-based formula history, or a higher daily allowance after signup. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A Google Sheets lookup formula hides missing products as blanks, and the team wants to understand the fallback before filling it down.',
+      formula: '=IFERROR(VLOOKUP(A2,Products!A:B,2,FALSE),"")',
+      read: 'The formula looks up A2 in the Products table and returns the second column. IFERROR hides missing products as a blank, so the checks tell you to decide whether a readable fallback such as Check product ID would be safer.'
     }
   },
   'ai-formula-generator-alternative': {
