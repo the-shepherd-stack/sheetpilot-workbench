@@ -756,6 +756,47 @@ const pages = [
     ]
   },
   {
+    slug: 'texttoformula-alternative',
+    title: 'TextToFormula Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused TextToFormula alternative for writing, explaining, or fixing one Excel or Google Sheets formula with range context and paste checks.',
+    eyebrow: 'TextToFormula alternative',
+    h1: 'A TextToFormula alternative for one formula problem.',
+    lede: 'TextToFormula is built as a free text-to-formula converter for Excel and Google Sheets. Use Write My Formula when the job is messier: write a new formula, explain one you inherited, or fix one that is returning an error or the wrong value.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=SUMIFS(C2:C500,A2:A500,"North",B2:B500,">=6/1/2026")'
+    },
+    intent: 'Help spreadsheet users comparing TextToFormula-style free formula converters choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair.',
+    bestFor: [
+      'Fixing a formula that is almost right but returns #N/A, #VALUE!, a blank, or the wrong total.',
+      'Writing one Excel or Google Sheets formula with the range notes visible before you paste.',
+      'Explaining inherited formula logic before changing a shared workbook.',
+      'Using the same box to write, explain, or fix instead of starting over with a generator-only prompt.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized job.',
+      'Paste the formula, headers, sample rows, expected result, or target cell so the answer has context.',
+      'Review the formula read-through and paste checks before using it in the sheet.'
+    ],
+    copyChecks: [
+      'Use TextToFormula or another free converter when you want a no-signup text prompt that returns a formula and step-by-step usage notes.',
+      'Use Write My Formula when the formula already exists, the ranges matter, or the fix needs expected-result context.',
+      'Write My Formula does not upload workbooks, read whole sheets, promise accuracy, or claim affiliation with Microsoft, Google, or TextToFormula.',
+      'TextToFormula details verified June 8, 2026; test the output on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where TextToFormula fits',
+        html: 'TextToFormula currently presents itself as a free AI Excel and Google Sheets formula generator that converts plain text, math equations, or queries into formulas. Its public page shows a generated formula, a copy button, an explanation, and step-by-step usage guidance, and says it works without signup, download, or installation.'
+      },
+      {
+        title: 'How this page stays narrower',
+        html: 'Write My Formula keeps the job to one visible formula, explanation, or repair. Paste the broken formula, name the ranges, describe what you expected, and check the result against your sheet before copying it back.'
+      }
+    ]
+  },
+  {
     slug: 'rows-alternative',
     title: 'Rows Alternative for One Formula Problem | Write My Formula',
     description: 'A focused Rows alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing a full AI spreadsheet platform.',
@@ -5067,6 +5108,20 @@ const pageEnhancements = {
       setup: 'An inherited INDEX/MATCH should return the matching plan from C for the key in F2, but you need to understand the lookup before changing the workbook.',
       formula: '=INDEX($C$2:$C$500,MATCH(F2,$A$2:$A$500,0))',
       read: 'The formula finds the row where F2 appears in A2:A500, then returns the value from the same row in C2:C500. The checks tell you to confirm that F2 and the lookup column use the same stored type and that the first match is the one you want.'
+    }
+  },
+  'texttoformula-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a generator-only text-to-formula prompt.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing TextToFormula-style free formula converters but the immediate job is still small and specific: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule for conditional formatting or data validation.',
+    notWhen: 'Use TextToFormula or a similar free converter when a simple no-signup text prompt, generated formula, explanation, and usage walkthrough are enough. Write My Formula is intentionally narrower so the formula, range context, and checks stay easy to inspect.',
+    example: {
+      setup: 'A SUMIFS formula should total North-region invoices from June 2026 onward, but the current date criterion is typed as text and may not match the sheet locale.',
+      formula: '=SUMIFS(C2:C500,A2:A500,"North",B2:B500,">="&DATE(2026,6,1))',
+      read: 'The formula keeps the region criterion in A, totals Amount values from C, and builds the June 1 date with DATE so the comparison is less dependent on typed date text. The checks tell you to confirm that B contains real dates before filling down.'
     }
   },
   'rows-alternative': {

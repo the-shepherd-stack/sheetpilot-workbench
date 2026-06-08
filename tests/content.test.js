@@ -2487,6 +2487,31 @@ test('AI Formula Generator alternative page targets focused formula comparison w
   assert.doesNotMatch(page, /replaces AI Formula Generator|better than AI Formula Generator|official AI Formula Generator|AI Formula Generator partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|privacy superior|99\.5% accuracy|works every time|10 seconds/i);
 });
 
+test('TextToFormula alternative page targets free formula-converter comparison without overclaiming', () => {
+  const page = read('texttoformula-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /TextToFormula Alternative for One Formula Problem/);
+  assert.match(page, /A TextToFormula alternative for one formula problem/);
+  assert.match(page, /free text-to-formula converter for Excel and Google Sheets/);
+  assert.match(page, /write a new formula, explain one you inherited, or fix one that is returning an error or the wrong value/);
+  assert.match(page, /no-signup text prompt that returns a formula and step-by-step usage notes/);
+  assert.match(page, /converts plain text, math equations, or queries into formulas/);
+  assert.match(page, /without signup, download, or installation/);
+  assert.match(page, /does not upload workbooks, read whole sheets, promise accuracy, or claim affiliation/);
+  assert.match(page, /=SUMIFS\(C2:C500,A2:A500,&quot;North&quot;,B2:B500,&quot;&gt;=&quot;&amp;DATE\(2026,6,1\)\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month, stored in this browser/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/texttoformula-alternative\/">TextToFormula alternative/);
+  assert.match(homepage, /free text-to-formula converter for Excel and Google Sheets/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/texttoformula-alternative\//);
+  assert.doesNotMatch(page, /replaces TextToFormula|better than TextToFormula|beats TextToFormula|official TextToFormula|TextToFormula partner|affiliated with TextToFormula|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook audit|whole spreadsheet audit|exact cause|human reviewer|same-day|privacy superior|works every time|more accurate|faster/i);
+});
+
 test('Julius AI alternative page targets data-agent comparison without overclaiming', () => {
   const page = read('julius-ai-alternative/index.html');
   const homepage = read('index.html');
