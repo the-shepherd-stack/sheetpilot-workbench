@@ -603,6 +603,10 @@ test('analytics summary script is wired', () => {
   assert.match(script, /checkoutClicksByPlacement/);
   assert.match(script, /paid_success_page_view/);
   assert.match(script, /payment_status/);
+  assert.match(script, /runRequired/);
+  assert.match(script, /VERCEL_TOKEN_TSS/);
+  assert.match(script, /VERCEL_SCOPE_TSS/);
+  assert.match(script, /__codex_probe/);
 });
 
 test('formula endpoint is wired for OpenAI structured output with fallback', () => {
