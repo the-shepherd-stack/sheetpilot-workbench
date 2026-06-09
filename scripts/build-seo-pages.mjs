@@ -1378,6 +1378,52 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-formulator-alternative',
+    title: 'Excel Formulator Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused Excel Formulator alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing a monthly Excel/Sheets/Airtable formula app.',
+    eyebrow: 'Excel Formulator alternative',
+    h1: 'Write My Formula vs. Excel Formulator for formula-sized work.',
+    lede: 'Both tools turn plain English into spreadsheet formulas, but they fit different workflows. Excel Formulator covers Excel, Google Sheets, and Airtable formulas. Write My Formula stays narrower: one Excel or Google Sheets formula, explanation, or repair in a browser tab, with range notes and paste checks visible before you copy anything back.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Write a formula that calculates commission only for closed deals above the quota threshold.',
+      table: 'Rep,Status,Deal Value,Quota\nMara,Closed,18400,15000\nJon,Open,22000,18000\nTess,Closed,9400,10000',
+      range: 'Status in B2:B500; deal value in C2:C500; quota in D2:D500; result in E2',
+      hint: 'IF'
+    },
+    intent: 'Help spreadsheet users comparing Excel Formulator-style text-to-formula tools choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair.',
+    bestFor: [
+      'Writing or fixing one Excel or Google Sheets formula with the touched ranges visible.',
+      'Explaining inherited formula logic before editing a shared workbook.',
+      'Trying a focused formula helper when you do not need Airtable formula output, unlimited monthly generation, or a recurring formula-app workflow.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the formula, headers, sample rows, expected result, or target range.',
+      'Review the explanation and checks, then copy the formula into Excel or Google Sheets yourself.'
+    ],
+    copyChecks: [
+      'Use Excel Formulator or another formula app when you need Excel, Google Sheets, and Airtable formula generation from the same tool, recurring monthly usage, priority email support, or early feature access.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair in a browser tab.',
+      'Excel Formulator details verified June 9, 2026; test the output on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where Excel Formulator fits',
+        html: 'Excel Formulator currently presents itself as an AI-powered spreadsheet assistant that converts simple text prompts into Excel, Google Sheets, or Airtable formulas. Its public page also describes plain-English formula explanations and says it is optimized for Microsoft Excel, Google Sheets, and Airtable.'
+      },
+      {
+        title: 'Pricing surface',
+        html: 'Excel Formulator lists a free Starter plan with 7 formulas per month and basic email support, a Pro plan at $5.99 per month with unlimited formulas, priority email support, and early access to features, and an annual Pro option shown as $4.49 per month when paid annually.'
+      },
+      {
+        title: 'How this page stays narrower',
+        html: 'Write My Formula does not generate Airtable formulas, offer unlimited generation, provide priority support, read workbook files, insert formulas directly, or claim affiliation with Excel Formulator. Excel Formulator is a trademark of its respective holder. Write My Formula is not affiliated with Excel Formulator.'
+      }
+    ]
+  },
+  {
     slug: 'sheet-alchemy-alternative',
     title: 'Sheet Alchemy Alternative for One Formula Problem | Write My Formula',
     description: 'A focused Sheet Alchemy alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing a broader formula library, Apps Script, PDF, template, or visualization workflow.',
@@ -5645,6 +5691,20 @@ const pageEnhancements = {
       setup: 'A team needs to return rows from Sheet2 where column A contains the word garden, but the current FILTER formula should be checked before it is copied into a shared workbook.',
       formula: '=FILTER(Sheet2!A:A,ISNUMBER(SEARCH("garden",Sheet2!A:A)),"No matches")',
       read: 'The formula searches Sheet2 column A for the word garden and returns matching cells. The fallback keeps the output readable when there are no matches, and the checks tell you to confirm the output range has room to spill.'
+    }
+  },
+  'excel-formulator-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a cross-platform formula app.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing Excel Formulator-style text-to-formula tools but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule from a browser tab.',
+    notWhen: 'Use Excel Formulator or another cross-platform formula app when you want Excel, Google Sheets, and Airtable formula output, unlimited generation on a monthly plan, priority email support, or early-access feature updates. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A commission tracker should calculate commission only when a deal is closed and the deal value is above quota.',
+      formula: '=IF(AND(B2="Closed",C2>D2),(C2-D2)*10%,0)',
+      read: 'The formula checks whether the row is Closed and whether Deal Value is above Quota. If both are true, it calculates 10% of the value above quota; otherwise it returns 0.'
     }
   },
   'sheet-alchemy-alternative': {

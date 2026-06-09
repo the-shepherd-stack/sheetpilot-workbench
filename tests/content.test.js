@@ -250,6 +250,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than file, Slack, VBA, or conversion workflows/);
   assert.match(page, /\/sheeter-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than an add-on or saved formula workspace/);
+  assert.match(page, /\/excel-formulator-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a monthly Excel\/Sheets\/Airtable formula app/);
   assert.match(page, /\/sheet-alchemy-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a formula library, Apps Script, file-conversion, template, or visualization workflow/);
   assert.match(page, /\/sheetsmart-alternative\//);
@@ -507,6 +509,29 @@ test('Rows alternative page keeps the comparison bounded', () => {
   assert.doesNotMatch(page, /replaces Rows|better than Rows|official Rows|Rows partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook audit by Write My Formula|whole spreadsheet audit by Write My Formula|exact cause|human reviewer|same-day|PDF|privacy superior|works every time|upload|uploaded workbook|migration support/i);
 });
 
+test('Excel Formulator alternative page keeps the comparison bounded', () => {
+  const page = read('excel-formulator-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel Formulator Alternative for One Formula Problem/);
+  assert.match(page, /Write My Formula vs\. Excel Formulator for formula-sized work/);
+  assert.match(page, /Excel, Google Sheets, or Airtable formulas/);
+  assert.match(page, /free Starter plan with 7 formulas per month/);
+  assert.match(page, /Pro plan at \$5\.99 per month/);
+  assert.match(page, /annual Pro option shown as \$4\.49 per month/);
+  assert.match(page, /Excel Formulator details verified June 9, 2026/);
+  assert.match(page, /=IF\(AND\(B2=&quot;Closed&quot;,C2&gt;D2\),\(C2-D2\)\*10%,0\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month, stored in this browser/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-formulator-alternative\/">Excel Formulator alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-formulator-alternative\//);
+  assert.doesNotMatch(page, /replaces Excel Formulator|better than Excel Formulator|official Excel Formulator|Excel Formulator partner|is affiliated with Excel Formulator|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook audit by Write My Formula|whole spreadsheet audit by Write My Formula|exact cause|human reviewer|same-day|PDF|privacy superior|works every time|unlimited formulas from Write My Formula|priority support from Write My Formula/i);
+});
+
 test('config exposes checkout and account usage limits', () => {
   const config = read('app/config.js');
 
@@ -612,6 +637,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'formulagenius-alternative',
     'excelly-ai-alternative',
     'sheeter-alternative',
+    'excel-formulator-alternative',
     'sheet-alchemy-alternative',
     'sheetsmart-alternative',
     'smart-excel-alternative',
