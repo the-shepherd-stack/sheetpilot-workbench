@@ -1378,6 +1378,52 @@ const pages = [
     ]
   },
   {
+    slug: 'sheet-alchemy-alternative',
+    title: 'Sheet Alchemy Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused Sheet Alchemy alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing a broader formula library, Apps Script, PDF, template, or visualization workflow.',
+    eyebrow: 'Sheet Alchemy alternative',
+    h1: 'A Sheet Alchemy alternative for one formula problem.',
+    lede: 'Sheet Alchemy covers a broader Google Sheets toolkit: formula generation, templates, Apps Script, PDF conversion, and visualization tools. Use Write My Formula when the job is smaller: paste your formula problem, get one formula, one explanation, or one repair, and review the checks before you copy anything back.',
+    preset: {
+      mode: 'write',
+      platform: 'sheets',
+      task: 'Write a formula that flags duplicate invoice IDs in Google Sheets.',
+      table: 'Invoice ID,Customer,Amount\nINV-1001,Acme,1200\nINV-1002,Northwind,850\nINV-1001,Acme,640',
+      range: 'Invoice IDs in A2:A500; result in D2',
+      hint: 'COUNTIF'
+    },
+    intent: 'Help spreadsheet users comparing Sheet Alchemy-style Google Sheets formula and productivity tools choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair.',
+    bestFor: [
+      'Writing or fixing one Excel or Google Sheets formula with the relevant ranges visible.',
+      'Explaining inherited formula logic before editing a shared workbook.',
+      'Trying a focused browser tool when you do not need a formula library, Apps Script generator, PDF conversion, templates, or data visualization.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the formula, headers, sample rows, expected result, or target range.',
+      'Review the explanation and checks, then copy the formula into Excel or Google Sheets yourself.'
+    ],
+    copyChecks: [
+      'Use Sheet Alchemy or another broader Sheets toolkit when you want a formula library, Apps Script generator, Sheets-to-PDF or PDF-to-Sheets conversion, templates, account features, or visualization tools.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair in a browser tab.',
+      'Sheet Alchemy details verified June 9, 2026; test any generated formula on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where Sheet Alchemy fits',
+        html: 'Sheet Alchemy currently presents a Google Sheets formula library and AI-powered formula generator for custom formulas from plain-language requests. Its public search surface describes popular requests such as sums with multiple conditions, extracting text between characters, cross-sheet lookups with fallbacks, and business-day calculations. It also lists 10,000+ formulas generated, 50+ templates, 24/7 support, and a 4.9 rating.'
+      },
+      {
+        title: 'Broader Sheet Alchemy toolkit',
+        html: 'Sheet Alchemy also lists Google Sheets tools such as a Formula Generator, Apps Script Generator, Sheets to PDF Converter, PDF to Sheets Converter, and Data Visualization Generator. Third-party AI-tool listings describe Sheet Alchemy around formulas, scripts, visualizations, file upload, data insights, batch processing, and saved history. Use that broader category when your spreadsheet work is bigger than one visible formula.'
+      },
+      {
+        title: 'How this page stays narrower',
+        html: 'Write My Formula does not upload files, convert PDFs, generate Apps Script, create visualizations, provide templates, inspect every workbook tab, or claim affiliation with Sheet Alchemy. Sheet Alchemy is a trademark of its respective holder. Write My Formula is not affiliated with Sheet Alchemy.'
+      }
+    ]
+  },
+  {
     slug: 'sheetsmart-alternative',
     title: 'SheetSmart Alternative for One Formula Problem | Write My Formula',
     description: 'A focused SheetSmart alternative for writing, explaining, or fixing one Excel or Google Sheets formula from a browser tab instead of a Google Sheets extension workflow.',
@@ -5515,6 +5561,20 @@ const pageEnhancements = {
       setup: 'A team needs to return rows from Sheet2 where column A contains the word garden, but the current FILTER formula should be checked before it is copied into a shared workbook.',
       formula: '=FILTER(Sheet2!A:A,ISNUMBER(SEARCH("garden",Sheet2!A:A)),"No matches")',
       read: 'The formula searches Sheet2 column A for the word garden and returns matching cells. The fallback keeps the output readable when there are no matches, and the checks tell you to confirm the output range has room to spill.'
+    }
+  },
+  'sheet-alchemy-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a broader Google Sheets toolkit.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing Sheet Alchemy-style Google Sheets tools but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule from a browser tab.',
+    notWhen: 'Use Sheet Alchemy or a similar Google Sheets toolkit when you want a formula library, Apps Script generator, Sheets-to-PDF conversion, PDF-to-Sheets conversion, templates, account features, or data visualization. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A Google Sheets invoice list needs to flag repeated invoice IDs before the helper formula is filled down.',
+      formula: '=IF(COUNTIF($A$2:A2,A2)>1,"Duplicate","")',
+      read: 'The formula counts invoice IDs from the first data row through the current row. The first time an ID appears, the result stays blank. Later repeats return Duplicate.'
     }
   },
   'sheetsmart-alternative': {

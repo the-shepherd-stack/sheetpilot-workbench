@@ -250,6 +250,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than file, Slack, VBA, or conversion workflows/);
   assert.match(page, /\/sheeter-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than an add-on or saved formula workspace/);
+  assert.match(page, /\/sheet-alchemy-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a formula library, Apps Script, file-conversion, template, or visualization workflow/);
   assert.match(page, /\/sheetsmart-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a Google Sheets extension workflow/);
   assert.match(page, /\/smart-excel-alternative\//);
@@ -606,6 +608,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'formulagenius-alternative',
     'excelly-ai-alternative',
     'sheeter-alternative',
+    'sheet-alchemy-alternative',
     'sheetsmart-alternative',
     'smart-excel-alternative',
     'sourcetable-alternative',
@@ -840,6 +843,34 @@ test('Sheeter alternative page targets focused formula comparison without overcl
   assert.match(homepage, /href="\/sheeter-alternative\/">Sheeter alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/sheeter-alternative\//);
   assert.doesNotMatch(page, /replaces Sheeter|better than Sheeter|official Sheeter|Sheeter partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|privacy superior|lifetime deal/i);
+});
+
+test('Sheet Alchemy alternative page targets toolkit comparison without overclaiming', () => {
+  const page = read('sheet-alchemy-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Sheet Alchemy Alternative for One Formula Problem/);
+  assert.match(page, /A Sheet Alchemy alternative for one formula problem/);
+  assert.match(page, /broader Google Sheets toolkit/);
+  assert.match(page, /formula generation, templates, Apps Script, PDF conversion, and visualization tools/);
+  assert.match(page, /Formula Generator, Apps Script Generator, Sheets to PDF Converter, PDF to Sheets Converter, and Data Visualization Generator/);
+  assert.match(page, /10,000\+ formulas generated/);
+  assert.match(page, /50\+ templates/);
+  assert.match(page, /4\.9 rating/);
+  assert.match(page, /Sheet Alchemy details verified June 9, 2026/);
+  assert.match(page, /Sheet Alchemy is a trademark of its respective holder/);
+  assert.match(page, /Write My Formula is not affiliated with Sheet Alchemy/);
+  assert.match(page, /=IF\(COUNTIF\(\$A\$2:A2,A2\)&gt;1,&quot;Duplicate&quot;,&quot;&quot;\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/sheet-alchemy-alternative\/">Sheet Alchemy alternative/);
+  assert.match(homepage, /formula library, Apps Script, file-conversion, template, or visualization workflow/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/sheet-alchemy-alternative\//);
+  assert.doesNotMatch(page, /replaces Sheet Alchemy|better than Sheet Alchemy|official Sheet Alchemy|Sheet Alchemy partner|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF delivery|privacy superior|faster|more accurate|switch from/i);
 });
 
 test('SheetSmart alternative page targets extension workflow comparison without overclaiming', () => {
