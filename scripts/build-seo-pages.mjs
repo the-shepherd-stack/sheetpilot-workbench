@@ -797,6 +797,50 @@ const pages = [
     ]
   },
   {
+    slug: 'copilot-excel-alternative',
+    title: 'Microsoft Copilot in Excel Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused Microsoft Copilot in Excel alternative for writing, explaining, or fixing one Excel or Google Sheets formula without opening the full Microsoft 365 Copilot workflow.',
+    eyebrow: 'Microsoft Copilot in Excel alternative',
+    h1: 'A Microsoft Copilot in Excel alternative when the job is one formula.',
+    lede: 'Microsoft describes Copilot in Excel as built into Microsoft 365 for formula help, workbook analysis, charts, tables, formatting, and broader work inside Excel. Use Write My Formula when the job is smaller: one Excel or Google Sheets formula to write, explain, or fix in a browser tab before you paste it into the sheet you already use.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Write a formula that flags paid invoices over $1,000 from the West region.',
+      table: 'Region,Status,Amount\nWest,Paid,1200\nEast,Paid,850\nWest,Open,1440',
+      range: 'Region in A2:A500; status in B2:B500; amount in C2:C500; result in D2',
+      hint: 'IF'
+    },
+    intent: 'Help spreadsheet users comparing Microsoft Copilot in Excel choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair rather than a full Microsoft 365 workflow.',
+    bestFor: [
+      'Writing one Excel or Google Sheets formula from a plain-English task.',
+      'Explaining inherited formula logic before changing a shared workbook.',
+      'Repairing a formula that returns an error, blank, or wrong value.',
+      'Trying a single-formula answer when Microsoft Copilot is unavailable, not part of your plan, or more workflow than the current task needs.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized job.',
+      'Paste headers, sample rows, the broken formula, or the expected result so the answer has context.',
+      'Review the range notes and paste checks before using the formula in Excel or Google Sheets.'
+    ],
+    copyChecks: [
+      'Use Copilot in Excel when you want AI help inside Microsoft 365, workbook analysis, tables, charts, formatting, PivotTables, or organization-connected context.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair.',
+      'Write My Formula does not connect to your Microsoft 365 tenant, open your workbook file, insert formulas into Excel, analyze whole files, create charts, format tables, or claim affiliation with Microsoft.',
+      'Microsoft Copilot in Excel details verified June 9, 2026; test the output on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where Copilot in Excel fits',
+        html: 'Microsoft documents Copilot in Excel as a way to create and understand formulas, analyze data for insights, and explain how formulas work. Microsoft also describes Copilot in Excel as a way to add columns and formulas, format tables, create insights, and generate charts, tables, PivotTables, and formula suggestions inside Excel. Details verified June 9, 2026.'
+      },
+      {
+        title: 'Why this page stays smaller',
+        html: 'Write My Formula is not a Microsoft 365 workspace. It does not use your tenant, open your file, or change a workbook. You paste the answer yourself after checking it. Microsoft, Excel, and Copilot are trademarks of Microsoft Corporation. Write My Formula is not affiliated with or endorsed by Microsoft.'
+      }
+    ]
+  },
+  {
     slug: 'rows-alternative',
     title: 'Rows shut down. Need one formula written? | Write My Formula',
     description: 'Rows.com passed its announced May 31, 2026 wind-down date. If you just need one Excel or Google Sheets formula written, explained, or fixed, this is a narrow tool for that job, not a Rows replacement.',
@@ -5472,6 +5516,20 @@ const pageEnhancements = {
       setup: 'A legacy report should return the plan amount for the customer in F2, but the inherited INDEX/MATCH formula hides failed matches with a blank.',
       formula: '=IFNA(INDEX($D$2:$D$500,MATCH(F2,$A$2:$A$500,0)),"Not found")',
       read: 'The formula searches Customer values in A, returns Amount from D, and shows a readable fallback when no exact match exists. The checks tell you to confirm the lookup and return ranges cover the same rows before filling it through the report.'
+    }
+  },
+  'copilot-excel-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of the full Microsoft 365 Copilot workflow.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing Copilot in Excel but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule from a browser tab.',
+    notWhen: 'Use Copilot in Excel when you want AI inside Microsoft 365, workbook analysis, tables, charts, formatting, PivotTables, organization-connected context, or formula changes directly inside Excel. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'An invoice tracker needs a visible helper formula before it is copied into a shared workbook.',
+      formula: '=IF(AND(A2="West",B2="Paid",C2>1000),"Review","")',
+      read: 'The formula checks the current row for Region, Status, and Amount, then returns Review only when all three conditions are true. The checks tell you to confirm the columns match your workbook before filling it down.'
     }
   },
   'arcwise-alternative': {

@@ -270,6 +270,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than an in-Sheets AI sidebar, GPT formulas, or chat-with-sheet workflow/);
   assert.match(page, /\/gemini-sheets-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than Workspace AI for tables, charts, pivots, formatting, filters, or broader sheet edits/);
+  assert.match(page, /\/copilot-excel-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than the full Microsoft 365 Copilot workflow/);
   assert.match(page, /\/index-match-formula-generator\//);
   assert.match(page, /Build flexible lookup formulas for left lookups, two-way lookups, and older Excel files/);
   assert.match(page, /data-checkout/);
@@ -2537,6 +2539,32 @@ test('Julius AI alternative page targets data-agent comparison without overclaim
   assert.match(homepage, /data-agent workspace for files, charts, connectors, exports, or scheduled reports/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/julius-ai-alternative\//);
   assert.doesNotMatch(page, /replaces Julius|better than Julius|beats Julius|official Julius|Julius partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|more private|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook audit by Write My Formula|whole spreadsheet audit by Write My Formula|exact cause|human reviewer|same-day|privacy superior|cheaper than Julius|overbuilt|bloated/i);
+});
+
+test('Microsoft Copilot in Excel alternative page targets formula-sized comparison without overclaiming', () => {
+  const page = read('copilot-excel-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Microsoft Copilot in Excel Alternative for One Formula Problem/);
+  assert.match(page, /A Microsoft Copilot in Excel alternative when the job is one formula/);
+  assert.match(page, /Microsoft describes Copilot in Excel as built into Microsoft 365 for formula help, workbook analysis, charts, tables, formatting/);
+  assert.match(page, /Use this page when you are comparing Copilot in Excel but the immediate job is still small/);
+  assert.match(page, /workbook analysis, tables, charts, formatting, PivotTables, or organization-connected context/);
+  assert.match(page, /does not connect to your Microsoft 365 tenant, open your workbook file, insert formulas into Excel, analyze whole files, create charts, format tables, or claim affiliation with Microsoft/);
+  assert.match(page, /Microsoft documents Copilot in Excel as a way to create and understand formulas, analyze data for insights, and explain how formulas work/);
+  assert.match(page, /Details verified June 9, 2026/);
+  assert.match(page, /not affiliated with or endorsed by Microsoft/);
+  assert.match(page, /=IF\(AND\(A2=&quot;West&quot;,B2=&quot;Paid&quot;,C2&gt;1000\),&quot;Review&quot;,&quot;&quot;\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month, stored in this browser/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/copilot-excel-alternative\/">Copilot in Excel alternative/);
+  assert.match(homepage, /full Microsoft 365 Copilot workflow/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/copilot-excel-alternative\//);
+  assert.doesNotMatch(page, /replaces Copilot|better than Copilot|beats Copilot|official Microsoft|Microsoft partner|affiliated with Microsoft|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|more private|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook audit|whole spreadsheet audit|exact cause|human reviewer|same-day|privacy superior|works every time|more accurate|faster|connects to Microsoft 365|reads your workbook|inserts formulas into Excel/i);
 });
 
 test('SheetSolver AI alternative page targets comparison intent without overclaiming', () => {
