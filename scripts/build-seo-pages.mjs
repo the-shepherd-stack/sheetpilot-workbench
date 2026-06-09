@@ -1571,6 +1571,48 @@ const pages = [
     ]
   },
   {
+    slug: 'griddy-alternative',
+    title: 'Griddy Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused Griddy alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing an AI spreadsheet assistant, sidebar, chart, cleanup, formatting, or direct-edit workflow.',
+    eyebrow: 'Griddy alternative',
+    h1: 'A Griddy alternative when you need the formula, not the whole assistant.',
+    lede: 'Griddy is built as an AI spreadsheet assistant for Excel, Google Sheets, and the web: it can write formulas, analyze data, build sheets, clean exports, create charts, format cells, and work from spreadsheet sidebars. Use Write My Formula when the job is smaller: one Excel or Google Sheets formula, explanation, or repair in a browser tab, with the range notes and paste checks visible before you copy anything back into the sheet.',
+    preset: {
+      mode: 'write',
+      platform: 'sheets',
+      task: 'Write a formula that calculates weighted pipeline from deal value and stage probability.',
+      table: 'Deal,Stage,Value\nAcme,Commit,82400\nNorthstar,Best case,48600\nPioneer,Pipeline,36800',
+      range: 'Stage in B2:B500; value in C2:C500; result in D2',
+      hint: 'SWITCH'
+    },
+    intent: 'Help spreadsheet users comparing Griddy-style AI spreadsheet assistants choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair rather than a broader sidebar or spreadsheet-editing workflow.',
+    bestFor: [
+      'Writing or fixing one Excel or Google Sheets formula without installing a spreadsheet add-on first.',
+      'Explaining inherited formula logic before editing a shared workbook.',
+      'Trying a focused formula helper when you do not need charts, cleanup, formatting, sorting, filtering, direct spreadsheet edits, or an AI assistant inside the sheet.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the formula, headers, sample rows, expected result, or target range.',
+      'Review the explanation and checks, then copy the formula into Excel or Google Sheets yourself.'
+    ],
+    copyChecks: [
+      'Use Griddy when you want an assistant in Excel or Google Sheets, sidebar-driven spreadsheet changes, formulas applied across ranges, chart creation, cleanup, formatting, sorting, filtering, or broader sheet building.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair in a browser tab.',
+      'Griddy details verified June 9, 2026; test the output on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where Griddy fits',
+        html: 'Griddy currently presents itself as an AI spreadsheet assistant for Excel, Google Sheets, and the web. Its public site says users can tell it what they need, and it writes formulas, analyzes data, and builds the sheet. The page shows formula writing, data cleanup, charts, summaries, an Excel add-in, and a Google Sheets add-on.'
+      },
+      {
+        title: 'Google Sheets add-on scope',
+        html: 'The Google Workspace Marketplace listing says Griddy lives in the Google Sheets sidebar, was updated May 13, 2026, and has 8K+ users. It describes writing and applying formulas across ranges, creating and customizing charts, cleaning and transforming data, formatting cells, sorting, filtering, organizing data, and undoing changes. The same listing says it is free to try with paid features and shows permissions for managing installed spreadsheets, running third-party web content inside Google apps, and seeing account identity details.'
+      }
+    ]
+  },
+  {
     slug: 'equals-alternative',
     title: 'Equals Alternative for One Formula Problem | Write My Formula',
     description: 'A focused Equals alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing a BI spreadsheet, AI analytics, connector, dashboard, warehouse, or CRM writeback workflow.',
@@ -5673,6 +5715,20 @@ const pageEnhancements = {
       setup: 'A task tracker needs to flag overdue open work before the helper formula is filled down.',
       formula: '=IF(AND(B2<TODAY(),C2<>"Done"),"Overdue","")',
       read: 'The formula checks whether the due date in B is before today and the status in C is not Done. Matching rows return Overdue; all other rows stay blank.'
+    }
+  },
+  'griddy-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a broader AI spreadsheet assistant.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing Griddy-style spreadsheet assistants but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule from a browser tab.',
+    notWhen: 'Use Griddy or another in-spreadsheet assistant when you want sidebar-driven changes inside Excel or Google Sheets, formulas applied across ranges, charts, data cleanup, formatting, sorting, filtering, organizing, or broader sheet building. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A pipeline report needs a visible weighted-value helper formula before it is filled through a shared sheet.',
+      formula: '=C2*SWITCH(B2,"Commit",80%,"Best case",60%,"Pipeline",30%,0)',
+      read: 'The formula multiplies the deal value in C by a probability chosen from the stage in B. The checks tell you to confirm the exact stage names and probability assumptions before filling it through the report.'
     }
   },
   'equals-alternative': {

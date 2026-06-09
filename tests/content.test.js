@@ -260,6 +260,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a full AI spreadsheet workspace/);
   assert.match(page, /\/zoho-sheet-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than Zoho Sheet, Zia, chart, pivot, sample-data, or macro workflows/);
+  assert.match(page, /\/griddy-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than an AI spreadsheet assistant, sidebar, chart, cleanup, formatting, or direct-edit workflow/);
   assert.match(page, /\/bricks-ai-spreadsheet-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a full AI spreadsheet, dashboard, chart, report, or collaboration workspace/);
   assert.match(page, /\/aiexcelformula-alternative\//);
@@ -615,6 +617,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'smart-excel-alternative',
     'sourcetable-alternative',
     'equals-alternative',
+    'griddy-alternative',
     'arcwise-alternative',
     'quadratic-alternative',
     'excelformula-pro-alternative',
@@ -942,6 +945,31 @@ test('Zoho Sheet alternative page targets Zia spreadsheet-AI comparison without 
   assert.match(homepage, /href="\/zoho-sheet-alternative\/">Zoho Sheet alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/zoho-sheet-alternative\//);
   assert.doesNotMatch(page, /replaces Zoho Sheet|better than Zoho Sheet|official Zoho|Zoho partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook support|whole spreadsheet audit|exact cause|uploads? your workbook|human reviewer|same-day|PDF delivery|privacy superior|reads your Zoho Sheet|inserts formulas directly|macro generator/i);
+});
+
+test('Griddy alternative page targets spreadsheet-assistant comparison without overclaiming', () => {
+  const page = read('griddy-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Griddy Alternative for One Formula Problem/);
+  assert.match(page, /A Griddy alternative when you need the formula, not the whole assistant/);
+  assert.match(page, /AI spreadsheet assistant for Excel, Google Sheets, and the web/);
+  assert.match(page, /writes formulas, analyzes data, and builds the sheet/);
+  assert.match(page, /formula writing, data cleanup, charts, summaries, an Excel add-in, and a Google Sheets add-on/);
+  assert.match(page, /writing and applying formulas across ranges, creating and customizing charts, cleaning and transforming data, formatting cells, sorting, filtering, organizing data, and undoing changes/);
+  assert.match(page, /managing installed spreadsheets, running third-party web content inside Google apps, and seeing account identity details/);
+  assert.match(page, /Griddy details verified June 9, 2026/);
+  assert.match(page, /=C2\*SWITCH\(B2,&quot;Commit&quot;,80%,&quot;Best case&quot;,60%,&quot;Pipeline&quot;,30%,0\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/griddy-alternative\/">Griddy alternative/);
+  assert.match(homepage, /AI spreadsheet assistant, sidebar, chart, cleanup, formatting, or direct-edit workflow/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/griddy-alternative\//);
+  assert.doesNotMatch(page, /replaces Griddy|better than Griddy|official Griddy|Griddy partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook support|whole spreadsheet audit|exact cause|uploads? your workbook|human reviewer|same-day|PDF delivery|privacy superior|intrusive|risky permissions|overkill|all the power/i);
 });
 
 test('Arcwise alternative page targets in-Sheets AI analyst comparison without overclaiming', () => {
