@@ -361,7 +361,7 @@ test('FormulaDesk alternative page keeps the comparison bounded', () => {
   assert.match(page, /LAMBDA creation/);
   assert.match(page, /FormulaDesk details verified June 5, 2026/);
   assert.match(page, /=IF\(B2=&quot;Paid&quot;,IF\(AND\(C2&gt;=DATE\(2026,8,1\),C2&lt;DATE\(2026,9,1\)\),&quot;August paid&quot;,&quot;Other month&quot;\),&quot;Open&quot;\)/);
-  assert.match(page, /2 guest tries/);
+  assert.match(page, /2 free tries/);
   assert.match(page, /500 runs per month, stored in this browser/);
   assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
@@ -386,7 +386,7 @@ test('PromptLoop alternative page keeps the comparison bounded', () => {
   assert.match(page, /research pages/);
   assert.match(page, /PromptLoop details verified June 5, 2026/);
   assert.match(page, /=XLOOKUP\(1,\(A2:A500=F2\)\*\(C2:C500=&quot;Paid&quot;\),D2:D500,&quot;Not found&quot;,0,-1\)/);
-  assert.match(page, /2 guest tries/);
+  assert.match(page, /2 free tries/);
   assert.match(page, /500 runs per month, stored in this browser/);
   assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
@@ -611,6 +611,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'sourcetable-alternative',
     'equals-alternative',
     'arcwise-alternative',
+    'quadratic-alternative',
     'excelformula-pro-alternative',
     'excelformula-co-alternative',
     'aiexcelformula-alternative',
@@ -961,6 +962,32 @@ test('Bricks AI spreadsheet alternative page targets whole-workspace comparison 
   assert.match(homepage, /href="\/bricks-ai-spreadsheet-alternative\/">Bricks AI spreadsheet alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/bricks-ai-spreadsheet-alternative\//);
   assert.doesNotMatch(page, /replaces Bricks|better than Bricks|official Bricks|Bricks partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook support|whole spreadsheet audit|exact cause|uploads? your workbook|human reviewer|same-day|PDF delivery|privacy superior|bloated|overpriced/i);
+});
+
+test('Quadratic alternative page targets code-and-connections comparison without overclaiming', () => {
+  const page = read('quadratic-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Quadratic Alternative for One Formula Problem/);
+  assert.match(page, /A Quadratic alternative when the job is one formula/);
+  assert.match(page, /AI spreadsheet with code and connections/);
+  assert.match(page, /importing or connecting CSV, Excel, PDFs, Postgres, Snowflake, BigQuery, QuickBooks, Google Analytics, Mixpanel, and Plaid/);
+  assert.match(page, /formulas, Python, SQL, JavaScript, and charts/);
+  assert.match(page, /MCP and API workflows/);
+  assert.match(page, /Pro at \$18\/user\/month billed annually/);
+  assert.match(page, /Business at \$36\/user\/month billed annually/);
+  assert.match(page, /Quadratic details verified June 9, 2026/);
+  assert.match(page, /=IFERROR\(VLOOKUP\(TRIM\(A2\),Customers!\$A\$2:\$Z\$5000,MATCH\(&quot;ARR&quot;,Customers!\$A\$1:\$Z\$1,0\),FALSE\),&quot;&quot;\)/);
+  assert.match(page, /2 free tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/quadratic-alternative\/">Quadratic alternative/);
+  assert.match(homepage, /AI spreadsheet with code, connections, charts, file import, or team workspaces/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/quadratic-alternative\//);
+  assert.doesNotMatch(page, /replaces Quadratic|better than Quadratic|official Quadratic|Quadratic partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook support|whole spreadsheet audit|exact cause|uploads? your workbook|human reviewer|same-day|PDF delivery|privacy superior|overkill|bloated|overpriced|expensive|faster|more accurate/i);
 });
 
 test('SheetSeek alternative page targets AI spreadsheet-builder comparison without overclaiming', () => {

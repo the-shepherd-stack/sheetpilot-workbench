@@ -1588,6 +1588,61 @@ const pages = [
     ]
   },
   {
+    slug: 'quadratic-alternative',
+    title: 'Quadratic Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused Quadratic alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing an AI spreadsheet with code, connections, charts, PDF import, or team workspaces.',
+    eyebrow: 'Quadratic alternative',
+    h1: 'A Quadratic alternative when the job is one formula.',
+    lede: 'Quadratic is built for AI spreadsheets with code, data connections, charts, and shareable analysis. Use Write My Formula when the job is smaller: one Excel or Google Sheets formula, explanation, or repair in a browser tab, with range notes and paste checks visible before you copy anything back into the sheet.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=IFERROR(VLOOKUP(TRIM(A2),Customers!$A$2:$Z$5000,MATCH("ARR",Customers!$A$1:$Z$1,0),FALSE),"")'
+    },
+    intent: 'Help spreadsheet users comparing Quadratic-style AI spreadsheet workspaces choose a narrow formula workbench when the immediate problem is one Excel or Google Sheets formula, one explanation, or one repair rather than a connected code-based analysis workspace.',
+    bestFor: [
+      'Writing or fixing one Excel or Google Sheets formula without moving the workbook into a new spreadsheet platform.',
+      'Explaining inherited formula logic before editing a shared report.',
+      'Trying a focused formula helper when you do not need Python, SQL, JavaScript, connected data, charts, PDF import, MCP, API workflows, or team workspaces.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the formula, headers, sample rows, expected result, or target range.',
+      'Review the explanation and checks, then copy the formula into Excel or Google Sheets yourself.'
+    ],
+    copyChecks: [
+      'Use Quadratic or another AI spreadsheet workspace when you want a new grid with Python, SQL, JavaScript, database connections, charting, PDF data extraction, API access, agents, or team sharing.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair in a browser tab.',
+      'Quadratic details verified June 9, 2026; test the output on one known row before filling it through an important workbook.'
+    ],
+    gives: [
+      'A narrow formula-sized answer instead of a full AI spreadsheet workspace.',
+      'A plain-English read of the formula logic and the ranges it depends on.',
+      'Paste checks for the exact Excel or Google Sheets workbook you are already using.'
+    ],
+    useWhen: 'Use this page when you are comparing Quadratic but your actual task is one formula, one explanation, or one repair in Excel or Google Sheets. It is especially useful when you already know the workbook layout and only need the formula logic cleaned up.',
+    notWhen: 'Do not use this as a replacement for Quadratic when you need connected data, code cells, charts, PDF import, scheduled tasks, MCP, API access, or collaborative AI spreadsheet analysis.',
+    example: {
+      setup: 'An ARR lookup formula can get difficult to inspect when it trims customer IDs, searches a customer table, and finds the ARR column by header name.',
+      formula: '=IFERROR(VLOOKUP(TRIM(A2),Customers!$A$2:$Z$5000,MATCH("ARR",Customers!$A$1:$Z$1,0),FALSE),"")',
+      read: 'The formula trims the customer ID in A2, looks it up in the Customers table, finds the ARR column by matching the ARR header, and returns a blank if the lookup fails.'
+    },
+    extraDetailCards: [
+      {
+        title: 'Where Quadratic fits',
+        html: 'Quadratic currently presents itself as an AI spreadsheet with code and connections. Its public pages describe importing or connecting CSV, Excel, PDFs, Postgres, Snowflake, BigQuery, QuickBooks, Google Analytics, Mixpanel, and Plaid; asking AI to write formulas, Python, SQL, JavaScript, and charts; using MCP and API workflows; and sharing repeatable analysis. Its docs describe a modern AI-enabled spreadsheet that combines familiar formulas with Python, SQL, JavaScript, and AI.'
+      },
+      {
+        title: 'Current Quadratic pricing context',
+        html: 'Quadratic pricing currently lists a Free Personal plan with limited AI usage, sharing, files, connections, and support; Pro at $18/user/month billed annually with $20 in AI credits per month, additional models, unlimited sharing, unlimited files, unlimited connections, and privacy controls; Business at $36/user/month billed annually with 2x AI credits and AI usage on demand; and Enterprise with custom AI usage, SSO, self-hosting, and dedicated support.'
+      },
+      {
+        title: 'How this page stays narrower',
+        html: 'Write My Formula does not connect databases, import PDF or workbook files, run Python, run SQL, create charts, orchestrate agents, read a Quadratic file, or analyze a whole spreadsheet. It keeps the job to one visible formula, explanation, or repair that you can copy back into Excel or Google Sheets yourself.'
+      }
+    ]
+  },
+  {
     slug: 'sheetseek-alternative',
     title: 'SheetSeek Alternative for One Formula Problem | Write My Formula',
     description: 'A focused SheetSeek alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing a broader AI spreadsheet builder, chart, data chat, cleanup, export, or file-upload workflow.',
