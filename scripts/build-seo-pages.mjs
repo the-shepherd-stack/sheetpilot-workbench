@@ -1575,6 +1575,52 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-labs-alternative',
+    title: 'Excel Labs Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused Excel Labs alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing an Excel add-in, Advanced Formula Environment, named LAMBDA, or LABS.GENERATIVEAI workflow.',
+    eyebrow: 'Excel Labs alternative',
+    h1: 'An Excel Labs alternative when you just need one formula.',
+    lede: 'Excel Labs is a Microsoft Garage add-in for Excel experiments, including an Advanced Formula Environment and the LABS.GENERATIVEAI worksheet function. Use Write My Formula when the job is smaller: one Excel or Google Sheets formula, explanation, or repair in a browser tab, with range notes and paste checks visible before you copy anything back into the sheet.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Write a formula that flags rows where the renewal date is within 30 days and the account is still active.',
+      table: 'Account,Renewal Date,Status\nAcme,2026-06-25,Active\nNorthwind,2026-08-14,Active\nContoso,2026-06-18,Cancelled',
+      range: 'Renewal dates in B2:B500; status in C2:C500; result in D2',
+      hint: 'IF'
+    },
+    intent: 'Help spreadsheet users comparing Excel Labs or LABS.GENERATIVEAI choose a narrow browser workbench when the immediate problem is one formula, one explanation, or one repair rather than an add-in workflow inside Excel.',
+    bestFor: [
+      'Writing or fixing one Excel or Google Sheets formula without installing an Office add-in first.',
+      'Explaining inherited formula logic before editing a shared workbook.',
+      'Trying a focused browser tool when you do not need named LAMBDA authoring, formula modules, GitHub gist reuse, or prompts running from worksheet cells.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the formula, headers, sample rows, expected result, or target range.',
+      'Review the explanation and checks, then copy the formula into Excel or Google Sheets yourself.'
+    ],
+    copyChecks: [
+      'Use Excel Labs when you want the Advanced Formula Environment, named LAMBDA editing, inline formula-authoring tools, GitHub gist reuse, or LABS.GENERATIVEAI inside the Excel grid.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair in a browser tab.',
+      'Excel Labs details verified June 9, 2026; test any generated formula on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where Excel Labs fits',
+        html: 'Microsoft currently presents Excel Labs as a Microsoft Garage Office add-in for Excel that lets the Excel team release experimental features and gather feedback. Its public page says Excel Labs includes an Advanced Formula Environment for authoring, editing, and reusing formulas, plus named LAMBDA functions.'
+      },
+      {
+        title: 'LABS.GENERATIVEAI workflow',
+        html: 'Microsoft describes LABS.GENERATIVEAI as a custom function that sends prompts from the Excel grid to a generative AI model and returns results back to the worksheet. The page says it can reference other cells, can be called inside any Excel cell or named formula, is not part of Microsoft 365 Copilot, and requires an OpenAI account and unique API key.'
+      },
+      {
+        title: 'How this page stays narrower',
+        html: 'Write My Formula does not install an Excel add-in, edit named LAMBDA modules, call LABS.GENERATIVEAI from a worksheet cell, read your workbook, insert formulas directly, configure an OpenAI API key, or claim affiliation with Microsoft or Excel Labs. Microsoft and Excel Labs are trademarks of their respective holders. Write My Formula is not affiliated with Microsoft.'
+      }
+    ]
+  },
+  {
     slug: 'zoho-sheet-alternative',
     title: 'Zoho Sheet Alternative for One Formula Problem | Write My Formula',
     description: 'A focused Zoho Sheet alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing Zia, spreadsheet AI analysis, charts, pivots, sample data, or macro generation.',
@@ -5761,6 +5807,20 @@ const pageEnhancements = {
       setup: 'A lookup formula should return the amount for the customer in F2, but the inherited formula hides missing matches with a blank and makes it hard to tell what is being searched.',
       formula: '=IFNA(XLOOKUP(F2,$A$2:$A$500,$D$2:$D$500,"Not found",0),"Not found")',
       read: 'The formula searches Customer values in A, returns Amount from D, and gives a readable fallback when no exact match exists. The checks tell you to confirm the lookup and return ranges cover the same rows before filling it through the report.'
+    }
+  },
+  'excel-labs-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of an Excel Labs add-in workflow.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing Excel Labs, Advanced Formula Environment, or LABS.GENERATIVEAI but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule from a browser tab.',
+    notWhen: 'Use Excel Labs when you want an Office add-in inside Excel, named LAMBDA authoring, formula modules, inline formula editor features, GitHub gist reuse, prompts from worksheet cells, or LABS.GENERATIVEAI with an OpenAI API key. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A renewal tracker needs to flag active accounts with a renewal date in the next 30 days.',
+      formula: '=IF(AND(C2="Active",B2>=TODAY(),B2<=TODAY()+30),"Renewal due","")',
+      read: 'The formula checks that the account is Active, the renewal date is today or later, and the date is no more than 30 days away. Matching rows return Renewal due; other rows stay blank.'
     }
   },
   'zoho-sheet-alternative': {

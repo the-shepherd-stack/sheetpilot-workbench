@@ -254,6 +254,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a monthly Excel\/Sheets\/Airtable formula app/);
   assert.match(page, /\/sheet-alchemy-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a formula library, Apps Script, file-conversion, template, or visualization workflow/);
+  assert.match(page, /\/excel-labs-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than an Excel Labs add-in, named LAMBDA, or LABS\.GENERATIVEAI workflow/);
   assert.match(page, /\/sheetsmart-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a Google Sheets extension workflow/);
   assert.match(page, /\/smart-excel-alternative\//);
@@ -639,6 +641,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'sheeter-alternative',
     'excel-formulator-alternative',
     'sheet-alchemy-alternative',
+    'excel-labs-alternative',
     'sheetsmart-alternative',
     'smart-excel-alternative',
     'sourcetable-alternative',
@@ -923,6 +926,34 @@ test('SheetSmart alternative page targets extension workflow comparison without 
   assert.match(homepage, /href="\/sheetsmart-alternative\/">SheetSmart alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/sheetsmart-alternative\//);
   assert.doesNotMatch(page, /replaces SheetSmart|better than SheetSmart|official SheetSmart|SheetSmart partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|privacy superior|reads your sheet|knows your column headers|inserts formulas directly/i);
+});
+
+test('Excel Labs alternative page targets add-in and LABS.GENERATIVEAI comparison without overclaiming', () => {
+  const page = read('excel-labs-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel Labs Alternative for One Formula Problem/);
+  assert.match(page, /An Excel Labs alternative when you just need one formula/);
+  assert.match(page, /Microsoft Garage add-in for Excel experiments/);
+  assert.match(page, /Advanced Formula Environment/);
+  assert.match(page, /LABS\.GENERATIVEAI worksheet function/);
+  assert.match(page, /named LAMBDA functions/);
+  assert.match(page, /sends prompts from the Excel grid to a generative AI model/);
+  assert.match(page, /not part of Microsoft 365 Copilot/);
+  assert.match(page, /requires an OpenAI account and unique API key/);
+  assert.match(page, /Excel Labs details verified June 9, 2026/);
+  assert.match(page, /Write My Formula is not affiliated with Microsoft/);
+  assert.match(page, /=IF\(AND\(C2=&quot;Active&quot;,B2&gt;=TODAY\(\),B2&lt;=TODAY\(\)\+30\),&quot;Renewal due&quot;,&quot;&quot;\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-labs-alternative\/">Excel Labs alternative/);
+  assert.match(homepage, /Excel Labs add-in, named LAMBDA, or LABS\.GENERATIVEAI workflow/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-labs-alternative\//);
+  assert.doesNotMatch(page, /replaces Excel Labs|better than Excel Labs|official Excel Labs|Excel Labs partner|is affiliated with Excel Labs|is affiliated with Microsoft|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|reads your workbook|drops? formulas straight into your sheet|human reviewer|same-day|PDF|privacy superior|faster|more accurate|switch from/i);
 });
 
 test('Sourcetable alternative page targets AI spreadsheet comparison without overclaiming', () => {
