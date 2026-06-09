@@ -258,6 +258,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a login-based daily-credit formula bot/);
   assert.match(page, /\/sourcetable-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a full AI spreadsheet workspace/);
+  assert.match(page, /\/zoho-sheet-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than Zoho Sheet, Zia, chart, pivot, sample-data, or macro workflows/);
   assert.match(page, /\/bricks-ai-spreadsheet-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a full AI spreadsheet, dashboard, chart, report, or collaboration workspace/);
   assert.match(page, /\/aiexcelformula-alternative\//);
@@ -917,6 +919,29 @@ test('Sourcetable alternative page targets AI spreadsheet comparison without ove
   assert.match(homepage, /href="\/sourcetable-alternative\/">Sourcetable alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/sourcetable-alternative\//);
   assert.doesNotMatch(page, /replaces Sourcetable|better than Sourcetable|official Sourcetable|Sourcetable partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook support|whole spreadsheet audit|exact cause|uploads? your workbook|human reviewer|same-day|PDF delivery|privacy superior|bloated|overpriced|credit anxiety/i);
+});
+
+test('Zoho Sheet alternative page targets Zia spreadsheet-AI comparison without overclaiming', () => {
+  const page = read('zoho-sheet-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Zoho Sheet Alternative for One Formula Problem/);
+  assert.match(page, /A Zoho Sheet alternative for one formula problem/);
+  assert.match(page, /AI formula help, charts, pivots, conditional-formatting suggestions, sample data, and macro assistance/);
+  assert.match(page, /chart or pivot recommendations, data insights, conditional-formatting suggestions, picklists, checkboxes, sample data, VBA macro generation, or spreadsheet-wide Q&amp;A/);
+  assert.match(page, /answer questions about spreadsheet data through charts, pivots, or formulas/);
+  assert.match(page, /generate sample data tables, generate formulas from requirements, explain formulas with examples, generate VBA macro code/);
+  assert.match(page, /Zoho Sheet details verified June 9, 2026/);
+  assert.match(page, /=IF\(AND\(B2&lt;TODAY\(\),C2&lt;&gt;&quot;Done&quot;\),&quot;Overdue&quot;,&quot;&quot;\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/zoho-sheet-alternative\/">Zoho Sheet alternative/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/zoho-sheet-alternative\//);
+  assert.doesNotMatch(page, /replaces Zoho Sheet|better than Zoho Sheet|official Zoho|Zoho partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook support|whole spreadsheet audit|exact cause|uploads? your workbook|human reviewer|same-day|PDF delivery|privacy superior|reads your Zoho Sheet|inserts formulas directly|macro generator/i);
 });
 
 test('Arcwise alternative page targets in-Sheets AI analyst comparison without overclaiming', () => {

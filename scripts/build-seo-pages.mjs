@@ -1529,6 +1529,48 @@ const pages = [
     ]
   },
   {
+    slug: 'zoho-sheet-alternative',
+    title: 'Zoho Sheet Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused Zoho Sheet alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing Zia, spreadsheet AI analysis, charts, pivots, sample data, or macro generation.',
+    eyebrow: 'Zoho Sheet alternative',
+    h1: 'A Zoho Sheet alternative for one formula problem.',
+    lede: 'Zoho Sheet and Zia are built for spreadsheet work inside the Zoho ecosystem, including AI formula help, charts, pivots, conditional-formatting suggestions, sample data, and macro assistance. Use Write My Formula when the job is smaller: one Excel or Google Sheets formula, explanation, or repair in a browser tab, with the range notes and paste checks visible before you copy anything back into the sheet.',
+    preset: {
+      mode: 'write',
+      platform: 'sheets',
+      task: 'Write a formula that labels tasks as Overdue when the due date is before today and the status is not Done.',
+      table: 'Task,Due Date,Status\nRenew contract,2026-06-01,Open\nSend invoice,2026-06-12,Done\nReview report,2026-06-04,In progress',
+      range: 'Due dates in B2:B500; status in C2:C500; result in D2',
+      hint: 'IF'
+    },
+    intent: 'Help spreadsheet users comparing Zoho Sheet and Zia-style spreadsheet AI choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair rather than a broader spreadsheet assistant workflow.',
+    bestFor: [
+      'Writing or fixing one Excel or Google Sheets formula without moving the sheet into another spreadsheet app first.',
+      'Explaining inherited formula logic before editing a shared workbook.',
+      'Trying a focused formula helper when you do not need charts, pivots, data insights, sample-data generation, VBA macro generation, or Zia suggestions inside Zoho Sheet.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the formula, headers, sample rows, expected result, or target range.',
+      'Review the explanation and checks, then copy the formula into Excel or Google Sheets yourself.'
+    ],
+    copyChecks: [
+      'Use Zoho Sheet or Zia when you want AI assistance inside Zoho Sheet, chart or pivot recommendations, data insights, conditional-formatting suggestions, picklists, checkboxes, sample data, VBA macro generation, or spreadsheet-wide Q&A.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair in a browser tab.',
+      'Zoho Sheet details verified June 9, 2026; test the output on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where Zoho Sheet and Zia fit',
+        html: 'Zoho currently presents Zia in Zoho Sheet as an intelligent data analyst that can recommend charts and pivot tables, answer questions about spreadsheet data through charts, pivots, or formulas, and work from mobile apps. Zoho help pages also describe Zia suggestions for conditional formatting, picklists, and checkboxes. Zoho Sheet + ChatGPT integration pages say Zia can generate sample data tables, generate formulas from requirements, explain formulas with examples, generate VBA macro code, and answer spreadsheet-related questions.'
+      },
+      {
+        title: 'How this page stays narrower',
+        html: 'Write My Formula does not move your workbook into Zoho Sheet, read a Zoho Sheet file, insert formulas directly, generate charts or pivots, create sample data, generate VBA macros, or analyze a whole spreadsheet. It keeps the work to one visible Excel or Google Sheets formula, rule, explanation, or repair.'
+      }
+    ]
+  },
+  {
     slug: 'equals-alternative',
     title: 'Equals Alternative for One Formula Problem | Write My Formula',
     description: 'A focused Equals alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing a BI spreadsheet, AI analytics, connector, dashboard, warehouse, or CRM writeback workflow.',
@@ -5617,6 +5659,20 @@ const pageEnhancements = {
       setup: 'A lookup formula should return the amount for the customer in F2, but the inherited formula hides missing matches with a blank and makes it hard to tell what is being searched.',
       formula: '=IFNA(XLOOKUP(F2,$A$2:$A$500,$D$2:$D$500,"Not found",0),"Not found")',
       read: 'The formula searches Customer values in A, returns Amount from D, and gives a readable fallback when no exact match exists. The checks tell you to confirm the lookup and return ranges cover the same rows before filling it through the report.'
+    }
+  },
+  'zoho-sheet-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a broader Zoho Sheet and Zia workflow.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing Zoho Sheet or Zia but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule from a browser tab.',
+    notWhen: 'Use Zoho Sheet or Zia when you want AI help inside Zoho Sheet, chart or pivot recommendations, data insights, conditional-formatting suggestions, picklists, checkboxes, sample data, macro generation, voice or mobile assistant features, or spreadsheet-wide Q&A. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A task tracker needs to flag overdue open work before the helper formula is filled down.',
+      formula: '=IF(AND(B2<TODAY(),C2<>"Done"),"Overdue","")',
+      read: 'The formula checks whether the due date in B is before today and the status in C is not Done. Matching rows return Overdue; all other rows stay blank.'
     }
   },
   'equals-alternative': {
