@@ -282,6 +282,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than an installed spreadsheet AI agent, bulk processing, cleanup, enrichment, pivots, charts, or credit packs/);
   assert.match(page, /\/ai-assist-gemini-sheets-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a Google Workspace add-on for enrichment, categorization, translation, summarization, content, or API-key workflows/);
+  assert.match(page, /\/google-sheets-ai-tools-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than an installed Sheets agent for cleanup, duplicates, bulk prompts, or preview-before-apply workflows/);
   assert.match(page, /\/sheet-formula-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a single Google Sheets prompt box/);
   assert.match(page, /\/gemini-sheets-alternative\//);
@@ -665,6 +667,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'manyexcel-alternative',
     'gpt-workspace-alternative',
     'gpt-for-sheets-alternative',
+    'google-sheets-ai-tools-alternative',
     'gemini-sheets-alternative',
     'formula-dog-alternative',
     'excelmatic-alternative',
@@ -1342,6 +1345,34 @@ test('AI Assist for Gemini alternative page targets Workspace add-on comparison 
   assert.match(homepage, /Google Workspace add-on for enrichment, categorization, translation, summarization, content, or API-key workflows/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/ai-assist-gemini-sheets-alternative\//);
   assert.doesNotMatch(page, /replaces AI Assist|better than AI Assist|official AI Assist|official Google|Google partner|GW Add-ons partner|affiliated|more accurate|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|privacy superior|instant|in seconds|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|faster|cheaper|beats AI Assist|price superior|reads your sheet|inserts formulas directly from Write My Formula|runs inside Google Sheets/i);
+});
+
+test('Google Sheets AI tools alternative page targets add-on comparison without overclaiming', () => {
+  const page = read('google-sheets-ai-tools-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Google Sheets AI Add-on Alternative for One Formula Problem/);
+  assert.match(page, /Need one formula, not a whole Sheets add-on/);
+  assert.match(page, /Some Google Sheets AI add-ons are built to run inside the spreadsheet/);
+  assert.match(page, /clean data, review duplicates, fill cells, and guide broader sheet work/);
+  assert.match(page, /AI Tools for Google Sheets&trade; by Everest Web Deals LLC/);
+  assert.match(page, /cleaning data, reviewing duplicates, generating formulas, explaining formulas, fixing formula issues/);
+  assert.match(page, /May 5, 2026 update and 19 reviews/);
+  assert.match(page, /Preview Before Apply, an AI Spreadsheet Agent, bulk prompt examples, custom bulk prompts/);
+  assert.match(page, /Formula Generator, Formula Explanation, and Error Detection/);
+  assert.match(page, /does not install a Google Workspace add-on, connect to a Google account, read your sheet, apply changes inside Google Sheets/);
+  assert.match(page, /AI Tools for Google Sheets details checked against the Google Workspace Marketplace listing on June 11, 2026/);
+  assert.match(page, /=ARRAYFORMULA\(IF\(A2:A=&quot;&quot;,&quot;&quot;,IFNA\(VLOOKUP\(A2:A,Products!A:C,3,FALSE\),&quot;Check SKU&quot;\)\)\)/);
+  assert.match(page, /Two guest tries with no signup/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-ai-tools-alternative\/">Google Sheets AI add-on alternative/);
+  assert.match(homepage, /installed Sheets agent for cleanup, duplicates, bulk prompts, or preview-before-apply workflows/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-ai-tools-alternative\//);
+  assert.doesNotMatch(page, /replaces AI Tools|better than AI Tools|official AI Tools|official Google|Google partner|Everest Web Deals partner|affiliated|more accurate|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|privacy superior|instant|in seconds|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|faster|cheaper|beats AI Tools|price superior|reads your sheet|inserts formulas directly from Write My Formula|runs inside Google Sheets|applies changes inside Google Sheets/i);
 });
 
 test('Sheet Formula alternative page targets free formula-generator comparison without overclaiming', () => {

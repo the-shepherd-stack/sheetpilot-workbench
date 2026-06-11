@@ -2320,6 +2320,50 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-ai-tools-alternative',
+    title: 'Google Sheets AI Add-on Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused Google Sheets AI add-on alternative for writing, explaining, or fixing one Excel or Google Sheets formula before installing a Sheets agent for cleanup, duplicate review, bulk prompts, or preview-before-apply workflows.',
+    eyebrow: 'Google Sheets AI add-on alternative',
+    h1: 'Need one formula, not a whole Sheets add-on?',
+    lede: 'Some Google Sheets AI add-ons are built to run inside the spreadsheet, preview changes, clean data, review duplicates, fill cells, and guide broader sheet work. Use Write My Formula when the job is smaller: one Excel or Google Sheets formula, explanation, or repair in a browser tab, with range notes and paste checks visible before you copy anything back.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=ARRAYFORMULA(IF(A2:A="","",IFNA(VLOOKUP(A2:A,Products!A:C,3,FALSE),"Check SKU")))'
+    },
+    intent: 'Help spreadsheet users comparing Google Sheets AI add-ons choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair rather than an installed Sheets agent workflow.',
+    bestFor: [
+      'Trying a formula-sized task with two guest tries before installing a Google Sheets add-on.',
+      'Writing or fixing one Excel or Google Sheets formula with the relevant columns, sample rows, and expected result visible.',
+      'Explaining inherited formula logic before editing a shared workbook.',
+      'Using a browser tab when you do not need AI to clean data, review duplicates, fill blank cells, apply changes inside Sheets, or run bulk prompts.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the headers, sample rows, target range, broken formula, or expected result.',
+      'Review the explanation and checks, then copy the formula into Excel or Google Sheets yourself.'
+    ],
+    copyChecks: [
+      'Use an installed Google Sheets AI add-on when you want an in-Sheets sidebar, preview-before-apply changes, duplicate review, bulk prompts, smart data cleanup, or guided sheet tasks.',
+      'Use Write My Formula when the immediate job is one formula, one rule, or one repair you can read and test.',
+      'AI Tools for Google Sheets details checked against the Google Workspace Marketplace listing on June 11, 2026; confirm current details on the listing before deciding.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where AI Tools for Google Sheets fits',
+        html: 'The Google Workspace Marketplace listing for AI Tools for Google Sheets&trade; by Everest Web Deals LLC currently describes an add-on for cleaning data, reviewing duplicates, generating formulas, explaining formulas, fixing formula issues, and previewing supported AI changes inside Google Sheets. As of June 11, 2026, the listing shows a May 5, 2026 update and 19 reviews.'
+      },
+      {
+        title: 'Current add-on context',
+        html: 'The listing describes Preview Before Apply, an AI Spreadsheet Agent, bulk prompt examples, custom bulk prompts, duplicate detection, smart data cleanup, Formula Generator, Formula Explanation, and Error Detection. It is positioned for users looking for GPT for Sheets, ChatGPT for Sheets, AI for Google Sheets, and spreadsheet automation tools.'
+      },
+      {
+        title: 'How this page stays narrower',
+        html: 'Write My Formula does not install a Google Workspace add-on, connect to a Google account, read your sheet, apply changes inside Google Sheets, clean data in bulk, review duplicates, fill blank cells, or claim Google or Everest Web Deals LLC affiliation. It keeps the decision to one visible formula, explanation, or repair that you can review and test before pasting. Google Sheets is a trademark of Google LLC. AI Tools for Google Sheets&trade; is a product of Everest Web Deals LLC.'
+      }
+    ]
+  },
+  {
     slug: 'sheet-formula-alternative',
     title: 'Sheet Formula Alternative for One Formula Problem | Write My Formula',
     description: 'A focused Sheet Formula alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing a free Google Sheets formula generator with sign-in-gated extras.',
@@ -6253,6 +6297,20 @@ const pageEnhancements = {
       setup: 'A Google Sheets report needs an ARRAYFORMULA lookup repaired so blank rows stay blank and missing customer IDs get a useful fallback.',
       formula: '=ARRAYFORMULA(IF(A2:A="","",IFNA(VLOOKUP(A2:A,Customers!A:D,4,FALSE),"Check customer ID")))',
       read: 'The formula leaves blank input rows blank, looks up each visible customer ID against Customers!A:D, returns the fourth column for exact matches, and shows Check customer ID when a customer is missing. The checks tell you to confirm the lookup column and return column before filling it through a shared sheet.'
+    }
+  },
+  'google-sheets-ai-tools-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of an installed Sheets AI agent.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'Two guest tries with no signup, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing Google Sheets AI add-ons but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule from a browser tab.',
+    notWhen: 'Use an installed Google Sheets AI add-on when you need an in-Sheets sidebar, preview-before-apply changes, duplicate review, bulk prompts, smart data cleanup, blank-cell filling, or guided sheet tasks. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A Google Sheets inventory report needs an ARRAYFORMULA lookup repaired so blank rows stay blank and missing SKUs get a clear fallback.',
+      formula: '=ARRAYFORMULA(IF(A2:A="","",IFNA(VLOOKUP(A2:A,Products!A:C,3,FALSE),"Check SKU")))',
+      read: 'The formula leaves blank input rows blank, looks up each visible SKU against Products!A:C, returns the third column for exact matches, and shows Check SKU when a product is missing. The checks tell you to confirm the lookup column and return column before filling it through a shared sheet.'
     }
   },
   'sheet-formula-alternative': {
