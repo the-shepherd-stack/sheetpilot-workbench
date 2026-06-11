@@ -278,6 +278,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than saved libraries, optimization, collaboration, add-ons, or API workflows/);
   assert.match(page, /\/gpt-workspace-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than an in-Sheets AI sidebar, GPT formulas, or chat-with-sheet workflow/);
+  assert.match(page, /\/gpt-for-sheets-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than an installed spreadsheet AI agent, bulk processing, cleanup, enrichment, pivots, charts, or credit packs/);
   assert.match(page, /\/sheet-formula-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a single Google Sheets prompt box/);
   assert.match(page, /\/gemini-sheets-alternative\//);
@@ -660,6 +662,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'aiexcelformula-alternative',
     'manyexcel-alternative',
     'gpt-workspace-alternative',
+    'gpt-for-sheets-alternative',
     'gemini-sheets-alternative',
     'excelmatic-alternative',
     'excel-formula-cheat-sheet',
@@ -1285,6 +1288,31 @@ test('GPT Workspace alternative page targets in-Sheets AI comparison without ove
   assert.match(homepage, /href="\/gpt-workspace-alternative\/">GPT Workspace alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/gpt-workspace-alternative\//);
   assert.doesNotMatch(page, /replaces GPT Workspace|better than GPT Workspace|official GPT Workspace|GPT Workspace partner|affiliated|more accurate|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|privacy superior|instant|in seconds|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|faster|cheaper|beats GPT Workspace|price superior|reads your sheet|inserts formulas directly from Write My Formula/i);
+});
+
+test('GPT for Sheets alternative page targets installed agent comparison without overclaiming', () => {
+  const page = read('gpt-for-sheets-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /GPT for Sheets Alternative for One Formula Problem/);
+  assert.match(page, /A GPT for Sheets alternative for one formula problem/);
+  assert.match(page, /AI work inside spreadsheets, including bulk row processing, cleanup, enrichment, formatting, reports, pivots, charts, and shared-credit workflows/);
+  assert.match(page, /write, fix, and explain formulas; clean and standardize messy data/);
+  assert.match(page, /bulk translation, content generation, categorization, extraction, enrichment, web research, image analysis, fuzzy matching, and deduplication/);
+  assert.match(page, /up to 10,000 results per hour/);
+  assert.match(page, /credit packs starting at \$29/);
+  assert.match(page, /GPT for Sheets details verified June 11, 2026/);
+  assert.match(page, /=IF\(AND\(B2=&quot;West&quot;,C2=&quot;Paid&quot;,A2&gt;=DATE\(2026,6,1\),A2&lt;DATE\(2026,7,1\)\),&quot;Review&quot;,&quot;&quot;\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/gpt-for-sheets-alternative\/">GPT for Sheets alternative/);
+  assert.match(homepage, /installed spreadsheet AI agent, bulk processing, cleanup, enrichment, pivots, charts, or credit packs/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/gpt-for-sheets-alternative\//);
+  assert.doesNotMatch(page, /replaces GPT for Sheets|better than GPT for Sheets|official GPT for Sheets|GPT for Sheets partner|affiliated|more accurate|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|privacy superior|instant|in seconds|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|faster|cheaper|beats GPT for Sheets|price superior|reads your sheet|inserts formulas directly from Write My Formula|1,000x faster/i);
 });
 
 test('Sheet Formula alternative page targets free formula-generator comparison without overclaiming', () => {

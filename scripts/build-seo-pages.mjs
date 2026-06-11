@@ -2185,6 +2185,53 @@ const pages = [
     ]
   },
   {
+    slug: 'gpt-for-sheets-alternative',
+    title: 'GPT for Sheets Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused GPT for Sheets alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing an installed spreadsheet AI agent, bulk processing, cleanup, enrichment, pivot, chart, or credit-pack workflow.',
+    eyebrow: 'GPT for Sheets alternative',
+    h1: 'A GPT for Sheets alternative for one formula problem.',
+    lede: 'GPT for Sheets and GPT for Work are built for AI work inside spreadsheets, including bulk row processing, cleanup, enrichment, formatting, reports, pivots, charts, and shared-credit workflows. Use Write My Formula when the job is smaller: one Excel or Google Sheets formula, explanation, or repair in a browser tab, with range notes and paste checks visible before you copy anything back.',
+    preset: {
+      mode: 'write',
+      platform: 'sheets',
+      task: 'Write a formula that flags paid West invoices from June 2026 and leaves other rows blank.',
+      table: 'Invoice Date,Region,Status,Amount\n2026-06-04,West,Paid,1200\n2026-06-09,East,Paid,850\n2026-06-15,West,Open,640',
+      range: 'Dates in A2:A500; region in B2:B500; status in C2:C500; result in E2',
+      hint: 'IF'
+    },
+    intent: 'Help spreadsheet users comparing GPT for Sheets or GPT for Work choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair rather than an installed spreadsheet AI agent or bulk-processing workflow.',
+    bestFor: [
+      'Trying a formula-sized task with two guest tries before installing a Sheets or Excel add-on.',
+      'Writing or fixing one Excel or Google Sheets formula with the relevant columns, sample rows, and expected result visible.',
+      'Explaining inherited formula logic before editing a shared workbook.',
+      'Using a browser tab when you do not need AI to run across hundreds or thousands of rows, clean data, enrich leads, format sheets, build pivots, create charts, translate content, or manage shared credits.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the headers, sample rows, target range, broken formula, or expected result.',
+      'Review the explanation and checks, then copy the formula into Excel or Google Sheets yourself.'
+    ],
+    copyChecks: [
+      'Use GPT for Sheets or GPT for Work when you want an installed AI agent inside Google Sheets or Excel, bulk row processing, cleanup, enrichment, formatting, reports, pivots, charts, translation, content generation, or pooled credit management.',
+      'Use Write My Formula when the immediate job is one formula, one rule, or one repair you can read and test.',
+      'GPT for Sheets details verified June 11, 2026; test any generated formula on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where GPT for Sheets fits',
+        html: 'The Google Workspace Marketplace listing for GPT for Sheets and Docs by Talarian currently describes it as an AI agent for Google Sheets. The listing says it can write, fix, and explain formulas; clean and standardize messy data; split, merge, and reorganize columns and rows; remove duplicates; validate values; apply formatting and conditional formatting; create insights, reports, pivot tables, and charts; and handle bulk translation, content generation, categorization, extraction, enrichment, web research, image analysis, fuzzy matching, and deduplication.'
+      },
+      {
+        title: 'Current GPT for Work context',
+        html: 'The GPT for Work site currently positions GPT for Sheets for ecommerce, SEO, outbound sales, and market research workflows, with bulk processing claims such as up to 10,000 results per hour and support for large row counts. Its pricing page says users can start free, buy credit packs starting at $29, pool credits across a workspace, and bring their own AI keys with a platform fee.'
+      },
+      {
+        title: 'How this page stays narrower',
+        html: 'Write My Formula does not install an add-on, edit a live sheet, process rows in bulk, enrich data, create charts, manage credit packs, or claim GPT for Sheets affiliation. It keeps the decision to one visible formula, explanation, or repair that you can review and test before pasting.'
+      }
+    ]
+  },
+  {
     slug: 'sheet-formula-alternative',
     title: 'Sheet Formula Alternative for One Formula Problem | Write My Formula',
     description: 'A focused Sheet Formula alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing a free Google Sheets formula generator with sign-in-gated extras.',
@@ -6032,6 +6079,20 @@ const pageEnhancements = {
       setup: 'A Google Sheets report needs the paid West total for June 2026 before the formula is filled through a shared workbook.',
       formula: '=SUMIFS(D2:D500,B2:B500,"West",C2:C500,"Paid",A2:A500,">="&DATE(2026,6,1),A2:A500,"<"&DATE(2026,7,1))',
       read: 'The formula totals Amount values only when Region is West, Status is Paid, and Invoice Date falls inside June 2026. The checks tell you to confirm every SUMIFS range covers the same rows and that the date column contains real dates.'
+    }
+  },
+  'gpt-for-sheets-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of an installed spreadsheet AI agent.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing GPT for Sheets or GPT for Work but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule from a browser tab.',
+    notWhen: 'Use GPT for Sheets or GPT for Work when you need an installed spreadsheet AI agent, bulk row processing, cleanup, enrichment, formatting, reports, pivots, charts, translation, content generation, pooled credits, or bring-your-own-key controls. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A Google Sheets invoice report needs to flag paid West invoices from June 2026 before the formula is filled through a shared workbook.',
+      formula: '=IF(AND(B2="West",C2="Paid",A2>=DATE(2026,6,1),A2<DATE(2026,7,1)),"Review","")',
+      read: 'The formula returns Review only when Region is West, Status is Paid, and Invoice Date falls inside June 2026. The checks tell you to confirm the date column contains real dates before copying the formula down.'
     }
   },
   'sheet-formula-alternative': {
