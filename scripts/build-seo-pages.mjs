@@ -2451,6 +2451,49 @@ const pages = [
     ]
   },
   {
+    slug: 'wps-ai-spreadsheet-alternative',
+    title: 'WPS AI Spreadsheet Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused WPS AI spreadsheet alternative for writing, explaining, or fixing one Excel or Google Sheets formula from a browser tab before choosing an installed office-suite AI workflow.',
+    eyebrow: 'WPS AI spreadsheet alternative',
+    h1: 'You came here for one formula. You can have it in this tab.',
+    lede: 'WPS AI lives inside WPS Office. It is built for spreadsheet AI, workbook work, templates, document tools, and an installed office-suite workflow. Use Write My Formula when the job is smaller: one Excel or Google Sheets formula, explanation, or repair in a browser tab, with the notes and checks visible before you paste anything back.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Write a formula that flags paid invoices over $5,000 from the West region.',
+      table: 'Invoice Date,Region,Status,Amount\n2026-06-03,West,Paid,7200\n2026-06-04,East,Paid,4300\n2026-06-05,West,Open,8200',
+      range: 'Region in B2:B500; status in C2:C500; amount in D2:D500; result in E2',
+      hint: 'IF with AND'
+    },
+    intent: 'Help spreadsheet users comparing WPS AI spreadsheet workflows choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair rather than an installed WPS Office AI workflow.',
+    bestFor: [
+      'Writing or fixing one Excel or Google Sheets formula without installing WPS Office first.',
+      'Explaining inherited formula logic before editing a shared workbook.',
+      'Trying two guest formula requests in a browser tab before choosing a broader spreadsheet AI workflow.',
+      'Copying the result into Excel or Google Sheets yourself after reading the formula notes and checks.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the formula, headers, sample rows, expected result, or target range.',
+      'Review the explanation and checks, then copy the formula into Excel or Google Sheets yourself.'
+    ],
+    copyChecks: [
+      'Use WPS AI when you want an office-suite copilot inside WPS Office, spreadsheet ribbon tools, workbook context, templates, document tools, file compatibility, sync, or collaboration.',
+      'Use Write My Formula when the work can be inspected as one formula, one rule, or one repair in a browser tab.',
+      'WPS AI spreadsheet details checked against WPS official pages on June 11, 2026; test any generated formula on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where WPS AI fits',
+        html: 'WPS describes WPS AI as an office copilot integrated with the WPS Office suite. Its spreadsheet pages describe AI Data Analysis for chatting with data, Smart Table Assistant for bulk workbook generation, Excel-format compatibility across .xls, .xlsx, .xlsm, .csv, and .pdf files, cross-device file management, collaboration, large template libraries, and AI assistance for generating formulas from natural-language descriptions inside WPS Spreadsheets.'
+      },
+      {
+        title: 'How this page stays narrower',
+        html: 'Write My Formula does not install WPS Office, open your workbook file, read your cells, work from the spreadsheet ribbon, generate templates, sync files, collaborate across devices, or insert formulas for you. It keeps the decision to one visible formula, explanation, or repair that you copy into Excel or Google Sheets yourself.'
+      }
+    ]
+  },
+  {
     slug: 'gemini-sheets-alternative',
     title: 'Gemini in Sheets Alternative for One Formula Problem | Write My Formula',
     description: 'A focused Gemini in Sheets alternative for writing, explaining, or fixing one Excel or Google Sheets formula in a browser tab before choosing broader Google Workspace AI.',
@@ -6339,6 +6382,20 @@ const pageEnhancements = {
       setup: 'A customer plan report needs the monthly price returned for each plan, with a clear fallback when the plan name is blank or missing from the price table.',
       formula: '=IF(B2="","Check plan",IFNA(XLOOKUP(B2,Plans!A:A,Plans!B:B),"Check plan"))',
       read: 'The formula checks whether the plan cell is blank, then looks up the plan in the Plans table and returns the matching price. The checks tell you to confirm the lookup table columns and fallback text before copying it down.'
+    }
+  },
+  'wps-ai-spreadsheet-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of an installed WPS Office AI workflow.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'Two guest tries with no signup, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing WPS AI or WPS Spreadsheet AI but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule from a browser tab.',
+    notWhen: 'Use WPS AI when you want an office-suite copilot inside WPS Office, spreadsheet ribbon tools, workbook context, templates, document tools, file compatibility, sync, collaboration, or broader spreadsheet AI analysis. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'An invoice tracker needs a helper flag for paid West-region invoices over $5,000 before the formula is filled down.',
+      formula: '=IF(AND(B2="West",C2="Paid",D2>5000),"Review","")',
+      read: 'The formula checks the current row for Region, Status, and Amount, then returns Review only when all three conditions are true. The checks tell you to confirm the column mapping and threshold before filling the formula through the report.'
     }
   },
   'gemini-sheets-alternative': {

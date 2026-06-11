@@ -284,6 +284,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a Google Workspace add-on for enrichment, categorization, translation, summarization, content, or API-key workflows/);
   assert.match(page, /\/google-sheets-ai-tools-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than an installed Sheets agent for cleanup, duplicates, bulk prompts, or preview-before-apply workflows/);
+  assert.match(page, /\/wps-ai-spreadsheet-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than an installed WPS Office AI workflow/);
   assert.match(page, /\/sheet-formula-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a single Google Sheets prompt box/);
   assert.match(page, /\/gemini-sheets-alternative\//);
@@ -668,6 +670,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'gpt-workspace-alternative',
     'gpt-for-sheets-alternative',
     'google-sheets-ai-tools-alternative',
+    'wps-ai-spreadsheet-alternative',
     'gemini-sheets-alternative',
     'formula-dog-alternative',
     'excelmatic-alternative',
@@ -1396,6 +1399,33 @@ test('Sheet Formula alternative page targets free formula-generator comparison w
   assert.match(homepage, /href="\/sheet-formula-alternative\/">Sheet Formula alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/sheet-formula-alternative\//);
   assert.doesNotMatch(page, /replaces Sheet Formula|better than Sheet Formula|official Sheet Formula|Sheet Formula partner|affiliated|more accurate|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|privacy superior|instant|in seconds|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|faster|cheaper|beats Sheet Formula|price superior|reads your sheet|inserts formulas directly from Write My Formula|installs? an add-on/i);
+});
+
+test('WPS AI spreadsheet alternative page targets office-suite AI comparison without overclaiming', () => {
+  const page = read('wps-ai-spreadsheet-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /WPS AI Spreadsheet Alternative for One Formula Problem/);
+  assert.match(page, /You came here for one formula\. You can have it in this tab/);
+  assert.match(page, /WPS AI lives inside WPS Office/);
+  assert.match(page, /spreadsheet AI, workbook work, templates, document tools, and an installed office-suite workflow/);
+  assert.match(page, /AI Data Analysis for chatting with data/);
+  assert.match(page, /Smart Table Assistant for bulk workbook generation/);
+  assert.match(page, /\.xls, \.xlsx, \.xlsm, \.csv, and \.pdf files/);
+  assert.match(page, /generating formulas from natural-language descriptions inside WPS Spreadsheets/);
+  assert.match(page, /does not install WPS Office, open your workbook file, read your cells, work from the spreadsheet ribbon/);
+  assert.match(page, /WPS AI spreadsheet details checked against WPS official pages on June 11, 2026/);
+  assert.match(page, /=IF\(AND\(B2=&quot;West&quot;,C2=&quot;Paid&quot;,D2&gt;5000\),&quot;Review&quot;,&quot;&quot;\)/);
+  assert.match(page, /Two guest tries with no signup/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/wps-ai-spreadsheet-alternative\/">WPS AI spreadsheet alternative/);
+  assert.match(homepage, /installed WPS Office AI workflow/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/wps-ai-spreadsheet-alternative\//);
+  assert.doesNotMatch(page, /replaces WPS|better than WPS|official WPS|WPS partner|Kingsoft partner|affiliated|more accurate|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|privacy superior|instant|in seconds|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF report|PDF delivery|faster|cheaper|beats WPS|price superior|reads your sheet|inserts formulas directly from Write My Formula|works inside WPS|works from the spreadsheet ribbon|inside the spreadsheet ribbon/i);
 });
 
 test('Formula.dog alternative page targets formula-bot comparison without overclaiming', () => {
