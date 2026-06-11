@@ -280,6 +280,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than an in-Sheets AI sidebar, GPT formulas, or chat-with-sheet workflow/);
   assert.match(page, /\/gpt-for-sheets-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than an installed spreadsheet AI agent, bulk processing, cleanup, enrichment, pivots, charts, or credit packs/);
+  assert.match(page, /\/ai-assist-gemini-sheets-alternative\//);
+  assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a Google Workspace add-on for enrichment, categorization, translation, summarization, content, or API-key workflows/);
   assert.match(page, /\/sheet-formula-alternative\//);
   assert.match(page, /Use a focused formula helper when you need one formula, explanation, or repair rather than a single Google Sheets prompt box/);
   assert.match(page, /\/gemini-sheets-alternative\//);
@@ -1313,6 +1315,32 @@ test('GPT for Sheets alternative page targets installed agent comparison without
   assert.match(homepage, /installed spreadsheet AI agent, bulk processing, cleanup, enrichment, pivots, charts, or credit packs/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/gpt-for-sheets-alternative\//);
   assert.doesNotMatch(page, /replaces GPT for Sheets|better than GPT for Sheets|official GPT for Sheets|GPT for Sheets partner|affiliated|more accurate|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|privacy superior|instant|in seconds|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|faster|cheaper|beats GPT for Sheets|price superior|reads your sheet|inserts formulas directly from Write My Formula|1,000x faster/i);
+});
+
+test('AI Assist for Gemini alternative page targets Workspace add-on comparison without overclaiming', () => {
+  const page = read('ai-assist-gemini-sheets-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /AI Assist for Gemini in Sheets Alternative for One Formula Problem/);
+  assert.match(page, /An AI Assist for Gemini alternative for one formula problem/);
+  assert.match(page, /Google Workspace add-on for AI inside Sheets, Docs, and Forms/);
+  assert.match(page, /enrichment, categorization, translation, summaries, content creation, prompt organization, and API-key-based Gemini workflows/);
+  assert.match(page, /As of June 11, 2026, the listing shows a last-updated date of April 17, 2026, 315 reviews, and 6M\+ users/);
+  assert.match(page, /data enrichment, refining, categorization, retrieval, translation, editing, summarization, content creation/);
+  assert.match(page, /product-catalog work, review summarization, SEO metadata, ad copy, translations/);
+  assert.match(page, /installed documents, forms, spreadsheets, third-party sidebar content, external-service connection/);
+  assert.match(page, /AI Assist for Gemini in Sheets details checked against the Google Workspace Marketplace listing on June 11, 2026/);
+  assert.match(page, /=ARRAYFORMULA\(IF\(A2:A=&quot;&quot;,&quot;&quot;,IFNA\(VLOOKUP\(A2:A,Customers!A:D,4,FALSE\),&quot;Check customer ID&quot;\)\)\)/);
+  assert.match(page, /Two guest tries with no signup/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/ai-assist-gemini-sheets-alternative\/">AI Assist for Gemini alternative/);
+  assert.match(homepage, /Google Workspace add-on for enrichment, categorization, translation, summarization, content, or API-key workflows/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/ai-assist-gemini-sheets-alternative\//);
+  assert.doesNotMatch(page, /replaces AI Assist|better than AI Assist|official AI Assist|official Google|Google partner|GW Add-ons partner|affiliated|more accurate|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|privacy superior|instant|in seconds|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|faster|cheaper|beats AI Assist|price superior|reads your sheet|inserts formulas directly from Write My Formula|runs inside Google Sheets/i);
 });
 
 test('Sheet Formula alternative page targets free formula-generator comparison without overclaiming', () => {
