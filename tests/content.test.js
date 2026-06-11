@@ -666,6 +666,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'gpt-workspace-alternative',
     'gpt-for-sheets-alternative',
     'gemini-sheets-alternative',
+    'formula-dog-alternative',
     'excelmatic-alternative',
     'excel-formula-cheat-sheet',
     'excel-formula-explainer',
@@ -1364,6 +1365,30 @@ test('Sheet Formula alternative page targets free formula-generator comparison w
   assert.match(homepage, /href="\/sheet-formula-alternative\/">Sheet Formula alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/sheet-formula-alternative\//);
   assert.doesNotMatch(page, /replaces Sheet Formula|better than Sheet Formula|official Sheet Formula|Sheet Formula partner|affiliated|more accurate|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|privacy superior|instant|in seconds|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|faster|cheaper|beats Sheet Formula|price superior|reads your sheet|inserts formulas directly from Write My Formula|installs? an add-on/i);
+});
+
+test('Formula.dog alternative page targets formula-bot comparison without overclaiming', () => {
+  const page = read('formula-dog-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Formula\.dog Alternative for One Formula Problem/);
+  assert.match(page, /A Formula\.dog alternative when the formula needs more context/);
+  assert.match(page, /five free formulas a day, no sign-up, and VBA help/);
+  assert.match(page, /headers, sample rows, and range notes visible before you copy it back/);
+  assert.match(page, /fetched formulas since 2022/);
+  assert.match(page, /first five formulas a day are free with no sign-up/);
+  assert.match(page, /Formula\.dog details verified June 11, 2026/);
+  assert.match(page, /=IF\(B2=&quot;&quot;,&quot;Check plan&quot;,IFNA\(XLOOKUP\(B2,Plans!A:A,Plans!B:B\),&quot;Check plan&quot;\)\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/formula-dog-alternative\/">Formula\.dog alternative/);
+  assert.match(homepage, /daily formula-bot, VBA, or no-sign-up workflow/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/formula-dog-alternative\//);
+  assert.doesNotMatch(page, /replaces Formula\.dog|better than Formula\.dog|official Formula\.dog|Formula\.dog partner|affiliated|more accurate|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|privacy superior|instant|in seconds|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|faster|cheaper|beats Formula\.dog|price superior|reads your sheet|inserts formulas directly from Write My Formula|generates VBA/i);
 });
 
 test('Gemini in Sheets alternative page targets Workspace AI comparison without overclaiming', () => {

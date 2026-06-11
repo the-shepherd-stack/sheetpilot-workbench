@@ -2363,6 +2363,50 @@ const pages = [
     ]
   },
   {
+    slug: 'formula-dog-alternative',
+    title: 'Formula.dog Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused Formula.dog alternative for writing, explaining, or fixing one Excel or Google Sheets formula with pasted headers, sample rows, and range notes.',
+    eyebrow: 'Formula.dog alternative',
+    h1: 'A Formula.dog alternative when the formula needs more context.',
+    lede: 'Formula.dog and Write My Formula both start with the same job: describe a spreadsheet problem in plain English and get a formula back. Use Formula.dog when five free formulas a day, no sign-up, and VBA help fit the task. Use Write My Formula when you want one Excel or Google Sheets formula written, explained, or fixed with headers, sample rows, and range notes visible before you copy it back.',
+    preset: {
+      mode: 'write',
+      platform: 'excel',
+      task: 'Write a formula that returns the plan price for each customer and shows Check plan when the plan is missing.',
+      table: 'Customer,Plan,Price\nAcme,Pro,29\nNorthwind,Team,79\nContoso,,',
+      range: 'Customer in A2:A500; plan in B2:B500; price table in Plans!A:B; result in D2',
+      hint: 'XLOOKUP'
+    },
+    intent: 'Help spreadsheet users comparing Formula.dog choose a narrow formula workbench when the immediate problem is one Excel or Google Sheets formula, one explanation, or one repair with visible context.',
+    bestFor: [
+      'Trying a formula-sized task with two guest tries before choosing a daily-reset formula generator.',
+      'Writing or fixing one Excel or Google Sheets formula with the relevant headers, sample rows, range hints, and expected result visible.',
+      'Explaining inherited formula logic before editing a shared workbook.',
+      'Using a browser tab when you do not need VBA, macros, or a branded formula-bot workflow.',
+      'Paying $9 for 500 runs in one browser when formula questions come in bursts instead of five-a-day cadence.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the headers, sample rows, target range, broken formula, or expected result.',
+      'Review the explanation and checks, then copy the formula into Excel or Google Sheets yourself.'
+    ],
+    copyChecks: [
+      'Use Formula.dog if you want five free formulas per day, no sign-up, and VBA help from the same formula-bot workflow.',
+      'Use Write My Formula when the immediate job is one formula, one rule, or one repair where headers, ranges, and paste checks should be visible together.',
+      'Formula.dog details verified June 11, 2026; test any generated formula on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where Formula.dog fits',
+        html: 'Formula.dog currently says it has fetched formulas since 2022. Its public page says users describe a spreadsheet problem in plain English and get a working Excel or Google Sheets formula back. It also says the first five formulas a day are free with no sign-up, that it knows VBA, and that there are no sales calls.'
+      },
+      {
+        title: 'How this page stays narrower',
+        html: 'Write My Formula does not claim to replace Formula.dog, generate VBA, read workbook files, insert formulas into cells, or improve on Formula.dog speed or accuracy. It keeps the decision to one visible formula, explanation, or repair, with optional headers, sample rows, range hints, and copy checks before you paste the answer yourself.'
+      }
+    ]
+  },
+  {
     slug: 'gemini-sheets-alternative',
     title: 'Gemini in Sheets Alternative for One Formula Problem | Write My Formula',
     description: 'A focused Gemini in Sheets alternative for writing, explaining, or fixing one Excel or Google Sheets formula in a browser tab before choosing broader Google Workspace AI.',
@@ -6223,6 +6267,20 @@ const pageEnhancements = {
       setup: 'A Google Sheets report needs the paid West total for June 2026 before the formula is filled through a shared workbook.',
       formula: '=SUMIFS(D2:D500,B2:B500,"West",C2:C500,"Paid",A2:A500,">="&DATE(2026,6,1),A2:A500,"<"&DATE(2026,7,1))',
       read: 'The formula totals Amount values only when Region is West, Status is Paid, and Invoice Date falls inside June 2026. The checks tell you to confirm every SUMIFS range covers the same rows and that the date column contains real dates.'
+    }
+  },
+  'formula-dog-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a daily-reset formula bot.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and copy checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing Formula.dog but the immediate job is still small and context-sensitive: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule with headers and range notes nearby.',
+    notWhen: 'Use Formula.dog when you want five free formulas per day, no sign-up, VBA help, or its formula-bot style. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A customer plan report needs the monthly price returned for each plan, with a clear fallback when the plan name is blank or missing from the price table.',
+      formula: '=IF(B2="","Check plan",IFNA(XLOOKUP(B2,Plans!A:A,Plans!B:B),"Check plan"))',
+      read: 'The formula checks whether the plan cell is blank, then looks up the plan in the Plans table and returns the matching price. The checks tell you to confirm the lookup table columns and fallback text before copying it down.'
     }
   },
   'gemini-sheets-alternative': {
