@@ -2185,6 +2185,49 @@ const pages = [
     ]
   },
   {
+    slug: 'sheet-formula-alternative',
+    title: 'Sheet Formula Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused Sheet Formula alternative for writing, explaining, or fixing one Excel or Google Sheets formula before choosing a free Google Sheets formula generator with sign-in-gated extras.',
+    eyebrow: 'Sheet Formula alternative',
+    h1: 'A Sheet Formula alternative for one formula problem.',
+    lede: 'Sheet Formula is a free Google Sheets formula generator with a simple prompt box, usage limits, sign-in extras, and separate Google Sheets add-ons sold alongside it. Use Write My Formula when the job is one Excel or Google Sheets formula, explanation, or repair in a browser tab, with range notes and paste checks visible before you copy anything back.',
+    preset: {
+      mode: 'write',
+      platform: 'sheets',
+      task: 'Write a formula that totals paid West invoices from June 2026.',
+      table: 'Invoice Date,Region,Status,Amount\n2026-06-04,West,Paid,1200\n2026-06-09,East,Paid,850\n2026-06-15,West,Open,640',
+      range: 'Dates in A2:A500; region in B2:B500; status in C2:C500; amount in D2:D500; result in G2',
+      hint: 'SUMIFS'
+    },
+    intent: 'Help spreadsheet users comparing Sheet Formula-style free Google Sheets formula generators choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair.',
+    bestFor: [
+      'Trying a formula-sized task with two guest tries before choosing a sign-in or add-on workflow.',
+      'Writing or fixing one Excel or Google Sheets formula with the relevant columns, sample rows, and expected result visible.',
+      'Explaining inherited formula logic before editing a shared workbook.',
+      'Using a browser tab when you do not need Sheet Formula sign-in extras, formula analysis after sign-in, or related Sheet Automation add-ons.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the headers, sample rows, target range, broken formula, or expected result.',
+      'Review the explanation and checks, then copy the formula into Excel or Google Sheets yourself.'
+    ],
+    copyChecks: [
+      'Use Sheet Formula or another free Google Sheets formula generator if you want a single prompt box, IP or email-based usage limits, sign-in-gated analysis, or separate Google Sheets add-ons.',
+      'Use Write My Formula when the immediate job is one formula, one rule, or one repair you can read and test.',
+      'Sheet Formula details verified June 11, 2026; test any generated formula on one known row before filling it through an important workbook.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where Sheet Formula fits',
+        html: 'Sheet Formula currently redirects to a Google Sheets formula-generation page with one prompt box, a generated-output area, and a copy-to-clipboard action. Its FAQ says the service is free but has usage limits because generations cost money; anonymous usage is limited by IP address and signed-in usage by email address. It says signing in unlocks extras such as AI formula analysis, and it links to separate Google Sheets add-ons such as Sheet Automation, Sheet Notification, and Share Single Sheet.'
+      },
+      {
+        title: 'How this page stays narrower',
+        html: 'Write My Formula does not add itself to Google Sheets, automate formula insertion, run Sheet Automation recipes, read your sheet automatically, or promise a correct formula. It keeps the decision to one visible formula, explanation, or repair that you can review and test before pasting.'
+      }
+    ]
+  },
+  {
     slug: 'gemini-sheets-alternative',
     title: 'Gemini in Sheets Alternative for One Formula Problem | Write My Formula',
     description: 'A focused Gemini in Sheets alternative for writing, explaining, or fixing one Excel or Google Sheets formula in a browser tab before choosing broader Google Workspace AI.',
@@ -5985,6 +6028,20 @@ const pageEnhancements = {
     ],
     useWhen: 'Use this page when you are comparing GPT Workspace or GPT for Sheets-style add-ons but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule from a browser tab.',
     notWhen: 'Use GPT Workspace or another in-Sheets assistant when you need AI inside Google Sheets, sidebar chat, direct formula insertion, GPT formulas in cells, chat with the sheet, or broader Google Workspace help. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A Google Sheets report needs the paid West total for June 2026 before the formula is filled through a shared workbook.',
+      formula: '=SUMIFS(D2:D500,B2:B500,"West",C2:C500,"Paid",A2:A500,">="&DATE(2026,6,1),A2:A500,"<"&DATE(2026,7,1))',
+      read: 'The formula totals Amount values only when Region is West, Status is Paid, and Invoice Date falls inside June 2026. The checks tell you to confirm every SUMIFS range covers the same rows and that the date column contains real dates.'
+    }
+  },
+  'sheet-formula-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of a single Google Sheets prompt box.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing Sheet Formula-style Google Sheets formula generators but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule from a browser tab.',
+    notWhen: 'Use Sheet Formula or another free Google Sheets formula generator when you want a single prompt box, IP or email-based usage limits, sign-in-gated analysis, or separate Google Sheets add-ons. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
     example: {
       setup: 'A Google Sheets report needs the paid West total for June 2026 before the formula is filled through a shared workbook.',
       formula: '=SUMIFS(D2:D500,B2:B500,"West",C2:C500,"Paid",A2:A500,">="&DATE(2026,6,1),A2:A500,"<"&DATE(2026,7,1))',

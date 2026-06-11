@@ -329,7 +329,7 @@ function renderChecks(result) {
   els.outputChecks.innerHTML = '';
   const checks = result.checks?.length
     ? result.checks.map((check) => ({ title: 'Review', detail: check, status: 'warning' }))
-    : [{ title: 'Syntax', detail: 'No basic syntax issues found.', status: 'ok' }];
+    : [{ title: 'Syntax', detail: 'Basic syntax scan only; confirm references match your sheet.', status: 'ok' }];
 
   checks.push({ title: 'Compatibility', detail: result.compatibility || 'Confirm function support in your spreadsheet app.', status: 'note' });
 
