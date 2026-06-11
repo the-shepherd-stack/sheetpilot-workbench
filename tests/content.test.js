@@ -2794,6 +2794,31 @@ test('Julius AI alternative page targets data-agent comparison without overclaim
   assert.doesNotMatch(page, /replaces Julius|better than Julius|beats Julius|official Julius|Julius partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|more private|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook audit by Write My Formula|whole spreadsheet audit by Write My Formula|exact cause|human reviewer|same-day|privacy superior|cheaper than Julius|overbuilt|bloated/i);
 });
 
+test('Claude for Excel alternative page targets add-in workflow comparison without overclaiming', () => {
+  const page = read('claude-excel-alternative/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Claude for Excel Alternative for One Formula Problem/);
+  assert.match(page, /Claude for Excel needs an add-in\. Write My Formula needs a browser tab/);
+  assert.match(page, /workbook-level help inside Microsoft Excel: reading multi-tab workbooks, explaining formulas with cell references, modifying assumptions, creating pivots or charts/);
+  assert.match(page, /Use this page when you are comparing Claude for Excel but the immediate job is still small/);
+  assert.match(page, /reads complex multi-tab workbooks, explains calculations with cell-level citations, safely updates assumptions while preserving formula dependencies/);
+  assert.match(page, /can read, analyze, modify, and create workbooks/);
+  assert.match(page, /does not install an Excel add-in, deploy a manifest, read a workbook, upload files, edit cells, update assumptions, create pivots, generate charts, cite workbook cells/);
+  assert.match(page, /Claude for Excel details checked against Anthropic support\/news and Microsoft Marketplace surfaces on June 11, 2026/);
+  assert.match(page, /=SUMIFS\(\$D\$2:\$D\$500,\$B\$2:\$B\$500,&quot;West&quot;,\$C\$2:\$C\$500,&quot;Paid&quot;,\$A\$2:\$A\$500,&quot;&gt;=&quot;&amp;DATE\(2026,6,1\),\$A\$2:\$A\$500,&quot;&lt;&quot;&amp;DATE\(2026,7,1\)\)/);
+  assert.match(page, /2 guest tries/);
+  assert.match(page, /500 runs per month, stored in this browser/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/claude-excel-alternative\/">Claude for Excel alternative/);
+  assert.match(homepage, /Excel add-in or workbook-level agent workflow/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/claude-excel-alternative\//);
+  assert.doesNotMatch(page, /replaces Claude|better than Claude|beats Claude|official Anthropic|Anthropic partner|official Microsoft|Microsoft partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|more private|privacy superior|instant|in seconds|ten seconds|automatically fixes|pay before answer|whole workbook audit by Write My Formula|whole spreadsheet audit by Write My Formula|exact cause|human reviewer|same-day|faster|cheaper|more accurate|reads your workbook|edits your workbook|inserts formulas into Excel/i);
+});
+
 test('Microsoft Copilot in Excel alternative page targets formula-sized comparison without overclaiming', () => {
   const page = read('copilot-excel-alternative/index.html');
   const homepage = read('index.html');

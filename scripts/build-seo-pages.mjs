@@ -841,6 +841,50 @@ const pages = [
     ]
   },
   {
+    slug: 'claude-excel-alternative',
+    title: 'Claude for Excel Alternative for One Formula Problem | Write My Formula',
+    description: 'A focused Claude for Excel alternative for writing, explaining, or fixing one Excel or Google Sheets formula without deploying an Excel add-in or opening a workbook-level agent workflow.',
+    eyebrow: 'Claude for Excel alternative',
+    h1: 'Claude for Excel needs an add-in. Write My Formula needs a browser tab.',
+    lede: 'Claude for Excel is built for workbook-level help inside Microsoft Excel: reading multi-tab workbooks, explaining formulas with cell references, modifying assumptions, creating pivots or charts, and working through an installed add-in. Use Write My Formula when the job is smaller: one Excel or Google Sheets formula to write, explain, or fix before you paste it yourself.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=SUMIFS($D$2:$D$500,$B$2:$B$500,"West",$C$2:$C$500,"Paid",$A$2:$A$500,">="&DATE(2026,6,1))'
+    },
+    intent: 'Help spreadsheet users comparing Claude for Excel choose a narrow formula workbench when the immediate problem is one formula, one explanation, or one repair rather than an installed workbook agent.',
+    bestFor: [
+      'Trying a formula-sized task from a browser tab before requesting or deploying an Excel add-in.',
+      'Writing or fixing one Excel or Google Sheets formula with the relevant columns, sample rows, and expected result visible.',
+      'Explaining inherited formula logic before editing a shared workbook.',
+      'Using a narrower tool when you do not need an agent to read multiple tabs, modify workbook assumptions, create pivots, generate charts, or upload files.'
+    ],
+    steps: [
+      'Choose Write, Explain, or Fix for the formula-sized task.',
+      'Paste the formula, headers, sample rows, target range, or expected result.',
+      'Review the explanation and checks, then copy the formula into Excel or Google Sheets yourself.'
+    ],
+    copyChecks: [
+      'Use Claude for Excel when you want an AI assistant inside Excel that can work across workbook tabs, cite cells, update assumptions, create pivots or charts, upload files, or coordinate with Microsoft 365 add-in deployment.',
+      'Use Write My Formula when the immediate job is one formula, one rule, or one repair you can read and test.',
+      'Claude for Excel details checked against Anthropic support/news and Microsoft Marketplace surfaces on June 11, 2026; confirm current access and deployment requirements before deciding.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Where Claude for Excel fits',
+        html: 'Anthropic support currently documents Claude for Excel as an Excel add-in that can be deployed through Microsoft 365 admin workflows or a custom manifest. The Microsoft Marketplace listing describes Claude for Excel as spreadsheet assistance that reads complex multi-tab workbooks, explains calculations with cell-level citations, safely updates assumptions while preserving formula dependencies, creates pivot tables and charts, and can upload files into the workflow.'
+      },
+      {
+        title: 'Current Anthropic context',
+        html: 'Anthropic has described Claude for Excel as a sidebar in Microsoft Excel that can read, analyze, modify, and create workbooks. Anthropic says Claude tracks and explains its changes and lets users navigate to referenced cells in its explanations.'
+      },
+      {
+        title: 'How this page stays narrower',
+        html: 'Write My Formula does not install an Excel add-in, deploy a manifest, read a workbook, upload files, edit cells, update assumptions, create pivots, generate charts, cite workbook cells, or claim Anthropic or Microsoft affiliation. It keeps the decision to one visible formula, explanation, or repair that you can review and test before pasting.'
+      }
+    ]
+  },
+  {
     slug: 'rows-alternative',
     title: 'Rows shut down. Need one formula written? | Write My Formula',
     description: 'Rows.com passed its announced May 31, 2026 wind-down date. If you just need one Excel or Google Sheets formula written, explained, or fixed, this is a narrow tool for that job, not a Rows replacement.',
@@ -6011,6 +6055,20 @@ const pageEnhancements = {
       setup: 'An invoice tracker needs a visible helper formula before it is copied into a shared workbook.',
       formula: '=IF(AND(A2="West",B2="Paid",C2>1000),"Review","")',
       read: 'The formula checks the current row for Region, Status, and Amount, then returns Review only when all three conditions are true. The checks tell you to confirm the columns match your workbook before filling it down.'
+    }
+  },
+  'claude-excel-alternative': {
+    gives: [
+      'A focused formula request flow for Excel and Google Sheets instead of an installed Excel workbook agent.',
+      'Write, Explain, and Fix modes with formula notes, optional table context, range hints, and paste checks.',
+      'A low-friction path to try the tool: 2 guest tries, free email access at 3 runs per week, or $9 founding access for 500 runs per month, stored in this browser.'
+    ],
+    useWhen: 'Use this page when you are comparing Claude for Excel but the immediate job is still small: write one formula, repair one broken formula, explain one inherited formula, or create one custom rule from a browser tab.',
+    notWhen: 'Use Claude for Excel when you want an AI assistant inside Microsoft Excel that can read multi-tab workbooks, cite cells, update assumptions, edit workbooks, create pivots or charts, upload files, or fit an organization-managed add-in workflow. Write My Formula is intentionally narrower so the formula and checks stay easy to inspect.',
+    example: {
+      setup: 'A shared invoice tracker needs a June West paid-total formula checked before it is copied into a report.',
+      formula: '=SUMIFS($D$2:$D$500,$B$2:$B$500,"West",$C$2:$C$500,"Paid",$A$2:$A$500,">="&DATE(2026,6,1),$A$2:$A$500,"<"&DATE(2026,7,1))',
+      read: 'The formula totals Amount values only when Region is West, Status is Paid, and Invoice Date falls inside June 2026. The checks tell you to confirm every SUMIFS range covers the same rows and that the date column contains real dates.'
     }
   },
   'arcwise-alternative': {
