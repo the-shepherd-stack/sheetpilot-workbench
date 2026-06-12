@@ -3477,6 +3477,28 @@ test('excel TAKE DROP not working page targets dynamic array slice repair withou
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause/i);
 });
 
+test('excel LET function not working page targets variable repair without overclaiming', () => {
+  const page = read('excel-let-function-not-working/index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel LET Function Not Working Fixer/);
+  assert.match(page, /Your Excel LET formula is not working\. Paste it here/);
+  assert.match(page, /name\/value pair is missing/);
+  assert.match(page, /valid-name message/);
+  assert.match(page, /wrong intermediate result/);
+  assert.match(page, /too few arguments/);
+  assert.match(page, /local argument separators/);
+  assert.match(page, /LET needs at least one name\/value pair and a final calculation argument/);
+  assert.match(page, /do not look like cell references such as A1 or R1C1/);
+  assert.match(page, /Microsoft 365, Excel for the web, Excel 2024, or Excel 2021/);
+  assert.match(page, /=LET\(rate,B2\/C2-1,IF\(ABS\(rate\)&gt;10%,rate,&quot;&quot;\)\)/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-let-function-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause/i);
+});
+
 test('ajelix alternative page targets focused formula comparison without overclaiming', () => {
   const page = read('ajelix-alternative/index.html');
   const homepage = read('index.html');

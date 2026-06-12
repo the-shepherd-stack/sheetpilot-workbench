@@ -1,0 +1,923 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Excel LET Function Not Working Fixer | Write My Formula</title>
+    <meta name="description" content="Fix Excel LET formulas with valid-name errors, #NAME?, too few arguments, separator problems, nested formulas, and unsupported Excel versions.">
+    <link rel="canonical" href="https://writemyformula.com/excel-let-function-not-working/">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <meta property="og:title" content="Excel LET Function Not Working Fixer">
+    <meta property="og:description" content="Fix Excel LET formulas with valid-name errors, #NAME?, too few arguments, separator problems, nested formulas, and unsupported Excel versions.">
+    <meta property="og:url" content="https://writemyformula.com/excel-let-function-not-working/">
+    <meta property="og:site_name" content="Write My Formula">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="/styles.css">
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://writemyformula.com/excel-let-function-not-working/#webpage","url":"https://writemyformula.com/excel-let-function-not-working/","name":"Excel LET Function Not Working Fixer","description":"Fix Excel LET formulas with valid-name errors, #NAME?, too few arguments, separator problems, nested formulas, and unsupported Excel versions.","isPartOf":{"@type":"WebSite","@id":"https://writemyformula.com/#website","name":"Write My Formula","url":"https://writemyformula.com/"},"primaryImageOfPage":"https://writemyformula.com/favicon.svg","mainEntity":{"@id":"https://writemyformula.com/excel-let-function-not-working/#app"}},{"@type":"SoftwareApplication","@id":"https://writemyformula.com/excel-let-function-not-working/#app","name":"Write My Formula","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://writemyformula.com/excel-let-function-not-working/","description":"Fix Excel LET formulas with valid-name errors, #NAME?, too few arguments, separator problems, nested formulas, and unsupported Excel versions.","featureList":["Excel LET function repair","Plain-English spreadsheet formula requests","Formula explanation and copy checks","A focused repair pass for one LET formula returning #NAME?, too few arguments, a valid-name message, a syntax complaint, or a wrong intermediate result.","Checks for valid variable names, name/value pairs, the final calculation argument, local argument separators, Excel version support, and nested formula errors.","A revised LET path you can test on one known row before replacing a long workbook formula."],"offers":{"@type":"Offer","price":"9.00","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://writemyformula.com/excel-let-function-not-working/"}},{"@type":"BreadcrumbList","@id":"https://writemyformula.com/excel-let-function-not-working/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Write My Formula","item":"https://writemyformula.com/"},{"@type":"ListItem","position":2,"name":"Excel LET function repair","item":"https://writemyformula.com/excel-let-function-not-working/"}]}]}</script>
+  </head>
+  <body data-mode="write">
+    <div class="page">
+      <header class="topbar">
+        <div class="topbar-inner">
+          <a class="brand" href="/" aria-label="Write My Formula home">
+            <span class="brand-mark">=</span>
+            <span>Write My Formula</span>
+          </a>
+          <nav class="nav" aria-label="Primary">
+            <a href="#examples">Examples</a>
+            <a href="#pricing">Pricing</a>
+            <a class="button ghost" data-checkout href="https://buy.stripe.com/5kQ5kw94pfXy3ziajM4F208">Upgrade $9</a>
+          </nav>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <div>
+              <p class="eyebrow">Excel LET function repair</p>
+              <h1 id="hero-title">Your Excel LET formula is not working. Paste it here.</h1>
+            </div>
+            <p class="lede">LET formulas can break when a name is not valid, a name/value pair is missing, the final calculation argument is in the wrong place, the workbook opens in an unsupported Excel version, or a copied formula uses the wrong argument separator for your locale. Paste the formula exactly as Excel sees it.</p>
+          </div>
+
+          <section class="workbench" aria-label="Spreadsheet formula workbench">
+            <div class="panel input-panel">
+              <form class="tool-form" id="tool-form">
+                <fieldset class="control-group mode-group">
+                  <legend>Mode</legend>
+                  <div class="segmented" aria-label="Tool mode">
+                    <button type="button" data-mode="write">Write</button>
+                    <button type="button" data-mode="explain">Explain</button>
+                    <button type="button" data-mode="fix">Fix</button>
+                  </div>
+                </fieldset>
+
+                <fieldset class="control-group">
+                  <legend>Spreadsheet</legend>
+                  <div class="segmented compact" aria-label="Spreadsheet platform">
+                    <button type="button" data-platform="excel">Excel</button>
+                    <button type="button" data-platform="sheets">Google Sheets</button>
+                  </div>
+                </fieldset>
+
+                <div class="write-input">
+                  <label for="task">What should the formula do?</label>
+                  <textarea id="task" rows="4">Look up each customer's plan and return the matching monthly price.</textarea>
+
+                  <details class="optional-context">
+                    <summary>Add your data (optional)</summary>
+
+                    <label for="table">Your headers or a few sample rows</label>
+                    <textarea id="table" rows="4">Customer,Plan,Price
+Acme,Pro,29
+Northwind,Team,79</textarea>
+
+                    <div class="field-grid">
+                      <div>
+                        <label for="range">Which cells <span>e.g. A2:C100, result in D2</span></label>
+                        <input id="range" type="text" value="A2:C100; result in D2" placeholder="A2:C100; result in D2">
+                      </div>
+                      <div>
+                        <label for="hint">Force a specific function <span>e.g. XLOOKUP</span></label>
+                        <input id="hint" type="text" value="XLOOKUP" placeholder="XLOOKUP, SUMIFS, FILTER">
+                      </div>
+                    </div>
+                  </details>
+                </div>
+
+                <div class="formula-input">
+                  <label for="formula" id="formula-label">Paste the formula</label>
+                  <textarea id="formula" rows="5" placeholder='=IFERROR(XLOOKUP(A2,Customers!A:A,Customers!C:C),"Not found")'></textarea>
+                </div>
+
+                <div class="examples" id="examples" aria-label="Example prompts">
+                  <span>Try:</span>
+                  <button type="button" data-example="lookup">Look up price by customer</button>
+                  <button type="button" data-example="sumifs">Sum paid invoices this month</button>
+                  <button type="button" data-example="domain">Extract domain from email</button>
+                  <button type="button" data-example="explain-if">Explain nested IF</button>
+                  <button type="button" data-example="fix-na">Fix #N/A lookup</button>
+                </div>
+
+                <div class="run-row">
+                  <button class="button primary" id="run" type="submit">Write the formula</button>
+                  <span class="usage" id="usage">2 free tries left on this browser</span>
+                  <a class="button ghost run-upgrade" data-checkout href="https://buy.stripe.com/5kQ5kw94pfXy3ziajM4F208">Upgrade - $9 for 500 runs/month</a>
+                </div>
+              </form>
+
+              <div class="paywall" id="paywall" hidden>
+                <h3 id="paywall-title">Keep writing formulas today</h3>
+                <p id="paywall-body">Guest mode includes 2 tries. Founding access is $9 for 500 runs per month, stored in this browser.</p>
+                <div class="paywall-offer">
+                  <div>
+                    <strong>Founding access</strong>
+                    <span>Stripe returns you to the workbench and unlocks access on this browser.</span>
+                  </div>
+                  <a class="button primary" data-checkout href="https://buy.stripe.com/5kQ5kw94pfXy3ziajM4F208">Upgrade with Stripe</a>
+                </div>
+                <form class="signup-form" id="signup-form">
+                  <label for="signup-email">Email for free account access</label>
+                  <div class="signup-row">
+                    <input id="signup-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+                    <button class="button" type="submit">Join list</button>
+                  </div>
+                  <p class="form-note" id="signup-note">We will send a monthly product email with new capabilities, usage reminders, and upgrade options.</p>
+                </form>
+              </div>
+            </div>
+
+            <aside class="panel output-panel" aria-label="Formula output">
+              <div class="panel-head">
+                <div>
+                  <p class="kicker">Result</p>
+                  <h2>Formula preview</h2>
+                </div>
+                <span class="compatibility" id="compatibility-note">Output is written for the platform you selected. Switch platforms if you need the other syntax.</span>
+              </div>
+
+              <div class="sheet-ruler" aria-hidden="true">
+                <span>A</span>
+                <span>B</span>
+                <span>C</span>
+                <span>D</span>
+                <span>E</span>
+              </div>
+
+              <div class="formula-shell" aria-live="polite">
+                <div class="formula-label">
+                  <span>fx</span>
+                  <strong>Formula bar</strong>
+                </div>
+                <div class="formula-bar">
+                  <code id="output-formula">=XLOOKUP(B2,$B$2:$B$100,$C$2:$C$100,"Not found")</code>
+                  <button class="result-copy" id="copy" type="button">Copy</button>
+                </div>
+                <div class="copy-upgrade" id="copy-upgrade" hidden>
+                  <div>
+                    <strong>Copied. Need more formulas this month?</strong>
+                    <span>500 runs per month, stored in this browser for $9.</span>
+                  </div>
+                  <a class="button ghost" data-checkout href="https://buy.stripe.com/5kQ5kw94pfXy3ziajM4F208">Upgrade $9</a>
+                </div>
+              </div>
+
+              <div class="sheet-preview" aria-hidden="true">
+                <div>Customer</div>
+                <div>Plan</div>
+                <div>Price</div>
+                <div class="active-cell">Formula</div>
+                <div>Acme</div>
+                <div>Pro</div>
+                <div>29</div>
+                <div>=XLOOKUP(...)</div>
+              </div>
+
+              <div class="result-grid">
+                <section class="result-card">
+                  <h3>Explanation</h3>
+                  <ol id="output-steps">
+                    <li>Reads the plan in B2.</li>
+                    <li>Searches the plan column in the pasted table.</li>
+                    <li>Returns the matching monthly price, or "Not found".</li>
+                  </ol>
+                </section>
+
+                <section class="result-card">
+                  <h3>Checks</h3>
+                  <ul class="checks" id="output-checks">
+                    <li data-status="ok"><strong>Syntax</strong><span>Basic syntax scan only; confirm references match your sheet.</span></li>
+                    <li data-status="note"><strong>Compatibility</strong><span>XLOOKUP requires modern Excel or Google Sheets.</span></li>
+                    <li data-status="note"><strong>Before copy</strong><span>Confirm your lookup and return columns match your sheet.</span></li>
+                  </ul>
+                </section>
+              </div>
+
+              <div class="result-upgrade" aria-label="Founding access upgrade">
+                <div>
+                  <p class="kicker">Founding access</p>
+                  <h3>Use it past the guest limit.</h3>
+                  <p>500 formula runs per month, stored in this browser for $9. Stripe returns you to the workbench and unlocks access on this browser.</p>
+                </div>
+                <a class="button primary" data-checkout href="https://buy.stripe.com/5kQ5kw94pfXy3ziajM4F208">Upgrade $9</a>
+              </div>
+            </aside>
+          </section>
+        </section>
+
+        <section class="section utility-section" aria-labelledby="tools-title">
+          <div class="section-copy">
+            <p class="eyebrow">Purpose-built inputs</p>
+            <h2 id="tools-title">A focused workflow for everyday spreadsheet work.</h2>
+          </div>
+          <div class="tool-grid">
+            <article class="mini">
+              <h3>Structured formula builder</h3>
+              <p>Task, table context, target range, and function hint keep the request specific.</p>
+            </article>
+            <article class="mini">
+              <h3>Write / Explain / Fix modes</h3>
+              <p>Generate a new formula, translate a pasted one, or diagnose common syntax issues.</p>
+            </article>
+            <article class="mini">
+              <h3>Excel and Sheets toggle</h3>
+              <p>Notes flag functions that differ between Excel and Google Sheets, or that require newer versions.</p>
+            </article>
+            <article class="mini">
+              <h3>Formula-bar output</h3>
+              <p>The result is formatted for scanning and placed next to a copy button.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section utility-section" aria-labelledby="formula-pages-title">
+          <div class="section-copy">
+            <p class="eyebrow">Common formulas</p>
+            <h2 id="formula-pages-title">Pick the formula you came for.</h2>
+          </div>
+          <div class="tool-grid">
+            <article class="mini">
+              <h3><a href="/excel-formula-help/">Excel formula help</a></h3>
+              <p>Get help writing, explaining, or fixing one Excel formula with range notes and checks before you paste.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/ai-excel-formula-generator/">AI Excel formula generator</a></h3>
+              <p>Generate an Excel formula from plain English with range notes, an explanation, and checks before you paste.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/ai-google-sheets-formula-generator/">AI Google Sheets formula generator</a></h3>
+              <p>Turn a plain-English Sheets task into a formula with assumptions, range notes, and paste checks.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/formula-bot-alternative/">Formula Bot alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than Formula Bot-style data, chart, dashboard, connector, SQL, code, or automation workflows.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/formula-dog-alternative/">Formula.dog alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than a daily formula-bot, VBA, or no-sign-up workflow.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/julius-ai-alternative/">Julius AI alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than a data-agent workspace for files, charts, connectors, exports, or scheduled reports.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-formula-gpt-alternative/">Excel Formula GPT alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than a no-signup daily formula-generator workflow.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/ai-formula-generator-alternative/">AI Formula Generator alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than SQL, file-context, bulk, VBA, or Apps Script workflows.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/sheetsolver-ai-alternative/">SheetSolver AI alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than a broader spreadsheet AI workspace.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/expresssheet-alternative/">ExpressSheet alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than a broader analyst or team workflow.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/sheetgpt-alternative/">SheetGPT alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than file, chat, OCR, chart, analysis, or script workflows.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/sheetxai-alternative/">SheetXAI alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than in-sheet chat, app connections, extraction, analysis, or automation.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/formulaberry-alternative/">FormulaBerry alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than multilingual, finance, or small-business spreadsheet bot workflows.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/formuladesk-alternative/">FormulaDesk alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than installed Excel formula inspection tools.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/promptloop-alternative/">PromptLoop alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than in-sheet AI, research, scraping, or enrichment workflows.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/coefficient-alternative/">Coefficient alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than connected data, refresh, alert, export, or in-sheet AI workflows.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excelgpt-alternative/">ExcelGPT alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than a full Excel assistant suite.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/chatexcel-alternative/">ChatExcel alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than spreadsheet chat, table extraction, file analysis, or API access.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/formulagpt-alternative/">FormulaGPT alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than account-based formula generation, support, or a spreadsheet-file workflow.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/rows-alternative/">Rows alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than a full AI spreadsheet platform.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/gptexcel-alternative/">GPTExcel alternative</a></h3>
+              <p>Use a focused formula workbench when the job is one formula, explanation, or repair.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excelbot-alternative/">ExcelBot alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than VBA or data analysis.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/ajelix-alternative/">Ajelix alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than a full AI workspace.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/sheetai-alternative/">SheetAI alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than a broader spreadsheet AI workflow.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/mysheetai-alternative/">mysheetAI alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than step-by-step, VBA, or Apps Script assistant workflows.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/numerous-ai-alternative/">Numerous.ai alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than in-spreadsheet AI automation.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/sheetgod-alternative/">SheetGod alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than an add-on, macro, regex, or Apps Script workflow.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/geniesheet-alternative/">GenieSheet alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than a daily-prompt formula generator.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/formulr-alternative/">Formulr alternative</a></h3>
+              <p>Use a focused formula helper when you want two tries before choosing a broader formula app or extension.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/formulawiz-alternative/">FormulaWiz alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than Airtable or cross-platform variants.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/formularizer-alternative/">Formularizer alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than SQL, regex, VBA, or Apps Script assistants.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/formulapilot-alternative/">FormulaPilot alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than a full formula library, checker, or reference hub.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/formulagenius-alternative/">FormulaGenius alternative</a></h3>
+              <p>Use a focused formula helper when you want two guest tries before choosing a broader formula library or monthly tool.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/formulaza-alternative/">FormulaZa alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than a learning, history, translator, or chat workspace.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excelly-ai-alternative/">Excelly-AI alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than file, Slack, VBA, or conversion workflows.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/sheeter-alternative/">Sheeter alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than an add-on or saved formula workspace.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-formulator-alternative/">Excel Formulator alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than a monthly Excel/Sheets/Airtable formula app.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/sheet-alchemy-alternative/">Sheet Alchemy alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than a formula library, Apps Script, file-conversion, template, or visualization workflow.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-labs-alternative/">Excel Labs alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than an Excel Labs add-in, named LAMBDA, or LABS.GENERATIVEAI workflow.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/sheetsmart-alternative/">SheetSmart alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than a Google Sheets extension workflow.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/smart-excel-alternative/">Smart Excel alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than a login-based daily-credit formula bot.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/sourcetable-alternative/">Sourcetable alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than a full AI spreadsheet workspace.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/zoho-sheet-alternative/">Zoho Sheet alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than Zoho Sheet, Zia, chart, pivot, sample-data, or macro workflows.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/griddy-alternative/">Griddy alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than an AI spreadsheet assistant, sidebar, chart, cleanup, formatting, or direct-edit workflow.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/equals-alternative/">Equals alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than a BI spreadsheet, AI analytics, connector, dashboard, or CRM writeback workflow.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/arcwise-alternative/">Arcwise alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than an in-Sheets AI analyst workflow.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/bricks-ai-spreadsheet-alternative/">Bricks AI spreadsheet alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than a full AI spreadsheet, dashboard, chart, report, or collaboration workspace.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/quadratic-alternative/">Quadratic alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than an AI spreadsheet with code, connections, charts, file import, or team workspaces.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/sheetseek-alternative/">SheetSeek alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than a full AI spreadsheet builder, chart, data chat, cleanup, or export workflow.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excelmatic-alternative/">Excelmatic alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than a RowSpeak file-analysis, dashboard, chart, or reporting workflow.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/aiexcelformula-alternative/">AI Excel Formula alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than just another quick generated formula.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-formulas-ai-alternative/">Excel Formulas AI alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than a free Excel formula generator and example library.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/texttoformula-alternative/">TextToFormula alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than a free text-to-formula converter for Excel and Google Sheets.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excelformula-pro-alternative/">ExcelFormula Pro alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than an account-based formula generator.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excelformula-co-alternative/">ExcelFormula.co alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than a daily-cap formula generator.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/manyexcel-alternative/">ManyExcel alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than regex, script, chart, or file workflows.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/formulahelper-alternative/">FormulaHelper alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than saved libraries, optimization, collaboration, add-ons, or API workflows.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/gpt-workspace-alternative/">GPT Workspace alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than an in-Sheets AI sidebar, GPT formulas, or chat-with-sheet workflow.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/gpt-for-sheets-alternative/">GPT for Sheets alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than an installed spreadsheet AI agent, bulk processing, cleanup, enrichment, pivots, charts, or credit packs.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/ai-assist-gemini-sheets-alternative/">AI Assist for Gemini alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than a Google Workspace add-on for enrichment, categorization, translation, summarization, content, or API-key workflows.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/google-sheets-ai-tools-alternative/">Google Sheets AI add-on alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than an installed Sheets agent for cleanup, duplicates, bulk prompts, or preview-before-apply workflows.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/wps-ai-spreadsheet-alternative/">WPS AI spreadsheet alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than an installed WPS Office AI workflow.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/sheet-formula-alternative/">Sheet Formula alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than a single Google Sheets prompt box.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/gemini-sheets-alternative/">Gemini in Sheets alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than Workspace AI for tables, charts, pivots, formatting, filters, or broader sheet edits.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/copilot-excel-alternative/">Copilot in Excel alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than the full Microsoft 365 Copilot workflow.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/claude-excel-alternative/">Claude for Excel alternative</a></h3>
+              <p>Use a focused formula helper when you need one formula, explanation, or repair rather than an Excel add-in or workbook-level agent workflow.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/percentage-formula-generator/">Percentage formulas</a></h3>
+              <p>Build percent of total, percent change, discount, markup, tax, tip, and completion-rate formulas.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-formula-cheat-sheet/">Excel formula cheat sheet</a></h3>
+              <p>Scan common lookup, logic, text, date, and summary formulas with examples.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-formula-not-showing-result/">Formula not showing result</a></h3>
+              <p>Diagnose formulas that show text, stay stale, return errors, or calculate the wrong value.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-formula-fixer/">Fix my Excel formula</a></h3>
+              <p>Paste a broken formula and get a corrected version with checks for errors, text cells, ranges, and fallbacks.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-formulas-not-working/">Excel formulas not working</a></h3>
+              <p>Fix formulas that stop calculating after imports, copied ranges, locale settings, or text-number mismatches.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-formula-parse-error/">Excel formula parse error</a></h3>
+              <p>Fix formulas rejected by Excel because of separators, quotes, missing equals signs, parentheses, or copied syntax.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/google-sheets-formulas-not-working/">Google Sheets formulas not working</a></h3>
+              <p>Fix Sheets formulas that show errors, stay as text, stop updating, or return the wrong result.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/google-sheets-ref-error/">Google Sheets #REF! error</a></h3>
+              <p>Fix formulas broken by deleted tabs, invalid ranges, moved references, blocked array output, or IMPORTRANGE source issues.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/google-sheets-value-error/">Google Sheets #VALUE! error</a></h3>
+              <p>Fix formulas blocked by imported text numbers, unparseable VALUE inputs, date text, range shapes, or wrong argument types.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/google-sheets-na-error/">Google Sheets #N/A error</a></h3>
+              <p>Fix formulas with missing lookup matches, no-match FILTER results, text-number mismatches, hidden spaces, or fallback mistakes.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/google-sheets-div0-error/">Google Sheets #DIV/0! error</a></h3>
+              <p>Fix formulas blocked by zero or blank denominators, ratio logic, averages, percentages, and IFERROR tradeoffs.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/google-sheets-name-error/">Google Sheets #NAME? error</a></h3>
+              <p>Fix formulas with unknown range names, misspelled functions, deleted named ranges, named functions, or unquoted text.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-formula-not-calculating/">Excel formula not calculating</a></h3>
+              <p>Fix formulas that stay stale, show formula text, or only update after manual recalculation.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-showing-formula-instead-of-result/">Excel showing formula instead of result</a></h3>
+              <p>Fix cells that display the formula text because of Show Formulas mode, text formatting, or a leading apostrophe.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-formula-wrong-result/">Excel formula wrong result</a></h3>
+              <p>Fix formulas that calculate the wrong value because of references, parentheses, stored types, or lookup settings.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-formula-returns-zero-blank/">Formula returns 0 or blank</a></h3>
+              <p>Fix formulas that return 0, blank, or an empty string because of lookup return cells, IF logic, or hidden zero settings.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-formula-not-copying-down/">Excel formula not copying down</a></h3>
+              <p>Fix formulas that will not fill down, copy the first result, or shift the wrong references after dragging.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-date-formula-not-working/">Excel date formula not working</a></h3>
+              <p>Fix Excel date formulas with DATEVALUE #VALUE!, text dates, locale mismatches, serial numbers, DATEDIF, or criteria issues.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-table-formula-not-working/">Excel table formula not working</a></h3>
+              <p>Fix structured references, calculated columns, @ row references, and table formulas that stop filling correctly.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-sumifs-not-working/">Excel SUMIFS not working</a></h3>
+              <p>Fix SUMIFS formulas that return 0, #VALUE!, or wrong totals because of criteria, ranges, dates, or argument order.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-sumproduct-not-working/">Excel SUMPRODUCT not working</a></h3>
+              <p>Fix SUMPRODUCT formulas that return #VALUE!, 0, or wrong totals because of array sizes, text numbers, hidden spaces, errors, or full-column references.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-countifs-not-working/">Excel COUNTIFS not working</a></h3>
+              <p>Fix COUNTIFS formulas that return 0, #VALUE!, or wrong counts because of criteria, range sizes, dates, or closed workbooks.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-textjoin-not-working/">Excel TEXTJOIN not working</a></h3>
+              <p>Fix TEXTJOIN formulas with #VALUE!, #NAME?, extra delimiters, blank joins, IF or FILTER array issues, line breaks, or version support problems.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-textbefore-textafter-not-working/">Excel TEXTBEFORE / TEXTAFTER not working</a></h3>
+              <p>Fix text extraction formulas with #N/A delimiter misses, #VALUE! instance issues, case matching, fallbacks, or version support problems.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-textsplit-not-working/">Excel TEXTSPLIT not working</a></h3>
+              <p>Fix TEXTSPLIT formulas with #SPILL!, #N/A padding, wrong delimiters, row-versus-column splits, or version support problems.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-indirect-not-working/">Excel INDIRECT not working</a></h3>
+              <p>Fix INDIRECT formulas with #REF!, dynamic sheet names, dependent dropdowns, named ranges, or external workbook limits.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-value-error/">Excel #VALUE! error</a></h3>
+              <p>Repair formulas blocked by text values, hidden spaces, wrong argument types, dates, or subtraction syntax.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-name-error/">Excel #NAME? error</a></h3>
+              <p>Fix formulas with misspelled functions, undefined names, missing quotes, or unsupported functions.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-div0-error/">Excel #DIV/0! error</a></h3>
+              <p>Fix formulas blocked by zero or blank denominators, ratio logic, averages, and IFERROR tradeoffs.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-null-error/">Excel #NULL! error</a></h3>
+              <p>Fix formulas blocked by accidental range intersections, missing commas, missing colons, or non-overlapping cell ranges.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-spill-error/">Excel #SPILL! error</a></h3>
+              <p>Fix dynamic array formulas blocked by spill ranges, tables, merged cells, whole-column references, or changing array sizes.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-calc-error/">Excel #CALC! error</a></h3>
+              <p>Fix dynamic array and FILTER formulas blocked by empty results, nested arrays, range references, or unsupported calculations.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-filter-function-not-working/">Excel FILTER function not working</a></h3>
+              <p>Fix FILTER formulas that return #CALC!, #SPILL!, #REF!, blank output, wrong rows, or unsupported-function errors.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-offset-not-working/">Excel OFFSET function not working</a></h3>
+              <p>Fix OFFSET formulas with #REF!, #VALUE!, wrong ranges, dynamic named range problems, text references, or volatile recalculation issues.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-unique-not-working/">Excel UNIQUE not working</a></h3>
+              <p>Fix UNIQUE formulas that keep apparent duplicates, return unexpected rows, show #SPILL!, or confuse by_col and exactly_once settings.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-num-error/">Excel #NUM! error</a></h3>
+              <p>Fix formulas blocked by invalid numeric values, formatted constants, non-converging IRR or RATE inputs, or numbers outside Excel limits.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-circular-reference/">Excel circular reference</a></h3>
+              <p>Fix formulas that point back at their own result cell or need deliberate iterative-calculation checks.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-ref-error/">Excel #REF! error</a></h3>
+              <p>Repair formulas broken by deleted rows, moved cells, invalid references, or shifted lookup ranges.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/google-sheets-formula-parse-error/">Google Sheets formula parse error</a></h3>
+              <p>Repair Sheets formulas with missing quotes, mismatched parentheses, wrong separators, or malformed QUERY syntax.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/google-sheets-formula-not-updating/">Google Sheets formula not updating</a></h3>
+              <p>Fix formulas that keep stale values, recalculate only after reloads or edits, or need recalculation-setting and range checks.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/google-sheets-date-formula-not-working/">Google Sheets date formula not working</a></h3>
+              <p>Fix DATEVALUE parse errors, text dates, locale mismatches, serial numbers, QUERY date literals, or date criteria issues.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/google-sheets-if-formula-not-working/">Google Sheets IF formula not working</a></h3>
+              <p>Fix IF formulas that return FALSE, blank, the wrong label, parse errors, or confusing nested IF results.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/google-sheets-circular-dependency/">Google Sheets circular dependency</a></h3>
+              <p>Fix circular dependency errors caused by self-referencing cells, self-including ranges, helper-cell loops, or iterative-calculation settings.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/google-sheets-sumifs-not-working/">Google Sheets SUMIFS not working</a></h3>
+              <p>Fix SUMIFS formulas that return 0, #VALUE!, or wrong totals because of range sizes, criteria, dates, text values, or argument order.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/google-sheets-countifs-not-working/">Google Sheets COUNTIFS not working</a></h3>
+              <p>Fix COUNTIFS formulas that return 0, #VALUE!, wrong counts, or miss rows because of range sizes, dates, stored text, hidden spaces, or separators.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/google-sheets-num-error/">Google Sheets #NUM! error</a></h3>
+              <p>Fix formulas blocked by invalid numeric inputs, impossible math, oversized results, XIRR or RATE failures, and out-of-range row choices.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/google-sheets-sort-not-working/">Google Sheets SORT not working</a></h3>
+              <p>Fix SORT formulas that return the wrong order, sort headers as data, separate rows, or misread dates and numbers stored as text.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/google-sheets-unique-not-working/">Google Sheets UNIQUE not working</a></h3>
+              <p>Fix UNIQUE formulas that keep duplicates, remove the wrong rows, return unexpected columns, or confuse by_column and exactly_once settings.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/google-sheets-filter-not-working/">Google Sheets FILTER not working</a></h3>
+              <p>Fix FILTER formulas with #N/A, mismatched range sizes, wrong rows, no matches, or row-versus-column condition issues.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/google-sheets-query-not-working/">Google Sheets QUERY not working</a></h3>
+              <p>Fix QUERY formulas with parse errors, NO_COLUMN messages, wrong Col references, header problems, or missing rows.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/google-sheets-arrayformula-not-working/">Google Sheets ARRAYFORMULA not working</a></h3>
+              <p>Fix ARRAYFORMULA output that will not expand, only fills one row, repeats a value, or runs through blank rows.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/google-sheets-importrange-not-working/">Google Sheets IMPORTRANGE not working</a></h3>
+              <p>Fix IMPORTRANGE formulas with #REF!, Allow access prompts, oversized imports, slow refreshes, or source permission issues.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/google-sheets-importxml-not-working/">Google Sheets IMPORTXML not working</a></h3>
+              <p>Fix IMPORTXML formulas with #N/A, Imported content is empty, Could not fetch URL, XPath mistakes, oversized results, or blocked page content.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/google-sheets-regexextract-not-working/">Google Sheets REGEXEXTRACT not working</a></h3>
+              <p>Fix REGEXEXTRACT formulas with #N/A no-match errors, invalid regex patterns, text-input issues, greedy matches, and RE2 syntax limits.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/google-sheets-conditional-formatting-not-working/">Google Sheets conditional formatting not working</a></h3>
+              <p>Fix conditional formatting custom formulas that highlight nothing, highlight the wrong rows, lose to another rule, or break across sheets.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/google-sheets-data-validation-formula-not-working/">Google Sheets data validation formula not working</a></h3>
+              <p>Fix Google Sheets data validation custom formulas that warn instead of rejecting, reject valid entries, or shift references after copying.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/google-sheets-vlookup-not-working/">Google Sheets VLOOKUP not working</a></h3>
+              <p>Fix VLOOKUP formulas with #N/A, wrong matches, approximate-match issues, lookup-range mistakes, or return-column problems.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/google-sheets-xlookup-not-working/">Google Sheets XLOOKUP not working</a></h3>
+              <p>Fix XLOOKUP formulas with #N/A, wrong rows, blank fallbacks, range-size mismatches, or search-mode issues.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/google-sheets-match-not-working/">Google Sheets MATCH not working</a></h3>
+              <p>Fix MATCH formulas with #N/A, wrong positions, omitted search_type defaults, range-shape mistakes, or sorted-range assumptions.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/conditional-formatting-formula-not-working/">Conditional formatting formula not working</a></h3>
+              <p>Fix Excel and Google Sheets rules that highlight nothing, highlight everything, shift references, or lose to another rule.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-vlookup-not-working/">Excel VLOOKUP not working</a></h3>
+              <p>Fix VLOOKUP formulas that return #N/A, #VALUE!, wrong values, or broken column results.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/vlookup-na-error/">VLOOKUP #N/A error</a></h3>
+              <p>Fix lookup formulas that return #N/A because of exact-match settings, text-number mismatches, or range setup.</p>
+            </article>
+                <article class="mini">
+                  <h3><a href="/xlookup-na-error/">XLOOKUP #N/A error</a></h3>
+                  <p>Fix XLOOKUP formulas with missing matches, mismatched stored types, lookup-array issues, or fallback decisions.</p>
+                </article>
+                <article class="mini">
+                  <h3><a href="/excel-xlookup-not-working/">Excel XLOOKUP not working</a></h3>
+                  <p>Fix XLOOKUP formulas that return #N/A, wrong rows, blank fallbacks, or unreliable results.</p>
+                </article>
+                <article class="mini">
+                  <h3><a href="/excel-index-match-not-working/">Excel INDEX MATCH not working</a></h3>
+                  <p>Fix INDEX MATCH formulas that return #N/A, #REF!, wrong rows, wrong columns, or unreliable results.</p>
+                </article>
+                <article class="mini">
+                  <h3><a href="/excel-match-not-working/">Excel MATCH not working</a></h3>
+                  <p>Fix MATCH formulas with #N/A, wrong positions, omitted match_type defaults, sort-order issues, or text-number mismatches.</p>
+                </article>
+                    <article class="mini">
+                      <h3><a href="/excel-xmatch-not-working/">Excel XMATCH not working</a></h3>
+                      <p>Fix XMATCH formulas with #N/A, #VALUE!, wrong positions, wildcard mode, binary search sorting, or first-versus-last match issues.</p>
+                    </article>
+                    <article class="mini">
+                      <h3><a href="/excel-sort-not-working/">Excel SORT not working</a></h3>
+                      <p>Fix SORT formulas with #SPILL!, wrong sort columns, header-row mistakes, row separation, text-stored dates or numbers, and version support issues.</p>
+                    </article>
+                    <article class="mini">
+                      <h3><a href="/excel-vstack-hstack-not-working/">Excel VSTACK or HSTACK not working</a></h3>
+                      <p>Fix stacked arrays with #N/A padding, #SPILL! blockers, #NAME? version issues, mismatched array sizes, or the wrong combine direction.</p>
+                    </article>
+                    <article class="mini">
+                      <h3><a href="/excel-choosecols-chooserows-not-working/">Excel CHOOSECOLS or CHOOSEROWS not working</a></h3>
+                      <p>Fix CHOOSECOLS and CHOOSEROWS formulas with #VALUE!, #NAME?, #SPILL!, wrong selected columns or rows, and nested-array errors.</p>
+                    </article>
+                    <article class="mini">
+                      <h3><a href="/excel-take-drop-not-working/">Excel TAKE and DROP repair</a></h3>
+                      <p>Fix TAKE and DROP formulas with #CALC!, #NUM!, #NAME?, #SPILL!, wrong rows or columns, and nested-array errors.</p>
+                    </article>
+                    <article class="mini">
+                      <h3><a href="/excel-if-formula-multiple-conditions/">IF formulas with multiple conditions</a></h3>
+                      <p>Write nested IF, AND, OR, and IFS logic with branch-order and edge-row checks before filling down.</p>
+                    </article>
+                <article class="mini">
+                  <h3><a href="/excel-if-formula-not-working/">Excel IF formula not working</a></h3>
+                  <p>Fix IF, nested IF, IFS, AND, and OR formulas that return the wrong label, FALSE, 0, blank, or #VALUE!.</p>
+                </article>
+            <article class="mini">
+              <h3><a href="/date-formula-generator/">Date formulas</a></h3>
+              <p>Create due dates, workday counts, month-end dates, date differences, and overdue checks.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/filter-formula-generator/">FILTER formulas</a></h3>
+              <p>Return matching rows for status, region, date, text, and threshold conditions.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/text-formula-generator/">Text formulas</a></h3>
+              <p>Split, extract, join, trim, clean, and replace text from messy imported cells.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/data-validation-formula-generator/">Data validation formulas</a></h3>
+              <p>Block bad IDs, duplicate values, missing fields, and invalid entries with custom TRUE/FALSE rules.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-data-validation-formula/">Excel data validation formula</a></h3>
+              <p>Write custom validation rules for IDs, duplicates, required fields, dates, and allowed entries.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-data-validation-formula-not-working/">Excel data validation formula not working</a></h3>
+              <p>Fix data validation formulas that accept invalid values, reject valid entries, or break after copying.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/google-sheets-query-formula-generator/">Google Sheets QUERY formulas</a></h3>
+              <p>Build QUERY formulas for filtering, selecting, sorting, grouping, and labeling Sheets data.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/pivot-table-calculated-field-formula-generator/">Pivot calculated field formulas</a></h3>
+              <p>Create margin, average price, variance, and ratio formulas that use pivot source field names.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/excel-pivot-table-calculated-field-not-working/">Excel PivotTable calculated field repair</a></h3>
+              <p>Fix calculated fields with wrong totals, invalid cell references, field-name syntax issues, OLAP limits, or helper-column cases.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/conditional-formatting-formula-generator/">Conditional formatting formulas</a></h3>
+              <p>Write Excel and Google Sheets custom formulas for row highlights, duplicates, overdue dates, and status rules.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/google-sheets-conditional-format-custom-formula/">Sheets conditional formatting custom formulas</a></h3>
+              <p>Set up Google Sheets custom formula rules with the right apply-to range, dollar signs, and TRUE/FALSE logic.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/xlookup-formula-generator/">XLOOKUP formulas</a></h3>
+              <p>Return matching values with separate lookup and return ranges.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/index-match-formula-generator/">INDEX MATCH formulas</a></h3>
+              <p>Build flexible lookup formulas for left lookups, two-way lookups, and older Excel files.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/sumifs-formula-generator/">SUMIFS formulas</a></h3>
+              <p>Total rows that match status, date, category, customer, or region rules.</p>
+            </article>
+            <article class="mini">
+              <h3><a href="/countifs-formula-generator/">COUNTIFS formulas</a></h3>
+              <p>Count rows across multiple text, number, and date conditions.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section seo-detail" aria-labelledby="excel-let-function-not-working-detail-title">
+          <div class="section-copy">
+            <p class="eyebrow">Use case</p>
+            <h2 id="excel-let-function-not-working-detail-title">Excel LET function repair for spreadsheet work.</h2>
+            <p>Help Excel users repair one LET formula where the visible problem is usually a valid-name message, #NAME?, too few arguments, a generic syntax complaint, a wrong result from a named intermediate calculation, or an inner XLOOKUP, FILTER, IF, or dynamic-array error surfaced through LET.</p>
+          </div>
+          <div class="detail-grid">
+            <article class="detail-card">
+              <h3>What this page gives you</h3>
+              <ul>
+                <li>A focused repair pass for one LET formula returning #NAME?, too few arguments, a valid-name message, a syntax complaint, or a wrong intermediate result.</li>
+              <li>Checks for valid variable names, name/value pairs, the final calculation argument, local argument separators, Excel version support, and nested formula errors.</li>
+              <li>A revised LET path you can test on one known row before replacing a long workbook formula.</li>
+              </ul>
+            </article>
+            <article class="detail-card">
+              <h3>When to use it</h3>
+              <p>Use this page when a LET formula is close enough to inspect but Excel rejects it, cannot recognize it, or returns the wrong result after you named intermediate calculations. It is strongest when you can paste the formula, the visible error, and one expected result.</p>
+              <p>Do not use LET repair as a whole-workbook formula audit. LET names only apply inside the formula, and a broken inner XLOOKUP, FILTER, IF, or dynamic-array step may still need to be tested separately before the wrapper formula is useful.</p>
+            </article>
+            <article class="detail-card">
+              <h3>Worked example</h3>
+              <p>A report calculates a margin change once, names it rate, and returns the value only when the change is large enough to review.</p>
+              <pre><code>=LET(rate,B2/C2-1,IF(ABS(rate)&gt;10%,rate,&quot;&quot;))</code></pre>
+              <p>The formula names the B2/C2-1 calculation as rate, then reuses that name in the IF test and output. If Excel rejects the formula, check the name, the value paired with it, and the final IF calculation before changing the business logic.</p>
+            </article>
+          </div>
+          <div class="paste-check">
+            <h3>Check before you paste</h3>
+            <ul>
+              <li>LET needs at least one name/value pair and a final calculation argument that uses those names.</li>
+              <li>Use variable names that start with a letter or underscore, contain no spaces, and do not look like cell references such as A1 or R1C1.</li>
+              <li>Check that every name used in the final calculation was declared earlier in the LET formula and spelled the same way.</li>
+              <li>Switch commas to semicolons only when your Excel locale requires semicolon argument separators.</li>
+              <li>Test inner XLOOKUP, FILTER, IF, or dynamic-array formulas separately when LET is only wrapping another failing calculation.</li>
+              <li>Confirm the workbook is being opened in Microsoft 365, Excel for the web, Excel 2024, or Excel 2021 when LET appears as #NAME? or _xlfn.LET.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section pricing" id="pricing" aria-labelledby="pricing-title">
+          <div class="pricing-copy">
+            <p class="eyebrow">Upgrade when the work piles up</p>
+            <h2 id="pricing-title">Keep going when the sheet gets complicated.</h2>
+            <p>Try twice as a guest. Free accounts get 3 runs per week plus a monthly product email. Upgrade when formula work becomes a recurring part of the week.</p>
+          </div>
+          <div class="price-box">
+            <h3>Founding access</h3>
+            <div class="price">$9</div>
+            <p>500 formula runs per month, stored in this browser, early access pricing, and account access as it ships. Stripe returns you to the workbench after payment.</p>
+            <a class="button primary" data-checkout href="https://buy.stripe.com/5kQ5kw94pfXy3ziajM4F208">Upgrade with Stripe</a>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <span>Write My Formula</span>
+        <span><a href="/privacy">Privacy</a></span>
+      </footer>
+    </div>
+
+    <script>window.WMF_PAGE_PRESET = {"mode":"fix","platform":"excel","formula":"=LET(rate,B2/C2-1,IF(ABS(rate)>10%,rate,\"\"))"};</script>
+    <script type="module" src="/app/app.js"></script>
+  </body>
+</html>

@@ -4882,6 +4882,40 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-let-function-not-working',
+    title: 'Excel LET Function Not Working Fixer | Write My Formula',
+    description: 'Fix Excel LET formulas with valid-name errors, #NAME?, too few arguments, separator problems, nested formulas, and unsupported Excel versions.',
+    eyebrow: 'Excel LET function repair',
+    h1: 'Your Excel LET formula is not working. Paste it here.',
+    lede: 'LET formulas can break when a name is not valid, a name/value pair is missing, the final calculation argument is in the wrong place, the workbook opens in an unsupported Excel version, or a copied formula uses the wrong argument separator for your locale. Paste the formula exactly as Excel sees it.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=LET(rate,B2/C2-1,IF(ABS(rate)>10%,rate,""))'
+    },
+    intent: 'Help Excel users repair one LET formula where the visible problem is usually a valid-name message, #NAME?, too few arguments, a generic syntax complaint, a wrong result from a named intermediate calculation, or an inner XLOOKUP, FILTER, IF, or dynamic-array error surfaced through LET.',
+    bestFor: [
+      'LET formulas rejected because the first argument is not a valid name or collides with a cell reference.',
+      '#NAME? errors caused by misspelled LET names, undeclared variables, or opening the workbook in a version of Excel that does not support LET.',
+      'Too few arguments or too many arguments messages caused by a missing name/value pair or missing final calculation.',
+      'Copied LET formulas that use commas where the local Excel install expects semicolons.',
+      'Nested LET formulas where an inner XLOOKUP, FILTER, IF, or dynamic-array step needs to be isolated before the outer formula can be trusted.'
+    ],
+    steps: [
+      'Paste the exact LET formula and the message, error value, or wrong result Excel returns.',
+      'Include the Excel version if LET appears as #NAME? or _xlfn.LET.',
+      'Say whether your Excel uses commas or semicolons between function arguments.'
+    ],
+    copyChecks: [
+      'LET needs at least one name/value pair and a final calculation argument that uses those names.',
+      'Use variable names that start with a letter or underscore, contain no spaces, and do not look like cell references such as A1 or R1C1.',
+      'Check that every name used in the final calculation was declared earlier in the LET formula and spelled the same way.',
+      'Switch commas to semicolons only when your Excel locale requires semicolon argument separators.',
+      'Test inner XLOOKUP, FILTER, IF, or dynamic-array formulas separately when LET is only wrapping another failing calculation.',
+      'Confirm the workbook is being opened in Microsoft 365, Excel for the web, Excel 2024, or Excel 2021 when LET appears as #NAME? or _xlfn.LET.'
+    ]
+  },
+  {
     slug: 'vlookup-formula-generator',
     title: 'VLOOKUP Formula Generator | Write My Formula',
     description: 'Build VLOOKUP formulas from a plain-English lookup task and pasted table context.',
@@ -7436,6 +7470,20 @@ const pageEnhancements = {
       setup: 'A report should show the top 10 open deals after sorting by value descending from a four-column source table.',
       formula: '=TAKE(SORT(FILTER(A2:D500,C2:C500="Open"),4,-1),10)',
       read: 'FILTER keeps open rows first, SORT orders that filtered array by the fourth column, and TAKE returns the first 10 rows from the sorted result. If the filter returns no rows or the output range is blocked, the TAKE step is not the first place to fix.'
+    }
+  },
+  'excel-let-function-not-working': {
+    gives: [
+      'A focused repair pass for one LET formula returning #NAME?, too few arguments, a valid-name message, a syntax complaint, or a wrong intermediate result.',
+      'Checks for valid variable names, name/value pairs, the final calculation argument, local argument separators, Excel version support, and nested formula errors.',
+      'A revised LET path you can test on one known row before replacing a long workbook formula.'
+    ],
+    useWhen: 'Use this page when a LET formula is close enough to inspect but Excel rejects it, cannot recognize it, or returns the wrong result after you named intermediate calculations. It is strongest when you can paste the formula, the visible error, and one expected result.',
+    notWhen: 'Do not use LET repair as a whole-workbook formula audit. LET names only apply inside the formula, and a broken inner XLOOKUP, FILTER, IF, or dynamic-array step may still need to be tested separately before the wrapper formula is useful.',
+    example: {
+      setup: 'A report calculates a margin change once, names it rate, and returns the value only when the change is large enough to review.',
+      formula: '=LET(rate,B2/C2-1,IF(ABS(rate)>10%,rate,""))',
+      read: 'The formula names the B2/C2-1 calculation as rate, then reuses that name in the IF test and output. If Excel rejects the formula, check the name, the value paired with it, and the final IF calculation before changing the business logic.'
     }
   },
   'vlookup-formula-generator': {
