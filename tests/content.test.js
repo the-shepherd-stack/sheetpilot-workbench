@@ -178,6 +178,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix MAP formulas with #VALUE!, #CALC!, #SPILL!, #NAME\?, wrong transformed arrays, or LAMBDA parameter mistakes/);
   assert.match(page, /\/excel-wraprows-wrapcols-not-working\//);
   assert.match(page, /Fix WRAPROWS and WRAPCOLS formulas with #VALUE!, #NUM!, #N\/A, #SPILL!, #NAME\?, wrong wrapping direction, or padding issues/);
+  assert.match(page, /\/excel-expand-function-not-working\//);
+  assert.match(page, /Fix EXPAND formulas with #VALUE!, #NUM!, #N\/A padding, #SPILL!, #NAME\?, wrong final dimensions, or unsupported Excel versions/);
   assert.match(page, /\/excel-torow-tocol-not-working\//);
   assert.match(page, /Fix TOROW and TOCOL formulas with #VALUE!, #NUM!, #SPILL!, #NAME\?, wrong scan order, or ignore-setting mistakes/);
   assert.match(page, /\/excel-choosecols-chooserows-not-working\//);
@@ -755,6 +757,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-byrow-bycol-not-working',
     'excel-map-function-not-working',
     'excel-wraprows-wrapcols-not-working',
+    'excel-expand-function-not-working',
     'excel-torow-tocol-not-working',
     'excel-choosecols-chooserows-not-working',
     'excel-if-formula-multiple-conditions',
@@ -3282,6 +3285,32 @@ test('excel WRAPROWS and WRAPCOLS not working page targets wrapping repair inten
   assert.match(homepage, /href="\/excel-wraprows-wrapcols-not-working\/">Excel WRAPROWS and WRAPCOLS repair/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-wraprows-wrapcols-not-working\//);
   assert.doesNotMatch(page, /Google Sheets WRAPROWS|Google Sheets WRAPCOLS|upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause/i);
+});
+
+test('excel EXPAND function not working page targets padding and final-size repair intent without overclaiming', () => {
+  const page = read('excel-expand-function-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel EXPAND Function Not Working - Fix #VALUE, #NUM, #N\/A, #SPILL/);
+  assert.match(page, /Fix an Excel EXPAND formula that is padding or sizing wrong/);
+  assert.match(page, /EXPAND pads an array to a final row and column size/);
+  assert.match(page, /rows or columns are treated as how many to add/);
+  assert.match(page, /default #N\/A padding was not expected/);
+  assert.match(page, /#NUM! from trying to make the array smaller than the source/);
+  assert.match(page, /rows and columns counted as added size instead of final output size/);
+  assert.match(page, /source array shape, final rows and columns, pad_with behavior/);
+  assert.match(page, /Treat rows and columns as final dimensions/);
+  assert.match(page, /EXPAND grows arrays rather than trimming them/);
+  assert.match(page, /Set pad_with deliberately when default #N\/A padding is not the value you want/);
+  assert.match(page, /If <code>pad_with<\/code> is omitted, Excel fills new cells with <code>#N\/A<\/code>/);
+  assert.match(page, /=EXPAND\(A2:C10,12,5,&quot;&quot;\)/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-expand-function-not-working\/">Excel EXPAND function repair/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-expand-function-not-working\//);
+  assert.doesNotMatch(page, /Google Sheets EXPAND|upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft recommends|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|works in all modern Excel|works in every version|shrinks arrays|trims arrays/i);
 });
 
 test('excel BYROW and BYCOL not working page targets LAMBDA row and column repair intent without overclaiming', () => {

@@ -4950,6 +4950,46 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-expand-function-not-working',
+    title: 'Excel EXPAND Function Not Working - Fix #VALUE, #NUM, #N/A, #SPILL | Write My Formula',
+    description: 'Paste an Excel EXPAND formula returning #VALUE!, #NUM!, #N/A padding, #SPILL!, #NAME?, or the wrong final dimensions and get a focused repair path.',
+    eyebrow: 'Excel EXPAND function repair',
+    h1: 'Fix an Excel EXPAND formula that is padding or sizing wrong.',
+    lede: 'EXPAND pads an array to a final row and column size. It can break when rows or columns are treated as how many to add, the requested dimensions are smaller than the source array, the default #N/A padding was not expected, the spill range is blocked, or the workbook opens in an Excel version that does not support the function. Paste the formula you can see in Excel and the final shape you wanted.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=EXPAND(A2:C10,12,5,"")'
+    },
+    intent: 'Help Excel users repair one EXPAND formula where the visible problem is usually #VALUE! from an argument type issue, #NUM! from trying to make the array smaller than the source, #N/A default padding, #SPILL! from blocked output cells, #NAME? from unsupported Excel versions, or rows and columns counted as added size instead of final output size.',
+    bestFor: [
+      'EXPAND formulas that should pad a report array but return #VALUE!, #NUM!, #SPILL!, #NAME?, or unexpected #N/A cells.',
+      'Dynamic-array reports where rows and columns need to be checked as final output dimensions, not rows or columns to add.',
+      'Excel for Microsoft 365 or Excel 2024 workbooks where one reshape formula needs to be repaired before it feeds VSTACK, HSTACK, TAKE, DROP, or a dashboard range.',
+      'Cases where the source array shape, requested final dimensions, pad_with value, and spill range need to be inspected together.'
+    ],
+    steps: [
+      'Paste the exact EXPAND formula that is not working.',
+      'Describe the source array shape and the final number of rows and columns the output should have.',
+      'Name the visible symptom: #VALUE!, #NUM!, #N/A padding, #SPILL!, #NAME?, or a result that is too wide, too tall, or not wide or tall enough.',
+      'Review the repaired single-cell formula and explanation, then test it on a small source range before using it in a report.'
+    ],
+    copyChecks: [
+      'Treat rows and columns as final dimensions, not how many rows or columns to add.',
+      'Make the requested rows and columns at least as large as the source array; EXPAND grows arrays rather than trimming them.',
+      'Set pad_with deliberately when default #N/A padding is not the value you want.',
+      'Use an empty string, zero, or a real placeholder only when that padding value is appropriate for the downstream formula.',
+      'Clear the intended spill range before rewriting a formula that otherwise returns the right size.',
+      'Check Excel version support when EXPAND appears as #NAME? or _xlfn.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Padding quick check',
+        html: 'If <code>pad_with</code> is omitted, Excel fills new cells with <code>#N/A</code>. That can be useful when missing data should stay visible, but use the fourth argument when a report needs blanks, zeros, or a specific label.'
+      }
+    ]
+  },
+  {
     slug: 'excel-torow-tocol-not-working',
     title: 'Excel TOROW / TOCOL Not Working - Fix #VALUE, #NUM, #SPILL | Write My Formula',
     description: 'Paste a TOROW or TOCOL formula returning #VALUE!, #NUM!, #SPILL!, #NAME?, or the wrong flattened order and get a repaired Excel formula to test.',
@@ -7709,6 +7749,20 @@ const pageEnhancements = {
       setup: 'A single list of invoice IDs in A2:A25 should wrap into rows of four values, with blank padding instead of #N/A in the final row.',
       formula: '=WRAPROWS(A2:A25,4,"")',
       read: 'The formula takes one column as the vector, puts four values in each returned row, and uses the optional pad_with argument to leave incomplete trailing cells blank. If the source is A2:D25 instead, flatten it first or choose a different reshape formula.'
+    }
+  },
+  'excel-expand-function-not-working': {
+    gives: [
+      'A focused repair pass for one EXPAND formula returning #VALUE!, #NUM!, #N/A padding, #SPILL!, #NAME?, or the wrong final array size.',
+      'Checks for source array shape, final rows and columns, pad_with behavior, blocked spill output, and Excel version support.',
+      'A revised EXPAND formula you can test on a small source range before using it in a dynamic-array report.'
+    ],
+    useWhen: 'Use this page when EXPAND is close but not reliable: the formula pads with #N/A unexpectedly, tries to make the array smaller than its source, spills into blocked cells, is not recognized in the workbook, or returns a shape that is too wide or too tall. It is strongest when you can paste the formula and describe the source range dimensions.',
+    notWhen: 'Do not treat EXPAND as a trimming function. The rows and columns arguments are the final output dimensions, and EXPAND grows or pads arrays rather than cutting them down.',
+    example: {
+      setup: 'A report has three source columns in A2:C10 and needs a fixed 12-row by 5-column output with blanks in the padded cells.',
+      formula: '=EXPAND(A2:C10,12,5,"")',
+      read: 'The formula keeps the original A2:C10 values, expands the returned array to 12 rows and 5 columns, and uses blank padding instead of the default #N/A cells. If the source already has more than 12 rows or 5 columns, the requested size needs to be increased.'
     }
   },
   'excel-torow-tocol-not-working': {
