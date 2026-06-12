@@ -174,6 +174,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix CHOOSECOLS and CHOOSEROWS formulas with #VALUE!, #NAME\?, #SPILL!, wrong selected columns or rows, and nested-array errors/);
   assert.match(page, /\/excel-take-drop-not-working\//);
   assert.match(page, /Fix TAKE and DROP formulas with #CALC!, #NUM!, #NAME\?, #SPILL!, wrong rows or columns, and nested-array errors/);
+  assert.match(page, /\/excel-lambda-not-working\//);
+  assert.match(page, /Fix LAMBDA formulas with #CALC!, #VALUE!, #NUM!, missing calls, argument-count problems, recursion issues, or named-function setup mistakes/);
   assert.match(page, /\/excel-if-formula-multiple-conditions\//);
   assert.match(page, /Write nested IF, AND, OR, and IFS logic with branch-order and edge-row checks/);
   assert.match(page, /\/excel-if-formula-not-working\//);
@@ -3497,6 +3499,31 @@ test('excel LET function not working page targets variable repair without overcl
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-let-function-not-working\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause/i);
+});
+
+test('excel LAMBDA not working page targets custom function repair without overclaiming', () => {
+  const page = read('excel-lambda-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel LAMBDA Not Working Fixer/);
+  assert.match(page, /Excel LAMBDA not working\? Check the call, arguments, and recursion/);
+  assert.match(page, /missing immediate calls, parameter counts, invalid arguments, recursion base cases, named-function setup/);
+  assert.match(page, /returning #CALC!, #VALUE!, #NUM!, #NAME\?, or the wrong result/);
+  assert.match(page, /missing immediate calls, parameter and argument counts/);
+  assert.match(page, /recursion stop conditions/);
+  assert.match(page, /saved custom function is not recognized/);
+  assert.match(page, /=LAMBDA\(x,x\+1\)\(1\)/);
+  assert.match(page, /The trailing \(1\) passes one value into the one parameter x/);
+  assert.match(page, /Call an in-cell LAMBDA immediately/);
+  assert.match(page, /Count the parameters inside LAMBDA and make sure the trailing call passes the same number of values/);
+  assert.match(page, /Add a reachable base case before using recursive LAMBDA logic/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-lambda-not-working\/">Excel LAMBDA function repair/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-lambda-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|no file access|cancel anytime|\$29/i);
 });
 
 test('ajelix alternative page targets focused formula comparison without overclaiming', () => {

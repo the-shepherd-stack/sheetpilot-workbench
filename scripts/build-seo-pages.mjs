@@ -4916,6 +4916,41 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-lambda-not-working',
+    title: 'Excel LAMBDA Not Working Fixer | Write My Formula',
+    description: 'Fix Excel LAMBDA formulas with #CALC!, #VALUE!, #NUM!, wrong argument counts, missing calls, recursion problems, and named-function setup issues.',
+    eyebrow: 'Excel LAMBDA function repair',
+    h1: 'Excel LAMBDA not working? Check the call, arguments, and recursion.',
+    lede: 'Paste the LAMBDA formula that returns #CALC!, #VALUE!, #NUM!, #NAME?, or the wrong result. Get a focused repair path for missing immediate calls, parameter counts, invalid arguments, recursion base cases, named-function setup, and the calculation inside the LAMBDA.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=LAMBDA(x,x+1)'
+    },
+    intent: 'Help Excel users repair one LAMBDA formula where the visible problem is usually a function that was defined but not called, a mismatch between parameters and supplied values, too many parameters, recursive logic without a reachable stop condition, a Name Manager setup issue, or an inner calculation error that should be tested before the custom function is reused.',
+    bestFor: [
+      'LAMBDA formulas that return #CALC! because the cell defines a function but does not call it with trailing arguments.',
+      '#VALUE! errors caused by passing the wrong number of arguments to the LAMBDA or defining too many parameters.',
+      '#NUM! errors caused by recursive LAMBDA calls that run too deep or never reach a stopping condition.',
+      'Named LAMBDA functions where the in-cell test worked but the saved name returns #NAME? or the wrong result.',
+      'Custom reusable formulas where the calculation step should be tested before moving the LAMBDA into Name Manager.'
+    ],
+    steps: [
+      'Paste the exact LAMBDA formula or named-function call and the error Excel returns.',
+      'Include the intended parameter names and the values you are passing into the function.',
+      'Say whether the LAMBDA is still being tested in a cell or has already been saved in Name Manager.',
+      'For recursive formulas, include the stop condition that should end the recursion.'
+    ],
+    copyChecks: [
+      'Call an in-cell LAMBDA immediately, such as =LAMBDA(x,x+1)(1), before treating #CALC! as a calculation failure.',
+      'Count the parameters inside LAMBDA and make sure the trailing call passes the same number of values.',
+      'Keep parameter names simple and avoid names that look like cell references or conflict with existing workbook names.',
+      'Test the calculation argument by itself before saving the LAMBDA as a reusable named function.',
+      'Add a reachable base case before using recursive LAMBDA logic, then test it on a small input.',
+      'Check Excel version and Name Manager spelling if a saved LAMBDA returns #NAME? or appears unavailable.'
+    ]
+  },
+  {
     slug: 'vlookup-formula-generator',
     title: 'VLOOKUP Formula Generator | Write My Formula',
     description: 'Build VLOOKUP formulas from a plain-English lookup task and pasted table context.',
@@ -7484,6 +7519,20 @@ const pageEnhancements = {
       setup: 'A report calculates a margin change once, names it rate, and returns the value only when the change is large enough to review.',
       formula: '=LET(rate,B2/C2-1,IF(ABS(rate)>10%,rate,""))',
       read: 'The formula names the B2/C2-1 calculation as rate, then reuses that name in the IF test and output. If Excel rejects the formula, check the name, the value paired with it, and the final IF calculation before changing the business logic.'
+    }
+  },
+  'excel-lambda-not-working': {
+    gives: [
+      'A focused repair pass for one LAMBDA formula returning #CALC!, #VALUE!, #NUM!, #NAME?, or the wrong result.',
+      'Checks for missing immediate calls, parameter and argument counts, simple parameter names, recursion stop conditions, Name Manager spelling, and the calculation inside the custom function.',
+      'A revised LAMBDA test pattern you can try in one cell before saving or replacing a named function.'
+    ],
+    useWhen: 'Use this page when a LAMBDA is close enough to inspect but Excel will not calculate it, the saved custom function is not recognized, or the result changes after wrapping a working formula inside LAMBDA. It is strongest when you can paste the formula, the visible error, and the values passed into the function.',
+    notWhen: 'Do not use LAMBDA repair as a replacement for testing the underlying calculation. Test the formula body first, then test the LAMBDA with a small immediate call before relying on a saved name across a workbook.',
+    example: {
+      setup: 'A user tests a small LAMBDA that should add 1 to a number, but the cell only defines the function and does not call it.',
+      formula: '=LAMBDA(x,x+1)(1)',
+      read: 'The trailing (1) passes one value into the one parameter x, so Excel runs the custom function and returns 2. Without that immediate call, an in-cell LAMBDA definition can return #CALC! instead of a result.'
     }
   },
   'vlookup-formula-generator': {
