@@ -4880,6 +4880,46 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-torow-tocol-not-working',
+    title: 'Excel TOROW / TOCOL Not Working - Fix #VALUE, #NUM, #SPILL | Write My Formula',
+    description: 'Paste a TOROW or TOCOL formula returning #VALUE!, #NUM!, #SPILL!, #NAME?, or the wrong flattened order and get a repaired Excel formula to test.',
+    eyebrow: 'Excel TOROW and TOCOL repair',
+    h1: 'Fix a TOROW or TOCOL formula that is flattening wrong.',
+    lede: 'TOROW and TOCOL are simple until the result scans in the wrong order, keeps blanks you wanted gone, drops errors you needed to see, or returns #VALUE!, #NUM!, #SPILL!, or #NAME?. Paste the formula and a short note about the source range. You get back a corrected single-cell formula and the argument that changed: usually ignore, scan_by_column, the source array size, the spill range, or Excel version support.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=TOCOL(A2:D20,1,FALSE)'
+    },
+    intent: 'Help Excel users repair one TOROW or TOCOL formula where the visible problem is usually #VALUE! from an invalid array constant, #NUM! from an oversized array, #SPILL! from blocked output cells, #NAME? from unsupported Excel versions, ignore values that keep or remove the wrong cells, or scan_by_column returning values in the wrong order.',
+    bestFor: [
+      'TOCOL formulas that should flatten a range into one column but return #VALUE!, #NUM!, #SPILL!, #NAME?, or the wrong order.',
+      'TOROW formulas that should flatten a range into one row but include unexpected blanks, errors, or row-versus-column scan order.',
+      'Excel for Microsoft 365 or Excel 2024 workbooks where one dynamic-array reshape formula needs to be checked before it feeds UNIQUE, SORT, WRAPROWS, or WRAPCOLS.',
+      'Cases where the source array, ignore argument, scan_by_column setting, output direction, and spill range need to be inspected together.'
+    ],
+    steps: [
+      'Paste the exact TOROW or TOCOL formula that is not working.',
+      'Describe the source range shape and whether the result should become one row or one column.',
+      'Name the visible symptom: #VALUE!, #NUM!, #SPILL!, #NAME?, wrong scan order, blanks kept, or errors removed unexpectedly.',
+      'Review the repaired single-cell formula and explanation, then test it on the same source range.'
+    ],
+    copyChecks: [
+      'Choose TOROW for one-row output and TOCOL for one-column output before changing other arguments.',
+      'Set ignore deliberately: 0 keeps all values, 1 ignores blanks, 2 ignores errors, and 3 ignores blanks and errors.',
+      'Use scan_by_column TRUE only when the flattened output should read down each column before moving across.',
+      'Reduce or chunk the source range if Excel returns #NUM! because the flattened array is too large.',
+      'Clear the intended spill range before rewriting a formula that otherwise returns the right values.',
+      'Check Excel version support when TOROW or TOCOL appears as #NAME? or _xlfn.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Ignore argument quick check',
+        html: '<strong>0</strong> keeps blanks and errors, <strong>1</strong> ignores blanks, <strong>2</strong> ignores errors, and <strong>3</strong> ignores both blanks and errors. Pick this before adding IFERROR or FILTER around the formula.'
+      }
+    ]
+  },
+  {
     slug: 'excel-choosecols-chooserows-not-working',
     title: 'Excel CHOOSECOLS or CHOOSEROWS Not Working Fixer | Write My Formula',
     description: 'Fix Excel CHOOSECOLS and CHOOSEROWS formulas with #VALUE!, #NAME?, #SPILL!, wrong selected columns or rows, and broken nested arrays.',
@@ -7571,6 +7611,20 @@ const pageEnhancements = {
       setup: 'A single list of invoice IDs in A2:A25 should wrap into rows of four values, with blank padding instead of #N/A in the final row.',
       formula: '=WRAPROWS(A2:A25,4,"")',
       read: 'The formula takes one column as the vector, puts four values in each returned row, and uses the optional pad_with argument to leave incomplete trailing cells blank. If the source is A2:D25 instead, flatten it first or choose a different reshape formula.'
+    }
+  },
+  'excel-torow-tocol-not-working': {
+    gives: [
+      'A focused repair pass for one TOROW or TOCOL formula returning #VALUE!, #NUM!, #SPILL!, #NAME?, or a wrongly ordered flattened result.',
+      'Checks for output direction, ignore values, scan_by_column, oversized arrays, blocked spill ranges, and Excel version support.',
+      'A revised flattening formula you can test on a small source range before it feeds UNIQUE, SORT, WRAPROWS, or WRAPCOLS.'
+    ],
+    useWhen: 'Use this page when TOROW or TOCOL is close but not reliable: the formula is not recognized, spills into blocked cells, reads values across rows when you wanted down columns, keeps blanks, removes errors, or returns #VALUE! or #NUM!. It is strongest when you can paste the formula and describe the source range shape.',
+    notWhen: 'Do not wrap TOROW or TOCOL in IFERROR before checking the ignore and scan_by_column arguments. A blank, error, or unexpected order can be the direct result of an argument choice rather than a broken source range.',
+    example: {
+      setup: 'A report has quarterly values in A2:D20. The output should be one column that reads each row from left to right and skips true blank cells.',
+      formula: '=TOCOL(A2:D20,1,FALSE)',
+      read: 'The formula flattens the two-dimensional range into one column, ignores blank cells, and scans by row because scan_by_column is FALSE. If the output should read down each source column first, set the final argument to TRUE.'
     }
   },
   'excel-choosecols-chooserows-not-working': {

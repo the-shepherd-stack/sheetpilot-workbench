@@ -174,6 +174,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix stacked arrays with #N\/A padding, #SPILL! blockers, #NAME\? version issues, mismatched array sizes, or the wrong combine direction/);
   assert.match(page, /\/excel-wraprows-wrapcols-not-working\//);
   assert.match(page, /Fix WRAPROWS and WRAPCOLS formulas with #VALUE!, #NUM!, #N\/A, #SPILL!, #NAME\?, wrong wrapping direction, or padding issues/);
+  assert.match(page, /\/excel-torow-tocol-not-working\//);
+  assert.match(page, /Fix TOROW and TOCOL formulas with #VALUE!, #NUM!, #SPILL!, #NAME\?, wrong scan order, or ignore-setting mistakes/);
   assert.match(page, /\/excel-choosecols-chooserows-not-working\//);
   assert.match(page, /Fix CHOOSECOLS and CHOOSEROWS formulas with #VALUE!, #NAME\?, #SPILL!, wrong selected columns or rows, and nested-array errors/);
   assert.match(page, /\/excel-take-drop-not-working\//);
@@ -747,6 +749,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-sort-not-working',
     'excel-vstack-hstack-not-working',
     'excel-wraprows-wrapcols-not-working',
+    'excel-torow-tocol-not-working',
     'excel-choosecols-chooserows-not-working',
     'excel-if-formula-multiple-conditions',
     'excel-if-formula-not-working',
@@ -3273,6 +3276,34 @@ test('excel WRAPROWS and WRAPCOLS not working page targets wrapping repair inten
   assert.match(homepage, /href="\/excel-wraprows-wrapcols-not-working\/">Excel WRAPROWS and WRAPCOLS repair/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-wraprows-wrapcols-not-working\//);
   assert.doesNotMatch(page, /Google Sheets WRAPROWS|Google Sheets WRAPCOLS|upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause/i);
+});
+
+test('excel TOROW and TOCOL not working page targets flattening repair intent without overclaiming', () => {
+  const page = read('excel-torow-tocol-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel TOROW \/ TOCOL Not Working - Fix #VALUE, #NUM, #SPILL/);
+  assert.match(page, /Fix a TOROW or TOCOL formula that is flattening wrong/);
+  assert.match(page, /wrong order, keeps blanks you wanted gone/);
+  assert.match(page, /usually ignore, scan_by_column, the source array size/);
+  assert.match(page, /#VALUE! from an invalid array constant/);
+  assert.match(page, /#NUM! from an oversized array/);
+  assert.match(page, /scan_by_column returning values in the wrong order/);
+  assert.match(page, /0 keeps all values/);
+  assert.match(page, /1 ignores blanks/);
+  assert.match(page, /2 ignores errors/);
+  assert.match(page, /3 ignores blanks and errors/);
+  assert.match(page, /Use scan_by_column TRUE only when the flattened output should read down each column/);
+  assert.match(page, /Reduce or chunk the source range if Excel returns #NUM!/);
+  assert.match(page, /Check Excel version support when TOROW or TOCOL appears as #NAME\? or _xlfn/);
+  assert.match(page, /=TOCOL\(A2:D20,1,FALSE\)/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-torow-tocol-not-working\/">Excel TOROW and TOCOL repair/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-torow-tocol-not-working\//);
+  assert.doesNotMatch(page, /Google Sheets TOROW|Google Sheets TOCOL|upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|handles arrays of any size|works in every version/i);
 });
 
 test('excel CHOOSECOLS and CHOOSEROWS not working page targets row and column selection repair intent without overclaiming', () => {
