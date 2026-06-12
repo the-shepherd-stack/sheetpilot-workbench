@@ -172,6 +172,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix SORT formulas with #SPILL!, wrong sort columns, header-row mistakes, row separation, text-stored dates or numbers, and version support issues/);
   assert.match(page, /\/excel-vstack-hstack-not-working\//);
   assert.match(page, /Fix stacked arrays with #N\/A padding, #SPILL! blockers, #NAME\? version issues, mismatched array sizes, or the wrong combine direction/);
+  assert.match(page, /\/excel-byrow-bycol-not-working\//);
+  assert.match(page, /Fix BYROW and BYCOL formulas with #CALC!, #VALUE!, #SPILL!, #NAME\?, wrong row\/column direction, or LAMBDA return-shape mistakes/);
   assert.match(page, /\/excel-wraprows-wrapcols-not-working\//);
   assert.match(page, /Fix WRAPROWS and WRAPCOLS formulas with #VALUE!, #NUM!, #N\/A, #SPILL!, #NAME\?, wrong wrapping direction, or padding issues/);
   assert.match(page, /\/excel-torow-tocol-not-working\//);
@@ -748,6 +750,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-xmatch-not-working',
     'excel-sort-not-working',
     'excel-vstack-hstack-not-working',
+    'excel-byrow-bycol-not-working',
     'excel-wraprows-wrapcols-not-working',
     'excel-torow-tocol-not-working',
     'excel-choosecols-chooserows-not-working',
@@ -3276,6 +3279,30 @@ test('excel WRAPROWS and WRAPCOLS not working page targets wrapping repair inten
   assert.match(homepage, /href="\/excel-wraprows-wrapcols-not-working\/">Excel WRAPROWS and WRAPCOLS repair/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-wraprows-wrapcols-not-working\//);
   assert.doesNotMatch(page, /Google Sheets WRAPROWS|Google Sheets WRAPCOLS|upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause/i);
+});
+
+test('excel BYROW and BYCOL not working page targets LAMBDA row and column repair intent without overclaiming', () => {
+  const page = read('excel-byrow-bycol-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel BYROW \/ BYCOL Not Working - Fix #CALC, #VALUE, #SPILL/);
+  assert.match(page, /Fix a BYROW or BYCOL formula that is returning the wrong shape/);
+  assert.match(page, /BYROW returns one result per row/);
+  assert.match(page, /BYCOL returns one result per column/);
+  assert.match(page, /LAMBDA returns more than one value for each row or column/);
+  assert.match(page, /#CALC! from returning an array instead of one value per row or column/);
+  assert.match(page, /#VALUE! from a LAMBDA parameter mistake/);
+  assert.match(page, /Excel for Microsoft 365 or Excel 2024/);
+  assert.match(page, /Make the LAMBDA return a single value for each row or column/);
+  assert.match(page, /The useful repair surface is the formula you paste/);
+  assert.match(page, /=BYROW\(A2:D20,LAMBDA\(row,SUM\(row\)\)\)/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-byrow-bycol-not-working\/">Excel BYROW and BYCOL repair/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-byrow-bycol-not-working\//);
+  assert.doesNotMatch(page, /Google Sheets BYROW|Google Sheets BYCOL|upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|handles arrays of any size|works in every version|any version of Excel|full spreadsheet repair/i);
 });
 
 test('excel TOROW and TOCOL not working page targets flattening repair intent without overclaiming', () => {

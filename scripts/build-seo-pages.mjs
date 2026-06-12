@@ -4846,6 +4846,41 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-byrow-bycol-not-working',
+    title: 'Excel BYROW / BYCOL Not Working - Fix #CALC, #VALUE, #SPILL | Write My Formula',
+    description: 'Paste a BYROW or BYCOL formula returning #CALC!, #VALUE!, #SPILL!, #NAME?, or the wrong row/column result and get a focused Excel repair path.',
+    eyebrow: 'Excel BYROW and BYCOL repair',
+    h1: 'Fix a BYROW or BYCOL formula that is returning the wrong shape.',
+    lede: 'BYROW returns one result per row. BYCOL returns one result per column. If those are flipped, or if the LAMBDA returns more than one value for each row or column, the formula can run wrong, spill wrong, or return #CALC!, #VALUE!, #SPILL!, or #NAME?. Paste the formula you can see in Excel and the output shape you expected.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=BYROW(A2:D20,LAMBDA(row,SUM(row)))'
+    },
+    intent: 'Help Excel users repair one BYROW or BYCOL formula where the visible problem is usually #CALC! from returning an array instead of one value per row or column, #VALUE! from a LAMBDA parameter mistake, #SPILL! from blocked output cells, #NAME? from unsupported Excel versions, or a wrong output direction because rows and columns were confused.',
+    bestFor: [
+      'BYROW formulas that should calculate one result for each source row but return #CALC!, #VALUE!, #SPILL!, #NAME?, or a wrongly shaped result.',
+      'BYCOL formulas that should calculate one result for each source column but return the same errors or a transposed-looking output.',
+      'Excel for Microsoft 365 or Excel 2024 workbooks where one LAMBDA-per-row or LAMBDA-per-column formula needs to be checked before it feeds a report.',
+      'Cases where the pasted formula, LAMBDA argument, single-value return, source array, output direction, and spill range need to be inspected together.'
+    ],
+    steps: [
+      'Paste the exact BYROW or BYCOL formula that is not working.',
+      'Describe whether the source should return one answer per row or one answer per column.',
+      'Name the visible symptom: #CALC!, #VALUE!, #SPILL!, #NAME?, wrong shape, or a result that runs but appears transposed.',
+      'Review the repaired formula and explanation, then test it on a small source range before filling a report.'
+    ],
+    copyChecks: [
+      'Use BYROW when each source row should produce one result; use BYCOL when each source column should produce one result.',
+      'Make the LAMBDA return a single value for each row or column; returning an array can produce #CALC!.',
+      'Check that the LAMBDA has the one parameter BYROW or BYCOL passes into it.',
+      'Clear the intended spill range before rewriting a formula that otherwise calculates correctly.',
+      'Confirm the workbook is being opened in Excel for Microsoft 365 or Excel 2024.',
+      'Check Excel version support when BYROW or BYCOL appears as #NAME? or _xlfn.',
+      'Use a workbook-level review only when the problem depends on hidden data, external links, named ranges, or cells outside the formula you paste.'
+    ]
+  },
+  {
     slug: 'excel-wraprows-wrapcols-not-working',
     title: 'Excel WRAPROWS / WRAPCOLS Not Working - Repair the Formula | Write My Formula',
     description: 'Paste a WRAPROWS or WRAPCOLS formula returning #VALUE!, #NUM!, #N/A, #SPILL!, or #NAME? and get a repaired one-cell formula to test in Excel.',
@@ -7597,6 +7632,20 @@ const pageEnhancements = {
       setup: 'A workbook combines two department extracts. One extract has three columns and another has only two, so VSTACK pads the missing third column with #N/A.',
       formula: '=IFNA(VSTACK(A2:C20,F2:H20),"")',
       read: 'The formula stacks both extracts vertically and turns expected padding into blanks. Before using the fallback, check whether the missing column should be mapped, added, or left blank.'
+    }
+  },
+  'excel-byrow-bycol-not-working': {
+    gives: [
+      'A focused repair pass for one BYROW or BYCOL formula returning #CALC!, #VALUE!, #SPILL!, #NAME?, or the wrong output shape.',
+      'Checks for row-versus-column direction, LAMBDA parameter shape, single-value returns, blocked spill output, and Excel version support.',
+      'A revised LAMBDA-per-row or LAMBDA-per-column formula you can test on a small range before using it in a report.'
+    ],
+    useWhen: 'Use this page when BYROW or BYCOL is close but not trustworthy: the formula returns #CALC!, #VALUE!, #SPILL!, or #NAME?, runs without an error but returns the wrong shape, or produces one result per column when you expected one per row. It is strongest when you can paste the visible formula and say what one row or column should return.',
+    notWhen: 'Do not treat BYROW or BYCOL as a whole-workbook debugger. The useful repair surface is the formula you paste, the array it references, the LAMBDA parameter, and whether each row or column returns exactly one value.',
+    example: {
+      setup: 'A report has monthly values in A2:D20. The output should return one total for each row.',
+      formula: '=BYROW(A2:D20,LAMBDA(row,SUM(row)))',
+      read: 'The formula passes each row into the LAMBDA and returns one SUM per row. If the output should return one total per month column instead, BYCOL is the direction to check before changing the calculation.'
     }
   },
   'excel-wraprows-wrapcols-not-working': {
