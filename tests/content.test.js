@@ -134,6 +134,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix FILTER formulas with #N\/A, mismatched range sizes, wrong rows, no matches, or row-versus-column condition issues/);
   assert.match(page, /\/google-sheets-query-not-working\//);
   assert.match(page, /Fix QUERY formulas with parse errors, NO_COLUMN messages, wrong Col references, header problems, or missing rows/);
+  assert.match(page, /\/google-sheets-let-function-not-working\//);
+  assert.match(page, /Fix LET formulas with invalid names, missing name\/value pairs, parse errors, wrong intermediate results, or nested formula mistakes/);
   assert.match(page, /\/google-sheets-importrange-not-working\//);
   assert.match(page, /Fix IMPORTRANGE formulas with #REF!, Allow access prompts, oversized imports, slow refreshes, or source permission issues/);
   assert.match(page, /\/google-sheets-importxml-not-working\//);
@@ -724,6 +726,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'google-sheets-filter-not-working',
     'google-sheets-query-not-working',
     'google-sheets-arrayformula-not-working',
+    'google-sheets-let-function-not-working',
     'google-sheets-importrange-not-working',
     'google-sheets-importxml-not-working',
     'google-sheets-conditional-formatting-not-working',
@@ -2454,6 +2457,26 @@ test('google sheets ARRAYFORMULA not working page targets spill and range repair
   assert.match(homepage, /href="\/google-sheets-arrayformula-not-working\/">Google Sheets ARRAYFORMULA not working/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-arrayformula-not-working\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
+});
+
+test('google sheets LET function not working page targets LET repair intent without overclaiming', () => {
+  const page = read('google-sheets-let-function-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Google Sheets LET Function Not Working Fixer/);
+  assert.match(page, /Google Sheets LET formula not working\? Paste it for a repair pass/);
+  assert.match(page, /name that is not a valid identifier/);
+  assert.match(page, /missing name\/value pair/);
+  assert.match(page, /final formula expression/);
+  assert.match(page, /complete name\/value pairs/);
+  assert.match(page, /=LET\(avg,AVERAGE\(B2:D2\),IF\(avg&gt;=4,&quot;Great&quot;,IF\(avg&gt;=3,&quot;Good&quot;,&quot;Poor&quot;\)\)\)/);
+  assert.match(page, /LET needs name and value_expression arguments in pairs/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-let-function-not-working\/">Google Sheets LET function repair/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-let-function-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatic|pay before answer|whole sheet|full sheet/i);
 });
 
 test('google sheets IMPORTRANGE not working page targets import repair intent without overclaiming', () => {

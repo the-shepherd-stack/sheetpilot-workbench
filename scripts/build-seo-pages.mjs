@@ -4254,6 +4254,38 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-let-function-not-working',
+    title: 'Google Sheets LET Function Not Working Fixer | Write My Formula',
+    description: 'Fix Google Sheets LET formulas with invalid names, missing name/value pairs, parse errors, wrong intermediate results, and nested formula mistakes.',
+    eyebrow: 'Google Sheets LET repair',
+    h1: 'Google Sheets LET formula not working? Paste it for a repair pass.',
+    lede: 'LET breaks for a few specific reasons: a name that is not a valid identifier, a missing name/value pair, a final formula expression in the wrong spot, or an inner FILTER, QUERY, IF, or ARRAYFORMULA returning the real error. Paste the formula exactly as Google Sheets sees it, plus the error or wrong result.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=LET(avg,AVERAGE(B2:D2),IF(avg>=4,"Great",IF(avg>=3,"Good","Poor")))'
+    },
+    intent: 'Help Google Sheets users repair one LET formula where the visible problem is usually a formula parse error, an invalid identifier, a missing value expression, a missing final formula expression, a reused name that returns the wrong intermediate value, or an inner formula error that LET is only surfacing.',
+    bestFor: [
+      'LET formulas rejected because the name is not a valid identifier or is spelled differently later in the formula.',
+      'Formula parse errors caused by a missing name/value pair, missing comma, missing final formula expression, or copied locale separators.',
+      'Wrong results caused by a named intermediate calculation that is evaluated once and reused in later expressions.',
+      'Nested LET formulas where a FILTER, QUERY, IF, ARRAYFORMULA, or lookup step needs to be tested outside the wrapper first.'
+    ],
+    steps: [
+      'Paste the exact LET formula and the error, blank output, or wrong result Google Sheets returns.',
+      'Include the row or sample values that should prove the named calculation is working.',
+      'Say whether the formula was copied from Excel or another locale if commas and semicolons may have changed.'
+    ],
+    copyChecks: [
+      'LET needs name and value_expression arguments in pairs, followed by one final formula_expression.',
+      'Use simple identifiers for names and spell them the same way each time. Usage is case-insensitive, but typos still create broken logic.',
+      'Test the value_expression by itself when a named intermediate result seems wrong.',
+      'Check nested FILTER, QUERY, IF, ARRAYFORMULA, or lookup formulas before treating LET as the only failing function.',
+      'Keep text criteria quoted and separators consistent with the Google Sheets locale before replacing a shared formula.'
+    ]
+  },
+  {
     slug: 'google-sheets-importrange-not-working',
     title: 'Google Sheets IMPORTRANGE Not Working? | Write My Formula',
     description: 'Fix Google Sheets IMPORTRANGE formulas with #REF!, Allow access prompts, permission issues, result-size limits, slow refreshes, or volatile-function errors.',
@@ -7169,6 +7201,20 @@ const pageEnhancements = {
       setup: 'Column A has order IDs, B has quantity, and C has unit price. D2 should fill totals for each row but stay blank when the source row is blank.',
       formula: '=ARRAYFORMULA(IF(A2:A="","",B2:B*C2:C))',
       read: 'The formula evaluates rows 2 and below as ranges, leaves blank source rows blank, and lets the result spill down column D as long as the output cells are clear.'
+    }
+  },
+  'google-sheets-let-function-not-working': {
+    gives: [
+      'A focused repair pass for one Google Sheets LET formula.',
+      'Checks for valid identifiers, complete name/value pairs, final-expression placement, and nested formula errors.',
+      'A revised LET path you can test against one known row before replacing a longer shared-sheet formula.'
+    ],
+    useWhen: 'Use this page when a Google Sheets LET formula returns a parse error, produces a wrong intermediate result, stops after a copied separator change, or makes a nested formula harder to debug. It is strongest when you can paste the exact formula and one expected output.',
+    notWhen: 'LET names only exist inside the formula they are declared in, so this page will not audit every tab or fix an inner FILTER, QUERY, IF, ARRAYFORMULA, or lookup step that is broken on its own. Test those by themselves first, then bring the LET wrapper back here.',
+    example: {
+      setup: 'A row has three review scores in B2:D2. The formula should calculate the average once, name it avg, and then label the row based on that average.',
+      formula: '=LET(avg,AVERAGE(B2:D2),IF(avg>=4,"Great",IF(avg>=3,"Good","Poor")))',
+      read: 'The formula assigns avg to the average of B2:D2 and reuses that name in the IF logic. If the result is wrong, test AVERAGE(B2:D2) by itself, then confirm the final IF expression is the last LET argument.'
     }
   },
   'google-sheets-importrange-not-working': {
