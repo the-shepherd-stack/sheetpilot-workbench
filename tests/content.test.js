@@ -981,13 +981,13 @@ test('Sourcetable alternative page targets AI spreadsheet comparison without ove
 
   assert.match(page, /Sourcetable Alternative for One Formula Problem/);
   assert.match(page, /A Sourcetable alternative for one formula problem/);
-  assert.match(page, /uploads, data chat, pivots, charts, SQL, Python, connectors, or workbook-level analysis/);
-  assert.match(page, /file upload, spreadsheet chat, AI analysis, pivots, charts, visualizations, data cleaning, AI research, SQL, Python/);
-  assert.match(page, /Regular plan with limited daily credits/);
-  assert.match(page, /Pro is listed at \$29\/user\/month/);
-  assert.match(page, /Max is listed at \$100\/user\/month/);
-  assert.match(page, /\.xls, \.xlsx, \.csv, \.tsv, PDF, JSON, and database data/);
-  assert.match(page, /Sourcetable details verified June 5, 2026/);
+  assert.match(page, /uploaded files, connected data, multi-tab analysis, charts, reports, SQL, Python/);
+  assert.match(page, /file upload, connected data, dashboards, charts, reports, SQL, Python, data science libraries/);
+  assert.match(page, /Python, SQL, NumPy, Pandas, SciPy, Scikit-learn, StatsModels, Matplotlib, Plotly, Seaborn/);
+  assert.match(page, /files up to 10GB/);
+  assert.match(page, /Free plan with 30 AI messages, Pro at \$20\/user\/month with 500 AI messages, and Max at \$200\/user\/month/);
+  assert.match(page, /integrations and visualization options/);
+  assert.match(page, /Sourcetable details verified June 12, 2026/);
   assert.match(page, /=IFNA\(XLOOKUP\(F2,\$A\$2:\$A\$500,\$D\$2:\$D\$500,&quot;Not found&quot;,0\),&quot;Not found&quot;\)/);
   assert.match(page, /2 guest tries/);
   assert.match(page, /500 runs per month/);
