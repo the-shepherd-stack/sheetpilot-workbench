@@ -174,6 +174,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix stacked arrays with #N\/A padding, #SPILL! blockers, #NAME\? version issues, mismatched array sizes, or the wrong combine direction/);
   assert.match(page, /\/excel-byrow-bycol-not-working\//);
   assert.match(page, /Fix BYROW and BYCOL formulas with #CALC!, #VALUE!, #SPILL!, #NAME\?, wrong row\/column direction, or LAMBDA return-shape mistakes/);
+  assert.match(page, /\/excel-map-function-not-working\//);
+  assert.match(page, /Fix MAP formulas with #VALUE!, #CALC!, #SPILL!, #NAME\?, wrong transformed arrays, or LAMBDA parameter mistakes/);
   assert.match(page, /\/excel-wraprows-wrapcols-not-working\//);
   assert.match(page, /Fix WRAPROWS and WRAPCOLS formulas with #VALUE!, #NUM!, #N\/A, #SPILL!, #NAME\?, wrong wrapping direction, or padding issues/);
   assert.match(page, /\/excel-torow-tocol-not-working\//);
@@ -751,6 +753,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-sort-not-working',
     'excel-vstack-hstack-not-working',
     'excel-byrow-bycol-not-working',
+    'excel-map-function-not-working',
     'excel-wraprows-wrapcols-not-working',
     'excel-torow-tocol-not-working',
     'excel-choosecols-chooserows-not-working',
@@ -3303,6 +3306,31 @@ test('excel BYROW and BYCOL not working page targets LAMBDA row and column repai
   assert.match(homepage, /href="\/excel-byrow-bycol-not-working\/">Excel BYROW and BYCOL repair/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-byrow-bycol-not-working\//);
   assert.doesNotMatch(page, /Google Sheets BYROW|Google Sheets BYCOL|upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|handles arrays of any size|works in every version|any version of Excel|full spreadsheet repair/i);
+});
+
+test('excel MAP function not working page targets LAMBDA mapping repair intent without overclaiming', () => {
+  const page = read('excel-map-function-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel MAP Function Not Working - Fix #VALUE, #CALC, #SPILL/);
+  assert.match(page, /Fix an Excel MAP formula that is not transforming values correctly/);
+  assert.match(page, /MAP applies a LAMBDA to each value in one or more arrays/);
+  assert.match(page, /wrong number of parameters/);
+  assert.match(page, /returns an array where Excel expected one mapped value/);
+  assert.match(page, /#VALUE! Incorrect Parameters from a LAMBDA argument mismatch/);
+  assert.match(page, /#CALC! from an unsupported array return inside the mapped LAMBDA/);
+  assert.match(page, /multiple arrays line up by rows and columns/);
+  assert.match(page, /Excel for Microsoft 365 or Excel 2024/);
+  assert.match(page, /Make the LAMBDA parameter count match the number of arrays passed into MAP/);
+  assert.match(page, /one-value-per-position returns/);
+  assert.match(page, /=MAP\(A2:A20,B2:B20,LAMBDA\(qty,price,qty\*price\)\)/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-map-function-not-working\/">Excel MAP function repair/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-map-function-not-working\//);
+  assert.doesNotMatch(page, /Google Sheets MAP|upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|handles arrays of any size|works in every version|any version of Excel|full spreadsheet repair/i);
 });
 
 test('excel TOROW and TOCOL not working page targets flattening repair intent without overclaiming', () => {

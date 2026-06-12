@@ -4881,6 +4881,41 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-map-function-not-working',
+    title: 'Excel MAP Function Not Working - Fix #VALUE, #CALC, #SPILL | Write My Formula',
+    description: 'Paste an Excel MAP formula returning #VALUE!, #CALC!, #SPILL!, #NAME?, or the wrong transformed array and get a focused repair path.',
+    eyebrow: 'Excel MAP function repair',
+    h1: 'Fix an Excel MAP formula that is not transforming values correctly.',
+    lede: 'MAP applies a LAMBDA to each value in one or more arrays. It can break when the LAMBDA has the wrong number of parameters, returns an array where Excel expected one mapped value, references arrays that need to line up by position, spills into occupied cells, or opens in an Excel version that does not support the function. Paste the formula you can see in Excel and the output you expected.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=MAP(A2:A20,B2:B20,LAMBDA(qty,price,qty*price))'
+    },
+    intent: 'Help Excel users repair one MAP formula where the visible problem is usually #VALUE! Incorrect Parameters from a LAMBDA argument mismatch, #CALC! from an unsupported array return inside the mapped LAMBDA, #SPILL! from blocked output cells, #NAME? from unsupported Excel versions, source arrays that need to line up, or a wrong per-cell transformation.',
+    bestFor: [
+      'MAP formulas that should transform each value in one range but return #VALUE!, #CALC!, #SPILL!, #NAME?, or the wrong result.',
+      'MAP formulas with two or more source arrays where the LAMBDA parameter count or array shape needs to match the inputs.',
+      'Excel for Microsoft 365 or Excel 2024 workbooks where a LAMBDA helper formula needs to be checked before it feeds a dynamic-array report.',
+      'Cases where the pasted formula, source arrays, LAMBDA parameters, return value, and spill range need to be inspected together.'
+    ],
+    steps: [
+      'Paste the exact MAP formula that is not working.',
+      'List the source ranges and what one mapped output value should be for one row or cell.',
+      'Name the visible symptom: #VALUE! Incorrect Parameters, #CALC!, #SPILL!, #NAME?, source arrays that do not line up, or a result that runs but transforms the wrong values.',
+      'Review the repaired formula and explanation, then test it on a small range before using it in a report.'
+    ],
+    copyChecks: [
+      'Make the LAMBDA parameter count match the number of arrays passed into MAP.',
+      'Keep the LAMBDA return to one mapped value for each input position; nested array returns can produce #CALC!.',
+      'Check that multiple arrays line up by rows and columns before changing the calculation logic.',
+      'Clear the intended spill range before rewriting a formula that otherwise calculates correctly.',
+      'Confirm the workbook is being opened in Excel for Microsoft 365 or Excel 2024.',
+      'Check Excel version support when MAP appears as #NAME? or _xlfn.',
+      'Use a workbook-level review only when the problem depends on hidden data, external links, named ranges, or cells outside the formula you paste.'
+    ]
+  },
+  {
     slug: 'excel-wraprows-wrapcols-not-working',
     title: 'Excel WRAPROWS / WRAPCOLS Not Working - Repair the Formula | Write My Formula',
     description: 'Paste a WRAPROWS or WRAPCOLS formula returning #VALUE!, #NUM!, #N/A, #SPILL!, or #NAME? and get a repaired one-cell formula to test in Excel.',
@@ -7646,6 +7681,20 @@ const pageEnhancements = {
       setup: 'A report has monthly values in A2:D20. The output should return one total for each row.',
       formula: '=BYROW(A2:D20,LAMBDA(row,SUM(row)))',
       read: 'The formula passes each row into the LAMBDA and returns one SUM per row. If the output should return one total per month column instead, BYCOL is the direction to check before changing the calculation.'
+    }
+  },
+  'excel-map-function-not-working': {
+    gives: [
+      'A focused repair pass for one MAP formula returning #VALUE!, #CALC!, #SPILL!, #NAME?, or a wrong transformed array.',
+      'Checks for source arrays, LAMBDA parameter count, one-value-per-position returns, blocked spill output, and Excel version support.',
+      'A revised MAP formula you can test on a small range before using it in a dynamic-array report.'
+    ],
+    useWhen: 'Use this page when MAP is close but not trustworthy: the formula returns #VALUE! Incorrect Parameters, #CALC!, #SPILL!, or #NAME?, runs without an error but transforms the wrong values, or uses several arrays where each mapped position needs matching inputs. It is strongest when you can paste the visible formula and say what one mapped output value should be.',
+    notWhen: 'Do not treat MAP as a whole-workbook debugger. The useful repair surface is the formula you paste, the arrays it references, the LAMBDA parameters, and whether each mapped position returns exactly one value.',
+    example: {
+      setup: 'A report has quantities in A2:A20 and unit prices in B2:B20. The output should return one line total for each row.',
+      formula: '=MAP(A2:A20,B2:B20,LAMBDA(qty,price,qty*price))',
+      read: 'The formula passes the matching quantity and price into the LAMBDA for each position and returns one calculated value per row. If a third array is added to MAP, the LAMBDA needs a third parameter before the calculation.'
     }
   },
   'excel-wraprows-wrapcols-not-working': {
