@@ -5098,6 +5098,47 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-groupby-pivotby-not-working',
+    title: 'Excel GROUPBY or PIVOTBY Not Working Fixer | Write My Formula',
+    description: 'Fix Excel GROUPBY and PIVOTBY formulas with #VALUE!, #CALC!, #SPILL!, #NAME?, wrong headers, wrong totals, sort issues, or mismatched filter arrays.',
+    eyebrow: 'Excel GROUPBY and PIVOTBY repair',
+    h1: 'Fix a GROUPBY or PIVOTBY formula that is summarizing wrong.',
+    lede: 'GROUPBY and PIVOTBY can break when row fields, column fields, values, and filter arrays are not the same height, the aggregation function is not accepted, headers or totals are inferred wrong, the spill range is blocked, or the workbook opens in an Excel version that does not support the function. Paste the formula and a small note about the source columns you are grouping.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=PIVOTBY(B2:B500,A2:A500,D2:D500,SUM)'
+    },
+    intent: 'Help Excel users repair one GROUPBY or PIVOTBY formula where the visible problem is usually #VALUE! from mismatched field/value/filter shapes, #CALC! from an aggregator or empty-result issue, #SPILL! from blocked output cells, #NAME? from unsupported Excel versions, wrong field headers, unexpected totals, sort direction mistakes, or confusion between PIVOTBY formulas and PivotTable features.',
+    bestFor: [
+      'GROUPBY formulas that should summarize one row axis but return an error, wrong totals, unexpected headers, or the wrong sorted result.',
+      'PIVOTBY formulas that should summarize row and column fields but return a bad grid, wrong totals, blocked spill output, or a formula error.',
+      'Excel for Microsoft 365 or Excel 2024 workbooks where one formula summary needs to be repaired before it feeds a report.',
+      'Cases where row fields, column fields, values, aggregation function, field headers, total depth, sort order, and filter array need to be checked together.'
+    ],
+    steps: [
+      'Paste the exact GROUPBY or PIVOTBY formula that is not working.',
+      'Describe the source columns in one line, including which range is row fields, column fields, values, and any filter array.',
+      'Name the visible symptom: #VALUE!, #CALC!, #SPILL!, #NAME?, wrong headers, wrong totals, wrong sort order, or the wrong summary shape.',
+      'Review the repaired formula and explanation, then test it on a small source range before replacing a report formula.'
+    ],
+    copyChecks: [
+      'Keep row_fields, col_fields, values, and filter_array as column-oriented ranges with matching row counts.',
+      'Use an accepted aggregation function such as SUM, AVERAGE, COUNT, PERCENTOF, or a simple lambda pattern that matches the function argument.',
+      'Set field_headers deliberately when Excel guesses the header row wrong.',
+      'Check total_depth, row_total_depth, and col_total_depth before treating extra total rows or columns as data errors.',
+      'Use negative sort positions only when the summary should sort descending.',
+      'Clear the intended spill range before rewriting a formula that otherwise returns the right summary.',
+      'Check Excel version support when GROUPBY or PIVOTBY appears as #NAME? or _xlfn.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Formula, not PivotTable',
+        html: 'PIVOTBY can create a similar-looking summary grid, but it is a worksheet formula. Fix the formula arguments first: row fields, column fields, values, aggregation function, headers, totals, sort order, and filter array.'
+      }
+    ]
+  },
+  {
     slug: 'excel-let-function-not-working',
     title: 'Excel LET Function Not Working Fixer | Write My Formula',
     description: 'Fix Excel LET formulas with valid-name errors, #NAME?, too few arguments, separator problems, nested formulas, and unsupported Excel versions.',
@@ -7805,6 +7846,20 @@ const pageEnhancements = {
       setup: 'A report should show the top 10 open deals after sorting by value descending from a four-column source table.',
       formula: '=TAKE(SORT(FILTER(A2:D500,C2:C500="Open"),4,-1),10)',
       read: 'FILTER keeps open rows first, SORT orders that filtered array by the fourth column, and TAKE returns the first 10 rows from the sorted result. If the filter returns no rows or the output range is blocked, the TAKE step is not the first place to fix.'
+    }
+  },
+  'excel-groupby-pivotby-not-working': {
+    gives: [
+      'A focused repair pass for one GROUPBY or PIVOTBY formula returning #VALUE!, #CALC!, #SPILL!, #NAME?, wrong headers, wrong totals, or the wrong summary shape.',
+      'Checks for row fields, column fields, values, aggregation function, field headers, total depth, sort order, filter array shape, and Excel version support.',
+      'A revised formula summary you can test on a small source range before using it in a report.'
+    ],
+    useWhen: 'Use this page when GROUPBY or PIVOTBY is close but not reliable: the formula is not recognized, spills into blocked cells, rejects an aggregation function, guesses headers wrong, adds totals you did not expect, sorts the wrong way, or returns a summary grid with the wrong shape. It is strongest when you can paste the formula and identify the source columns involved.',
+    notWhen: 'Do not treat PIVOTBY as the same thing as an Excel PivotTable. PIVOTBY is a worksheet formula, so repairs start with formula arguments rather than PivotTable field-list settings.',
+    example: {
+      setup: 'A sales table has dates in A, products in B, regions in C, and revenue in D. The report should summarize revenue by product and year.',
+      formula: '=PIVOTBY(B2:B500,A2:A500,D2:D500,SUM)',
+      read: 'The formula uses products as row fields, dates as column fields, revenue as values, and SUM as the aggregation function. If one range is a different height or the output grid is blocked, the summary can fail even when the aggregation choice is right.'
     }
   },
   'excel-let-function-not-working': {

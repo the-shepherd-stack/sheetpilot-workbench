@@ -186,6 +186,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix CHOOSECOLS and CHOOSEROWS formulas with #VALUE!, #NAME\?, #SPILL!, wrong selected columns or rows, and nested-array errors/);
   assert.match(page, /\/excel-take-drop-not-working\//);
   assert.match(page, /Fix TAKE and DROP formulas with #CALC!, #NUM!, #NAME\?, #SPILL!, wrong rows or columns, and nested-array errors/);
+  assert.match(page, /\/excel-groupby-pivotby-not-working\//);
+  assert.match(page, /Fix formula summaries with #VALUE!, #CALC!, #SPILL!, #NAME\?, wrong headers, wrong totals, sort issues, or filter-array mistakes/);
   assert.match(page, /\/excel-lambda-not-working\//);
   assert.match(page, /Fix LAMBDA formulas with #CALC!, #VALUE!, #NUM!, missing calls, argument-count problems, recursion issues, or named-function setup mistakes/);
   assert.match(page, /\/excel-if-formula-multiple-conditions\//);
@@ -3643,6 +3645,28 @@ test('excel TAKE DROP not working page targets dynamic array slice repair withou
   assert.match(homepage, /href="\/excel-take-drop-not-working\/">Excel TAKE and DROP repair/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-take-drop-not-working\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause/i);
+});
+
+test('excel GROUPBY PIVOTBY not working page targets formula-summary repair without overclaiming', () => {
+  const page = read('excel-groupby-pivotby-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel GROUPBY or PIVOTBY Not Working Fixer/);
+  assert.match(page, /Fix a GROUPBY or PIVOTBY formula that is summarizing wrong/);
+  assert.match(page, /row fields, column fields, values, and filter arrays are not the same height/);
+  assert.match(page, /aggregation function is not accepted/);
+  assert.match(page, /field headers, total depth, sort order, filter array shape/);
+  assert.match(page, /=PIVOTBY\(B2:B500,A2:A500,D2:D500,SUM\)/);
+  assert.match(page, /Keep row_fields, col_fields, values, and filter_array as column-oriented ranges with matching row counts/);
+  assert.match(page, /PIVOTBY can create a similar-looking summary grid, but it is a worksheet formula/);
+  assert.match(page, /Check Excel version support when GROUPBY or PIVOTBY appears as #NAME\? or _xlfn/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-groupby-pivotby-not-working\/">Excel GROUPBY and PIVOTBY repair/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-groupby-pivotby-not-working\//);
+  assert.doesNotMatch(page, /Google Sheets GROUPBY|Google Sheets PIVOTBY|upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|works in any Excel|works in every version|replaces PivotTables|new PivotTable|fully supported/i);
 });
 
 test('excel LET function not working page targets variable repair without overclaiming', () => {
