@@ -172,6 +172,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix SORT formulas with #SPILL!, wrong sort columns, header-row mistakes, row separation, text-stored dates or numbers, and version support issues/);
   assert.match(page, /\/excel-vstack-hstack-not-working\//);
   assert.match(page, /Fix stacked arrays with #N\/A padding, #SPILL! blockers, #NAME\? version issues, mismatched array sizes, or the wrong combine direction/);
+  assert.match(page, /\/excel-wraprows-wrapcols-not-working\//);
+  assert.match(page, /Fix WRAPROWS and WRAPCOLS formulas with #VALUE!, #NUM!, #N\/A, #SPILL!, #NAME\?, wrong wrapping direction, or padding issues/);
   assert.match(page, /\/excel-choosecols-chooserows-not-working\//);
   assert.match(page, /Fix CHOOSECOLS and CHOOSEROWS formulas with #VALUE!, #NAME\?, #SPILL!, wrong selected columns or rows, and nested-array errors/);
   assert.match(page, /\/excel-take-drop-not-working\//);
@@ -744,6 +746,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-xmatch-not-working',
     'excel-sort-not-working',
     'excel-vstack-hstack-not-working',
+    'excel-wraprows-wrapcols-not-working',
     'excel-choosecols-chooserows-not-working',
     'excel-if-formula-multiple-conditions',
     'excel-if-formula-not-working',
@@ -3245,6 +3248,31 @@ test('excel VSTACK and HSTACK not working page targets stack repair intent witho
   assert.match(homepage, /href="\/excel-vstack-hstack-not-working\/">Excel VSTACK or HSTACK not working/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-vstack-hstack-not-working\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole spreadsheet|exact cause/i);
+});
+
+test('excel WRAPROWS and WRAPCOLS not working page targets wrapping repair intent without overclaiming', () => {
+  const page = read('excel-wraprows-wrapcols-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel WRAPROWS \/ WRAPCOLS Not Working - Repair the Formula/);
+  assert.match(page, /Fix a WRAPROWS or WRAPCOLS formula that is wrapping wrong/);
+  assert.match(page, /returning the wrong shape, an error, or #N\/A padding/);
+  assert.match(page, /vector that is not one row or one column/);
+  assert.match(page, /wrap_count under 1/);
+  assert.match(page, /returning #VALUE!, #NUM!, #N\/A, #SPILL!, #NAME\?, or a wrongly shaped result/);
+  assert.match(page, /one-dimensional vector input, wrap_count, pad_with/);
+  assert.match(page, /Excel version support/);
+  assert.match(page, /Use TOCOL or TOROW deliberately/);
+  assert.match(page, /Add the optional pad_with argument/);
+  assert.match(page, /=WRAPROWS\(A2:A25,4,&quot;&quot;\)/);
+  assert.match(page, /Do not treat every #N\/A in WRAPROWS or WRAPCOLS as a failed lookup/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-wraprows-wrapcols-not-working\/">Excel WRAPROWS and WRAPCOLS repair/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-wraprows-wrapcols-not-working\//);
+  assert.doesNotMatch(page, /Google Sheets WRAPROWS|Google Sheets WRAPCOLS|upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause/i);
 });
 
 test('excel CHOOSECOLS and CHOOSEROWS not working page targets row and column selection repair intent without overclaiming', () => {

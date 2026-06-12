@@ -4846,6 +4846,40 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-wraprows-wrapcols-not-working',
+    title: 'Excel WRAPROWS / WRAPCOLS Not Working - Repair the Formula | Write My Formula',
+    description: 'Paste a WRAPROWS or WRAPCOLS formula returning #VALUE!, #NUM!, #N/A, #SPILL!, or #NAME? and get a repaired one-cell formula to test in Excel.',
+    eyebrow: 'Excel WRAPROWS and WRAPCOLS repair',
+    h1: 'Fix a WRAPROWS or WRAPCOLS formula that is wrapping wrong.',
+    lede: 'You have one formula open in Excel and it is returning the wrong shape, an error, or #N/A padding where data should be. Paste the formula and a short note about your source range. You get back a repaired single-cell formula and a plain-English reason it broke: usually a vector that is not one row or one column, a wrap_count under 1, missing pad_with text, or a spill range with something sitting in it.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=WRAPROWS(A2:A25,4,"")'
+    },
+    intent: 'Help Excel users repair one WRAPROWS or WRAPCOLS formula where the visible problem is usually #VALUE! from a two-dimensional source, #NUM! from a bad wrap_count, #N/A padding, #SPILL! from blocked output cells, #NAME? from unsupported Excel versions, or rows and columns wrapping in the wrong direction.',
+    bestFor: [
+      'WRAPROWS formulas that should turn one column or row into grouped rows but return #VALUE!, #NUM!, #N/A padding, #SPILL!, or the wrong shape.',
+      'WRAPCOLS formulas that should turn one column or row into grouped columns but return the same errors or wrap in the wrong direction.',
+      'Excel for Microsoft 365 or Excel 2024 workbooks where one dynamic-array formula needs to be repaired before it is used in a report.',
+      'Cases where the source shape, wrap_count, pad_with value, and spill range need to be checked before the formula is copied elsewhere.'
+    ],
+    steps: [
+      'Paste the exact WRAPROWS or WRAPCOLS formula that is not working.',
+      'Describe the source shape in one line, such as A2:A50 as one column or B1:Z1 as one row.',
+      'Name the visible symptom: #VALUE!, #NUM!, #N/A in trailing cells, #SPILL!, #NAME?, or wraps the wrong way.',
+      'Review the repaired single-cell formula and explanation, then test it in the same workbook.'
+    ],
+    copyChecks: [
+      'Confirm the source is one row or one column before rewriting the whole formula.',
+      'Use TOCOL or TOROW deliberately if the current source is a two-dimensional range that needs to be flattened first.',
+      'Make wrap_count a positive whole number; blank, zero, or negative counts can return #NUM!.',
+      'Add the optional pad_with argument, such as an empty string, only when trailing #N/A padding is expected.',
+      'Clear the intended spill range before changing a formula that is otherwise valid.',
+      'Check Excel version support when WRAPROWS or WRAPCOLS appears as #NAME? or _xlfn.'
+    ]
+  },
+  {
     slug: 'excel-choosecols-chooserows-not-working',
     title: 'Excel CHOOSECOLS or CHOOSEROWS Not Working Fixer | Write My Formula',
     description: 'Fix Excel CHOOSECOLS and CHOOSEROWS formulas with #VALUE!, #NAME?, #SPILL!, wrong selected columns or rows, and broken nested arrays.',
@@ -7523,6 +7557,20 @@ const pageEnhancements = {
       setup: 'A workbook combines two department extracts. One extract has three columns and another has only two, so VSTACK pads the missing third column with #N/A.',
       formula: '=IFNA(VSTACK(A2:C20,F2:H20),"")',
       read: 'The formula stacks both extracts vertically and turns expected padding into blanks. Before using the fallback, check whether the missing column should be mapped, added, or left blank.'
+    }
+  },
+  'excel-wraprows-wrapcols-not-working': {
+    gives: [
+      'A focused repair pass for one WRAPROWS or WRAPCOLS formula returning #VALUE!, #NUM!, #N/A, #SPILL!, #NAME?, or a wrongly shaped result.',
+      'Checks for one-dimensional vector input, wrap_count, pad_with, blocked spill output, wrap direction, and Excel version support.',
+      'A revised single-cell wrapping formula you can test on a small source range before using it in a report.'
+    ],
+    useWhen: 'Use this page when WRAPROWS or WRAPCOLS is close but not reliable: the formula rejects the source range, pads the final row or column with #N/A, spills into blocked cells, wraps by rows when you needed columns, or is not recognized in the workbook. It is strongest when you can paste the formula and describe the source as one row, one column, or a two-dimensional range.',
+    notWhen: 'Do not treat every #N/A in WRAPROWS or WRAPCOLS as a failed lookup. With these functions, #N/A can be expected padding when the source vector does not divide evenly into the requested row or column size.',
+    example: {
+      setup: 'A single list of invoice IDs in A2:A25 should wrap into rows of four values, with blank padding instead of #N/A in the final row.',
+      formula: '=WRAPROWS(A2:A25,4,"")',
+      read: 'The formula takes one column as the vector, puts four values in each returned row, and uses the optional pad_with argument to leave incomplete trailing cells blank. If the source is A2:D25 instead, flatten it first or choose a different reshape formula.'
     }
   },
   'excel-choosecols-chooserows-not-working': {
