@@ -5056,6 +5056,41 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-transpose-not-working',
+    title: 'Excel TRANSPOSE Not Working - Fix #VALUE, #SPILL, First Cell Only | Write My Formula',
+    description: 'Paste an Excel TRANSPOSE formula returning #VALUE!, #SPILL!, only one cell, or the wrong orientation and get a focused repair path.',
+    eyebrow: 'Excel TRANSPOSE repair',
+    h1: 'Fix a TRANSPOSE formula that will not rotate your range correctly.',
+    lede: 'TRANSPOSE turns rows into columns or columns into rows, but it can fail when legacy Excel needs a Ctrl+Shift+Enter array formula, the selected output range is the wrong size, the spill range is blocked, or Paste Special Transpose is being confused with a live TRANSPOSE formula. Paste the formula you can see in Excel and the shape you expected.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=TRANSPOSE(A2:D6)'
+    },
+    intent: 'Help Excel users repair one TRANSPOSE formula where the visible problem is usually #VALUE! from legacy array-entry or output-size issues, #SPILL! from blocked dynamic-array output, only the first cell returning, copied values that are not linked to the source, or rows and columns rotating the wrong way.',
+    bestFor: [
+      'TRANSPOSE formulas that should rotate a source range but return #VALUE!, #SPILL!, only one value, or a wrongly shaped output.',
+      'Legacy Excel files where the selected destination range, Ctrl+Shift+Enter entry, and formula braces need to be checked together.',
+      'Excel for Microsoft 365 or Excel 2024 files where the formula should spill but another value, table, or merged cell blocks the output.',
+      'Cases where the user needs a live formula linked to the source instead of a one-time Paste Special Transpose copy.'
+    ],
+    steps: [
+      'Paste the exact TRANSPOSE formula that is not working.',
+      'Say the source range shape and the output shape you expected, such as 5 rows by 4 columns becoming 4 rows by 5 columns.',
+      'Name the visible symptom: #VALUE!, #SPILL!, only the first cell, copied values that do not update, or rows and columns reversed.',
+      'Review the revised formula and copy checks, then test it in an empty area before replacing the report output.'
+    ],
+    copyChecks: [
+      'In Excel 365 or later, enter TRANSPOSE in the upper-left output cell and let the result spill into empty cells.',
+      'In legacy Excel, select the full output range first and confirm the formula with Ctrl+Shift+Enter.',
+      'Make the output area the rotated size of the source: source rows become output columns, and source columns become output rows.',
+      'Clear the intended spill range before rewriting a formula that otherwise calculates correctly.',
+      'Use Paste Special Transpose only when a static copied result is acceptable; use TRANSPOSE when the output should update with the source.',
+      'Check Excel version and array behavior before changing the source data or wrapping the formula in IFERROR.',
+      'Use a workbook-level review only when the problem depends on hidden cells, merged cells, tables, protected ranges, or cells outside the formula you paste.'
+    ]
+  },
+  {
     slug: 'excel-switch-ifs-not-working',
     title: 'Fix SWITCH or IFS in Excel - #N/A, #VALUE, #NAME Errors | Write My Formula',
     description: 'Paste an Excel SWITCH or IFS formula returning #N/A, #VALUE!, #NAME?, the wrong branch, or a missing default and get a revised formula with checks.',
@@ -8007,6 +8042,20 @@ const pageEnhancements = {
       setup: 'A sample table needs 10 random whole-number scores between 1 and 100 in one column.',
       formula: '=RANDARRAY(10,1,1,100,TRUE)',
       read: 'The formula returns 10 rows and 1 column, uses 1 as the minimum, 100 as the maximum, and TRUE so Excel returns whole numbers instead of decimals. If the output should stay fixed, copy and paste values after testing the formula.'
+    }
+  },
+  'excel-transpose-not-working': {
+    gives: [
+      'A focused repair pass for one TRANSPOSE formula returning #VALUE!, #SPILL!, only one cell, or the wrong rotated output.',
+      'Checks for legacy Ctrl+Shift+Enter entry, selected output size, blocked spill cells, source range shape, and static Paste Special Transpose confusion.',
+      'A revised transpose pattern you can test in an empty area before replacing a linked report output.'
+    ],
+    useWhen: 'Use this page when TRANSPOSE is close but not reliable: the formula only returns the first source cell, shows #VALUE! in older Excel, spills into blocked cells, rotates the wrong direction, or returns a static pasted copy when you needed a formula-linked output. It is strongest when you can paste the formula and describe the source rows and columns.',
+    notWhen: 'Do not use Paste Special Transpose when the rotated output needs to update with the original source cells. Paste Special creates a copied result; the TRANSPOSE function is the formula path to inspect when the output should stay linked.',
+    example: {
+      setup: 'A report has four columns of monthly values in A2:D6. The output should turn those five source rows into five columns across the page.',
+      formula: '=TRANSPOSE(A2:D6)',
+      read: 'In current Excel, enter the formula in the upper-left output cell and leave a clear 4-row by 5-column spill area. In legacy Excel, select that full rotated output area first and confirm the formula with Ctrl+Shift+Enter.'
     }
   },
   'excel-switch-ifs-not-working': {

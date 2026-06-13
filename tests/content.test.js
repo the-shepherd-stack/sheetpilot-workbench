@@ -182,6 +182,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix SEQUENCE formulas with #VALUE!, #SPILL!, #NAME\?, wrong row or column counts, wrong start values, or step mistakes/);
   assert.match(page, /\/excel-randarray-not-working\//);
   assert.match(page, /Fix RANDARRAY formulas with #VALUE!, #SPILL!, #NAME\?, changing output, wrong rows or columns, wrong min\/max values, or decimal-versus-whole-number issues/);
+  assert.match(page, /\/excel-transpose-not-working\//);
+  assert.match(page, /Fix TRANSPOSE formulas with #VALUE!, #SPILL!, only one returned cell, wrong output size, or static copy confusion/);
   assert.match(page, /\/excel-wraprows-wrapcols-not-working\//);
   assert.match(page, /Fix WRAPROWS and WRAPCOLS formulas with #VALUE!, #NUM!, #N\/A, #SPILL!, #NAME\?, wrong wrapping direction, or padding issues/);
   assert.match(page, /\/excel-expand-function-not-working\//);
@@ -612,6 +614,31 @@ test('Excel RANDARRAY repair page keeps random-array repair bounded', () => {
   assert.match(homepage, /href="\/excel-randarray-not-working\/">Excel RANDARRAY repair/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-randarray-not-working\//);
   assert.doesNotMatch(page, /Google Sheets RANDARRAY|upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|works in every version|any version of Excel|full spreadsheet repair|auto-detects your Excel version|clears? your spill range/i);
+});
+
+test('Excel TRANSPOSE repair page keeps rotation repair bounded', () => {
+  const page = read('excel-transpose-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel TRANSPOSE Not Working - Fix #VALUE, #SPILL, First Cell Only/);
+  assert.match(page, /Fix a TRANSPOSE formula that will not rotate your range correctly/);
+  assert.match(page, /TRANSPOSE turns rows into columns or columns into rows/);
+  assert.match(page, /legacy Excel needs a Ctrl\+Shift\+Enter array formula/);
+  assert.match(page, /selected output range is the wrong size/);
+  assert.match(page, /Paste Special Transpose is being confused with a live TRANSPOSE formula/);
+  assert.match(page, /#VALUE! from legacy array-entry or output-size issues/);
+  assert.match(page, /#SPILL! from blocked dynamic-array output/);
+  assert.match(page, /only the first cell returning/);
+  assert.match(page, /Use Paste Special Transpose only when a static copied result is acceptable/);
+  assert.match(page, /In legacy Excel, select the full output range first and confirm the formula with Ctrl\+Shift\+Enter/);
+  assert.match(page, /=TRANSPOSE\(A2:D6\)/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-transpose-not-working\/">Excel TRANSPOSE repair/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-transpose-not-working\//);
+  assert.doesNotMatch(page, /Google Sheets TRANSPOSE|upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|works in every version|any version of Excel|full spreadsheet repair|auto-detects your Excel version|clears? your spill range/i);
 });
 
 test('config exposes checkout and account usage limits', () => {
