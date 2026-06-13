@@ -86,6 +86,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix SUMPRODUCT formulas that return #VALUE!, 0, or wrong totals because of array sizes, text numbers, hidden spaces, errors, or full-column references/);
   assert.match(page, /\/excel-countifs-not-working\//);
   assert.match(page, /Fix COUNTIFS formulas that return 0, #VALUE!, or wrong counts because of criteria, range sizes, dates, or closed workbooks/);
+  assert.match(page, /\/excel-subtotal-not-working\//);
+  assert.match(page, /Fix SUBTOTAL formulas that count hidden rows, ignore the wrong rows, return 0 after filtering or grouping, or use the wrong visible-row total/);
   assert.match(page, /\/excel-textjoin-not-working\//);
   assert.match(page, /Fix TEXTJOIN formulas with #VALUE!, #NAME\?, extra delimiters, blank joins, IF or FILTER array issues, line breaks, or version support problems/);
   assert.match(page, /\/excel-textbefore-textafter-not-working\//);
@@ -790,6 +792,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'excel-sumifs-not-working',
     'excel-sumproduct-not-working',
     'excel-countifs-not-working',
+    'excel-subtotal-not-working',
     'excel-textjoin-not-working',
     'excel-textbefore-textafter-not-working',
     'excel-indirect-not-working',
@@ -2049,6 +2052,26 @@ test('excel COUNTIFS not working page targets count criteria repair intent witho
   assert.match(homepage, /href="\/excel-countifs-not-working\/">Excel COUNTIFS not working/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-countifs-not-working\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
+});
+
+test('excel SUBTOTAL not working page targets visible-row repair intent without overclaiming', () => {
+  const page = read('excel-subtotal-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel SUBTOTAL Not Working Fixer/);
+  assert.match(page, /Fix an Excel SUBTOTAL formula that is counting the wrong rows/);
+  assert.match(page, /function_num 9 versus 109/);
+  assert.match(page, /filtered rows, manually hidden rows, grouped rows, or table rows should be ignored/);
+  assert.match(page, /Use 1-11 function numbers when manually hidden rows should still count/);
+  assert.match(page, /Use 101-111 function numbers when manually hidden rows should be ignored/);
+  assert.match(page, /Keep the total cell outside the filtered data range/);
+  assert.match(page, /=SUBTOTAL\(109,C2:C500\)/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-subtotal-not-working\/">Excel SUBTOTAL not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-subtotal-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|automatic|pay before answer|whole workbook/i);
 });
 
 test('excel TEXTJOIN not working page targets text-join repair intent without overclaiming', () => {

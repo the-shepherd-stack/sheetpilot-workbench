@@ -3263,6 +3263,39 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-subtotal-not-working',
+    title: 'Excel SUBTOTAL Not Working Fixer | Write My Formula',
+    description: 'Fix Excel SUBTOTAL formulas that count hidden rows, ignore the wrong rows, return 0 after filtering or grouping, or use the wrong 9 versus 109 function number.',
+    eyebrow: 'Excel SUBTOTAL repair',
+    h1: 'Fix an Excel SUBTOTAL formula that is counting the wrong rows.',
+    lede: 'Paste the SUBTOTAL formula that returns the wrong number, then say whether filtered rows, manually hidden rows, grouped rows, or table rows should be ignored. Get a focused repair path for function_num 9 versus 109, visible-row totals, filter behavior, and range placement.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=SUBTOTAL(9,C2:C500)'
+    },
+    intent: 'Help Excel users repair one SUBTOTAL formula where the visible problem is usually a SUM-style total that still includes manually hidden rows, a visible-only total that should use 101-111 function numbers, a total row caught inside the filtered range, an Excel table or outline/grouping layout issue, or a range that no longer covers the intended values.',
+    bestFor: [
+      'SUBTOTAL formulas that should total only visible rows after a filter is applied.',
+      'Reports where SUBTOTAL(9, range) includes manually hidden rows but the user expected those rows to be ignored.',
+      'SUBTOTAL(109, range) formulas that return 0 or a surprising number after rows are grouped, collapsed, or filtered.',
+      'Totals that move inside the filtered data range, disappear with filters, or include rows that should not be part of the visible total.',
+      'Choosing between SUBTOTAL and a normal SUM, PivotTable, helper column, or AGGREGATE-style pattern for one known report total.'
+    ],
+    steps: [
+      'Paste the exact SUBTOTAL formula and the number Excel returns now.',
+      'Say whether filtered rows, manually hidden rows, grouped or collapsed rows, and subtotal rows should count.',
+      'Mention whether the formula is in a normal range, an Excel table total row, or below a filtered list.'
+    ],
+    copyChecks: [
+      'Use 1-11 function numbers when manually hidden rows should still count.',
+      'Use 101-111 function numbers when manually hidden rows should be ignored.',
+      'Keep the total cell outside the filtered data range so the total row is not hidden with the data.',
+      'Check whether an Excel table, grouped outline, or collapsed rows are changing what is visible before rewriting the formula.',
+      'Test the repaired formula against one filtered view and one unfiltered view before replacing a report total.'
+    ]
+  },
+  {
     slug: 'excel-textjoin-not-working',
     title: 'Excel TEXTJOIN Not Working Fixer | Write My Formula',
     description: 'Fix Excel TEXTJOIN formulas with #VALUE!, #NAME?, extra delimiters, blank joins, IF or FILTER array issues, line breaks, or version support problems.',
@@ -7241,6 +7274,20 @@ const pageEnhancements = {
       setup: 'A support dashboard should count open South-region tickets created in May 2026, but the formula returns 0 after the criteria were copied from another sheet.',
       formula: '=COUNTIFS(A2:A500,"South",C2:C500,"Open",B2:B500,">="&DATE(2026,5,1),B2:B500,"<"&DATE(2026,6,1))',
       read: 'Each criteria range has the same row span, text criteria are quoted, and date boundaries use DATE so Excel compares real date values instead of pasted text.'
+    }
+  },
+  'excel-subtotal-not-working': {
+    gives: [
+      'A focused repair pass for one SUBTOTAL formula that returns the wrong visible-row total.',
+      'Checks for function_num 9 versus 109, filtered rows, manually hidden rows, grouped or collapsed rows, Excel table behavior, and total-row placement.',
+      'A revised formula direction you can test in one filtered view and one unfiltered view before replacing a report total.'
+    ],
+    useWhen: 'Use this page when Excel SUBTOTAL counts rows you expected it to ignore, returns 0 after filtering or grouping, disappears with the filtered data, or needs the right visible-row total for one report range. It is strongest when you can paste the formula and say which row types should count.',
+    notWhen: 'Do not treat SUBTOTAL as proof that a full report is correct. The formula can repair one visible-row total, but source categories, filters, grouping, table layout, and downstream report logic may still need separate checks in Excel.',
+    example: {
+      setup: 'A filtered sales list should total only visible rows, and manually hidden rows should stay out of the total.',
+      formula: '=SUBTOTAL(109,C2:C500)',
+      read: 'The 109 function number sums visible cells while ignoring manually hidden rows. If manually hidden rows should still count, use 9 instead and keep the total cell outside the filtered list.'
     }
   },
   'excel-value-error': {
