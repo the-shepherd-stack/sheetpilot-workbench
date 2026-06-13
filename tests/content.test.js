@@ -138,6 +138,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix LET formulas with invalid names, missing name\/value pairs, parse errors, wrong intermediate results, or nested formula mistakes/);
   assert.match(page, /\/google-sheets-choosecols-chooserows-not-working\//);
   assert.match(page, /Fix CHOOSECOLS and CHOOSEROWS formulas with #VALUE!, wrong selected rows or columns, negative index mistakes, output that cannot expand, or nested array errors/);
+  assert.match(page, /\/google-sheets-vstack-hstack-not-working\//);
+  assert.match(page, /Your VSTACK or HSTACK returns #N\/A, wrong shape, or unknown function/);
   assert.match(page, /\/google-sheets-importrange-not-working\//);
   assert.match(page, /Fix IMPORTRANGE formulas with #REF!, Allow access prompts, oversized imports, slow refreshes, or source permission issues/);
   assert.match(page, /\/google-sheets-importxml-not-working\//);
@@ -822,6 +824,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'google-sheets-query-not-working',
     'google-sheets-arrayformula-not-working',
     'google-sheets-let-function-not-working',
+    'google-sheets-vstack-hstack-not-working',
     'google-sheets-importrange-not-working',
     'google-sheets-importxml-not-working',
     'google-sheets-conditional-formatting-not-working',
@@ -4067,6 +4070,30 @@ test('Google Sheets CHOOSECOLS and CHOOSEROWS repair page targets one formula wi
   assert.match(homepage, /href="\/google-sheets-choosecols-chooserows-not-working\/">Google Sheets CHOOSECOLS repair/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-choosecols-chooserows-not-working\//);
   assert.doesNotMatch(page, /official Google|Google partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|directly edits|edits your sheet|pay before answer|whole workbook|whole spreadsheet|whole sheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|privacy superior|more accurate|faster/i);
+});
+
+test('Google Sheets VSTACK and HSTACK repair page targets stack repair intent without overclaiming', () => {
+  const page = read('google-sheets-vstack-hstack-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /VSTACK or HSTACK Not Working in Google Sheets\? Paste It, Get a Fix/);
+  assert.match(page, /Your VSTACK or HSTACK is returning #N\/A or the wrong shape/);
+  assert.match(page, /one range is a different width or height than the others/);
+  assert.match(page, /nested FILTER or QUERY returns zero rows/);
+  assert.match(page, /array-literal syntax would break with missing values/);
+  assert.match(page, /appears unavailable in a sheet where you expected it to work/);
+  assert.match(page, /Use VSTACK when ranges should be appended vertically/);
+  assert.match(page, /Test nested FILTER, QUERY, SORT, or IMPORTRANGE formulas by themselves/);
+  assert.match(page, /=IFNA\(VSTACK\(A2:C20,F2:H20\),&quot;&quot;\)/);
+  assert.match(page, /2 free tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-vstack-hstack-not-working\/">Google Sheets VSTACK or HSTACK not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-vstack-hstack-not-working\//);
+  assert.doesNotMatch(page, /official Google|Google partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|connects to your sheet|scans your workbook|directly edits|edits your sheet|pay before answer|whole workbook|whole spreadsheet|whole sheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|privacy superior|more accurate|faster|unlimited/i);
 });
 
 test('Formularizer alternative page targets focused formula comparison without overclaiming', () => {

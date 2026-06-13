@@ -4320,6 +4320,39 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-vstack-hstack-not-working',
+    title: 'VSTACK or HSTACK Not Working in Google Sheets? Paste It, Get a Fix | Write My Formula',
+    description: 'Your VSTACK or HSTACK returns #N/A, wrong shape, or unknown function. Paste the formula and get a rewrite you can drop back into your sheet.',
+    eyebrow: 'Google Sheets VSTACK and HSTACK fix',
+    h1: 'Your VSTACK or HSTACK is returning #N/A or the wrong shape. Paste it here and get a working rewrite.',
+    lede: 'VSTACK and HSTACK can fail when one range is a different width or height than the others, when a nested FILTER or QUERY returns zero rows, when array-literal syntax would break with missing values, or when the cells below or beside your formula are not empty. Paste the formula you have and get a rewrite plus the checks to make before you put it back in Google Sheets.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=VSTACK(A2:C20,F2:H20)'
+    },
+    intent: 'Help Google Sheets users repair one VSTACK or HSTACK formula where the visible problem is usually #N/A padding, wrong append direction, blocked array output, nested FILTER or QUERY behavior, unavailable-function confusion, or array-literal replacement.',
+    bestFor: [
+      'VSTACK output padded with #N/A because one source range has fewer columns than the others.',
+      'HSTACK output padded with #N/A because one source range has fewer rows than the others.',
+      'A nested FILTER, QUERY, or SORT inside the stack returns no rows, returns an error, or changes the array shape.',
+      'Sheets says unknown function or VSTACK / HSTACK is unavailable and you need to separate account availability from syntax.',
+      'The formula calculates but cannot expand because cells below or beside the output are already occupied.'
+    ],
+    steps: [
+      'Paste the exact VSTACK or HSTACK formula and the visible error or wrong output.',
+      'Include the source range sizes or a few sample rows from each range being combined.',
+      'Say whether the ranges should append top-to-bottom with VSTACK or side-by-side with HSTACK.'
+    ],
+    copyChecks: [
+      'Use VSTACK when ranges should be appended vertically; use HSTACK when ranges should be appended horizontally.',
+      'Check whether the source ranges have matching widths for VSTACK or matching heights for HSTACK before hiding #N/A padding.',
+      'Test nested FILTER, QUERY, SORT, or IMPORTRANGE formulas by themselves before wrapping them in a stack.',
+      'Replace brittle array-literal joins only after confirming the ranges and separators match your Google Sheets locale.',
+      'Clear the cells below and beside the formula so the combined array has room to expand.'
+    ]
+  },
+  {
     slug: 'google-sheets-importrange-not-working',
     title: 'Google Sheets IMPORTRANGE Not Working? | Write My Formula',
     description: 'Fix Google Sheets IMPORTRANGE formulas with #REF!, Allow access prompts, permission issues, result-size limits, slow refreshes, or volatile-function errors.',
@@ -7698,6 +7731,20 @@ const pageEnhancements = {
       setup: 'A report in A1:F500 should keep the first column, the third column, and the last column from the selected array.',
       formula: '=CHOOSECOLS(A1:F500,1,3,-1)',
       read: 'The formula counts positions inside A1:F500, returns columns 1 and 3, and uses -1 to return the last column of that selected array. If the source range changes, count the positions again before pasting the formula into a shared report.'
+    }
+  },
+  'google-sheets-vstack-hstack-not-working': {
+    gives: [
+      'A focused repair pass for one Google Sheets VSTACK or HSTACK formula.',
+      'Checks for stack direction, source range width or height, expected #N/A padding, nested array errors, blocked output cells, and unavailable-function clues.',
+      'A revised stack formula you can test on a small sample before replacing a shared report formula.'
+    ],
+    useWhen: 'Use this page when VSTACK or HSTACK returns #N/A padding, combines ranges in the wrong direction, fails after a nested FILTER or QUERY returns no rows, cannot expand, or appears unavailable in a sheet where you expected it to work. It is strongest when you can paste the formula and the source range sizes.',
+    notWhen: 'Do not use it as a whole-sheet audit or a promise that Google account availability can be changed from outside Sheets. The useful repair surface is the formula, the ranges being stacked, the nested array formulas, and whether the output has room to expand.',
+    example: {
+      setup: 'A shared report combines two weekly extracts with the same columns. One range sometimes has fewer rows, and the stack should stay readable when the source changes.',
+      formula: '=IFNA(VSTACK(A2:C20,F2:H20),"")',
+      read: 'VSTACK appends the second range below the first. IFNA turns expected padding into blanks, but only after checking that both extracts are supposed to have the same columns and that the output range is clear.'
     }
   },
   'google-sheets-importrange-not-working': {
