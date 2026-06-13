@@ -5021,6 +5021,41 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-switch-ifs-not-working',
+    title: 'Fix SWITCH or IFS in Excel - #N/A, #VALUE, #NAME Errors | Write My Formula',
+    description: 'Paste an Excel SWITCH or IFS formula returning #N/A, #VALUE!, #NAME?, the wrong branch, or a missing default and get a revised formula with checks.',
+    eyebrow: 'Excel SWITCH and IFS repair',
+    h1: 'Fix a SWITCH or IFS formula that returns #N/A, #VALUE, #NAME, or the wrong answer.',
+    lede: 'SWITCH and IFS usually break for a short list of reasons: no default, no final TRUE fallback, a test that is not TRUE/FALSE, stored values that do not match, or branch order that catches the wrong row. Paste your formula and one example: the value you are testing, and the answer it should return. You get a revised formula with an explanation and copy checks.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=SWITCH(A2,"P","Paid","O","Open","Unknown")'
+    },
+    intent: 'Help Excel users repair one SWITCH or IFS formula where the visible problem is usually #N/A from no matching SWITCH value or no TRUE IFS condition, #VALUE! from an IFS logical test that is not TRUE/FALSE, #NAME? from a misspelled function or an Excel version before these functions are available, a missing default branch, or branch order that returns the wrong label.',
+    bestFor: [
+      'SWITCH formulas that return #N/A because the expression does not match any listed value and no default result was supplied.',
+      'IFS formulas that return #N/A because none of the tests are TRUE and the formula does not include a final TRUE fallback.',
+      'Decision-list formulas that return the wrong label because text, numbers, blanks, or branch order are being tested differently than expected.',
+      'Excel 2019, Excel 2021, Excel 2024, or Microsoft 365 workbooks where one conditional formula needs to be repaired before it is filled down.'
+    ],
+    steps: [
+      'Paste the exact SWITCH or IFS formula that is not working.',
+      'Add one example value or row and the answer it should return.',
+      'Name the visible symptom: #N/A, #VALUE!, #NAME?, a wrong label, a blank-looking result, or a branch that never fires.',
+      'Review the repaired formula and explanation, then test it on one known matching input and one no-match input.'
+    ],
+    copyChecks: [
+      'Add a default result to SWITCH when no listed value matches the expression.',
+      'Add a final TRUE fallback to IFS when a no-match row should return a readable label instead of #N/A.',
+      'Make every IFS logical test return TRUE or FALSE before changing the result values.',
+      'Check text-versus-number storage, extra spaces, and case expectations before treating the branch list as wrong.',
+      'Order IFS conditions from most specific to broadest so an early TRUE test does not capture rows meant for a later branch.',
+      'Check Excel version support when SWITCH or IFS appears as #NAME? or _xlfn; IFS is documented for Excel 2019 and newer plus Microsoft 365.',
+      'Use a lookup table when the branch list is long enough that maintaining it inside one formula is becoming risky.'
+    ]
+  },
+  {
     slug: 'excel-wraprows-wrapcols-not-working',
     title: 'Excel WRAPROWS / WRAPCOLS Not Working - Repair the Formula | Write My Formula',
     description: 'Paste a WRAPROWS or WRAPCOLS formula returning #VALUE!, #NUM!, #N/A, #SPILL!, or #NAME? and get a repaired one-cell formula to test in Excel.',
@@ -7923,6 +7958,20 @@ const pageEnhancements = {
       setup: 'A report needs 12 monthly period numbers in one vertical column before the sequence feeds a date formula.',
       formula: '=SEQUENCE(12,1,1,1)',
       read: 'The formula returns 12 rows, 1 column, starts at 1, and increases by 1 each row. If the output should run across columns instead, swap the row and column shape deliberately rather than changing the start or step.'
+    }
+  },
+  'excel-switch-ifs-not-working': {
+    gives: [
+      'A focused repair pass for one SWITCH or IFS formula returning #N/A, #VALUE!, #NAME?, or the wrong label.',
+      'Checks for missing default branches, final TRUE fallbacks, TRUE/FALSE logical tests, branch order, stored text-versus-number values, and supported Excel versions.',
+      'A revised decision formula you can test on one known matching input and one no-match input before filling it down.'
+    ],
+    useWhen: 'Use this page when SWITCH or IFS is close but not reliable: it returns #N/A on unmatched values, returns #VALUE! because a condition is not a logical test, is not recognized in the workbook, picks an earlier branch than intended, or needs a readable fallback for no-match rows. It is strongest when you can paste the formula and one input that should return a known label.',
+    notWhen: 'Do not use SWITCH or IFS as a whole decision-system audit. The useful repair surface is the formula you paste, the input value or row being tested, the branch order, the fallback behavior, and whether the workbook version supports the function.',
+    example: {
+      setup: 'A status report stores short codes in A2:A500. The formula should return a readable status label and avoid raw #N/A when a new code appears.',
+      formula: '=SWITCH(A2,"P","Paid","O","Open","H","Hold","Unknown")',
+      read: 'The formula checks the value in A2 against each listed code and returns Unknown only when none match. If the formula uses IFS instead, add a final TRUE branch when no condition should fall through to #N/A.'
     }
   },
   'excel-wraprows-wrapcols-not-working': {

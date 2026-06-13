@@ -3441,6 +3441,31 @@ test('excel MAKEARRAY not working page targets generated array repair intent wit
   assert.doesNotMatch(page, /Google Sheets MAKEARRAY|upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|handles arrays of any size|works in every version|any version of Excel|full spreadsheet repair/i);
 });
 
+test('excel SWITCH and IFS not working page targets decision formula repair intent without overclaiming', () => {
+  const page = read('excel-switch-ifs-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Fix SWITCH or IFS in Excel - #N\/A, #VALUE, #NAME Errors/);
+  assert.match(page, /Fix a SWITCH or IFS formula that returns #N\/A, #VALUE, #NAME, or the wrong answer/);
+  assert.match(page, /no default, no final TRUE fallback/);
+  assert.match(page, /You get a revised formula with an explanation and copy checks/);
+  assert.match(page, /#N\/A from no matching SWITCH value or no TRUE IFS condition/);
+  assert.match(page, /#VALUE! from an IFS logical test that is not TRUE\/FALSE/);
+  assert.match(page, /missing default branch/);
+  assert.match(page, /Add a default result to SWITCH/);
+  assert.match(page, /Add a final TRUE fallback to IFS/);
+  assert.match(page, /Order IFS conditions from most specific to broadest/);
+  assert.match(page, /IFS is documented for Excel 2019 and newer plus Microsoft 365/);
+  assert.match(page, /=SWITCH\(A2,&quot;P&quot;,&quot;Paid&quot;,&quot;O&quot;,&quot;Open&quot;,&quot;H&quot;,&quot;Hold&quot;,&quot;Unknown&quot;\)/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-switch-ifs-not-working\/">Excel SWITCH and IFS repair/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-switch-ifs-not-working\//);
+  assert.doesNotMatch(page, /Google Sheets SWITCH|Google Sheets IFS|upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|works in every version|any version of Excel|full spreadsheet repair/i);
+});
+
 test('excel TOROW and TOCOL not working page targets flattening repair intent without overclaiming', () => {
   const page = read('excel-torow-tocol-not-working/index.html');
   const homepage = read('index.html');
