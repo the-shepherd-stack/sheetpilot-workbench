@@ -35,11 +35,11 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Formula preview/);
   assert.match(page, /Compatibility/);
   assert.match(page, /Use it past the guest limit/);
-  assert.match(page, /500 formula runs per month, stored in this browser for \$9/);
+  assert.match(page, /500 formula runs per month for \$9, with run history kept in this browser/);
   assert.match(page, /Stripe returns you to the workbench and unlocks access on this browser/);
   assert.match(page, /id="copy-upgrade"/);
   assert.match(page, /Copied\. Need more formulas this month/);
-  assert.match(page, /500 runs per month, stored in this browser for \$9/);
+  assert.match(page, /500 runs per month for \$9, with run history kept in this browser/);
   assert.match(page, /\/percentage-formula-generator\//);
   assert.match(page, /Build percent of total, percent change, discount, markup, tax, tip, and completion-rate formulas/);
   assert.match(page, /\/ai-excel-formula-generator\//);
@@ -176,6 +176,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix BYROW and BYCOL formulas with #CALC!, #VALUE!, #SPILL!, #NAME\?, wrong row\/column direction, or LAMBDA return-shape mistakes/);
   assert.match(page, /\/excel-map-function-not-working\//);
   assert.match(page, /Fix MAP formulas with #VALUE!, #CALC!, #SPILL!, #NAME\?, wrong transformed arrays, or LAMBDA parameter mistakes/);
+  assert.match(page, /\/excel-makearray-not-working\//);
+  assert.match(page, /Repair generated arrays with #VALUE!, #SPILL!, #NAME\?, wrong row or column counts, or LAMBDA index mistakes/);
   assert.match(page, /\/excel-wraprows-wrapcols-not-working\//);
   assert.match(page, /Fix WRAPROWS and WRAPCOLS formulas with #VALUE!, #NUM!, #N\/A, #SPILL!, #NAME\?, wrong wrapping direction, or padding issues/);
   assert.match(page, /\/excel-expand-function-not-working\//);
@@ -316,7 +318,7 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Founding access/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, /Keep writing formulas today/);
-  assert.match(page, /Founding access is \$9 for 500 runs per month, stored in this browser/);
+  assert.match(page, /Founding access is \$9 for 500 runs per month, with run history kept in this browser/);
   assert.match(page, /class="paywall-offer"/);
   assert.match(page, /https:\/\/writemyformula\.com\//);
   assert.match(page, /2 free tries left on this browser/);
@@ -351,7 +353,7 @@ test('SheetXAI alternative page keeps the comparison bounded', () => {
   assert.match(page, /workflow automation/);
   assert.match(page, /one Excel or Google Sheets formula, explanation, or repair/);
   assert.match(page, /Two guest tries|2 guest tries/);
-  assert.match(page, /500 formula runs per month, stored in this browser for \$9/);
+  assert.match(page, /500 formula runs per month for \$9, with run history kept in this browser/);
   assert.match(page, /https:\/\/writemyformula\.com\/sheetxai-alternative\//);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/sheetxai-alternative\//);
   assert.doesNotMatch(page, /official SheetXAI/i);
@@ -373,7 +375,7 @@ test('FormulaBerry alternative page keeps the comparison bounded', () => {
   assert.match(page, /small-business spreadsheet guidance/);
   assert.match(page, /one Excel or Google Sheets formula, explanation, or repair/);
   assert.match(page, /Two guest tries|2 guest tries/);
-  assert.match(page, /500 formula runs per month, stored in this browser for \$9/);
+  assert.match(page, /500 formula runs per month for \$9, with run history kept in this browser/);
   assert.match(page, /https:\/\/writemyformula\.com\/formulaberry-alternative\//);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/formulaberry-alternative\//);
   assert.doesNotMatch(page, /official FormulaBerry/i);
@@ -398,7 +400,7 @@ test('FormulaDesk alternative page keeps the comparison bounded', () => {
   assert.match(page, /FormulaDesk details verified June 5, 2026/);
   assert.match(page, /=IF\(B2=&quot;Paid&quot;,IF\(AND\(C2&gt;=DATE\(2026,8,1\),C2&lt;DATE\(2026,9,1\)\),&quot;August paid&quot;,&quot;Other month&quot;\),&quot;Open&quot;\)/);
   assert.match(page, /2 free tries/);
-  assert.match(page, /500 runs per month, stored in this browser/);
+  assert.match(page, /500 runs per month, with run history kept in this browser/);
   assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
@@ -423,7 +425,7 @@ test('PromptLoop alternative page keeps the comparison bounded', () => {
   assert.match(page, /PromptLoop details verified June 5, 2026/);
   assert.match(page, /=XLOOKUP\(1,\(A2:A500=F2\)\*\(C2:C500=&quot;Paid&quot;\),D2:D500,&quot;Not found&quot;,0,-1\)/);
   assert.match(page, /2 free tries/);
-  assert.match(page, /500 runs per month, stored in this browser/);
+  assert.match(page, /500 runs per month, with run history kept in this browser/);
   assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
@@ -450,7 +452,7 @@ test('Coefficient alternative page keeps the comparison bounded', () => {
   assert.match(page, /Coefficient details verified June 5, 2026/);
   assert.match(page, /=IFERROR\(INDEX\(\$D:\$D,MATCH\(1,\(\$A:\$A=A2\)\*\(\$B:\$B=B2\),0\)\),&quot;&quot;\)/);
   assert.match(page, /2 guest tries/);
-  assert.match(page, /500 runs per month, stored in this browser/);
+  assert.match(page, /500 runs per month, with run history kept in this browser/);
   assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
@@ -476,7 +478,7 @@ test('ExcelGPT alternative page keeps the comparison bounded', () => {
   assert.match(page, /ExcelGPT details verified June 5, 2026/);
   assert.match(page, /=SUMIFS\(\$D\$2:\$D\$500,\$A\$2:\$A\$500,&quot;West&quot;,\$B\$2:\$B\$500,&quot;Paid&quot;,\$C\$2:\$C\$500,&quot;&gt;=&quot;&amp;DATE\(2026,6,1\)\)/);
   assert.match(page, /2 guest tries/);
-  assert.match(page, /500 runs per month, stored in this browser/);
+  assert.match(page, /500 runs per month, with run history kept in this browser/);
   assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
@@ -501,7 +503,7 @@ test('ChatExcel alternative page keeps the comparison bounded', () => {
   assert.match(page, /ChatExcel details verified June 8, 2026/);
   assert.match(page, /=XLOOKUP\(1,\(\$A\$2:\$A\$500=F2\)\*\(\$C\$2:\$C\$500=&quot;Paid&quot;\),\$D\$2:\$D\$500,&quot;Not found&quot;,0,-1\)/);
   assert.match(page, /2 guest tries/);
-  assert.match(page, /500 runs per month, stored in this browser/);
+  assert.match(page, /500 runs per month, with run history kept in this browser/);
   assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
@@ -528,7 +530,7 @@ test('Rows alternative page keeps the comparison bounded', () => {
   assert.match(page, /one formula at a time/);
   assert.match(page, /=IF\(B2=0,&quot;&quot;,\(B2-C2\)\/B2\)/);
   assert.match(page, /2 guest tries/);
-  assert.match(page, /500 runs per month, stored in this browser/);
+  assert.match(page, /500 runs per month, with run history kept in this browser/);
   assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
@@ -551,7 +553,7 @@ test('Excel Formulator alternative page keeps the comparison bounded', () => {
   assert.match(page, /Excel Formulator details verified June 9, 2026/);
   assert.match(page, /=IF\(AND\(B2=&quot;Closed&quot;,C2&gt;D2\),\(C2-D2\)\*10%,0\)/);
   assert.match(page, /2 guest tries/);
-  assert.match(page, /500 runs per month, stored in this browser/);
+  assert.match(page, /500 runs per month, with run history kept in this browser/);
   assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
@@ -805,7 +807,7 @@ test('seo landing pages target high-intent formula searches', () => {
     assert.match(page, /Copied\. Need more formulas this month/);
     assert.match(page, /Upgrade \$9/);
     assert.match(page, /Keep writing formulas today/);
-    assert.match(page, /Founding access is \$9 for 500 runs per month, stored in this browser/);
+    assert.match(page, /Founding access is \$9 for 500 runs per month, with run history kept in this browser/);
     assert.match(page, /Stripe returns you to the workbench and unlocks access on this browser/);
     assert.match(page, /data-checkout/);
     assert.doesNotMatch(page, /data-checkout href="#"/);
@@ -829,7 +831,7 @@ test('ExcelFormula.co alternative page keeps the comparison bounded', () => {
   assert.match(page, /ExcelFormula\.co details verified June 6, 2026/);
   assert.match(page, /=IF\(AND\(B2=&quot;Product A&quot;,C2=&quot;Paid&quot;,A2&gt;=DATE\(2026,8,1\),A2&lt;DATE\(2026,9,1\)\),&quot;August paid Product A&quot;,&quot;Other&quot;\)/);
   assert.match(page, /2 guest tries/);
-  assert.match(page, /500 runs per month, stored in this browser/);
+  assert.match(page, /500 runs per month, with run history kept in this browser/);
   assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
@@ -2844,7 +2846,7 @@ test('Excel Formula GPT alternative page targets no-signup formula-generator com
   assert.match(page, /Write My Formula does not claim to replace Excel Formula GPT, upload Excel files, store account history, promise accuracy/);
   assert.match(page, /=IFERROR\(VLOOKUP\(A2,Products!A:B,2,FALSE\),&quot;&quot;\)/);
   assert.match(page, /2 guest tries/);
-  assert.match(page, /500 runs per month, stored in this browser/);
+  assert.match(page, /500 runs per month, with run history kept in this browser/);
   assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
@@ -2889,7 +2891,7 @@ test('TextToFormula alternative page targets free formula-converter comparison w
   assert.match(page, /does not upload workbooks, read whole sheets, promise accuracy, or claim affiliation/);
   assert.match(page, /=SUMIFS\(C2:C500,A2:A500,&quot;North&quot;,B2:B500,&quot;&gt;=&quot;&amp;DATE\(2026,6,1\)\)/);
   assert.match(page, /2 guest tries/);
-  assert.match(page, /500 runs per month, stored in this browser/);
+  assert.match(page, /500 runs per month, with run history kept in this browser/);
   assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
@@ -2912,7 +2914,7 @@ test('Julius AI alternative page targets data-agent comparison without overclaim
   assert.match(page, /does not upload workbooks, analyze whole files, create charts, extract PDFs, connect databases, or produce scheduled reports/);
   assert.match(page, /=IF\(AND\(A2=&quot;West&quot;,B2=&quot;Paid&quot;,C2&gt;1000\),&quot;Review&quot;,&quot;&quot;\)/);
   assert.match(page, /2 guest tries/);
-  assert.match(page, /500 runs per month, stored in this browser/);
+  assert.match(page, /500 runs per month, with run history kept in this browser/);
   assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
@@ -2937,7 +2939,7 @@ test('Claude for Excel alternative page targets add-in workflow comparison witho
   assert.match(page, /Claude for Excel details checked against Anthropic support\/news and Microsoft Marketplace surfaces on June 11, 2026/);
   assert.match(page, /=SUMIFS\(\$D\$2:\$D\$500,\$B\$2:\$B\$500,&quot;West&quot;,\$C\$2:\$C\$500,&quot;Paid&quot;,\$A\$2:\$A\$500,&quot;&gt;=&quot;&amp;DATE\(2026,6,1\),\$A\$2:\$A\$500,&quot;&lt;&quot;&amp;DATE\(2026,7,1\)\)/);
   assert.match(page, /2 guest tries/);
-  assert.match(page, /500 runs per month, stored in this browser/);
+  assert.match(page, /500 runs per month, with run history kept in this browser/);
   assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
@@ -2963,7 +2965,7 @@ test('Microsoft Copilot in Excel alternative page targets formula-sized comparis
   assert.match(page, /not affiliated with or endorsed by Microsoft/);
   assert.match(page, /=IF\(AND\(A2=&quot;West&quot;,B2=&quot;Paid&quot;,C2&gt;1000\),&quot;Review&quot;,&quot;&quot;\)/);
   assert.match(page, /2 guest tries/);
-  assert.match(page, /500 runs per month, stored in this browser/);
+  assert.match(page, /500 runs per month, with run history kept in this browser/);
   assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
@@ -3005,7 +3007,7 @@ test('ExpressSheet alternative page keeps the comparison bounded', () => {
   assert.match(page, /ExpressSheet details verified June 5, 2026/);
   assert.match(page, /=INDEX\(\$D\$2:\$D\$500,MATCH\(1,\(\$A\$2:\$A\$500=G2\)\*\(\$B\$2:\$B\$500=&quot;Paid&quot;\),0\)\)/);
   assert.match(page, /2 guest tries/);
-  assert.match(page, /500 runs per month, stored in this browser/);
+  assert.match(page, /500 runs per month, with run history kept in this browser/);
   assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
@@ -3026,7 +3028,7 @@ test('SheetGPT alternative page targets focused formula comparison without overc
   assert.match(page, /Excel or CSV file upload, data-level chat, image-to-table conversion, charts, written spreadsheet analysis, scripts, or formula history across sessions/);
   assert.match(page, /=XLOOKUP\(1,\(A2:A500=F2\)\*\(C2:C500=&quot;Paid&quot;\),D2:D500,&quot;Not found&quot;,0,-1\)/);
   assert.match(page, /2 guest tries/);
-  assert.match(page, /500 runs per month, stored in this browser/);
+  assert.match(page, /500 runs per month, with run history kept in this browser/);
   assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
@@ -3387,6 +3389,30 @@ test('excel REDUCE and SCAN not working page targets accumulator repair intent w
   assert.match(homepage, /href="\/excel-reduce-scan-not-working\/">Excel REDUCE and SCAN repair/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-reduce-scan-not-working\//);
   assert.doesNotMatch(page, /Google Sheets REDUCE|Google Sheets SCAN|upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|handles arrays of any size|works in every version|any version of Excel|full spreadsheet repair/i);
+});
+
+test('excel MAKEARRAY not working page targets generated array repair intent without overclaiming', () => {
+  const page = read('excel-makearray-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel MAKEARRAY Not Working - Fix #VALUE, #SPILL, #NAME/);
+  assert.match(page, /Repair a MAKEARRAY formula that is generating the wrong grid/);
+  assert.match(page, /MAKEARRAY builds a calculated array from a row count, column count, and LAMBDA\(row, col, calculation\)/);
+  assert.match(page, /rows or columns are below 1, non-numeric, or reversed/);
+  assert.match(page, /#VALUE! Incorrect Parameters from a LAMBDA argument mismatch/);
+  assert.match(page, /#VALUE! from a row or column argument below 1 or non-numeric/);
+  assert.match(page, /row and column indexes are used in the wrong order/);
+  assert.match(page, /Make the LAMBDA accept exactly two parameters/);
+  assert.match(page, /row 2 column 3 should be 6/);
+  assert.match(page, /row-versus-column index use/);
+  assert.match(page, /=MAKEARRAY\(5,3,LAMBDA\(r,c,r\*c\)\)/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-makearray-not-working\/">Excel MAKEARRAY repair/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-makearray-not-working\//);
+  assert.doesNotMatch(page, /Google Sheets MAKEARRAY|upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|handles arrays of any size|works in every version|any version of Excel|full spreadsheet repair/i);
 });
 
 test('excel TOROW and TOCOL not working page targets flattening repair intent without overclaiming', () => {
