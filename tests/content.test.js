@@ -180,6 +180,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Repair generated arrays with #VALUE!, #SPILL!, #NAME\?, wrong row or column counts, or LAMBDA index mistakes/);
   assert.match(page, /\/excel-sequence-function-not-working\//);
   assert.match(page, /Fix SEQUENCE formulas with #VALUE!, #SPILL!, #NAME\?, wrong row or column counts, wrong start values, or step mistakes/);
+  assert.match(page, /\/excel-randarray-not-working\//);
+  assert.match(page, /Fix RANDARRAY formulas with #VALUE!, #SPILL!, #NAME\?, changing output, wrong rows or columns, wrong min\/max values, or decimal-versus-whole-number issues/);
   assert.match(page, /\/excel-wraprows-wrapcols-not-working\//);
   assert.match(page, /Fix WRAPROWS and WRAPCOLS formulas with #VALUE!, #NUM!, #N\/A, #SPILL!, #NAME\?, wrong wrapping direction, or padding issues/);
   assert.match(page, /\/excel-expand-function-not-working\//);
@@ -586,6 +588,30 @@ test('Excel SEQUENCE repair page keeps the repair promise bounded', () => {
   assert.match(homepage, /href="\/excel-sequence-function-not-working\/">Excel SEQUENCE function repair/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-sequence-function-not-working\//);
   assert.doesNotMatch(page, /guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|auto-detects your Excel version|clears? your spill range|pay before answer|whole workbook audit by Write My Formula|whole spreadsheet audit by Write My Formula|exact cause|human reviewer|same-day|PDF|privacy superior|works every time|works in every version|Excel 2019 supports SEQUENCE/i);
+});
+
+test('Excel RANDARRAY repair page keeps random-array repair bounded', () => {
+  const page = read('excel-randarray-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel RANDARRAY Not Working/);
+  assert.match(page, /Fix a RANDARRAY formula that returns the wrong random numbers/);
+  assert.match(page, /RANDARRAY problems usually show up as #SPILL!, #NAME\?, #VALUE!, changing random output/);
+  assert.match(page, /rows, columns, minimum, maximum, whole-number behavior, or Excel version/);
+  assert.match(page, /optional rows, optional columns, optional min, optional max, and optional whole_number/);
+  assert.match(page, /Use TRUE for whole numbers/);
+  assert.match(page, /RANDARRAY is volatile/);
+  assert.match(page, /Excel for Microsoft 365, Excel 2024, or Excel 2021/);
+  assert.match(page, /=RANDARRAY\(10,1,1,100,TRUE\)/);
+  assert.match(page, /2 free tries|2 guest tries/);
+  assert.match(page, /500 runs per month, with run history kept in this browser/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-randarray-not-working\/">Excel RANDARRAY repair/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-randarray-not-working\//);
+  assert.doesNotMatch(page, /Google Sheets RANDARRAY|upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|works in every version|any version of Excel|full spreadsheet repair|auto-detects your Excel version|clears? your spill range/i);
 });
 
 test('config exposes checkout and account usage limits', () => {

@@ -5021,6 +5021,41 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-randarray-not-working',
+    title: 'Excel RANDARRAY Not Working - Fix #VALUE, #SPILL, #NAME | Write My Formula',
+    description: 'Paste an Excel RANDARRAY formula returning #VALUE!, #SPILL!, #NAME?, changing output, or the wrong random numbers and get a focused repair path.',
+    eyebrow: 'Excel RANDARRAY repair',
+    h1: 'Fix a RANDARRAY formula that returns the wrong random numbers.',
+    lede: 'RANDARRAY problems usually show up as #SPILL!, #NAME?, #VALUE!, changing random output, or numbers that do not match the range you meant. Paste the visible formula and one note about the rows, columns, minimum, maximum, whole-number behavior, or Excel version you expected. You get a revised formula with a plain-English explanation and copy checks before you paste it back into Excel for Microsoft 365, Excel 2024, or Excel 2021.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=RANDARRAY(10,1,1,100,TRUE)'
+    },
+    intent: 'Help Excel users repair one RANDARRAY formula where the visible problem is usually #VALUE! from argument issues, #SPILL! from blocked output cells, #NAME? from version support or spelling problems, changing values that need to be handled deliberately, wrong rows or columns, reversed min and max values, or decimals when whole numbers were expected.',
+    bestFor: [
+      'RANDARRAY formulas that should return random test values, sample IDs, simulated scores, or random row inputs but show #VALUE!, #SPILL!, #NAME?, or the wrong output shape.',
+      'Random-number formulas where rows, columns, minimum, maximum, and whole-number behavior need to be checked together.',
+      'Excel for Microsoft 365, Excel 2024, or Excel 2021 workbooks where one random dynamic-array formula needs to be repaired before it feeds a model or report.',
+      'Cases where the formula should return whole numbers instead of decimals, or decimals within a narrower range than the current output.'
+    ],
+    steps: [
+      'Paste the exact RANDARRAY formula that is not working.',
+      'Say the output shape you wanted, such as 10 rows by 1 column or 5 rows by 3 columns.',
+      'Name the visible symptom: #VALUE!, #SPILL!, #NAME?, decimals instead of whole numbers, values outside the expected range, or output that changes when you did not expect it.',
+      'Review the repaired formula and explanation, then test it in an empty area before using it in a model, sample table, or report.'
+    ],
+    copyChecks: [
+      'Read RANDARRAY arguments as optional rows, optional columns, optional min, optional max, and optional whole_number.',
+      'Use TRUE for whole numbers and FALSE or a blank argument when decimal random values are acceptable.',
+      'Check min and max values before changing downstream formulas that depend on the random output.',
+      'Remember that RANDARRAY is volatile; random values can recalculate when the workbook recalculates.',
+      'Clear the intended spill range before rewriting a formula that otherwise calculates correctly.',
+      'Check Excel version support or spelling when RANDARRAY appears as #NAME? or _xlfn.RANDARRAY.',
+      'Use a workbook-level review only when the problem depends on hidden data, merged cells, external links, named ranges, or cells outside the formula you paste.'
+    ]
+  },
+  {
     slug: 'excel-switch-ifs-not-working',
     title: 'Fix SWITCH or IFS in Excel - #N/A, #VALUE, #NAME Errors | Write My Formula',
     description: 'Paste an Excel SWITCH or IFS formula returning #N/A, #VALUE!, #NAME?, the wrong branch, or a missing default and get a revised formula with checks.',
@@ -7958,6 +7993,20 @@ const pageEnhancements = {
       setup: 'A report needs 12 monthly period numbers in one vertical column before the sequence feeds a date formula.',
       formula: '=SEQUENCE(12,1,1,1)',
       read: 'The formula returns 12 rows, 1 column, starts at 1, and increases by 1 each row. If the output should run across columns instead, swap the row and column shape deliberately rather than changing the start or step.'
+    }
+  },
+  'excel-randarray-not-working': {
+    gives: [
+      'A focused repair pass for one RANDARRAY formula returning #VALUE!, #SPILL!, #NAME?, changing output, or the wrong random values.',
+      'Checks for rows, columns, min, max, whole_number, blocked spill output, volatile recalculation expectations, and whether RANDARRAY is available in the Excel version you name.',
+      'A revised random-array formula you can test in an empty area before using it in a model, sample table, or report.'
+    ],
+    useWhen: 'Use this page when RANDARRAY is close but not reliable: the formula is not recognized, spills into blocked cells, returns decimals when you expected whole numbers, uses the wrong minimum or maximum, returns a horizontal array when you expected vertical output, or changes when the workbook recalculates. It is strongest when you can paste the formula and describe the rows-by-columns shape and number range you wanted.',
+    notWhen: 'Do not treat RANDARRAY as a whole-workbook simulator audit. The useful repair surface is the formula you paste, the requested output shape, min and max values, whole-number setting, spill range, and whether the changing output is expected random recalculation.',
+    example: {
+      setup: 'A sample table needs 10 random whole-number scores between 1 and 100 in one column.',
+      formula: '=RANDARRAY(10,1,1,100,TRUE)',
+      read: 'The formula returns 10 rows and 1 column, uses 1 as the minimum, 100 as the maximum, and TRUE so Excel returns whole numbers instead of decimals. If the output should stay fixed, copy and paste values after testing the formula.'
     }
   },
   'excel-switch-ifs-not-working': {
