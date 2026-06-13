@@ -142,6 +142,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix CHOOSECOLS and CHOOSEROWS formulas with #VALUE!, wrong selected rows or columns, negative index mistakes, output that cannot expand, or nested array errors/);
   assert.match(page, /\/google-sheets-vstack-hstack-not-working\//);
   assert.match(page, /Your VSTACK or HSTACK returns #N\/A, wrong shape, or unknown function/);
+  assert.match(page, /\/google-sheets-torow-tocol-not-working\//);
+  assert.match(page, /Fix TOROW and TOCOL formulas with wrong scan order, unexpected blanks, error-value handling, nested arrays, or blocked output/);
   assert.match(page, /\/google-sheets-importrange-not-working\//);
   assert.match(page, /Fix IMPORTRANGE formulas with #REF!, Allow access prompts, oversized imports, slow refreshes, or source permission issues/);
   assert.match(page, /\/google-sheets-importxml-not-working\//);
@@ -828,6 +830,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'google-sheets-arrayformula-not-working',
     'google-sheets-let-function-not-working',
     'google-sheets-vstack-hstack-not-working',
+    'google-sheets-torow-tocol-not-working',
     'google-sheets-importrange-not-working',
     'google-sheets-importxml-not-working',
     'google-sheets-conditional-formatting-not-working',
@@ -4116,6 +4119,32 @@ test('Google Sheets VSTACK and HSTACK repair page targets stack repair intent wi
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/google-sheets-vstack-hstack-not-working\/">Google Sheets VSTACK or HSTACK not working/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-vstack-hstack-not-working\//);
+  assert.doesNotMatch(page, /official Google|Google partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|connects to your sheet|scans your workbook|directly edits|edits your sheet|pay before answer|whole workbook|whole spreadsheet|whole sheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|privacy superior|more accurate|faster|unlimited/i);
+});
+
+test('Google Sheets TOROW and TOCOL repair page targets flattening repair intent without overclaiming', () => {
+  const page = read('google-sheets-torow-tocol-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Google Sheets TOROW or TOCOL Not Working/);
+  assert.match(page, /Your TOROW or TOCOL formula is flattening the range wrong/);
+  assert.match(page, /reads across rows when you expected columns/);
+  assert.match(page, /keeps empty cells you wanted ignored/);
+  assert.match(page, /drops error values you needed to keep because the ignore argument was set to 2 or 3/);
+  assert.match(page, /Formula-returned empty strings may not be treated as blank/);
+  assert.match(page, /Set ignore deliberately: 0 keeps all values, 1 ignores empty cells, 2 ignores errors, and 3 ignores empty cells and errors/);
+  assert.match(page, /ignores truly empty cells/);
+  assert.match(page, /Formula cells that look blank may not be ignored the same way as truly empty cells/);
+  assert.match(page, /Test nested FILTER, QUERY, SORT, WRAPROWS, WRAPCOLS, or VSTACK formulas by themselves/);
+  assert.match(page, /=TOCOL\(A2:D20,1,FALSE\)/);
+  assert.match(page, /2 free tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-torow-tocol-not-working\/">Sheets TOROW or TOCOL repair/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-torow-tocol-not-working\//);
   assert.doesNotMatch(page, /official Google|Google partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|connects to your sheet|scans your workbook|directly edits|edits your sheet|pay before answer|whole workbook|whole spreadsheet|whole sheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|privacy superior|more accurate|faster|unlimited/i);
 });
 

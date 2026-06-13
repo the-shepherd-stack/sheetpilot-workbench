@@ -4386,6 +4386,47 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-torow-tocol-not-working',
+    title: 'Google Sheets TOROW or TOCOL Not Working? | Write My Formula',
+    description: 'Fix Google Sheets TOROW and TOCOL formulas with wrong scan order, blanks, error values, blocked output, nested arrays, or unexpected flattened rows and columns.',
+    eyebrow: 'Google Sheets TOROW and TOCOL fix',
+    h1: 'Your TOROW or TOCOL formula is flattening the range wrong. Paste it here and get a focused repair.',
+    lede: 'TOROW and TOCOL can look simple until the output reads across rows when you expected columns, keeps empty cells you wanted ignored, drops error values you needed to keep because the ignore argument was set to 2 or 3, or cannot expand because cells beside or below the formula already contain values. Paste the formula and the source range shape, then get a rewrite plus the checks to make before you replace a shared Google Sheets report.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=TOCOL(A2:D20,1,FALSE)'
+    },
+    intent: 'Help Google Sheets users repair one TOROW or TOCOL formula where the visible problem is usually wrong row-versus-column scan order, the ignore argument keeping or dropping the wrong cells, blocked array output, nested FILTER or WRAPROWS behavior, or confusion with older FLATTEN formulas.',
+    bestFor: [
+      'TOCOL formulas that should return one column but read the source range in the wrong order.',
+      'TOROW formulas that should return one row but keep unexpected blanks, errors, or formula-returned empty strings.',
+      'Formulas where the ignore argument needs to be checked before adding IFERROR, FILTER, or manual cleanup.',
+      'Nested arrays where TOROW or TOCOL feeds UNIQUE, SORT, WRAPROWS, WRAPCOLS, VSTACK, or a chart range.',
+      'Output that will not expand because the destination row or column already contains values.'
+    ],
+    steps: [
+      'Paste the exact TOROW or TOCOL formula that is not working.',
+      'Describe whether the source should flatten into one row or one column.',
+      'Include the source range shape and whether blanks, errors, or formula-returned empty strings should stay visible.',
+      'Say whether the result should scan across each row first or down each column first.'
+    ],
+    copyChecks: [
+      'Choose TOROW for one-row output and TOCOL for one-column output before changing other arguments.',
+      'Set ignore deliberately: 0 keeps all values, 1 ignores empty cells, 2 ignores errors, and 3 ignores empty cells and errors.',
+      'Use scan_by_column TRUE only when the flattened output should read down each source column before moving across.',
+      'Formula cells that look blank may not be ignored the same way as truly empty cells, so test one known blank row before filling the result.',
+      'Test nested FILTER, QUERY, SORT, WRAPROWS, WRAPCOLS, or VSTACK formulas by themselves before flattening their output.',
+      'Clear the cells beside or below the formula so the flattened array has room to expand.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Ignore argument quick check',
+        html: '<strong>0</strong> keeps empty cells and errors, <strong>1</strong> ignores empty cells, <strong>2</strong> ignores errors, and <strong>3</strong> ignores empty cells and errors. Pick this before wrapping the formula in IFERROR.'
+      }
+    ]
+  },
+  {
     slug: 'google-sheets-importrange-not-working',
     title: 'Google Sheets IMPORTRANGE Not Working? | Write My Formula',
     description: 'Fix Google Sheets IMPORTRANGE formulas with #REF!, Allow access prompts, permission issues, result-size limits, slow refreshes, or volatile-function errors.',
@@ -7792,6 +7833,20 @@ const pageEnhancements = {
       setup: 'A shared report combines two weekly extracts with the same columns. One range sometimes has fewer rows, and the stack should stay readable when the source changes.',
       formula: '=IFNA(VSTACK(A2:C20,F2:H20),"")',
       read: 'VSTACK appends the second range below the first. IFNA turns expected padding into blanks, but only after checking that both extracts are supposed to have the same columns and that the output range is clear.'
+    }
+  },
+  'google-sheets-torow-tocol-not-working': {
+    gives: [
+      'A focused repair pass for one Google Sheets TOROW or TOCOL formula.',
+      'Checks for output direction, ignore values, scan_by_column, formula-returned blanks, nested array formulas, and blocked output cells.',
+      'A revised flattening formula you can test on one known source range before replacing a shared report formula.'
+    ],
+    useWhen: 'Use this page when TOROW or TOCOL returns values in the wrong order, keeps blanks, hides errors, fails after a nested array formula, or cannot expand into the destination row or column. It is strongest when you can paste the formula, the source range shape, and one expected flattened output.',
+    notWhen: 'Do not treat TOROW or TOCOL as a full-spreadsheet cleanup tool. The useful repair surface is one formula, the source array it flattens, the ignore argument, the scan direction, and whether the destination cells are clear.',
+    example: {
+      setup: 'A report has quarterly values in A2:D20. The output should be one column that reads each row from left to right and skips truly blank cells.',
+      formula: '=TOCOL(A2:D20,1,FALSE)',
+      read: 'The formula flattens the two-dimensional range into one column, ignores truly empty cells, and scans by row because scan_by_column is FALSE. Formula-returned empty strings may not be treated as blank, so test one known row before filling the result. If the output should read down each source column first, set the final argument to TRUE.'
     }
   },
   'google-sheets-importrange-not-working': {
