@@ -3364,6 +3364,31 @@ test('excel MAP function not working page targets LAMBDA mapping repair intent w
   assert.doesNotMatch(page, /Google Sheets MAP|upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|handles arrays of any size|works in every version|any version of Excel|full spreadsheet repair/i);
 });
 
+test('excel REDUCE and SCAN not working page targets accumulator repair intent without overclaiming', () => {
+  const page = read('excel-reduce-scan-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel REDUCE \/ SCAN Not Working - Fix #VALUE, #CALC, #SPILL/);
+  assert.match(page, /Fix a REDUCE or SCAN formula that is returning the wrong result/);
+  assert.match(page, /REDUCE returns one accumulated result/);
+  assert.match(page, /SCAN returns each intermediate accumulated result as an array/);
+  assert.match(page, /accumulator\/value parameters, initial value, return shape/);
+  assert.match(page, /#VALUE! Incorrect Parameters from a LAMBDA argument mismatch/);
+  assert.match(page, /#CALC! from an accumulator step that returns the wrong shape/);
+  assert.match(page, /initial_value mistake/);
+  assert.match(page, /Make the LAMBDA take accumulator and value parameters in that order/);
+  assert.match(page, /Use REDUCE when the formula should return one final accumulator result/);
+  assert.match(page, /use SCAN when each intermediate accumulator result should spill/);
+  assert.match(page, /=SCAN\(0,B2:B20,LAMBDA\(total,value,total\+value\)\)/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-reduce-scan-not-working\/">Excel REDUCE and SCAN repair/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-reduce-scan-not-working\//);
+  assert.doesNotMatch(page, /Google Sheets REDUCE|Google Sheets SCAN|upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|handles arrays of any size|works in every version|any version of Excel|full spreadsheet repair/i);
+});
+
 test('excel TOROW and TOCOL not working page targets flattening repair intent without overclaiming', () => {
   const page = read('excel-torow-tocol-not-working/index.html');
   const homepage = read('index.html');

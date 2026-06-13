@@ -4916,6 +4916,41 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-reduce-scan-not-working',
+    title: 'Excel REDUCE / SCAN Not Working - Fix #VALUE, #CALC, #SPILL | Write My Formula',
+    description: 'Paste an Excel REDUCE or SCAN formula returning #VALUE!, #CALC!, #SPILL!, #NAME?, or the wrong accumulator result and get a focused repair path.',
+    eyebrow: 'Excel REDUCE and SCAN repair',
+    h1: 'Fix a REDUCE or SCAN formula that is returning the wrong result.',
+    lede: 'REDUCE returns one accumulated result. SCAN returns each intermediate accumulated result as an array. When one breaks, the cause is usually a small set of arguments: accumulator/value parameters, initial value, return shape, spill range, or Excel version support. Paste the formula you can see in Excel and the result you expected.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=SCAN(0,B2:B20,LAMBDA(total,value,total+value))'
+    },
+    intent: 'Help Excel users repair one REDUCE or SCAN formula where the visible problem is usually #VALUE! Incorrect Parameters from a LAMBDA argument mismatch, #CALC! from an accumulator step that returns the wrong shape, #SPILL! from blocked SCAN output cells, #NAME? from unsupported Excel versions, an initial_value mistake, or confusion between REDUCE returning one final value and SCAN returning intermediate values.',
+    bestFor: [
+      'REDUCE formulas that should collapse an array to one total, text result, or custom accumulator but return #VALUE!, #CALC!, #NAME?, or the wrong final result.',
+      'SCAN formulas that should return running totals, running text, or step-by-step accumulator output but spill wrong, return #SPILL!, or calculate the wrong sequence.',
+      'Excel for Microsoft 365 or Excel 2024 workbooks where a LAMBDA accumulator formula needs to be checked before it feeds a report.',
+      'Cases where the pasted formula, initial value, source array, accumulator parameter, value parameter, return shape, and spill range need to be inspected together.'
+    ],
+    steps: [
+      'Paste the exact REDUCE or SCAN formula that is not working.',
+      'Say whether the output should be one final value with REDUCE or every intermediate value with SCAN.',
+      'Say what you see: #VALUE! Incorrect Parameters, #CALC!, #SPILL!, #NAME?, wrong starting value, or a running result that drifts after the first row.',
+      'Review the repaired formula and explanation, then test it on a small source range before using it in a report.'
+    ],
+    copyChecks: [
+      'Use REDUCE when the formula should return one final accumulator result; use SCAN when each intermediate accumulator result should spill.',
+      'Make the LAMBDA take accumulator and value parameters in that order.',
+      'Set initial_value deliberately, especially for multiplication, text joins, running balances, and formulas where a blank starting value changes the first step.',
+      'Keep each accumulator step to the shape the next step can accept. A nested array in the middle of a chain often shows up as #CALC!.',
+      'Clear the intended spill range before rewriting a SCAN formula that otherwise calculates correctly.',
+      'Confirm the workbook is being opened in Excel for Microsoft 365 or Excel 2024.',
+      'Check Excel version support when REDUCE or SCAN appears as #NAME? or _xlfn.'
+    ]
+  },
+  {
     slug: 'excel-wraprows-wrapcols-not-working',
     title: 'Excel WRAPROWS / WRAPCOLS Not Working - Repair the Formula | Write My Formula',
     description: 'Paste a WRAPROWS or WRAPCOLS formula returning #VALUE!, #NUM!, #N/A, #SPILL!, or #NAME? and get a repaired one-cell formula to test in Excel.',
@@ -7776,6 +7811,20 @@ const pageEnhancements = {
       setup: 'A report has quantities in A2:A20 and unit prices in B2:B20. The output should return one line total for each row.',
       formula: '=MAP(A2:A20,B2:B20,LAMBDA(qty,price,qty*price))',
       read: 'The formula passes the matching quantity and price into the LAMBDA for each position and returns one calculated value per row. If a third array is added to MAP, the LAMBDA needs a third parameter before the calculation.'
+    }
+  },
+  'excel-reduce-scan-not-working': {
+    gives: [
+      'A repair pass on one REDUCE or SCAN formula returning #VALUE!, #CALC!, #SPILL!, #NAME?, or a wrong result.',
+      'Checks for REDUCE-versus-SCAN output shape, initial value, accumulator/value LAMBDA parameters, blocked spill output, and Excel version support.',
+      'A revised accumulator formula you can test on a small range before using it in a dynamic-array report.'
+    ],
+    useWhen: 'Use this page when REDUCE or SCAN is close but not trustworthy: the formula returns #VALUE! Incorrect Parameters, #CALC!, #SPILL!, or #NAME?, starts from the wrong accumulator value, or returns one value when you expected a running array. It works best when you can paste the formula from the cell and say what the first accumulator step should return.',
+    notWhen: 'Do not treat REDUCE or SCAN as a whole-workbook debugger. The useful repair surface is the formula you paste, the source array it references, the initial value, and whether each LAMBDA step returns a value the next accumulator step can use.',
+    example: {
+      setup: 'A report has monthly amounts in B2:B20. The output should show a running total after each row.',
+      formula: '=SCAN(0,B2:B20,LAMBDA(total,value,total+value))',
+      read: 'The formula starts the accumulator at zero, adds each amount to the running total, and returns each intermediate result. If you only need the final total, use REDUCE instead.'
     }
   },
   'excel-wraprows-wrapcols-not-working': {
