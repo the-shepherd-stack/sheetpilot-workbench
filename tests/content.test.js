@@ -178,6 +178,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix MAP formulas with #VALUE!, #CALC!, #SPILL!, #NAME\?, wrong transformed arrays, or LAMBDA parameter mistakes/);
   assert.match(page, /\/excel-makearray-not-working\//);
   assert.match(page, /Repair generated arrays with #VALUE!, #SPILL!, #NAME\?, wrong row or column counts, or LAMBDA index mistakes/);
+  assert.match(page, /\/excel-sequence-function-not-working\//);
+  assert.match(page, /Fix SEQUENCE formulas with #VALUE!, #SPILL!, #NAME\?, wrong row or column counts, wrong start values, or step mistakes/);
   assert.match(page, /\/excel-wraprows-wrapcols-not-working\//);
   assert.match(page, /Fix WRAPROWS and WRAPCOLS formulas with #VALUE!, #NUM!, #N\/A, #SPILL!, #NAME\?, wrong wrapping direction, or padding issues/);
   assert.match(page, /\/excel-expand-function-not-working\//);
@@ -560,6 +562,30 @@ test('Excel Formulator alternative page keeps the comparison bounded', () => {
   assert.match(homepage, /href="\/excel-formulator-alternative\/">Excel Formulator alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-formulator-alternative\//);
   assert.doesNotMatch(page, /replaces Excel Formulator|better than Excel Formulator|official Excel Formulator|Excel Formulator partner|is affiliated with Excel Formulator|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook audit by Write My Formula|whole spreadsheet audit by Write My Formula|exact cause|human reviewer|same-day|PDF|privacy superior|works every time|unlimited formulas from Write My Formula|priority support from Write My Formula/i);
+});
+
+test('Excel SEQUENCE repair page keeps the repair promise bounded', () => {
+  const page = read('excel-sequence-function-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Excel SEQUENCE Function Not Working/);
+  assert.match(page, /Fix an Excel SEQUENCE formula that is spilling the wrong numbers/);
+  assert.match(page, /SEQUENCE generates a list or grid of sequential numbers/);
+  assert.match(page, /rows, columns, start, and step/);
+  assert.match(page, /#VALUE!/);
+  assert.match(page, /#SPILL!/);
+  assert.match(page, /#NAME\?/);
+  assert.match(page, /12 rows by 1 column/);
+  assert.match(page, /=SEQUENCE\(12,1,1,1\)/);
+  assert.match(page, /2 free tries|2 guest tries/);
+  assert.match(page, /500 runs per month, with run history kept in this browser/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/excel-sequence-function-not-working\/">Excel SEQUENCE function repair/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-sequence-function-not-working\//);
+  assert.doesNotMatch(page, /guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|auto-detects your Excel version|clears? your spill range|pay before answer|whole workbook audit by Write My Formula|whole spreadsheet audit by Write My Formula|exact cause|human reviewer|same-day|PDF|privacy superior|works every time|works in every version|Excel 2019 supports SEQUENCE/i);
 });
 
 test('config exposes checkout and account usage limits', () => {

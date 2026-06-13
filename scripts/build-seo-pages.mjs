@@ -4987,6 +4987,40 @@ const pages = [
     ]
   },
   {
+    slug: 'excel-sequence-function-not-working',
+    title: 'Excel SEQUENCE Function Not Working - Fix #VALUE, #SPILL, #NAME | Write My Formula',
+    description: 'Paste an Excel SEQUENCE formula returning #VALUE!, #SPILL!, #NAME?, the wrong rows and columns, or the wrong start or step and get a focused repair path.',
+    eyebrow: 'Excel SEQUENCE function repair',
+    h1: 'Fix an Excel SEQUENCE formula that is spilling the wrong numbers.',
+    lede: 'SEQUENCE generates a list or grid of sequential numbers from rows, columns, start, and step arguments. It can break when the output shape is wrong, the spill range is blocked, the start or step is not what you intended, the formula has a typo, or the workbook opens in an Excel version that does not support the function. Paste the formula you can see in Excel and the rows-by-columns shape you expected.',
+    preset: {
+      mode: 'fix',
+      platform: 'excel',
+      formula: '=SEQUENCE(12,1,1,1)'
+    },
+    intent: 'Help Excel users repair one SEQUENCE formula where the visible problem is usually #VALUE! from argument issues, #SPILL! from blocked output cells, #NAME? from version support or spelling problems, the wrong row or column count, or a sequence that starts or increments incorrectly.',
+    bestFor: [
+      'SEQUENCE formulas that should return a numbered list but show #VALUE!, #SPILL!, #NAME?, or the wrong count of numbers.',
+      'SEQUENCE formulas that return one row when you expected one column, one column when you expected several columns, or a shape such as 1 by 12 instead of 12 by 1.',
+      'Excel for Microsoft 365, Excel 2024, or Excel 2021 workbooks where one dynamic-array formula needs to be checked before it feeds a report.',
+      'Cases where the pasted formula, rows, columns, start, step, version support, and spill range need to be inspected together.'
+    ],
+    steps: [
+      'Paste the exact SEQUENCE formula that is not working.',
+      'Say the output shape you wanted, such as 12 rows by 1 column or 4 rows by 5 columns.',
+      'Name the visible symptom: #VALUE!, #SPILL!, #NAME?, wrong start number, wrong increment, or rows and columns reversed.',
+      'Review the repaired formula and explanation, then test it in an empty area of the workbook before using it in a report.'
+    ],
+    copyChecks: [
+      'Read SEQUENCE arguments as rows, optional columns, optional start, and optional step.',
+      'Use 12 rows by 1 column for a vertical list; use 1 row by 12 columns for a horizontal list.',
+      'Check the start and step values before changing nested formulas that depend on the generated numbers.',
+      'Clear the intended spill range before rewriting a formula that otherwise calculates correctly.',
+      'Check Excel version support or spelling when SEQUENCE appears as #NAME? or _xlfn.SEQUENCE.',
+      'Use a workbook-level review only when the problem depends on hidden data, merged cells, external links, named ranges, or cells outside the formula you paste.'
+    ]
+  },
+  {
     slug: 'excel-wraprows-wrapcols-not-working',
     title: 'Excel WRAPROWS / WRAPCOLS Not Working - Repair the Formula | Write My Formula',
     description: 'Paste a WRAPROWS or WRAPCOLS formula returning #VALUE!, #NUM!, #N/A, #SPILL!, or #NAME? and get a repaired one-cell formula to test in Excel.',
@@ -7875,6 +7909,20 @@ const pageEnhancements = {
       setup: 'A report needs a 5-row by 3-column multiplication grid before the result feeds another dynamic-array formula.',
       formula: '=MAKEARRAY(5,3,LAMBDA(r,c,r*c))',
       read: 'The formula creates five rows and three columns, then uses the current row and column indexes inside the LAMBDA. If row 2 column 3 should be 6, test that cell before expanding the generated grid.'
+    }
+  },
+  'excel-sequence-function-not-working': {
+    gives: [
+      'A focused repair pass for one SEQUENCE formula returning #VALUE!, #SPILL!, #NAME?, or the wrong numbered output.',
+      'Checks for rows, columns, start, step, blocked spill output, and whether SEQUENCE is available in the Excel version you name.',
+      'A revised sequence formula you can test in an empty area before using it in a dynamic-array report.'
+    ],
+    useWhen: 'Use this page when SEQUENCE is close but not reliable: the formula is not recognized, spills into blocked cells, returns a horizontal list when you expected vertical output, starts at the wrong number, steps by the wrong amount, or returns the wrong number of rows or columns. It is strongest when you can paste the formula and describe the rows-by-columns shape you wanted.',
+    notWhen: 'Do not treat SEQUENCE as a whole-workbook debugger. The useful repair surface is the formula you paste, the rows, columns, start, step, whether the output has room to spill, and whether the workbook version supports SEQUENCE.',
+    example: {
+      setup: 'A report needs 12 monthly period numbers in one vertical column before the sequence feeds a date formula.',
+      formula: '=SEQUENCE(12,1,1,1)',
+      read: 'The formula returns 12 rows, 1 column, starts at 1, and increases by 1 each row. If the output should run across columns instead, swap the row and column shape deliberately rather than changing the start or step.'
     }
   },
   'excel-wraprows-wrapcols-not-working': {
