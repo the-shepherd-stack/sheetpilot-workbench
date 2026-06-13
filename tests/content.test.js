@@ -136,6 +136,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix QUERY formulas with parse errors, NO_COLUMN messages, wrong Col references, header problems, or missing rows/);
   assert.match(page, /\/google-sheets-let-function-not-working\//);
   assert.match(page, /Fix LET formulas with invalid names, missing name\/value pairs, parse errors, wrong intermediate results, or nested formula mistakes/);
+  assert.match(page, /\/google-sheets-choosecols-chooserows-not-working\//);
+  assert.match(page, /Fix CHOOSECOLS and CHOOSEROWS formulas with #VALUE!, wrong selected rows or columns, negative index mistakes, output that cannot expand, or nested array errors/);
   assert.match(page, /\/google-sheets-importrange-not-working\//);
   assert.match(page, /Fix IMPORTRANGE formulas with #REF!, Allow access prompts, oversized imports, slow refreshes, or source permission issues/);
   assert.match(page, /\/google-sheets-importxml-not-working\//);
@@ -457,7 +459,7 @@ test('Coefficient alternative page keeps the comparison bounded', () => {
   assert.match(page, /Pro is listed at \$99\/user\/month/);
   assert.match(page, /Coefficient details verified June 5, 2026/);
   assert.match(page, /=IFERROR\(INDEX\(\$D:\$D,MATCH\(1,\(\$A:\$A=A2\)\*\(\$B:\$B=B2\),0\)\),&quot;&quot;\)/);
-  assert.match(page, /2 guest tries/);
+  assert.match(page, /2 free tries/);
   assert.match(page, /500 runs per month, with run history kept in this browser/);
   assert.match(page, /What should the formula do\?|Paste the formula/);
   assert.match(page, /Upgrade \$9/);
@@ -4042,6 +4044,29 @@ test('FormulaWiz alternative page targets focused formula comparison without ove
   assert.match(homepage, /href="\/formulawiz-alternative\/">FormulaWiz alternative/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/formulawiz-alternative\//);
   assert.doesNotMatch(page, /replaces FormulaWiz|better than FormulaWiz|official FormulaWiz|FormulaWiz partner|affiliated|guarantee|guaranteed|always fixes|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|validates against actual spreadsheet APIs|95%\+ accuracy/i);
+});
+
+test('Google Sheets CHOOSECOLS and CHOOSEROWS repair page targets one formula without overclaiming', () => {
+  const page = read('google-sheets-choosecols-chooserows-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Google Sheets CHOOSECOLS or CHOOSEROWS Not Working/);
+  assert.match(page, /Google Sheets CHOOSECOLS or CHOOSEROWS not working\? Paste the formula and get it fixed/);
+  assert.match(page, /selected position is 0, outside the source range, counted from the wrong end/);
+  assert.match(page, /negative index mistakes/);
+  assert.match(page, /Count positions from the first argument inside CHOOSECOLS or CHOOSEROWS, not from column A or row 1 of the sheet/);
+  assert.match(page, /Do not wrap CHOOSECOLS or CHOOSEROWS in ARRAYFORMULA/);
+  assert.match(page, /=CHOOSECOLS\(A1:F500,1,3,-1\)/);
+  assert.match(page, /FILTER, QUERY, SORT, or IMPORTRANGE/);
+  assert.match(page, /2 free tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-choosecols-chooserows-not-working\/">Google Sheets CHOOSECOLS repair/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-choosecols-chooserows-not-working\//);
+  assert.doesNotMatch(page, /official Google|Google partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|directly edits|edits your sheet|pay before answer|whole workbook|whole spreadsheet|whole sheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|privacy superior|more accurate|faster/i);
 });
 
 test('Formularizer alternative page targets focused formula comparison without overclaiming', () => {

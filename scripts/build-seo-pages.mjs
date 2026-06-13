@@ -4286,6 +4286,40 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-choosecols-chooserows-not-working',
+    title: 'Google Sheets CHOOSECOLS or CHOOSEROWS Not Working? | Write My Formula',
+    description: 'Fix Google Sheets CHOOSECOLS and CHOOSEROWS formulas with #VALUE!, wrong selected rows or columns, negative index mistakes, output that cannot expand, or nested array errors.',
+    eyebrow: 'Google Sheets CHOOSECOLS and CHOOSEROWS fix',
+    h1: 'Google Sheets CHOOSECOLS or CHOOSEROWS not working? Paste the formula and get it fixed.',
+    lede: 'Paste the formula exactly as Google Sheets sees it, plus the row or column output you expected. CHOOSECOLS and CHOOSEROWS break when a selected position is 0, outside the source range, counted from the wrong end, blocked from expanding because cells beside or below already have values, or fed by a FILTER, QUERY, SORT, or IMPORTRANGE formula that is already returning an error.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=CHOOSECOLS(A1:F500,1,3,-1)'
+    },
+    intent: 'Help Google Sheets users repair one CHOOSECOLS or CHOOSEROWS formula where the visible problem is usually an invalid selected position, a negative index counted from the wrong side, blocked array output, a source range that excludes needed fields, or an upstream formula error.',
+    bestFor: [
+      'CHOOSECOLS formulas returning the wrong fields because the column numbers are counted from the selected array, not the whole sheet.',
+      'CHOOSEROWS formulas returning the wrong records because positive and negative row numbers were mixed without checking the source range.',
+      'Formulas returning #VALUE! when a selected row or column number is 0 or outside the array.',
+      'Output that stops short or overwrites nothing because cells beside or below the formula already contain values, leaving the array no room to expand.',
+      'Nested FILTER, QUERY, SORT, or IMPORTRANGE setups where the inner array should be tested before selecting rows or columns.'
+    ],
+    steps: [
+      'Paste the exact CHOOSECOLS or CHOOSEROWS formula and the visible error or wrong output.',
+      'Include the source range shape and which rows or columns you expected to keep.',
+      'Flag any negative position numbers; those count backward from the last row or column, and it is easy to mix them up with positive ones.'
+    ],
+    copyChecks: [
+      'Count positions from the first argument inside CHOOSECOLS or CHOOSEROWS, not from column A or row 1 of the sheet.',
+      'Use negative positions only when you deliberately want to count backward from the last row or column in the selected array.',
+      'Do not use 0 as a row or column selector.',
+      'Test FILTER, QUERY, SORT, or IMPORTRANGE by itself when the selected array is produced by another formula.',
+      'Do not wrap CHOOSECOLS or CHOOSEROWS in ARRAYFORMULA. They already return arrays, and the wrapper can suppress the output.',
+      'Clear the cells beside and below the formula so the selected rows or columns have room to expand.'
+    ]
+  },
+  {
     slug: 'google-sheets-importrange-not-working',
     title: 'Google Sheets IMPORTRANGE Not Working? | Write My Formula',
     description: 'Fix Google Sheets IMPORTRANGE formulas with #REF!, Allow access prompts, permission issues, result-size limits, slow refreshes, or volatile-function errors.',
@@ -7650,6 +7684,20 @@ const pageEnhancements = {
       setup: 'A row has three review scores in B2:D2. The formula should calculate the average once, name it avg, and then label the row based on that average.',
       formula: '=LET(avg,AVERAGE(B2:D2),IF(avg>=4,"Great",IF(avg>=3,"Good","Poor")))',
       read: 'The formula assigns avg to the average of B2:D2 and reuses that name in the IF logic. If the result is wrong, test AVERAGE(B2:D2) by itself, then confirm the final IF expression is the last LET argument.'
+    }
+  },
+  'google-sheets-choosecols-chooserows-not-working': {
+    gives: [
+      'A focused fix for one Google Sheets CHOOSECOLS or CHOOSEROWS formula.',
+      'Checks for selected row or column numbers, negative positions, source-array shape, blocked output ranges, and upstream array errors.',
+      'A revised formula you can test on one expected row or column before pasting it into a shared report.'
+    ],
+    useWhen: 'Use this page when CHOOSECOLS or CHOOSEROWS returns #VALUE!, selects the wrong fields, pulls the wrong records, stops expanding, or breaks after the source FILTER, QUERY, SORT, or IMPORTRANGE changed. It is strongest when you can paste the formula and describe the rows or columns you expected to keep.',
+    notWhen: 'Do not use it as a full sheet audit or data-model rebuild. CHOOSECOLS and CHOOSEROWS repair starts with one formula, the array it selects from, the positions you asked for, and whether the selected output has room to expand.',
+    example: {
+      setup: 'A report in A1:F500 should keep the first column, the third column, and the last column from the selected array.',
+      formula: '=CHOOSECOLS(A1:F500,1,3,-1)',
+      read: 'The formula counts positions inside A1:F500, returns columns 1 and 3, and uses -1 to return the last column of that selected array. If the source range changes, count the positions again before pasting the formula into a shared report.'
     }
   },
   'google-sheets-importrange-not-working': {
