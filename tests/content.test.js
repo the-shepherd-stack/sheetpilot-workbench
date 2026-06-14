@@ -150,6 +150,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix IMPORTRANGE formulas with #REF!, Allow access prompts, oversized imports, slow refreshes, or source permission issues/);
   assert.match(page, /\/google-sheets-importxml-not-working\//);
   assert.match(page, /Fix IMPORTXML formulas with #N\/A, Imported content is empty, Could not fetch URL, XPath mistakes, oversized results, or blocked page content/);
+  assert.match(page, /\/google-sheets-importhtml-not-working\//);
+  assert.match(page, /Stuck on a Google Sheets IMPORTHTML formula returning #N\/A, "imported content is empty," "could not fetch URL," the wrong table, or no output/);
   assert.match(page, /\/google-sheets-regexextract-not-working\//);
   assert.match(page, /Fix REGEXEXTRACT formulas with #N\/A no-match errors, invalid regex patterns, text-input issues, greedy matches, and RE2 syntax limits/);
   assert.match(page, /\/google-sheets-conditional-formatting-not-working\//);
@@ -2711,6 +2713,28 @@ test('google sheets IMPORTXML not working page targets XPath repair intent witho
   assert.match(homepage, /href="\/google-sheets-importxml-not-working\/">Google Sheets IMPORTXML not working/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-importxml-not-working\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|working one back|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one click|automatic|pay before answer|detects JS|cancel any time/i);
+});
+
+test('google sheets IMPORTHTML not working page targets table import repair intent without overclaiming', () => {
+  const page = read('google-sheets-importhtml-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Google Sheets IMPORTHTML Returning #N\/A or Empty/);
+  assert.match(page, /Your Google Sheets IMPORTHTML formula is returning the wrong table, #N\/A, or nothing at all/);
+  assert.match(page, /IMPORTHTML reads tables and lists that exist in a page's public HTML source/);
+  assert.match(page, /URL quoting, table versus list, index counting, page-source visibility, and blocked output cells/);
+  assert.match(page, /Could not fetch URL/);
+  assert.match(page, /private, blocked from Google fetches, rendered only after JavaScript runs/);
+  assert.match(page, /=IMPORTHTML\(&quot;https:\/\/en\.wikipedia\.org\/wiki\/Demographics_of_India&quot;,&quot;table&quot;,4\)/);
+  assert.match(page, /Use exactly &quot;table&quot; or &quot;list&quot;/);
+  assert.match(page, /Count table and list indexes separately, starting at 1/);
+  assert.match(page, /Test IMPORTHTML by itself before wrapping it in QUERY, FILTER, IFERROR, or lookup logic/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-importhtml-not-working\/">Google Sheets IMPORTHTML repair/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-importhtml-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|working one back|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one click|automatic|pay before answer|detects JS|cancel any time|whole sheet|full sheet/i);
 });
 
 test('google sheets REGEXEXTRACT not working page targets regex repair intent without overclaiming', () => {

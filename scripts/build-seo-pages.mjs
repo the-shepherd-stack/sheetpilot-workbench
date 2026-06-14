@@ -4623,6 +4623,46 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-importhtml-not-working',
+    title: 'Google Sheets IMPORTHTML Returning #N/A or Empty? | Write My Formula',
+    description: 'Stuck on a Google Sheets IMPORTHTML formula returning #N/A, "imported content is empty," "could not fetch URL," the wrong table, or no output? Paste the formula and page URL and get a focused repair path.',
+    eyebrow: 'Google Sheets IMPORTHTML repair',
+    h1: 'Your Google Sheets IMPORTHTML formula is returning the wrong table, #N/A, or nothing at all.',
+    lede: 'IMPORTHTML reads tables and lists that exist in a page\'s public HTML source. When it returns #N/A, says "imported content is empty," cannot fetch the URL, pulls the wrong table, or has no room to expand into the sheet, the useful checks are URL quoting, table versus list, index counting, page visibility, and output space. Paste your formula and the page you are trying to import.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=IMPORTHTML("https://en.wikipedia.org/wiki/Demographics_of_India","table",4)'
+    },
+    intent: 'Help Google Sheets users repair one IMPORTHTML formula where the visible problem is usually #N/A, imported content is empty, could not fetch URL, a wrong table or list index, page content that Sheets cannot read, or blocked output cells.',
+    bestFor: [
+      'IMPORTHTML formulas that return #N/A, Imported content is empty, or Could not fetch URL.',
+      'Imports that pull the wrong table or list because the index was counted from the visible page instead of the HTML source.',
+      'URLs, query arguments, or cell references where missing quotes, missing protocol, wrong separators, or table/list text may be breaking the formula.',
+      'Public pages where the desired table is loaded by JavaScript, blocked from Google fetches, behind a login, or missing from the source HTML.',
+      'IMPORTHTML results feeding QUERY or FILTER formulas where the import needs to work first before downstream logic can be trusted.'
+    ],
+    steps: [
+      'Paste the exact IMPORTHTML formula and the visible Google Sheets error text.',
+      'Include the page URL, whether you want a table or list, and which visible table or list you expected.',
+      'Say whether the output cells below and to the right of the formula are clear.'
+    ],
+    copyChecks: [
+      'Make sure the URL includes http or https and is quoted, or points to a cell that contains the full URL.',
+      'Use exactly "table" or "list" for the query argument, or reference a cell that contains one of those values.',
+      'Count table and list indexes separately, starting at 1, because the first table and first list can both be index 1.',
+      'Check whether the table or list exists in the page source without JavaScript before treating the index as the only problem.',
+      'Clear the output cells below and to the right before assuming the import formula itself is wrong.',
+      'Test IMPORTHTML by itself before wrapping it in QUERY, FILTER, IFERROR, or lookup logic.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Index quick check',
+        html: 'IMPORTHTML keeps table indexes and list indexes separate. A page can have <strong>table 1</strong> and <strong>list 1</strong> at the same time, so switching the query argument from "table" to "list" changes which set of indexes Sheets counts.'
+      }
+    ]
+  },
+  {
     slug: 'google-sheets-regexextract-not-working',
     title: 'Google Sheets REGEXEXTRACT Not Working? | Write My Formula',
     description: 'Fix Google Sheets REGEXEXTRACT formulas with #N/A no-match errors, invalid regex patterns, text-input issues, greedy matches, and RE2 syntax limits.',
@@ -8063,6 +8103,20 @@ const pageEnhancements = {
       setup: 'A product page has price text in a span with class price. A shorter attribute-based XPath is usually easier to maintain than a full copied browser path.',
       formula: '=IMPORTXML("https://example.com/products/widget","//span[contains(@class,\'price\')]/text()")',
       read: 'The formula gives Sheets a quoted URL and a quoted XPath that targets price text directly. If the page does not expose that text in the HTML Sheets can fetch, the page source or data source has to be checked before adding IFERROR.'
+    }
+  },
+  'google-sheets-importhtml-not-working': {
+    gives: [
+      'A focused repair pass for one Google Sheets IMPORTHTML formula.',
+      'Checks for URL quoting, table versus list, index counting, page-source visibility, and blocked output cells.',
+      'A revised import path you can test by itself before adding QUERY, FILTER, IFERROR, or lookup logic.'
+    ],
+    useWhen: 'Use this page when IMPORTHTML returns #N/A, Imported content is empty, Could not fetch URL, pulls the wrong table, or will not expand into the sheet. It is strongest when you can paste the formula, the target page URL, and the visible table or list you expected.',
+    notWhen: 'Do not treat IMPORTHTML as a full scraping system. If the page is private, blocked from Google fetches, rendered only after JavaScript runs, or does not contain a table or list in the source HTML, a formula rewrite may not be enough.',
+    example: {
+      setup: 'A public reference page has several HTML tables, and the report needs the fourth table imported before any cleanup formulas run.',
+      formula: '=IMPORTHTML("https://en.wikipedia.org/wiki/Demographics_of_India","table",4)',
+      read: 'The formula gives Sheets a quoted URL, asks for a table, and returns the fourth table that Sheets can see in the page source. If it pulls the wrong result, count the tables in the source HTML and test IMPORTHTML before wrapping it in QUERY or FILTER.'
     }
   },
   'google-sheets-regexextract-not-working': {
