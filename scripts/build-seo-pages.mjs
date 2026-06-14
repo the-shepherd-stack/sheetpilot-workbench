@@ -4123,6 +4123,38 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-sortn-not-working',
+    title: 'Google Sheets SORTN Not Working? | Write My Formula',
+    description: 'Fix Google Sheets SORTN formulas that return the wrong top rows, unexpected ties, duplicate rows, mismatched range sizes, or the wrong sort order.',
+    eyebrow: 'Google Sheets SORTN repair',
+    h1: 'Fix a Google Sheets SORTN formula that returns the wrong top rows.',
+    lede: 'SORTN is useful for top-5 and bottom-10 reports, but small argument mistakes change the output. Ties can add rows, duplicate handling can remove records, sort_column can point at the wrong range, and is_ascending can flip the intended order. Paste the formula and source headers to get a focused repair path for n, display_ties_mode, sort_column, range sizes, and top-versus-bottom order.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=SORTN(A2:D500,5,1,4,FALSE)'
+    },
+    intent: 'Help Google Sheets users repair one SORTN formula where the visible problem is usually the wrong number of returned rows, misunderstood tie modes, duplicate handling, a sort_column counted from the wrong range, an external sort column with a mismatched row count, or a top-versus-bottom sort direction mistake.',
+    bestFor: [
+      'Top-N and bottom-N reports that return more or fewer rows than expected because of tie handling.',
+      'SORTN formulas where duplicate rows disappear or remain because display_ties_mode is not set to the intended mode.',
+      'Nested FILTER plus SORTN formulas that fail because the filtered rows and sort key no longer have the same height.',
+      'Leaderboards, priority lists, and summary tables where the sorted column, n value, and ascending setting need to be checked together.'
+    ],
+    steps: [
+      'Paste the exact SORTN formula and say how many rows should return.',
+      'Include the source headers, the sort column, and one row that should appear in the result.',
+      'Say whether ties should be ignored, included, deduplicated, or shown as unique rows plus duplicates.'
+    ],
+    copyChecks: [
+      'Check n first so the formula is asking for the intended number of rows.',
+      'Set display_ties_mode deliberately before judging whether extra rows or missing duplicates are wrong.',
+      'Count sort_column from the selected range unless you are using a same-height external sort column.',
+      'Keep the SORTN range and any external sort column the same number of rows.',
+      'Use FALSE for largest-first reports and TRUE for smallest-first reports when the sort key is numeric.'
+    ]
+  },
+  {
     slug: 'google-sheets-unique-not-working',
     title: 'Google Sheets UNIQUE Not Working? | Write My Formula',
     description: 'Fix Google Sheets UNIQUE formulas that keep duplicates, remove the wrong rows, return unexpected columns, or confuse by_column and exactly_once settings.',
@@ -7718,6 +7750,20 @@ const pageEnhancements = {
       setup: 'A task table has headers in row 1 and due dates in column C. The result should sort the data rows by due date without moving the header into the output.',
       formula: '=SORT(A2:D500,C2:C500,TRUE)',
       read: 'The formula excludes the header row by starting at A2:D500 and sorts those same rows by the due-date values in C2:C500. If the due dates are stored as text, the source values need cleanup before the order can be trusted.'
+    }
+  },
+  'google-sheets-sortn-not-working': {
+    gives: [
+      'A focused repair pass for one Google Sheets SORTN formula.',
+      'Checks for n, display_ties_mode, duplicate handling, sort-column direction, external sort-column size, and nested FILTER output shape.',
+      'A revised top-N or bottom-N path you can test against one known row before replacing the live one.'
+    ],
+    useWhen: 'Use this page when Google Sheets SORTN returns the wrong top rows, includes unexpected tied rows, removes duplicates you expected to keep, returns too few rows, or throws a range-size mismatch after a nested FILTER. It is strongest when you can paste the formula, source headers, and one row that should appear in the result.',
+    notWhen: 'Do not use this as proof that the whole leaderboard is correct. SORTN repair starts with one formula, one source range, and the intended tie behavior; source data cleanup, protected ranges, imported values, and downstream formulas may still need separate checks.',
+    example: {
+      setup: 'A sales leaderboard should show the top five deals by amount, but a tie-mode setting returns six rows and confuses the summary.',
+      formula: '=SORTN(A2:D500,5,1,4,FALSE)',
+      read: 'The formula sorts by column 4 from largest to smallest and uses display_ties_mode 1, so rows tied with the fifth row can be included. Use mode 0 to return exactly five rows, mode 2 to remove duplicate rows before returning results, or mode 3 to return unique rows plus their duplicates.'
     }
   },
   'google-sheets-unique-not-working': {

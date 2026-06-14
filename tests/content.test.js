@@ -2529,6 +2529,26 @@ test('google sheets SORT not working page targets sort repair intent without ove
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one click|automatic|pay before answer|whole sheet|full sheet/i);
 });
 
+test('google sheets SORTN not working page targets top-n repair intent without overclaiming', () => {
+  const page = read('google-sheets-sortn-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Google Sheets SORTN Not Working/);
+  assert.match(page, /Fix a Google Sheets SORTN formula that returns the wrong top rows/);
+  assert.match(page, /Ties can add rows, duplicate handling can remove records/);
+  assert.match(page, /n, display_ties_mode, sort_column, range sizes, and top-versus-bottom order/);
+  assert.match(page, /Set display_ties_mode deliberately/);
+  assert.match(page, /=SORTN\(A2:D500,5,1,4,FALSE\)/);
+  assert.match(page, /uses display_ties_mode 1, so rows tied with the fifth row can be included/);
+  assert.match(page, /Use mode 0 to return exactly five rows/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-sortn-not-working\/">Google Sheets SORTN not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-sortn-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one click|automatic|pay before answer|whole sheet|full sheet/i);
+});
+
 test('google sheets UNIQUE not working page targets duplicate repair intent without overclaiming', () => {
   const page = read('google-sheets-unique-not-working/index.html');
   const homepage = read('index.html');
