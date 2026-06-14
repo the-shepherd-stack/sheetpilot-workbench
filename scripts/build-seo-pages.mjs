@@ -4287,6 +4287,39 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-regexmatch-regexreplace-not-working',
+    title: 'Google Sheets REGEXMATCH or REGEXREPLACE Not Working? | Write My Formula',
+    description: 'Fix Google Sheets REGEXMATCH and REGEXREPLACE formulas with no matches, wrong replacements, text-vs-number input issues, escaped characters, or RE2 pattern limits.',
+    eyebrow: 'Google Sheets REGEXMATCH and REGEXREPLACE repair',
+    h1: "Fix a Google Sheets REGEXMATCH or REGEXREPLACE that won't match, or matches too much.",
+    lede: 'Paste the formula, one source value, and the output you expected. Get a focused repair path for text inputs, escaped dots and parentheses, anchors, greedy matches, replacement text, case handling, ARRAYFORMULA wrappers, and Google Sheets regular-expression limits.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=REGEXREPLACE(A2,"[^0-9]","")'
+    },
+    intent: 'Use this when one REGEXMATCH or REGEXREPLACE formula matches too much or too little, tests a number as non-text, misses an escaped special character, needs an anchor, changes the wrong substring, or uses regex syntax that Google Sheets does not support.',
+    bestFor: [
+      'REGEXMATCH formulas that return FALSE when the text clearly contains the expected code, domain, prefix, or label.',
+      'REGEXREPLACE formulas that remove too much text, leave punctuation behind, or change only part of the intended value.',
+      'Patterns copied from another regex tool that rely on unsupported syntax or behave differently in Google Sheets.',
+      'ARRAYFORMULA setups where a regex formula should evaluate each row but blanks, numbers, or errors need to be handled deliberately.'
+    ],
+    steps: [
+      'Paste the exact REGEXMATCH or REGEXREPLACE formula and one source cell value.',
+      'Describe the match, TRUE/FALSE result, or replacement text you expected.',
+      'Say whether the formula is filled down, wrapped in ARRAYFORMULA, or used inside FILTER, IF, or conditional formatting.'
+    ],
+    copyChecks: [
+      'Wrap numeric cells in TO_TEXT before passing them to REGEXMATCH or REGEXREPLACE.',
+      'Escape regex special characters such as dots, parentheses, plus signs, brackets, and question marks when they should be literal text.',
+      'Use ^ and $ anchors only when the pattern should match the start or end of the whole cell value.',
+      'Check greedy patterns such as .* before trusting a replacement that removes a long section of text.',
+      'Google Sheets supports RE2 except Unicode property classes, so patterns like \\p{L} will not match. Use explicit character classes instead.',
+      'Test the repaired pattern on one matching value, one non-matching value, and one blank before filling it through a shared sheet.'
+    ]
+  },
+  {
     slug: 'google-sheets-let-function-not-working',
     title: 'Google Sheets LET Function Not Working Fixer | Write My Formula',
     description: 'Fix Google Sheets LET formulas with invalid names, missing name/value pairs, parse errors, wrong intermediate results, and nested formula mistakes.',
@@ -7791,6 +7824,20 @@ const pageEnhancements = {
       setup: 'Column A has order IDs, B has quantity, and C has unit price. D2 should fill totals for each row but stay blank when the source row is blank.',
       formula: '=ARRAYFORMULA(IF(A2:A="","",B2:B*C2:C))',
       read: 'The formula evaluates rows 2 and below as ranges, leaves blank source rows blank, and lets the result spill down column D as long as the output cells are clear.'
+    }
+  },
+  'google-sheets-regexmatch-regexreplace-not-working': {
+    gives: [
+      'A corrected REGEXMATCH or REGEXREPLACE formula for one visible pattern problem.',
+      'Checks for text inputs, escaped characters, anchors, greedy patterns, replacement text, row-by-row wrappers, and RE2 limits.',
+      'A revised regex formula path you can test on one matching value and one non-matching value before replacing a shared-sheet formula.'
+    ],
+    useWhen: 'Use this page when REGEXMATCH returns the wrong TRUE or FALSE result, REGEXREPLACE removes too much or too little text, a copied regex pattern breaks in Google Sheets, or a regex formula returns the wrong row-level result after you wrap it in ARRAYFORMULA, FILTER, IF, or conditional formatting. It is strongest when you can paste the formula and one source cell value.',
+    notWhen: 'Do not treat regex repair as a full data-cleaning audit. This page handles one pattern, one source value, the expected match or replacement, and whether the output needs to fill down safely.',
+    example: {
+      setup: 'Column A contains imported phone labels such as Phone: (555) 123-4567. Column B should keep only digits so the value can be compared consistently.',
+      formula: '=REGEXREPLACE(TO_TEXT(A2),"[^0-9]","")',
+      read: 'The formula converts the source value to text, then removes every character that is not a digit. Test it on a normal phone label, a blank, and a value with no digits before filling it down.'
     }
   },
   'google-sheets-let-function-not-working': {

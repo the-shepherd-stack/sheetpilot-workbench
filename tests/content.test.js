@@ -828,6 +828,7 @@ test('seo landing pages target high-intent formula searches', () => {
     'google-sheets-filter-not-working',
     'google-sheets-query-not-working',
     'google-sheets-arrayformula-not-working',
+    'google-sheets-regexmatch-regexreplace-not-working',
     'google-sheets-let-function-not-working',
     'google-sheets-vstack-hstack-not-working',
     'google-sheets-torow-tocol-not-working',
@@ -2586,6 +2587,26 @@ test('google sheets ARRAYFORMULA not working page targets spill and range repair
   assert.match(homepage, /href="\/google-sheets-arrayformula-not-working\/">Google Sheets ARRAYFORMULA not working/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-arrayformula-not-working\//);
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
+});
+
+test('google sheets REGEXMATCH and REGEXREPLACE not working page targets pattern repair without overclaiming', () => {
+  const page = read('google-sheets-regexmatch-regexreplace-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Google Sheets REGEXMATCH or REGEXREPLACE Not Working/);
+  assert.match(page, /Fix a Google Sheets REGEXMATCH or REGEXREPLACE that won't match, or matches too much/);
+  assert.match(page, /text inputs, escaped characters, anchors, greedy patterns, replacement text/);
+  assert.match(page, /Google Sheets regular-expression limits/);
+  assert.match(page, /RE2 limits/);
+  assert.match(page, /=REGEXREPLACE\(TO_TEXT\(A2\),&quot;\[\^0-9\]&quot;,&quot;&quot;\)/);
+  assert.match(page, /Wrap numeric cells in TO_TEXT before passing them to REGEXMATCH or REGEXREPLACE/);
+  assert.match(page, /Escape regex special characters such as dots, parentheses, plus signs, brackets, and question marks/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-regexmatch-regexreplace-not-working\/">Google Sheets REGEXMATCH and REGEXREPLACE repair/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-regexmatch-regexreplace-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatic|pay before answer|whole sheet|full sheet/i);
 });
 
 test('google sheets LET function not working page targets LET repair intent without overclaiming', () => {
