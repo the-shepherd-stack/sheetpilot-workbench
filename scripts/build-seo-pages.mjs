@@ -4559,6 +4559,48 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-wraprows-wrapcols-not-working',
+    title: 'Google Sheets WRAPROWS / WRAPCOLS Not Working? | Write My Formula',
+    description: 'Fix Google Sheets WRAPROWS and WRAPCOLS formulas with wrong shapes, #N/A padding, invalid wrap counts, blocked output cells, or source ranges that need flattening first.',
+    eyebrow: 'Google Sheets WRAPROWS and WRAPCOLS repair',
+    h1: 'Fix a Google Sheets WRAPROWS or WRAPCOLS formula that returns the wrong shape, #N/A, or an error.',
+    lede: 'Paste the formula you can see in Google Sheets. You get a rewrite to test in an empty area before you replace anything in the shared report. WRAPROWS and WRAPCOLS take a single row or single column as the source. They can return the wrong shape, pad with #N/A, fail when wrap_count is not a positive integer, or stop expanding when the output cells are not empty.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=WRAPROWS(A2:A25,4,"")'
+    },
+    intent: 'Help Google Sheets users repair one WRAPROWS or WRAPCOLS formula where the visible problem is usually wrong wrap direction, #N/A padding, a source range that is not one row or one column, a bad wrap_count, nested array shape, or blocked output cells.',
+    bestFor: [
+      'WRAPROWS formulas that should turn one row or column into grouped rows but return the wrong shape, trailing #N/A cells, or an error.',
+      'WRAPCOLS formulas that should wrap values down columns but return a row-oriented result or unexpected padding.',
+      'Source ranges that are really two-dimensional tables and may need TOROW or TOCOL before wrapping.',
+      'Function-not-recognized cases where the first checks are spelling, locale separators, and account support.',
+      'Output blocked because target cells are not empty.'
+    ],
+    steps: [
+      'Paste the exact WRAPROWS or WRAPCOLS formula that is not working.',
+      'Describe the source shape, such as A2:A50 as one column, B1:Z1 as one row, or A2:D20 as a table.',
+      'Name the visible symptom: wrong shape, #N/A padding, an error, or output that cannot expand.',
+      'Say how many values should appear in each wrapped row or column.'
+    ],
+    copyChecks: [
+      'Confirm the source is one row or one column before changing the rest of the formula.',
+      'Use WRAPROWS when each output row should hold the next group of values; use WRAPCOLS when each output column should hold the next group.',
+      'Use TOROW or TOCOL first if the current source is a two-dimensional range that needs to be flattened.',
+      'Make wrap_count a positive whole number.',
+      'Set pad_with, or expect #N/A in the leftover cells.',
+      'Clear the cells the array needs to expand into.',
+      'Test any nested TOROW, TOCOL, FILTER, SORT, or UNIQUE pieces on their own first.'
+    ],
+    extraDetailCards: [
+      {
+        title: 'Padding quick check',
+        html: 'If <code>pad_with</code> is omitted and the source does not divide evenly by <code>wrap_count</code>, trailing cells can show <code>#N/A</code>. Add a third argument, such as an empty string, only when blank padding is what the report should show.'
+      }
+    ]
+  },
+  {
     slug: 'google-sheets-importrange-not-working',
     title: 'Google Sheets IMPORTRANGE Not Working? | Write My Formula',
     description: 'Fix Google Sheets IMPORTRANGE formulas with #REF!, Allow access prompts, permission issues, result-size limits, slow refreshes, or volatile-function errors.',
@@ -8075,6 +8117,20 @@ const pageEnhancements = {
       setup: 'A report has quarterly values in A2:D20. The output should be one column that reads each row from left to right and skips truly blank cells.',
       formula: '=TOCOL(A2:D20,1,FALSE)',
       read: 'The formula flattens the two-dimensional range into one column, ignores truly empty cells, and scans by row because scan_by_column is FALSE. Formula-returned empty strings may not be treated as blank, so test one known row before filling the result. If the output should read down each source column first, set the final argument to TRUE.'
+    }
+  },
+  'google-sheets-wraprows-wrapcols-not-working': {
+    gives: [
+      'A focused repair pass for one Google Sheets WRAPROWS or WRAPCOLS formula.',
+      'Checks for source-vector shape, wrap direction, wrap_count, pad_with behavior, nested array inputs, and blocked output cells.',
+      'A revised wrapping formula you can test in an empty area before replacing a shared report formula.'
+    ],
+    useWhen: 'Use this page when WRAPROWS or WRAPCOLS returns the wrong shape, leaves unexpected #N/A padding, rejects the wrap count, cannot expand, or breaks after a nested TOROW, TOCOL, FILTER, SORT, or UNIQUE change. It is strongest when you can paste the formula, source range shape, and intended number of values per row or column.',
+    notWhen: 'Do not treat WRAPROWS or WRAPCOLS as a full report audit. The useful repair surface is one formula, the source vector it wraps, the wrap_count, the padding value, and whether the destination cells are clear.',
+    example: {
+      setup: 'A single list of invoice IDs in A2:A25 should wrap into rows of four values, with blank padding instead of #N/A in the final row.',
+      formula: '=WRAPROWS(A2:A25,4,"")',
+      read: 'The formula takes one column as the source, puts four values in each returned row, and uses the optional pad_with argument to leave incomplete trailing cells blank. If the source is a table such as A2:D25, flatten it with TOROW or TOCOL before wrapping.'
     }
   },
   'google-sheets-importrange-not-working': {

@@ -146,6 +146,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Your VSTACK or HSTACK returns #N\/A, wrong shape, or unknown function/);
   assert.match(page, /\/google-sheets-torow-tocol-not-working\//);
   assert.match(page, /Fix TOROW and TOCOL formulas with wrong scan order, unexpected blanks, error-value handling, nested arrays, or blocked output/);
+  assert.match(page, /\/google-sheets-wraprows-wrapcols-not-working\//);
+  assert.match(page, /Fix WRAPROWS and WRAPCOLS formulas with wrong shapes, #N\/A padding, invalid wrap counts, blocked output cells, or source ranges that need flattening first/);
   assert.match(page, /\/google-sheets-importrange-not-working\//);
   assert.match(page, /Fix IMPORTRANGE formulas with #REF!, Allow access prompts, oversized imports, slow refreshes, or source permission issues/);
   assert.match(page, /\/google-sheets-importxml-not-working\//);
@@ -356,6 +358,29 @@ test('thanks page tracks paid completion and unlocks founding access', () => {
   assert.match(page, /navigator\.sendBeacon/);
   assert.match(page, /id="continue-workbench"/);
   assert.match(page, /href="\/\?paid=1"/);
+});
+
+test('Google Sheets WRAPROWS WRAPCOLS repair page stays bounded', () => {
+  const page = read('google-sheets-wraprows-wrapcols-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Google Sheets WRAPROWS \/ WRAPCOLS Not Working\?/);
+  assert.match(page, /Fix a Google Sheets WRAPROWS or WRAPCOLS formula that returns the wrong shape, #N\/A, or an error/);
+  assert.match(page, /single row or single column/);
+  assert.match(page, /wrap_count is not a positive integer/);
+  assert.match(page, /TOROW or TOCOL before wrapping/);
+  assert.match(page, /Set pad_with, or expect #N\/A in the leftover cells/);
+  assert.match(page, /Clear the cells the array needs to expand into/);
+  assert.match(page, /=WRAPROWS\(A2:A25,4,&quot;&quot;\)/);
+  assert.match(page, /Two guest tries|2 guest tries|2 free tries/);
+  assert.match(page, /500 runs per month, with run history kept in this browser|500 formula runs per month for \$9, with run history kept in this browser/);
+  assert.match(page, /What should the formula do\?|Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-wraprows-wrapcols-not-working\/">Google Sheets WRAPROWS and WRAPCOLS repair/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-wraprows-wrapcols-not-working\//);
+  assert.doesNotMatch(page, /official Google|Google partner|affiliated with Google|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook audit by Write My Formula|whole spreadsheet audit by Write My Formula|exact cause|human reviewer|same-day|PDF|privacy superior|works every time/i);
 });
 
 test('SheetXAI alternative page keeps the comparison bounded', () => {
