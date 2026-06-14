@@ -2589,6 +2589,27 @@ test('google sheets ARRAYFORMULA not working page targets spill and range repair
   assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|pay before answer/i);
 });
 
+test('google sheets SPLIT not working page targets delimiter and blank-field repair without overclaiming', () => {
+  const page = read('google-sheets-split-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Google Sheets SPLIT Not Working/);
+  assert.match(page, /Fix a Google Sheets SPLIT formula that is not separating text the way you expect/);
+  assert.match(page, /split_by_each/);
+  assert.match(page, /remove_empty_text/);
+  assert.match(page, /drops blank fields/);
+  assert.match(page, /Set split_by_each to FALSE when the delimiter is a word or multi-character string/);
+  assert.match(page, /Set remove_empty_text to FALSE when consecutive delimiters should create blank output cells/);
+  assert.match(page, /=SPLIT\(A2,&quot;,&quot;,FALSE,FALSE\)/);
+  assert.match(page, /Use CHAR\(10\) for line-break delimiters/);
+  assert.match(page, /Use it past the guest limit/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-split-not-working\/">Google Sheets SPLIT not working/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-split-not-working\//);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Google|Google partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatic|pay before answer|whole sheet|full sheet/i);
+});
+
 test('google sheets REGEXMATCH and REGEXREPLACE not working page targets pattern repair without overclaiming', () => {
   const page = read('google-sheets-regexmatch-regexreplace-not-working/index.html');
   const homepage = read('index.html');

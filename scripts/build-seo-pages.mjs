@@ -4287,6 +4287,40 @@ const pages = [
     ]
   },
   {
+    slug: 'google-sheets-split-not-working',
+    title: 'Google Sheets SPLIT Not Working? | Write My Formula',
+    description: 'Fix Google Sheets SPLIT formulas with wrong delimiters, missing blank fields, blocked output cells, split_by_each surprises, or text cleanup issues.',
+    eyebrow: 'Google Sheets SPLIT repair',
+    h1: 'Fix a Google Sheets SPLIT formula that is not separating text the way you expect.',
+    lede: 'If SPLIT leaves the text unchanged, splits on every character in a delimiter word, drops blank fields, or cannot expand across the row, paste the formula and one source value. The workbench checks delimiters, split_by_each, remove_empty_text, output cells, line breaks, spaces, and nested cleanup formulas, then suggests a revised SPLIT to test.',
+    preset: {
+      mode: 'fix',
+      platform: 'sheets',
+      formula: '=SPLIT(A2,",",FALSE,FALSE)'
+    },
+    intent: 'Help Google Sheets users repair one SPLIT formula where the visible problem is usually a delimiter mismatch, default split_by_each behavior, removed empty values, output cells blocking expansion, line-break delimiters, or source text with inconsistent spaces.',
+    bestFor: [
+      'SPLIT formulas that do not split because the delimiter in the formula does not match the source text.',
+      'Multi-character delimiters such as "--" or " | " that split by each character unless split_by_each is set to FALSE.',
+      'CSV-like strings where consecutive delimiters should preserve blank fields instead of closing the gap.',
+      'Outputs blocked by existing values to the right of the formula cell.',
+      'Text cleanup formulas where SPLIT needs TRIM, SUBSTITUTE, REGEXREPLACE, TRANSPOSE, or INDEX around it.'
+    ],
+    steps: [
+      'Paste the exact SPLIT formula and one source text value it should separate.',
+      'Say whether blank fields should be kept or removed from the result.',
+      'Mention whether the output should spill across columns, move down rows with TRANSPOSE, or return one specific part with INDEX.'
+    ],
+    copyChecks: [
+      'Match the delimiter exactly, including spaces before or after commas, pipes, slashes, or dashes.',
+      'Set split_by_each to FALSE when the delimiter is a word or multi-character string that should match as a whole; otherwise SPLIT treats each character in it as its own separator.',
+      'Set remove_empty_text to FALSE when consecutive delimiters should create blank output cells.',
+      'Clear cells to the right of the formula before changing a valid SPLIT that cannot expand.',
+      'Use CHAR(10) for line-break delimiters and TRIM around split results when imported text contains extra spaces.',
+      'Test the repaired SPLIT on one normal value, one value with a missing field, and one blank before filling it through a shared sheet.'
+    ]
+  },
+  {
     slug: 'google-sheets-regexmatch-regexreplace-not-working',
     title: 'Google Sheets REGEXMATCH or REGEXREPLACE Not Working? | Write My Formula',
     description: 'Fix Google Sheets REGEXMATCH and REGEXREPLACE formulas with no matches, wrong replacements, text-vs-number input issues, escaped characters, or RE2 pattern limits.',
@@ -7824,6 +7858,20 @@ const pageEnhancements = {
       setup: 'Column A has order IDs, B has quantity, and C has unit price. D2 should fill totals for each row but stay blank when the source row is blank.',
       formula: '=ARRAYFORMULA(IF(A2:A="","",B2:B*C2:C))',
       read: 'The formula evaluates rows 2 and below as ranges, leaves blank source rows blank, and lets the result spill down column D as long as the output cells are clear.'
+    }
+  },
+  'google-sheets-split-not-working': {
+    gives: [
+      'A focused repair pass for one Google Sheets SPLIT formula.',
+      'Checks for exact delimiters, split_by_each behavior, empty-field handling, blocked output cells, and line-break or space cleanup.',
+      'A revised SPLIT path you can test on one source value before filling it through an import or shared sheet.'
+    ],
+    useWhen: 'Use this page when Google Sheets SPLIT leaves text unchanged, splits on the wrong character, removes empty fields you need to keep, or cannot expand across nearby cells. It is strongest when you can paste the formula and one source value that should split.',
+    notWhen: 'Do not treat SPLIT repair as a full data-cleaning audit. The source export may still contain inconsistent delimiters, extra spaces, quoted CSV edge cases, or mixed row formats that need separate checks after the first formula works.',
+    example: {
+      setup: 'A CSV-like field in A2 has missing middle values, such as SKU-100,,West. The blank field should stay visible so later columns do not shift.',
+      formula: '=SPLIT(A2,",",FALSE,FALSE)',
+      read: 'The formula uses a comma delimiter, turns off split-by-each-character behavior, and keeps empty text between consecutive commas so the output columns stay aligned.'
     }
   },
   'google-sheets-regexmatch-regexreplace-not-working': {
