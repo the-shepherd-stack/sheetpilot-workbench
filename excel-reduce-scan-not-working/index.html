@@ -730,6 +730,10 @@ Northwind,Team,79</textarea>
               <p>Fix CHOOSECOLS and CHOOSEROWS formulas with #VALUE!, wrong selected rows or columns, negative index mistakes, output that cannot expand, or nested array errors.</p>
             </article>
             <article class="mini">
+              <h3><a href="/google-sheets-byrow-bycol-not-working/">Google Sheets BYROW and BYCOL repair</a></h3>
+              <p>Fix BYROW and BYCOL formulas with LAMBDA argument errors, invalid names, nested array results, wrong row or column output, or blocked output cells.</p>
+            </article>
+            <article class="mini">
               <h3><a href="/google-sheets-vstack-hstack-not-working/">Google Sheets VSTACK or HSTACK not working</a></h3>
               <p>Your VSTACK or HSTACK returns #N/A, wrong shape, or unknown function. Paste the formula and get a rewrite you can drop back into your sheet.</p>
             </article>
@@ -958,7 +962,7 @@ Northwind,Team,79</textarea>
             <article class="detail-card">
               <h3>When to use it</h3>
               <p>Use this page when REDUCE or SCAN is close but not trustworthy: the formula returns #VALUE! Incorrect Parameters, #CALC!, #SPILL!, or #NAME?, starts from the wrong accumulator value, or returns one value when you expected a running array. It works best when you can paste the formula from the cell and say what the first accumulator step should return.</p>
-              <p>Do not treat REDUCE or SCAN as a whole-workbook debugger. The useful repair surface is the formula you paste, the source array it references, the initial value, and whether each LAMBDA step returns a value the next accumulator step can use.</p>
+              <p>Do not treat REDUCE or SCAN as a full workbook debugger. The useful repair surface is the formula you paste, the source array it references, the initial value, and whether each LAMBDA step returns a value the next accumulator step can use.</p>
             </article>
             <article class="detail-card">
               <h3>Worked example</h3>
@@ -985,12 +989,12 @@ Northwind,Team,79</textarea>
           <div class="pricing-copy">
             <p class="eyebrow">Upgrade when the work piles up</p>
             <h2 id="pricing-title">Keep going when the sheet gets complicated.</h2>
-            <p>Try twice as a guest. Free accounts get 3 runs per week plus a monthly product email. Upgrade when formula work becomes a recurring part of the week.</p>
+            <p>Try twice in this browser. Upgrade when formula work becomes a recurring part of the week.</p>
           </div>
           <div class="price-box">
             <h3>Founding access</h3>
             <div class="price">$9</div>
-            <p>500 formula runs per month, run history kept in this browser, early access pricing, and first access to account features when they ship. Stripe returns you to the workbench after payment.</p>
+            <p>500 formula runs per month, run history kept in this browser, and locked-in pricing while the workbench is still in early access. Stripe returns you to the workbench after payment.</p>
             <a class="button primary" data-checkout href="https://buy.stripe.com/5kQ5kw94pfXy3ziajM4F208">Upgrade with Stripe</a>
           </div>
         </section>

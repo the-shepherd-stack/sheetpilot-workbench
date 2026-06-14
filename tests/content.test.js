@@ -140,6 +140,8 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /Fix LET formulas with invalid names, missing name\/value pairs, parse errors, wrong intermediate results, or nested formula mistakes/);
   assert.match(page, /\/google-sheets-choosecols-chooserows-not-working\//);
   assert.match(page, /Fix CHOOSECOLS and CHOOSEROWS formulas with #VALUE!, wrong selected rows or columns, negative index mistakes, output that cannot expand, or nested array errors/);
+  assert.match(page, /\/google-sheets-byrow-bycol-not-working\//);
+  assert.match(page, /Fix BYROW and BYCOL formulas with LAMBDA argument errors, invalid names, nested array results, wrong row or column output, or blocked output cells/);
   assert.match(page, /\/google-sheets-vstack-hstack-not-working\//);
   assert.match(page, /Your VSTACK or HSTACK returns #N\/A, wrong shape, or unknown function/);
   assert.match(page, /\/google-sheets-torow-tocol-not-working\//);
@@ -336,7 +338,6 @@ test('homepage presents the tool and revenue path', () => {
   assert.match(page, /class="paywall-offer"/);
   assert.match(page, /https:\/\/writemyformula\.com\//);
   assert.match(page, /2 free tries left on this browser/);
-  assert.match(page, /3 runs per week/);
   assert.match(page, /Email for free account access/);
   assert.match(page, /monthly product email/);
   assert.match(page, /<script type="module" src="\/app\/app\.js"><\/script>/);
@@ -3510,7 +3511,7 @@ test('excel BYROW and BYCOL not working page targets LAMBDA row and column repai
   assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
   assert.match(homepage, /href="\/excel-byrow-bycol-not-working\/">Excel BYROW and BYCOL repair/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/excel-byrow-bycol-not-working\//);
-  assert.doesNotMatch(page, /Google Sheets BYROW|Google Sheets BYCOL|upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|handles arrays of any size|works in every version|any version of Excel|full spreadsheet repair/i);
+  assert.doesNotMatch(page, /upload|workbook audit|diagnoses your workbook|guarantee|guaranteed|always fixes|official Microsoft|Microsoft partner|affiliated|PDF|same-day|human reviewer|data never leaves|instant|in seconds|one-click|automatically fixes|pay before answer|whole workbook|whole spreadsheet|exact cause|handles arrays of any size|works in every version|any version of Excel|full spreadsheet repair/i);
 });
 
 test('excel MAP function not working page targets LAMBDA mapping repair intent without overclaiming', () => {
@@ -4158,6 +4159,32 @@ test('Google Sheets CHOOSECOLS and CHOOSEROWS repair page targets one formula wi
   assert.match(homepage, /href="\/google-sheets-choosecols-chooserows-not-working\/">Google Sheets CHOOSECOLS repair/);
   assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-choosecols-chooserows-not-working\//);
   assert.doesNotMatch(page, /official Google|Google partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|directly edits|edits your sheet|pay before answer|whole workbook|whole spreadsheet|whole sheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|privacy superior|more accurate|faster/i);
+});
+
+test('Google Sheets BYROW and BYCOL repair page targets LAMBDA helper errors without overclaiming', () => {
+  const page = read('google-sheets-byrow-bycol-not-working/index.html');
+  const homepage = read('index.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /Google Sheets BYROW \/ BYCOL Not Working\? Fix LAMBDA Errors/);
+  assert.match(page, /Google Sheets BYROW or BYCOL not working\? Paste the formula for a repair pass/);
+  assert.match(page, /You get a rewrite to test against one row or column before you touch the shared sheet/);
+  assert.match(page, /BYROW needs one value back per row/);
+  assert.match(page, /BYCOL needs one value back per column/);
+  assert.match(page, /the LAMBDA needs exactly one name/);
+  assert.match(page, /invalid-name error/);
+  assert.match(page, /Nested array results are not supported/);
+  assert.match(page, /We do not see your workbook/);
+  assert.match(page, /named-function placeholders/);
+  assert.match(page, /=BYROW\(A2:D20,LAMBDA\(row,SUM\(row\)\)\)/);
+  assert.match(page, /2 free tries/);
+  assert.match(page, /500 runs per month/);
+  assert.match(page, /Paste the formula/);
+  assert.match(page, /Upgrade \$9/);
+  assert.match(page, new RegExp(`data-checkout href="${checkoutUrl}"`));
+  assert.match(homepage, /href="\/google-sheets-byrow-bycol-not-working\/">Google Sheets BYROW and BYCOL repair/);
+  assert.match(sitemap, /https:\/\/writemyformula\.com\/google-sheets-byrow-bycol-not-working\//);
+  assert.doesNotMatch(page, /official Google|Google partner|affiliated|guarantee|guaranteed|always fixes|always accurate|perfect formula|data never leaves|instant|in seconds|one-click|automatically fixes|connects to your sheet|scans your workbook|directly edits|edits your sheet|pay before answer|whole workbook|whole spreadsheet|whole sheet|exact cause|uploads? your workbook|human reviewer|same-day|PDF|privacy superior|more accurate|faster|unlimited/i);
 });
 
 test('Google Sheets VSTACK and HSTACK repair page targets stack repair intent without overclaiming', () => {
